@@ -477,6 +477,61 @@ Greek_Banks_API:
 - **Document Retention**: 5-year retention policy per Greek tax law
 - **Change Tracking**: Complete modification history for all financial records
 
+### Four-Eyes Approval Workflow for Government Submissions
+
+All filings to AADE, EFKA, and myDATA require two-person approval before submission. This protects against accidental filings and provides professional liability coverage.
+
+```yaml
+Four_Eyes_Workflow:
+  step_1_prepare:
+    role: "accountant"
+    action: "Prepare the filing (VAT return, EFKA declaration, myDATA submission)"
+    command: "openclaw greek vat-return --client EL123456789 --period 2026-01 --prepare"
+    output: "Draft filing saved to /data/processing/compliance/ with status: prepared"
+    
+  step_2_review:
+    role: "senior_accountant"
+    action: "Review the prepared filing — verify figures, check for anomalies"
+    command: "openclaw greek review-filing --afm EL123456789 --period 2026-01 --type vat"
+    output: "Filing displayed with summary, comparison to prior period, and anomaly flags"
+    
+  step_3_approve:
+    role: "senior_accountant"
+    action: "Explicitly approve the filing for submission"
+    command: "openclaw greek approve-filing --afm EL123456789 --period 2026-01 --type vat --approved-by m.papadopoulou"
+    output: "Filing status changed to: approved. Approval logged to audit trail."
+    
+  step_4_submit:
+    role: "senior_accountant"
+    action: "Submit the approved filing to the government system"
+    command: "openclaw greek submit-filing --afm EL123456789 --period 2026-01 --type vat"
+    gate: "System verifies filing has approval record before allowing submission"
+    output: "Filing submitted. Confirmation receipt stored. Status: submitted."
+    
+  enforcement:
+    - "A filing with status 'prepared' cannot be submitted — it must be 'approved' first"
+    - "The preparer and approver must be different users"
+    - "Both preparer and approver are recorded in the audit event"
+    - "Emergency override requires admin role and logs a security event"
+    
+  audit_record:
+    prepared_by: "username of accountant who prepared the filing"
+    prepared_at: "timestamp of preparation"
+    approved_by: "username of senior_accountant who approved"
+    approved_at: "timestamp of approval"
+    submitted_by: "username of person who triggered submission"
+    submitted_at: "timestamp of submission"
+    submission_ref: "AADE/EFKA confirmation reference"
+```
+
+This workflow applies to:
+- VAT returns (F2) to AADE/TAXIS
+- EFKA social security declarations (ΑΠΔ)
+- myDATA invoice submissions (batch)
+- E1 individual tax returns
+- Corporate tax filings
+- Any amended or corrected filing
+
 ## Performance Metrics
 
 ### AADE Integration Success

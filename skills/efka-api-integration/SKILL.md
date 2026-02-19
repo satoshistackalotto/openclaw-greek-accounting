@@ -392,6 +392,13 @@ Security_Implementation:
     retention_policies: "Automatic data archival per Greek legal requirements"
     employee_rights: "Support for data access and deletion requests"
     consent_management: "Employee consent tracking and documentation"
+    
+  four_eyes_approval:
+    description: "All EFKA submissions require two-person approval per the four-eyes workflow defined in the canonical data map and greek-compliance-aade skill"
+    prepare_role: "accountant"
+    approve_role: "senior_accountant"
+    enforcement: "Filing must have status 'approved' before submission is allowed"
+    audit: "Both preparer and approver recorded in unified audit event"
 ```
 
 ## Usage Examples for Greek Companies

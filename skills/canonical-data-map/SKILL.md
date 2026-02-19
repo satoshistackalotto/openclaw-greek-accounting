@@ -612,3 +612,236 @@ Which skill owns (writes to) each top-level directory:
 8. **All timestamps in JSON are UTC** â€” display conversion to `Europe/Athens` happens at the output layer only.
 9. **The `/data/processing/` tree is ephemeral** â€” never reference it as the source of truth from another skill.
 10. **Deprecated paths are read-only legacy** â€” redirect to canonical paths, never create new files at deprecated locations.
+
+
+---
+
+## Unified Audit Event Schema
+
+Every skill must log significant actions using this single JSON schema. Audit events are written to `/data/system/logs/audit/` and are the authoritative record for regulatory inspection.
+
+```json
+{
+  "event_id": "EVT-20260219-143022-a7b3",
+  "timestamp": "2026-02-19T14:30:22Z",
+  "skill": "greek-compliance-aade",
+  "action": "vat_return_submitted",
+  "category": "government_submission",
+  "user": {
+    "username": "m.papadopoulou",
+    "role": "senior_accountant",
+    "ip_address": "192.168.1.42"
+  },
+  "client": {
+    "afm": "EL123456789",
+    "name": "ALPHA TRADING AE"
+  },
+  "details": {
+    "period": "2026-01",
+    "filing_type": "F2_VAT_RETURN",
+    "amount": 3340.00,
+    "submission_ref": "AADE-2026-0142"
+  },
+  "before_state": null,
+  "after_state": "submitted",
+  "approval": {
+    "prepared_by": "a.nikolaou",
+    "approved_by": "m.papadopoulou",
+    "approved_at": "2026-02-19T14:28:00Z"
+  },
+  "data_classification": "confidential",
+  "result": "success"
+}
+```
+
+**Required fields for all events:** `event_id`, `timestamp`, `skill`, `action`, `category`, `user.username`, `user.role`, `result`.
+
+**Optional fields:** `client`, `details`, `before_state`, `after_state`, `approval`, `data_classification`.
+
+**Event categories:**
+- `government_submission` — any filing sent to AADE, EFKA, myDATA
+- `data_modification` — create, update, or delete of client records
+- `access_event` — login, logout, session activity, access denial
+- `document_processing` — OCR, classification, extraction, validation
+- `financial_output` — statement generation, amendment, report creation
+- `communication` — client correspondence sent
+- `system_operation` — backup, integrity check, schema migration
+- `security_event` — lockout, 2FA failure, session revocation, permission change
+
+**Storage:** `/data/system/logs/audit/{YYYY-MM-DD}_audit.jsonl` (one JSON object per line, append-only).
+
+**Retention:** Audit logs are retained for 10 years per Greek tax law and EU regulatory requirements.
+
+---
+
+## Encryption-at-Rest Specification
+
+Directories containing sensitive data must be encrypted at rest in production deployments. This is required for GDPR compliance (EU Regulation 2016/679, implemented in Greece by Law 4624/2019).
+
+### Directories Requiring Encryption
+
+| Directory | Classification | Encryption Required | Rationale |
+|---|---|---|---|
+| `/data/auth/` | Restricted | **Mandatory** | Credential hashes, session data, 2FA secrets |
+| `/data/clients/` | Confidential | **Mandatory** | Financial records, PII (names, AFMs, IBANs) |
+| `/data/compliance/` | Confidential | **Mandatory** | Tax filings containing financial data |
+| `/data/efka/` | Confidential | **Mandatory** | Employee PII, salary data, social security numbers |
+| `/data/banking/` | Confidential | **Recommended** | Bank statements, account numbers |
+| `/data/backups/` | Confidential | **Already encrypted** | AES-256 via Skill 17 |
+| `/data/gdpr-exports/` | Confidential | **Mandatory** | Subject access request data |
+| `/data/processing/` | Internal | Optional | Ephemeral — deleted after pipeline |
+| `/data/reports/` | Internal | Recommended | May contain client financial summaries |
+| `/data/system/` | Internal | Optional | Logs and operational data |
+
+### Implementation
+
+```yaml
+Encryption_At_Rest:
+  method: "AES-256-GCM"
+  key_management:
+    master_key_source: "Environment variable OPENCLAW_ENCRYPTION_KEY or hardware security module"
+    key_rotation: "Annual, or immediately on suspected compromise"
+    never: "Never store the master key inside /data/ or in any SKILL.md file"
+    
+  options:
+    full_disk: "Preferred — use LUKS/dm-crypt on the volume hosting /data/"
+    directory_level: "Alternative — use fscrypt or gocryptfs per directory"
+    file_level: "Minimum — encrypt individual JSON files with per-file keys derived from master"
+    
+  verification:
+    command: "openclaw integrity verify-encryption --check-all-sensitive-dirs"
+    schedule: "Weekly, as part of system integrity check"
+```
+
+### Data Classification Labels
+
+Every JSON record stored in encrypted directories should include a `data_classification` field:
+
+```json
+{
+  "data_classification": "confidential"
+}
+```
+
+Valid values: `public`, `internal`, `confidential`, `restricted`.
+
+This field enables rapid scoping during GDPR breach notification (72-hour requirement) — you can quickly determine what classification of data was exposed.
+
+---
+
+## Professional Liability Disclaimer Template
+
+Every client-facing document generated by the system must include this disclaimer. Skills that produce client-visible output (Skills 15, 16, 18) must append this to their output templates.
+
+### Standard Disclaimer (Greek)
+
+```
+Το παρόν έγγραφο συντάχθηκε με τη χρήση αυτοματοποιημένου λογισμικού λογιστικής
+υποβοήθησης. Οι πληροφορίες που περιέχονται δεν αποτελούν επαγγελματική λογιστική
+ή φορολογική συμβουλή. Συνιστάται η επανεξέταση από αδειοδοτημένο λογιστή πριν
+από τη λήψη οποιασδήποτε απόφασης βάσει αυτού του εγγράφου.
+```
+
+### Standard Disclaimer (English)
+
+```
+This document was prepared with the assistance of automated accounting software.
+The information contained herein does not constitute professional accounting or
+tax advice. Review by a licensed accountant is recommended before making any
+decisions based on this document.
+```
+
+### Usage Rules
+
+- **Financial statements** (Skill 15): Include both Greek and English disclaimers in PDF footer
+- **Client correspondence** (Skill 16): Include Greek disclaimer in email footer
+- **Advisory reports** (Skill 18): Include English disclaimer in internal reports, Greek in client-facing
+- **Government submissions**: Disclaimer is NOT included in filings sent to AADE/EFKA (these are formal submissions, not advisory documents)
+
+---
+
+## Input Validation Rules
+
+All skills must validate incoming data against these rules before processing. Invalid input must be rejected with a clear error message — never silently accepted.
+
+### Identifier Validation
+
+```yaml
+Validation_Rules:
+  afm:
+    format: "EL followed by exactly 9 digits"
+    regex: "^EL[0-9]{9}$"
+    examples_valid: ["EL123456789", "EL000000001"]
+    examples_invalid: ["123456789", "EL12345", "el123456789", "GR123456789"]
+    
+  iban:
+    format: "GR followed by 25 alphanumeric characters"
+    regex: "^GR[0-9]{25}$"
+    note: "Validate check digits per ISO 13616"
+    
+  ama:
+    description: "EFKA registration number"
+    format: "Numeric, variable length up to 12 digits"
+    regex: "^[0-9]{1,12}$"
+    
+  amka:
+    description: "Social security number"
+    format: "Exactly 11 digits (DDMMYY + 5 sequence digits)"
+    regex: "^[0-9]{11}$"
+```
+
+### Financial Value Validation
+
+```yaml
+Financial_Validation:
+  currency_amounts:
+    type: "numeric (float or decimal)"
+    precision: "2 decimal places"
+    never: "Never store as string with euro symbol"
+    range: "0.00 to 999,999,999.99 for normal operations"
+    negative: "Allowed for credit notes and adjustments — flag if unexpected"
+    
+  vat_rates:
+    valid_values: [0.24, 0.13, 0.06, 0.0]
+    labels: ["24% standard", "13% reduced", "6% super-reduced", "0% exempt"]
+    note: "Reject any other rate — may indicate data entry error"
+    
+  periods:
+    monthly: "YYYY-MM format, e.g. 2026-01"
+    annual: "YYYY format, e.g. 2025"
+    regex_monthly: "^[0-9]{4}-(0[1-9]|1[0-2])$"
+    regex_annual: "^[0-9]{4}$"
+```
+
+### Date and Time Validation
+
+```yaml
+Date_Validation:
+  stored_format: "ISO 8601: YYYY-MM-DD for dates, YYYY-MM-DDTHH:MM:SSZ for timestamps"
+  display_format: "DD/MM/YYYY for Greek client output, YYYY-MM-DD for internal"
+  timezone: "All stored timestamps in UTC. Convert to Europe/Athens only at display layer."
+  never: "Never store DD/MM/YYYY in JSON — only in display templates"
+  
+  fiscal_year:
+    default: "Calendar year (January 1 — December 31)"
+    alternative: "Some entities use non-calendar fiscal years — check client profile"
+```
+
+### String Validation
+
+```yaml
+String_Validation:
+  client_names:
+    charset: "Greek Unicode (U+0370-U+03FF) and Latin characters, spaces, hyphens, periods"
+    max_length: 200
+    note: "Store in original case — never force uppercase in storage (uppercase for display only)"
+    
+  file_names:
+    charset: "Latin alphanumeric, hyphens, underscores, periods only"
+    never: "Never use Greek characters, spaces, or special characters in file names"
+    max_length: 255
+    
+  descriptions:
+    charset: "Any UTF-8"
+    max_length: 2000
+```
