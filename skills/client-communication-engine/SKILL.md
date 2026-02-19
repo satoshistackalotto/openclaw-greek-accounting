@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "client-communications", "bilingual", "email"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "SMTP_HOST"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD"]}, "notes": "SMTP credentials required only for sending client correspondence. All communications require human review and approval before sending. Drafts are stored locally for review."}}
 ---
 
 # Client Communication Engine
@@ -13,6 +13,20 @@ metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_D
 This skill handles all outgoing communication from the accounting firm to its clients. It produces professional Greek-language letters, summaries, and notifications — the documents and emails that clients actually receive. Every piece of outgoing communication follows Greek business correspondence conventions, references the correct regulatory terminology, and is drafted for human review before anything is sent.
 
 The skill pairs with `greek-email-processor` (Skill 4), which handles inbound. Together they form the complete communication layer: Skill 4 reads the inbox, Skill 16 writes the outbox.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+export SMTP_HOST="smtp.gmail.com"
+export SMTP_USER="accounting@yourfirm.gr"
+export SMTP_PASSWORD="app-specific-password"
+which jq curl || sudo apt install jq curl
+```
+
+SMTP credentials are required for sending client correspondence. All communications are drafted locally and require human review and approval before sending. Use app-specific passwords.
+
 
 ## Core Philosophy
 

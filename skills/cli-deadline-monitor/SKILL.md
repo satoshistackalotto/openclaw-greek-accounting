@@ -5,12 +5,29 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "deadlines", "compliance", "aade", "efka"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Reads deadline data from local files in OPENCLAW_DATA_DIR. No external API calls or credentials required."}}
 ---
 
 # CLI Deadline Monitor
 
 This skill provides comprehensive command-line tools for monitoring Greek government websites and APIs to track tax deadlines, regulatory changes, and compliance requirements in real-time.
+
+
+## Setup
+
+```bash
+# 1. Set data directory
+export OPENCLAW_DATA_DIR="/data"
+
+# 2. Ensure jq is installed
+which jq || sudo apt install jq
+
+# 3. Ensure client data exists
+ls $OPENCLAW_DATA_DIR/clients/*/compliance/obligations.json
+```
+
+No external credentials required. This skill reads deadline data from local files only.
+
 
 ## Core Philosophy
 
@@ -591,9 +608,9 @@ openclaw deadline sync calendar --provider google --calendar-id "accounting@comp
 openclaw deadline sync calendar --provider outlook --calendar-id "compliance-calendar"
 
 # Accounting software integration
-openclaw deadline export quickbooks --format qbxml
-openclaw deadline export xero --format api
-openclaw deadline export sage --format csv
+openclaw deadline export --format csv --period 2026-Q1
+openclaw deadline export --format json --period 2026-02
+openclaw deadline export --format ical --upcoming 30d
 
 # Business communication platforms
 openclaw alerts setup slack --webhook-url $SLACK_WEBHOOK

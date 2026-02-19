@@ -5,12 +5,37 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "compliance", "aade", "vat", "taxis", "mydata"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "notes": "AADE/TAXIS credentials are required only when submitting filings to the government portal. The skill can prepare filings offline without credentials. All submissions require human approval (four-eyes workflow) before transmission."}}
 ---
 
 # Greek Compliance & AADE Integration
 
 This skill transforms OpenClaw into a Greek accounting compliance specialist, handling AADE submissions, VAT calculations, payroll processing, social security contributions, and regulatory deadlines specific to Greek business operations.
+
+
+## Setup
+
+```bash
+# 1. Set data directory
+export OPENCLAW_DATA_DIR="/data"
+
+# 2. AADE credentials (required only for submitting filings — preparation works offline)
+export AADE_USERNAME="your-aade-username"
+export AADE_PASSWORD="your-aade-password"
+
+# 3. Ensure dependencies
+which jq curl || sudo apt install jq curl
+
+# 4. Create compliance directories
+mkdir -p $OPENCLAW_DATA_DIR/compliance/{vat,efka,mydata,e1,e3}
+```
+
+**Security notes:**
+- AADE credentials are only used when submitting filings to the government portal
+- All submissions require human approval (four-eyes workflow: preparer ≠ approver)
+- Filing preparation, VAT calculation, and report generation work fully offline
+- Credentials are never stored on disk — always use environment variables
+
 
 ## Core Philosophy
 

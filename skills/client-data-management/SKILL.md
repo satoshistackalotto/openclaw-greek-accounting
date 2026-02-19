@@ -5,12 +5,24 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "client-management", "gdpr", "onboarding"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Manages client records stored as JSON files in OPENCLAW_DATA_DIR/clients/. No external services or credentials required. Handles GDPR data lifecycle locally."}}
 ---
 
 # Client Data Management
 
 This skill provides a secure, file-based client database for Greek accounting firms operating through OpenClaw. It manages all client master data, compliance history, document metadata, and relationship records while enforcing encryption, access control, and GDPR requirements for Greek business operations.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq || sudo apt install jq
+mkdir -p $OPENCLAW_DATA_DIR/clients
+```
+
+No external credentials required. Manages client records as JSON files in the local filesystem. Handles GDPR data lifecycle locally.
+
 
 ## Core Philosophy
 

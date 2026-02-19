@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "backup", "integrity", "disaster-recovery"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl"], "env": ["OPENCLAW_DATA_DIR", "BACKUP_ENCRYPTION_KEY"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl", "tar"], "env": ["OPENCLAW_DATA_DIR", "OPENCLAW_ENCRYPTION_KEY"]}, "notes": "Uses openssl for AES-256 backup encryption and SHA-256 integrity hashing. All operations are local to OPENCLAW_DATA_DIR. OPENCLAW_ENCRYPTION_KEY must be provided via environment variable — never stored on disk."}}
 ---
 
 # System Integrity and Backup
@@ -13,6 +13,19 @@ metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl"], "env": ["OPENCLA
 This skill protects everything the OpenClaw Greek Accounting system holds. It runs silently in the background — verifying that data has not been corrupted or unexpectedly deleted, managing encrypted backups to local storage, enforcing the retention obligations that Greek law places on accounting firms, and handling the schema migrations that keep the system consistent as skills evolve.
 
 No accounting firm could professionally deploy a system handling client financial records without this layer. Greek accounting firms are legally obligated to retain certain records for up to 20 years. A backup that has never been tested is not a backup. An integrity system that only runs when something breaks is too late.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+export OPENCLAW_ENCRYPTION_KEY="your-256-bit-key"  # Never store on disk
+which jq openssl tar || sudo apt install jq openssl tar
+mkdir -p $OPENCLAW_DATA_DIR/backups
+```
+
+Uses openssl for AES-256 backup encryption and SHA-256 integrity verification. The encryption key must be provided via environment variable — it is never written to disk.
+
 
 ## Core Philosophy
 

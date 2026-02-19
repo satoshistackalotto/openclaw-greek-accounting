@@ -5,12 +5,23 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "dashboard", "reporting", "compliance-scoring"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Generates dashboard reports by reading data from OPENCLAW_DATA_DIR. No external services or credentials required. Output is text-based."}}
 ---
 
 # Dashboard Greek Accounting
 
 This skill transforms OpenClaw into a comprehensive accounting dashboard, providing English-language business intelligence for assistants managing Greek business clients. It aggregates data from all 10 existing skills into actionable views, alerts, and reports.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq || sudo apt install jq
+```
+
+No external credentials required. Generates text-based dashboard reports by reading data from local files in OPENCLAW_DATA_DIR.
+
 
 ## Core Philosophy
 

@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "analytics", "advisory", "trends", "benchmarking"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Analyzes financial data from OPENCLAW_DATA_DIR to generate trend reports and advisory insights. No external services or credentials required."}}
 ---
 
 # Analytics and Advisory Intelligence
@@ -15,6 +15,17 @@ The previous 17 skills process, file, store, and protect. This skill thinks. It 
 An accountant managing 40 clients cannot spot a VAT liability trend building across one client's 12 months of data while simultaneously processing another client's payroll and preparing a third client's annual tax return. This skill does the cross-sectional, longitudinal reading that busy humans cannot. It surfaces the finding. The accountant decides what to do with it.
 
 This skill is purely advisory. It reads, analyses, and reports. It never takes action, never modifies client records, and never submits anything. Every insight it surfaces is a prompt for human judgement, not a trigger for automated action.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq || sudo apt install jq
+```
+
+No external credentials required. Analyzes financial data from local files to generate trend reports and advisory insights.
+
 
 ## Core Philosophy
 

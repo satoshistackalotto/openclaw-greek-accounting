@@ -5,12 +5,25 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "aade", "government-monitoring", "api"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "notes": "Monitors AADE government portal for announcements, rate changes, and system status. Requires AADE credentials for authenticated checks. Read-only — does not submit any filings."}}
 ---
 
 # AADE API Monitor
 
 This skill provides comprehensive monitoring of AADE systems and announcements through OpenClaw's file processing capabilities, delivering real-time alerts for Greek tax compliance changes.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+export AADE_USERNAME="your-aade-username"
+export AADE_PASSWORD="your-aade-password"
+which jq curl || sudo apt install jq curl
+```
+
+AADE credentials are used for authenticated read-only checks of announcements, rate changes, and system status. This skill never submits filings.
+
 
 ## Core Philosophy
 

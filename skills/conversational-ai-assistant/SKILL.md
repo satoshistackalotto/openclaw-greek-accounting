@@ -5,12 +5,23 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "conversational-ai", "natural-language"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Provides natural language query interface for the accounting system. Routes queries to other installed skills. No external services required beyond the OpenClaw LLM runtime."}}
 ---
 
 # Conversational AI Assistant
 
 This skill gives the OpenClaw Greek Accounting system a conversational interface. An accounting assistant can ask questions in plain English, request information about any client, understand what needs doing today, and trigger actions — without needing to know CLI commands, file paths, or Greek regulatory terminology. The assistant handles the translation in both directions: English questions into skill commands, and skill outputs back into clear English answers.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq || sudo apt install jq
+```
+
+No external credentials required. Provides a natural language query interface that routes questions to other installed skills. Requires the OpenClaw LLM runtime.
+
 
 ## Core Philosophy
 

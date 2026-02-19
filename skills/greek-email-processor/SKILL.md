@@ -5,12 +5,41 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "email", "document-classification", "gmail"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "IMAP_HOST", "IMAP_USER", "IMAP_PASSWORD", "SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD"]}, "notes": "Email credentials are required for inbox monitoring and auto-response features. Use scoped service accounts with least-privilege access. The skill reads and classifies emails but requires human approval before sending any auto-responses."}}
 ---
 
 # Greek Email Processor
 
 This skill transforms OpenClaw into an intelligent Greek business email processor that automatically detects, categorizes, and processes financial documents and official communications from Greek government agencies, banks, and business partners.
+
+## Setup
+
+```bash
+# 1. Set data directory
+export OPENCLAW_DATA_DIR="/data"
+
+# 2. Configure email access (use a scoped service account with read-only access)
+export IMAP_HOST="imap.gmail.com"        # Or your email provider
+export IMAP_USER="accounting@yourfirm.gr"
+export IMAP_PASSWORD="app-specific-password"  # Use app passwords, not main password
+
+# 3. Configure outbound email (optional — only needed for auto-responses)
+export SMTP_HOST="smtp.gmail.com"
+export SMTP_USER="accounting@yourfirm.gr"
+export SMTP_PASSWORD="app-specific-password"
+
+# 4. Ensure dependencies are installed
+which jq curl || sudo apt install jq curl
+
+# 5. Create incoming directories
+mkdir -p $OPENCLAW_DATA_DIR/incoming/{invoices,receipts,statements,government}
+```
+
+**Security notes:**
+- Use app-specific passwords or OAuth tokens — never your main email password
+- Grant the service account the minimum required permissions (read-only for IMAP)
+- SMTP credentials are optional — only needed if you enable auto-response features
+- All auto-responses require human approval before sending
 
 ## Core Philosophy
 
@@ -513,26 +542,17 @@ openclaw email client-communications --update-crm-system
 openclaw email payments --update-accounting-ledger
 ```
 
-### External System Integration
+### Internal Skill Integration
 ```yaml
-Accounting_Software_Integration:
-  quickbooks: "Direct API integration for invoice processing"
-  xero: "Automated transaction import from email processing"
-  sage: "Client communication logging integration"
-  
-Calendar_Integration:
-  google_calendar: "Create events for payment due dates and deadlines"
-  outlook_calendar: "Sync with business calendar systems"
-  
-Task_Management_Integration:
-  asana: "Create accounting tasks from email requests"
-  trello: "Client workflow management"
-  slack: "Team notifications for urgent emails"
-  
-Banking_Integration:
-  auto_reconciliation: "Match email notifications with bank transactions"
-  payment_processing: "Trigger payments based on email approvals"
+Companion_Skills:
+  accounting-workflows: "Route extracted documents to processing pipeline"
+  greek-document-ocr: "Send attachments for OCR processing"
+  client-data-management: "Update client records from email content"
+  greek-compliance-aade: "Forward AADE notifications for compliance tracking"
+  greek-banking-integration: "Match email payment notifications with bank transactions"
 ```
+
+> **Note**: This skill does NOT integrate with external software (QuickBooks, Xero, Slack, etc.). It processes emails and routes extracted data to companion OpenClaw skills via the local filesystem.
 
 ## Usage Examples
 

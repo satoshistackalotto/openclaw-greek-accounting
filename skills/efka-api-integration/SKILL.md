@@ -5,12 +5,25 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "efka", "social-security", "payroll"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "EFKA_USERNAME", "EFKA_PASSWORD"]}, "notes": "EFKA credentials are required only for submitting social security declarations. Payroll calculations and contribution processing work offline. All government submissions require human approval (four-eyes workflow)."}}
 ---
 
 # EFKA API Integration
 
 This skill provides comprehensive integration with the Greek Social Security organization (EFKA) through OpenClaw's file processing capabilities, enabling automated employee record management, contribution calculations, and compliance monitoring for Greek businesses.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+export EFKA_USERNAME="your-efka-username"
+export EFKA_PASSWORD="your-efka-password"
+which jq curl || sudo apt install jq curl
+```
+
+EFKA credentials are required only for submitting social security declarations. Payroll calculations and contribution processing work offline. All government submissions require human approval (four-eyes workflow).
+
 
 ## Core Philosophy
 

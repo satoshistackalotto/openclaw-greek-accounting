@@ -5,12 +5,26 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "meta-skill", "orchestration"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "depends_on": ["accounting-workflows", "greek-compliance-aade", "cli-deadline-monitor", "greek-email-processor", "greek-individual-taxes", "aade-api-monitor", "greek-banking-integration", "greek-document-ocr", "efka-api-integration", "dashboard-greek-accounting", "client-data-management", "user-authentication-system", "conversational-ai-assistant", "greek-financial-statements", "client-communication-engine", "system-integrity-and-backup", "analytics-and-advisory-intelligence", "memory-feedback"]}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "depends_on": ["accounting-workflows", "greek-compliance-aade", "cli-deadline-monitor", "greek-email-processor", "greek-individual-taxes", "aade-api-monitor", "greek-banking-integration", "greek-document-ocr", "efka-api-integration", "dashboard-greek-accounting", "client-data-management", "user-authentication-system", "conversational-ai-assistant", "greek-financial-statements", "client-communication-engine", "system-integrity-and-backup", "analytics-and-advisory-intelligence", "memory-feedback"], "notes": "Orchestrator skill. Coordinates all other Greek accounting skills. Install companion skills for full functionality. This skill alone only routes commands — actual capabilities come from the skills it depends on."}}
 ---
 
 # OpenClaw Greek Accounting Meta-Skill
 
 This meta-skill is the primary entry point for the entire OpenClaw Greek Accounting system. It orchestrates all 18 specialised skills through simple business commands, managing data flow, sequencing, error recovery, and human confirmation gates for government submissions.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq || sudo apt install jq
+
+# Install companion skills (this orchestrator needs them to be useful)
+# See the full skill list at: https://github.com/satoshistackalotto/openclaw-greek-accounting
+```
+
+This is the orchestrator skill — it coordinates all other Greek accounting skills. Install companion skills for actual functionality. This skill alone only routes commands.
+
 
 ## Core Philosophy
 

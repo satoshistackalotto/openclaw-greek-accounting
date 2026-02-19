@@ -11,6 +11,18 @@ metadata: {"openclaw": {"requires": {"bins": [], "env": ["OPENCLAW_DATA_DIR"]}}}
 # Canonical Data Directory Map
 ## OpenClaw Greek Accounting System — v1.1
 
+## Setup
+
+This skill is a reference document — it defines the directory structure and naming conventions used by all other Greek accounting skills. No binaries or credentials required.
+
+```bash
+# Set the data directory (all skills read this)
+export OPENCLAW_DATA_DIR="/data"
+
+# Initialize the full directory structure
+mkdir -p $OPENCLAW_DATA_DIR/{incoming/{invoices,receipts,statements,government},processing,clients,compliance/{vat,efka,mydata,e1,e3},banking/{imports/{alpha,nbg,eurobank,piraeus},processing,reconciliation},ocr/{incoming,output},reports,auth,system/{logs,process-locks},backups}
+```
+
 This document defines the complete file system architecture for the OpenClaw Greek Accounting system. It is the authoritative reference for all path decisions. No skill may introduce a new top-level directory or deviate from the naming conventions defined here without a version update to this document.
 
 **v1.1 change:** Added `/data/memory/` — agent episodic memory, failure logs, pattern store, GitHub proposal queue, and rate-limit state. Owner: `memory-feedback` (Skill 19, Phase 4). All Phase 3B+ skills must include episode and failure log hooks that write into this tree.

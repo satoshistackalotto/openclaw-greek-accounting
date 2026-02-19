@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "memory", "learning", "github-integration"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "gh"], "env": ["OPENCLAW_DATA_DIR", "GITHUB_TOKEN"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "gh"], "env": ["OPENCLAW_DATA_DIR", "GITHUB_TOKEN"]}, "notes": "GITHUB_TOKEN is optional — required only for the GitHub PR workflow that proposes skill improvements. Core memory and failure logging works without it using local files only. The gh CLI is optional."}}
 ---
 
 # Memory and Feedback
@@ -13,6 +13,21 @@ metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "gh"], "env": ["OPEN
 This skill gives the OpenClaw system a learning loop. All 18 skills log their episodes and failures. This skill reads those logs, detects patterns, and proposes improvements — as GitHub pull requests against the SKILL.md files that govern behaviour. Humans review and merge. The system learns.
 
 This is Phase 4 infrastructure, designed to be activated once Phase 3B has been running long enough to generate meaningful data — typically 2-3 months of real operation. The episode and failure hooks in Skills 14-18 write to `/data/memory/` from day one. When this skill is activated, months of learning data are already waiting.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq || sudo apt install jq
+
+# Optional: for GitHub PR workflow
+export GITHUB_TOKEN="ghp_your_token"
+which gh || echo "gh CLI optional — only needed for PR-based improvement proposals"
+```
+
+GITHUB_TOKEN is optional — required only for the PR workflow that proposes skill improvements. Core memory logging and failure tracking works without it using local files only.
+
 
 ## Core Philosophy
 

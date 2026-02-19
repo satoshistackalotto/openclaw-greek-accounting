@@ -5,12 +5,24 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "banking", "alpha-bank", "nbg", "eurobank", "piraeus"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Parses bank statement CSV/Excel files exported manually from Greek bank portals (Alpha Bank, NBG, Eurobank, Piraeus). Does NOT connect directly to bank APIs or access online banking. Users export statements from their bank and place files in OPENCLAW_DATA_DIR/banking/imports/."}}
 ---
 
 # Greek Banking Integration
 
 This skill provides comprehensive integration with the Greek banking system through practical file processing of bank statements, transaction data, and payment confirmations from all major Greek financial institutions.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq || sudo apt install jq
+mkdir -p $OPENCLAW_DATA_DIR/banking/imports/{alpha,nbg,eurobank,piraeus}
+```
+
+No bank API credentials required. This skill parses bank statement files (CSV/Excel) that you export manually from your bank's web portal and place in the imports directory. Supported banks: Alpha Bank, National Bank of Greece, Eurobank, Piraeus Bank.
+
 
 ## Core Philosophy
 
@@ -59,9 +71,9 @@ openclaw banking fee-analysis --bank-charges --optimization-suggestions
 ### Integration & Export Commands
 ```bash
 # Integration with accounting systems
-openclaw banking sync-quickbooks --greek-locale --match-existing-transactions
-openclaw banking export-xero --greek-vat-codes --multi-currency
-openclaw banking integrate-sage --greek-nominal-codes --reconciliation-reports
+openclaw banking export --format csv --client EL123456789 --period 2026-02
+openclaw banking export --format json --client EL123456789 --period 2026-02
+openclaw banking reconciliation-report --client EL123456789 --period 2026-02
 
 # Integration with other OpenClaw skills
 openclaw banking integrate-compliance --vat-calculations --deadline-tracking
@@ -404,17 +416,17 @@ Greek_Accounting_Integration:
 ### Accounting Software Integration
 ```yaml
 Accounting_Software_Export:
-  quickbooks_greece:
+  csv_export:
     chart_of_accounts: "Map to Greek ELSYN standards"
-    vat_codes: "Map Greek VAT rates to QuickBooks codes"
+    vat_codes: "Include Greek VAT rate codes in export"
     currency: "EUR primary, handle foreign currency"
     
-  xero_greece:
+  json_export:
     account_mapping: "Custom Greek chart of accounts setup"
     bank_feeds: "Direct bank feed integration where possible"
     vat_reporting: "Greek VAT return format"
     
-  sage_greece:
+  reconciliation_export:
     nominal_codes: "Greek accounting nominal code structure"
     multi_currency: "Handle EUR and foreign transactions"
     reporting: "Greek statutory reporting formats"
@@ -481,7 +493,7 @@ $ openclaw banking morning-process --all-greek-banks --yesterday
 ✅ VAT analysis completed: ‚¬1,240.50 recoverable input VAT
 
 📤 Exports Generated:
-- QuickBooks: /data/exports/accounting-software/EL123456789_2026-02_transactions.csv
+- Export: /data/banking/exports/EL123456789_2026-02_transactions.csv
 - VAT Analysis: /data/reports/client/EL123456789_2026-02_vat-analysis.xlsx
 - Client Reports: 5 payment confirmations ready for sending
 ```

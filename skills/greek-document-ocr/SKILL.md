@@ -5,12 +5,28 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "ocr", "document-processing", "greek-language"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "tesseract"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Requires Tesseract OCR with Greek language pack (apt install tesseract-ocr tesseract-ocr-ell). Processes scanned documents locally — no cloud OCR APIs are used. All processing happens on-device within OPENCLAW_DATA_DIR."}}
 ---
 
 # Greek Document OCR
 
 This skill provides advanced Greek language optical character recognition and document processing capabilities, specifically designed for Greek business documents, invoices, receipts, and handwritten materials commonly found in Greek accounting workflows.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+
+# Install Tesseract OCR with Greek language support
+sudo apt install tesseract-ocr tesseract-ocr-ell
+which jq || sudo apt install jq
+
+mkdir -p $OPENCLAW_DATA_DIR/ocr/{incoming/{scanned,photos,government},output/{text-extracted,structured-data}}
+```
+
+All OCR processing happens locally using Tesseract — no cloud OCR APIs are used. No credentials required.
+
 
 ## Core Philosophy
 

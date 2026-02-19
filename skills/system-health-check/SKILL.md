@@ -5,12 +5,23 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "health-check", "monitoring", "diagnostics"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl"], "env": ["OPENCLAW_DATA_DIR"]}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Read-only validation skill. Checks file presence, directory structure, permissions, and backup freshness. Never modifies any data. openssl is used only for hash verification."}}
 ---
 
 # System Health Check
 
 This skill validates the entire OpenClaw Greek Accounting system in a single command. It checks skill file integrity, directory structure, file permissions, required dependencies, backup freshness, encryption status, and process lock health. Designed to run daily via cron or manually before critical operations.
+
+
+## Setup
+
+```bash
+export OPENCLAW_DATA_DIR="/data"
+which jq openssl || sudo apt install jq openssl
+```
+
+Read-only validation skill. Checks file presence, directory structure, permissions, and backup freshness. Never modifies any data.
+
 
 ## Core Philosophy
 
