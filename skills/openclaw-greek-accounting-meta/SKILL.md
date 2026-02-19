@@ -13,7 +13,7 @@ This meta-skill is the primary entry point for the entire OpenClaw Greek Account
 
 ## Core Philosophy
 
-- **Single Entry Point**: One meta-skill controls the entire system â€” accountants and assistants never need to address individual skills directly
+- **Single Entry Point**: One meta-skill controls the entire system — accountants and assistants never need to address individual skills directly
 - **Business-Focused Commands**: Simple commands that match real accounting workflows
 - **Skill Orchestration**: Automatically manages interactions between all 18 specialised skills
 - **Human Confirmation Gate**: Any action submitting to a government system (AADE, EFKA, myDATA) requires explicit human confirmation before proceeding
@@ -23,7 +23,7 @@ This meta-skill is the primary entry point for the entire OpenClaw Greek Account
 
 ## Meta-Skill Architecture
 
-### Managed Skills â€” Full Registry
+### Managed Skills — Full Registry
 ```yaml
 Required_Skills:
 
@@ -47,8 +47,8 @@ Required_Skills:
     - conversational-ai-assistant # Natural language interface for assistants (English queries, Greek data)
 
   phase_3b_professional_outputs:
-    - greek-financial-statements  # P&L, balance sheet, cash flow, VAT summary â€” EGLS-compliant Greek format
-    - client-communication-engine # Outgoing Greek correspondence â€” confirmations, summaries, requests, reminders
+    - greek-financial-statements  # P&L, balance sheet, cash flow, VAT summary — EGLS-compliant Greek format
+    - client-communication-engine # Outgoing Greek correspondence — confirmations, summaries, requests, reminders
     - system-integrity-and-backup # Encrypted backups, integrity checks, retention enforcement, schema migrations
     - analytics-and-advisory      # Proactive risk scoring, trend analysis, anomaly detection, morning advisory
 
@@ -81,7 +81,7 @@ openclaw greek monthly-process --afm EL123456789 --month 2026-02
 # 6. openclaw banking reconcile --afm EL123456789 --period 2026-02
 # 7. openclaw compliance vat-return --client EL123456789 --period 2026-02 --prepare
 # 8. openclaw efka contribution-calc --afm EL123456789 --period 2026-02
-# âš ï¸  HUMAN CONFIRMATION REQUIRED â€” displays full filing details before proceeding
+# ⚠️  HUMAN CONFIRMATION REQUIRED — displays full filing details before proceeding
 # 9. openclaw compliance vat-return --client EL123456789 --period 2026-02 --submit
 # 10. openclaw efka submit-declaration --afm EL123456789 --period 2026-02
 # 11. openclaw clients log-filing --afm EL123456789 --type VAT-monthly --period 2026-02 --status submitted
@@ -95,17 +95,17 @@ openclaw greek monthly-process --afm EL123456789 --month 2026-02
 openclaw greek status-check --include-urgent
 
 # Output example:
-# âœ… All government systems operational (AADE, EFKA, myDATA)
-# âš ï¸  3 VAT returns due in 7 days
-# ðŸš¨ 1 AADE notification requires attention
-# ðŸ“Š 15 documents in OCR queue, 3 awaiting review
+# ✅ All government systems operational (AADE, EFKA, myDATA)
+# ⚠️  3 VAT returns due in 7 days
+# 🚨 1 AADE notification requires attention
+# 📊 15 documents in OCR queue, 3 awaiting review
 ```
 
 ### 2. Client Management Workflows
 
 #### New Client Onboarding
 ```bash
-# Complete new client setup â€” requires accountant role or above
+# Complete new client setup — requires accountant role or above
 openclaw greek client-onboarding --afm EL123456789 --name "NEW CLIENT AE" --legal-form AE --sector retail
 
 # Orchestrates:
@@ -190,28 +190,28 @@ openclaw greek municipal-sync --all-locations
 class GreekAccountingOrchestrator:
     def __init__(self):
         self.skills = {
-            # Phase 1 â€” Core
+            # Phase 1 — Core
             'accounting':   'accounting-workflows',
             'compliance':   'greek-compliance-aade',
             'monitoring':   'cli-deadline-monitor',
             'email':        'greek-email-processor',
             'individual':   'greek-individual-taxes',
-            # Phase 2 â€” Advanced
+            # Phase 2 — Advanced
             'aade':         'aade-api-monitor',
             'banking':      'greek-banking-integration',
             'ocr':          'greek-document-ocr',
             'efka':         'efka-api-integration',
-            # Phase 3A â€” Infrastructure
+            # Phase 3A — Infrastructure
             'dashboard':    'dashboard-greek-accounting',
             'clients':      'client-data-management',
             'auth':         'user-authentication-system',
             'chat':         'conversational-ai-assistant',
-            # Phase 3B â€" Professional Outputs
+            # Phase 3B €" Professional Outputs
             'statements':   'greek-financial-statements',
             'comms':        'client-communication-engine',
             'integrity':    'system-integrity-and-backup',
             'analytics':    'analytics-and-advisory-intelligence',
-            # Phase 4 â€" Learning Loop
+            # Phase 4 €" Learning Loop
             'memory':       'memory-feedback',
             # Operational
             'health':       'system-health-check',
@@ -220,7 +220,7 @@ class GreekAccountingOrchestrator:
     def monthly_process(self, afm=None, month=None, user=None):
         """Orchestrate complete monthly processing for one client"""
 
-        # Step 1: Permission gate â€” must pass before any work begins
+        # Step 1: Permission gate — must pass before any work begins
         self.call_skill('auth', f'check-access --username {user} --client {afm} --action compliance_management')
 
         # Step 2: Read client obligations
@@ -229,7 +229,7 @@ class GreekAccountingOrchestrator:
         # Step 3: Check deadlines before touching anything
         deadlines = self.call_skill('monitoring', f'check aade --client {afm}')
         if deadlines['overdue_count'] > 0:
-            self.alert_user(f"WARNING: {deadlines['overdue_count']} overdue deadlines â€” review before proceeding")
+            self.alert_user(f"WARNING: {deadlines['overdue_count']} overdue deadlines — review before proceeding")
 
         # Step 4: Process any new incoming documents
         self.call_skill('email', 'scan-folder /data/incoming/ --classify-new')
@@ -240,11 +240,11 @@ class GreekAccountingOrchestrator:
         # Step 5: Banking reconciliation
         self.call_skill('banking', f'reconcile --afm {afm} --period {month}')
 
-        # Step 6: Prepare compliance filings â€” no submission yet
+        # Step 6: Prepare compliance filings — no submission yet
         vat = self.call_skill('compliance', f'vat-return --client {afm} --period {month} --prepare')
         efka = self.call_skill('efka', f'contribution-calc --afm {afm} --period {month}')
 
-        # Step 7: HUMAN CONFIRMATION GATE â€” display details and require explicit YES
+        # Step 7: HUMAN CONFIRMATION GATE — display details and require explicit YES
         self.require_confirmation(
             action='government_submission',
             details={'vat': vat, 'efka': efka, 'client': afm, 'period': month}
@@ -317,7 +317,7 @@ Error_Recovery_Strategies:
 
 ### Daily Operations
 ```bash
-# Morning startup â€” pulls from dashboard, deadline monitor, AADE monitor, email processor
+# Morning startup — pulls from dashboard, deadline monitor, AADE monitor, email processor
 openclaw greek morning-check
 # Orchestrates:
 # 1. openclaw auth check-access (verify session)
@@ -330,7 +330,7 @@ openclaw greek morning-check
 # Quick single-client status
 openclaw greek client-status --afm EL123456789
 # Orchestrates: openclaw clients view, openclaw dashboard client-overview, openclaw deadline check
-# Output: English-language snapshot â€” docs, deadlines, compliance score, action items
+# Output: English-language snapshot — docs, deadlines, compliance score, action items
 
 # End of day summary
 openclaw greek eod-summary
@@ -348,7 +348,7 @@ openclaw greek weekly-review
 # 3. openclaw aade detect-changes --since last-week
 # 4. openclaw deadline check all --due-this-week
 
-# Portfolio health check â€” identifies risks before they become urgent
+# Portfolio health check — identifies risks before they become urgent
 openclaw greek portfolio-check --flag-risks
 # Orchestrates: openclaw clients compliance-gaps, openclaw dashboard client-health --rank
 # Output: Risk-ranked client list with specific action items per client
@@ -369,10 +369,10 @@ openclaw greek prepare-individual-taxes --year 2025 --batch --optimize-deduction
 # 2. openclaw individual collect-employment-docs --year 2025 (per client)
 # 3. openclaw individual optimize-deductions --include-all-eligible (per client)
 # 4. openclaw individual generate-e1-form --year 2025 --validate-data (per client)
-# Output: Batch status â€” X ready for review, Y missing documents, Z need accountant attention
+# Output: Batch status — X ready for review, Y missing documents, Z need accountant attention
 ```
 
-### Phase 3A â€” Dashboard & Administration Commands
+### Phase 3A — Dashboard & Administration Commands
 ```bash
 # First-time system setup
 openclaw greek setup --firm-name "YOUR FIRM" --timezone "Europe/Athens"
@@ -403,7 +403,7 @@ openclaw greek compliance-report --period 2026-02 --all-clients --export pdf
 # 3. openclaw deadline check all --overdue
 # Output: /data/reports/compliance/2026-02_firm_compliance_report.pdf
 
-# AADE government sync â€” check for regulatory changes
+# AADE government sync — check for regulatory changes
 openclaw greek aade-sync --check-updates --update-deadlines
 # Orchestrates:
 # 1. openclaw aade download-batch --sources all
@@ -412,7 +412,7 @@ openclaw greek aade-sync --check-updates --update-deadlines
 # 4. openclaw dashboard refresh --state deadline-tracker
 # If changes detected: alert all affected users
 
-# System health check â€” all 18 skills
+# System health check — all 18 skills
 openclaw greek health-check --verify-all-skills --verbose
 ```
 
@@ -432,7 +432,7 @@ openclaw greek post-submission-comms --afm EL123456789 --period 2026-02
 # Orchestrates:
 # 1. openclaw comms draft --type submission-confirmation --afm EL123456789 --filing-type VAT --period 2026-02
 # 2. openclaw comms draft --type monthly-summary --afm EL123456789 --period 2026-02 --include-statements
-# âš ï¸  HUMAN APPROVAL REQUIRED before any communication is sent
+# ⚠️  HUMAN APPROVAL REQUIRED before any communication is sent
 # 3. [After approval] openclaw comms send --draft-id {id} --approved-by {username}
 # 4. openclaw clients log-correspondence --afm EL123456789 --period 2026-02
 
@@ -473,7 +473,7 @@ Meta_Skill_File_Structure:
     - /data/compliance/mydata/
     - /data/compliance/efka/
     
-  processing_workflows:                  # Ephemeral â€” cleared after pipeline completes
+  processing_workflows:                  # Ephemeral — cleared after pipeline completes
     - /data/processing/compliance/vat/
     - /data/processing/compliance/efka/
     - /data/processing/compliance/mydata/
@@ -489,53 +489,53 @@ Meta_Skill_File_Structure:
 Skill_Interaction_Patterns:
 
   document_intake_flow:
-    sequence: "email-processor â†’ ocr â†’ accounting-workflows â†’ client-data-management"
-    data_path: "/data/incoming/ â†’ /data/ocr/output/accounting-ready/ â†’ /data/clients/{AFM}/"
+    sequence: "email-processor → ocr → accounting-workflows → client-data-management"
+    data_path: "/data/incoming/ → /data/ocr/output/accounting-ready/ → /data/clients/{AFM}/"
     coordination: "Meta-skill manages handoff between each stage"
 
   compliance_filing_flow:
-    sequence: "auth â†’ client-data-management â†’ compliance-aade â†’ [CONFIRM] â†’ compliance-aade â†’ client-data-management â†’ dashboard"
-    data_path: "/data/processing/compliance/ â†’ /data/compliance/ â†’ /data/clients/{AFM}/compliance/filings.json"
+    sequence: "auth → client-data-management → compliance-aade → [CONFIRM] → compliance-aade → client-data-management → dashboard"
+    data_path: "/data/processing/compliance/ → /data/compliance/ → /data/clients/{AFM}/compliance/filings.json"
     coordination: "Human confirmation gate mandatory before any government submission"
 
   banking_reconciliation_flow:
-    sequence: "banking-integration â†’ accounting-workflows â†’ client-data-management â†’ dashboard"
-    data_path: "/data/banking/imports/ â†’ /data/banking/reconciliation/ â†’ /data/clients/{AFM}/"
+    sequence: "banking-integration → accounting-workflows → client-data-management → dashboard"
+    data_path: "/data/banking/imports/ → /data/banking/reconciliation/ → /data/clients/{AFM}/"
     coordination: "Meta-skill sequences import before reconciliation"
 
   deadline_monitoring_flow:
-    sequence: "aade-api-monitor â†’ cli-deadline-monitor â†’ dashboard â†’ client-data-management"
-    data_path: "/data/incoming/government/ â†’ /data/dashboard/state/"
+    sequence: "aade-api-monitor → cli-deadline-monitor → dashboard → client-data-management"
+    data_path: "/data/incoming/government/ → /data/dashboard/state/"
     coordination: "Changes to deadlines propagate to all affected client obligation schedules"
 
   client_onboarding_flow:
-    sequence: "auth â†’ client-data-management â†’ cli-deadline-monitor â†’ dashboard"
+    sequence: "auth → client-data-management → cli-deadline-monitor → dashboard"
     data_path: "/data/clients/{AFM}/ created fresh"
     coordination: "Auth confirms permission; client-data-management is sole writer to /data/clients/"
 
   morning_briefing_flow:
-    sequence: "auth â†’ deadline-monitor â†’ email-processor â†’ aade-api-monitor â†’ dashboard"
-    data_path: "Read-only â€” no writes during morning check"
+    sequence: "auth → deadline-monitor → email-processor → aade-api-monitor → dashboard"
+    data_path: "Read-only — no writes during morning check"
     coordination: "All read operations; dashboard aggregates and displays"
 
   financial_statements_flow:
-    sequence: "statements check-ready â†’ statements generate â†’ client-data-management â†’ dashboard"
-    data_path: "/data/banking/reconciliation/ + /data/compliance/ + /data/efka/ â†’ /data/clients/{AFM}/financial-statements/ â†’ /data/reports/client/"
+    sequence: "statements check-ready → statements generate → client-data-management → dashboard"
+    data_path: "/data/banking/reconciliation/ + /data/compliance/ + /data/efka/ → /data/clients/{AFM}/financial-statements/ → /data/reports/client/"
     coordination: "Completeness gate must pass before generation. Statement index updated after generation."
 
   post_submission_comms_flow:
-    sequence: "compliance-aade [submit] â†’ statements generate â†’ comms draft â†’ [CONFIRM] â†’ comms send â†’ client-data-management"
-    data_path: "/data/compliance/submissions/ â†’ /data/clients/{AFM}/financial-statements/ â†’ /data/processing/comms/ â†’ /data/clients/{AFM}/correspondence/"
+    sequence: "compliance-aade [submit] → statements generate → comms draft → [CONFIRM] → comms send → client-data-management"
+    data_path: "/data/compliance/submissions/ → /data/clients/{AFM}/financial-statements/ → /data/processing/comms/ → /data/clients/{AFM}/correspondence/"
     coordination: "Communications drafted automatically after submission. Human must approve before send."
 
   analytics_advisory_flow:
-    sequence: "analytics [nightly] â†’ dashboard â†’ conversational-ai-assistant [on demand]"
-    data_path: "/data/clients/*/financial-statements/ + /data/banking/ + /data/efka/ â†’ /data/reports/analytics/ â†’ dashboard feed"
+    sequence: "analytics [nightly] → dashboard → conversational-ai-assistant [on demand]"
+    data_path: "/data/clients/*/financial-statements/ + /data/banking/ + /data/efka/ → /data/reports/analytics/ → dashboard feed"
     coordination: "Runs overnight. Results pre-computed and ready for morning. Chat queries hit pre-computed outputs."
 
   integrity_backup_flow:
-    sequence: "system-integrity-and-backup [scheduled] â†’ dashboard [alert if issues]"
-    data_path: "Reads all /data/ â†’ writes /data/backups/ + /data/system/integrity/"
+    sequence: "system-integrity-and-backup [scheduled] → dashboard [alert if issues]"
+    data_path: "Reads all /data/ → writes /data/backups/ + /data/system/integrity/"
     coordination: "Runs on schedule (backup Sunday 02:00, integrity check Sunday 04:00, daily quick check 05:00). Alerts dashboard on any failure."
 ```
 
@@ -546,15 +546,15 @@ Skill_Interaction_Patterns:
 Report_Templates:
   client_monthly_summary:
     language: "Professional Greek"
-    sections: ["ÃŽË†ÃÆ’ÃŽÂ¿ÃŽÂ´ÃŽÂ± ÃŽÂºÃŽÂ±ÃŽÂ¹ ÃŽÂ­ÃŽÂ¾ÃŽÂ¿ÃŽÂ´ÃŽÂ±", "ÃŽÂ¦ÃŽÂ ÃŽâ€˜ Ãâ€¦Ãâ‚¬ÃŽÂ¿Ãâ€¡ÃÂÃŽÂµÃÅ½ÃÆ’ÃŽÂµÃŽÂ¹Ãâ€š", "ÃŽÂ ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂµÃâ€š", "ÃŽâ€¢ÃŽÂ½ÃŽÂ­ÃÂÃŽÂ³ÃŽÂµÃŽÂ¹ÃŽÂµÃâ€š"]
+    sections: ["Έσοδα και έξοδα", "ΦΠΑ υποπ¡ρεϽσειπš", "Προθεσμίεπš", "Ενέργειεπš"]
     
   compliance_status:
     language: "Greek regulatory terminology"  
-    sections: ["AADE ÃŽÂºÃŽÂ±Ãâ€žÃŽÂ¬ÃÆ’Ãâ€žÃŽÂ±ÃÆ’ÃŽÂ·", "ÃŽâ€¢ÃŽÂ¦ÃŽÅ¡ÃŽâ€˜ Ãâ€¦Ãâ‚¬ÃŽÂ¿Ãâ€¡ÃÂÃŽÂµÃÅ½ÃÆ’ÃŽÂµÃŽÂ¹Ãâ€š", "ÃŽâ€ÃŽÂ·ÃŽÂ¼ÃŽÂ¿Ãâ€žÃŽÂ¹ÃŽÂºÃŽÂ­Ãâ€š ÃŽÂµÃŽÂ½ÃŽÂ­ÃÂÃŽÂ³ÃŽÂµÃŽÂ¹ÃŽÂµÃâ€š"]
+    sections: ["AADE καπžάσπžαση", "ΕΦΡΑ υποπ¡ρεϽσειπš", "Δημοπžικέπš ενέργειεςπš"]
     
   individual_tax_summary:
     language: "Greek tax law terminology"
-    sections: ["ÃŽâ€¢ÃŽÂ¹ÃÆ’ÃÅ’ÃŽÂ´ÃŽÂ·ÃŽÂ¼ÃŽÂ±", "ÃŽâ€¢ÃŽÂºÃâ‚¬Ãâ€žÃÅ½ÃÆ’ÃŽÂµÃŽÂ¹Ãâ€š", "ÃŽÂ¦ÃÅ’ÃÂÃŽÂ¿Ãâ€š", "ÃŽÂ ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ®"]
+    sections: ["Εισςδημα", "ΕκππžϽσειπš", "Φςροπš", "Πληρπ°μή"]
 ```
 
 ### Professional Communication
@@ -590,14 +590,14 @@ Client_Communications:
 ## Success Metrics
 
 A successful meta-skill deployment should achieve:
-- âœ… 90%+ reduction in command complexity for end users
-- âœ… Zero government submissions without explicit human confirmation
-- âœ… Automated coordination of all 18 specialised skills
-- âœ… Professional Greek output meeting accounting firm standards
-- âœ… Role-based access enforced at every write operation
-- âœ… Error recovery without user intervention in 80%+ of cases
-- âœ… Complete audit trail across all coordinated skill operations
-- âœ… Scalable multi-client management for growing accounting firms
-- âœ… English-language dashboard interface fully integrated with Greek data pipeline
+- ✅ 90%+ reduction in command complexity for end users
+- ✅ Zero government submissions without explicit human confirmation
+- ✅ Automated coordination of all 18 specialised skills
+- ✅ Professional Greek output meeting accounting firm standards
+- ✅ Role-based access enforced at every write operation
+- ✅ Error recovery without user intervention in 80%+ of cases
+- ✅ Complete audit trail across all coordinated skill operations
+- ✅ Scalable multi-client management for growing accounting firms
+- ✅ English-language dashboard interface fully integrated with Greek data pipeline
 
 Remember: This meta-skill is the single face of the entire OpenClaw Greek Accounting system. Every new skill added to the system must be registered here. Every business workflow starts here.

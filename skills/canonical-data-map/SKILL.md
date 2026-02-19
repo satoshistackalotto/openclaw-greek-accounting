@@ -8,11 +8,11 @@ metadata: {"openclaw": {"requires": {"bins": [], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---
 
 # Canonical Data Directory Map
-## OpenClaw Greek Accounting System â€” v1.1
+## OpenClaw Greek Accounting System — v1.1
 
 This document defines the complete file system architecture for the OpenClaw Greek Accounting system. It is the authoritative reference for all path decisions. No skill may introduce a new top-level directory or deviate from the naming conventions defined here without a version update to this document.
 
-**v1.1 change:** Added `/data/memory/` â€” agent episodic memory, failure logs, pattern store, GitHub proposal queue, and rate-limit state. Owner: `memory-feedback` (Skill 19, Phase 4). All Phase 3B+ skills must include episode and failure log hooks that write into this tree.
+**v1.1 change:** Added `/data/memory/` — agent episodic memory, failure logs, pattern store, GitHub proposal queue, and rate-limit state. Owner: `memory-feedback` (Skill 19, Phase 4). All Phase 3B+ skills must include episode and failure log hooks that write into this tree.
 
 ---
 
@@ -20,438 +20,438 @@ This document defines the complete file system architecture for the OpenClaw Gre
 
 ```
 /data/
-â”œâ”€â”€ incoming/          # All raw input â€” documents arriving into the system
-â”œâ”€â”€ processing/        # Temporary working space â€” files mid-pipeline
-â”œâ”€â”€ clients/           # Canonical client records â€” the source of truth
-â”œâ”€â”€ compliance/        # Government filings and submissions
-â”œâ”€â”€ banking/           # Bank statement processing pipeline
-â”œâ”€â”€ ocr/               # OCR processing pipeline
-â”œâ”€â”€ efka/              # EFKA/social security processing pipeline
-â”œâ”€â”€ reports/           # Generated reports for human consumption
-â”œâ”€â”€ exports/           # Data exports leaving the system
-â”œâ”€â”€ imports/           # Bulk data imports entering the system
-â”œâ”€â”€ dashboard/         # Dashboard state, config, cache, history
-â”œâ”€â”€ auth/              # Authentication and access control
-â”œâ”€â”€ backups/           # Encrypted system backups
-â”œâ”€â”€ gdpr-exports/      # GDPR subject access request exports
-â”œâ”€â”€ memory/            # Agent episodic memory, failure logs, learning patterns, proposals
-â””â”€â”€ system/            # System-level files: logs, schema versions, locks
+╔══ incoming/          # All raw input — documents arriving into the system
+╔══ processing/        # Temporary working space — files mid-pipeline
+╔══ clients/           # Canonical client records — the source of truth
+╔══ compliance/        # Government filings and submissions
+╔══ banking/           # Bank statement processing pipeline
+╔══ ocr/               # OCR processing pipeline
+╔══ efka/              # EFKA/social security processing pipeline
+╔══ reports/           # Generated reports for human consumption
+╔══ exports/           # Data exports leaving the system
+╔══ imports/           # Bulk data imports entering the system
+╔══ dashboard/         # Dashboard state, config, cache, history
+╔══ auth/              # Authentication and access control
+╔══ backups/           # Encrypted system backups
+╔══ gdpr-exports/      # GDPR subject access request exports
+╔══ memory/            # Agent episodic memory, failure logs, learning patterns, proposals
+└══ system/            # System-level files: logs, schema versions, locks
 ```
 
 ---
 
-## 1. `/data/incoming/` â€” Raw Input
+## 1. `/data/incoming/` — Raw Input
 
 All documents entering the system land here first, regardless of source (email attachment, manual drop, scanner, bank download). Nothing in `/data/incoming/` is processed yet.
 
 ```
 /data/incoming/
-â”œâ”€â”€ invoices/          # Supplier invoices (PDF, image)
-â”œâ”€â”€ receipts/          # Receipts (PDF, image, phone photo)
-â”œâ”€â”€ statements/        # Bank statements (PDF, CSV, OFX)
-â”œâ”€â”€ government/        # AADE/EFKA notifications and documents
-â”œâ”€â”€ payroll/           # Hour sheets, employee documents
-â”œâ”€â”€ tax-documents/     # Tax certificates, employer statements (Î²ÎµÎ²Î±Î¹ÏŽÏƒÎµÎ¹Ï‚)
-â”œâ”€â”€ contracts/         # Contracts and legal documents
-â””â”€â”€ other/             # Uncategorised â€” routed after classification
+╔══ invoices/          # Supplier invoices (PDF, image)
+╔══ receipts/          # Receipts (PDF, image, phone photo)
+╔══ statements/        # Bank statements (PDF, CSV, OFX)
+╔══ government/        # AADE/EFKA notifications and documents
+╔══ payroll/           # Hour sheets, employee documents
+╔══ tax-documents/     # Tax certificates, employer statements (βεβαιώσεις)
+╔══ contracts/         # Contracts and legal documents
+└══ other/             # Uncategorised — routed after classification
 ```
 
 **Naming convention for incoming files:**
-Files dropped here may arrive with any name. The system must NOT rename them on arrival â€” the original filename is preserved for audit purposes. The system assigns a canonical name only when moving to `/data/processing/`.
+Files dropped here may arrive with any name. The system must NOT rename them on arrival — the original filename is preserved for audit purposes. The system assigns a canonical name only when moving to `/data/processing/`.
 
 ---
 
-## 2. `/data/processing/` â€” In-Flight Pipeline
+## 2. `/data/processing/` — In-Flight Pipeline
 
-Temporary working space. Files here are mid-pipeline and may be incomplete. No other skill should read from `/data/processing/` as a final source â€” always read from `/data/clients/` or `/data/compliance/` for canonical data.
+Temporary working space. Files here are mid-pipeline and may be incomplete. No other skill should read from `/data/processing/` as a final source — always read from `/data/clients/` or `/data/compliance/` for canonical data.
 
 ```
 /data/processing/
-â”œâ”€â”€ ocr/               # OCR in progress
-â”‚   â”œâ”€â”€ queued/        # Waiting for OCR
-â”‚   â”œâ”€â”€ enhanced/      # Image pre-processing complete
-â”‚   â”œâ”€â”€ extracted/     # Text extracted, not yet validated
-â”‚   â””â”€â”€ validated/     # OCR output validated, ready to route
-â”œâ”€â”€ classification/    # Document type identification in progress
-â”œâ”€â”€ reconciliation/    # Bank reconciliation working files
-â”‚   â”œâ”€â”€ matching/      # Transaction matching in progress
-â”‚   â””â”€â”€ flagged/       # Items needing human review
-â”œâ”€â”€ compliance/        # Filing preparation working files
-â”‚   â”œâ”€â”€ vat/           # VAT return preparation
-â”‚   â”œâ”€â”€ efka/          # EFKA declaration preparation
-â”‚   â””â”€â”€ mydata/        # myDATA submission preparation
-â””â”€â”€ imports/           # Bulk import validation in progress
+╔══ ocr/               # OCR in progress
+╚   ╔══ queued/        # Waiting for OCR
+╚   ╔══ enhanced/      # Image pre-processing complete
+╚   ╔══ extracted/     # Text extracted, not yet validated
+╚   └══ validated/     # OCR output validated, ready to route
+╔══ classification/    # Document type identification in progress
+╔══ reconciliation/    # Bank reconciliation working files
+╚   ╔══ matching/      # Transaction matching in progress
+╚   └══ flagged/       # Items needing human review
+╔══ compliance/        # Filing preparation working files
+╚   ╔══ vat/           # VAT return preparation
+╚   ╔══ efka/          # EFKA declaration preparation
+╚   └══ mydata/        # myDATA submission preparation
+└══ imports/           # Bulk import validation in progress
 ```
 
 **Cleanup policy:** Files in `/data/processing/` are deleted or archived after the pipeline completes successfully. They are never the canonical record.
 
 ---
 
-## 3. `/data/clients/` â€” Client Master Records
+## 3. `/data/clients/` — Client Master Records
 
 The single source of truth for all client data. Every other skill that needs client information reads from here. Only the `client-data-management` skill writes to this tree.
 
 ```
 /data/clients/
-â”œâ”€â”€ _index.json                    # Global client index (name, AFM, status, assignee)
-â”œâ”€â”€ _audit-log.json                # All access and change events across all clients
-â”œâ”€â”€ _schema-version.json           # Current schema version for migration tracking
-â””â”€â”€ {AFM}/                         # One directory per client, keyed by AFM (e.g. EL123456789)
-    â”œâ”€â”€ profile.json               # Master client record
-    â”œâ”€â”€ identifiers.json           # AFM, GEMI, EFKA employer ID, IBANs
-    â”œâ”€â”€ contacts.json              # Contact persons
-    â”œâ”€â”€ notes.json                 # Relationship notes and meeting logs
-    â”œâ”€â”€ compliance/
-    â”‚   â”œâ”€â”€ filings.json           # All completed filings (VAT, EFKA, E1, etc.)
-    â”‚   â”œâ”€â”€ obligations.json       # Recurring obligation schedule
-    â”‚   â””â”€â”€ gaps.json              # Missing/overdue filing log
-    â”œâ”€â”€ documents/
-    â”‚   â”œâ”€â”€ registry.json          # Metadata index of all documents for this client
-    â”‚   â”œâ”€â”€ pending.json           # Documents awaiting processing or review
-    â”‚   â””â”€â”€ archive-index.json     # References to archived documents
-    â”œâ”€â”€ correspondence/
-    â”‚   â””â”€â”€ {YYYYMMDD}_{type}_{draft-id}_sent.json  # Immutable sent communication records
-    â”œâ”€â”€ comms-preferences.json     # Client-specific salutation, contact, language overrides
-    â”œâ”€â”€ payroll/
-    â”‚   â””â”€â”€ {YYYY-MM}/             # One folder per pay period
-    â”‚       â”œâ”€â”€ hours-input.csv    # Raw hours data
-    â”‚       â”œâ”€â”€ calculations.json  # Computed payroll data
-    â”‚       â””â”€â”€ {employee-slug}_payslip.pdf   # Generated payslips
-    â”œâ”€â”€ financial-statements/
-    â”‚   â”œâ”€â”€ index.json             # All generated statements, versions, periods, status
-    â”‚   â”œâ”€â”€ {YYYY-MM}_pl_v{N}.json               # P&L machine-readable
-    â”‚   â”œâ”€â”€ {YYYY-MM}_balance-sheet_v{N}.json     # Balance sheet machine-readable
-    â”‚   â”œâ”€â”€ {YYYY-MM}_cash-flow_v{N}.json         # Cash flow machine-readable
-    â”‚   â””â”€â”€ {YYYY-MM}_vat-summary_v{N}.json       # VAT summary machine-readable
-    â””â”€â”€ gdpr/
-        â”œâ”€â”€ consent.json           # Consent records
-        â”œâ”€â”€ retention-policy.json  # Retention schedule for this client
-        â””â”€â”€ deletion-log.json      # Record of any deletions performed
+╔══ _index.json                    # Global client index (name, AFM, status, assignee)
+╔══ _audit-log.json                # All access and change events across all clients
+╔══ _schema-version.json           # Current schema version for migration tracking
+└══ {AFM}/                         # One directory per client, keyed by AFM (e.g. EL123456789)
+    ╔══ profile.json               # Master client record
+    ╔══ identifiers.json           # AFM, GEMI, EFKA employer ID, IBANs
+    ╔══ contacts.json              # Contact persons
+    ╔══ notes.json                 # Relationship notes and meeting logs
+    ╔══ compliance/
+    ╚   ╔══ filings.json           # All completed filings (VAT, EFKA, E1, etc.)
+    ╚   ╔══ obligations.json       # Recurring obligation schedule
+    ╚   └══ gaps.json              # Missing/overdue filing log
+    ╔══ documents/
+    ╚   ╔══ registry.json          # Metadata index of all documents for this client
+    ╚   ╔══ pending.json           # Documents awaiting processing or review
+    ╚   └══ archive-index.json     # References to archived documents
+    ╔══ correspondence/
+    ╚   └══ {YYYYMMDD}_{type}_{draft-id}_sent.json  # Immutable sent communication records
+    ╔══ comms-preferences.json     # Client-specific salutation, contact, language overrides
+    ╔══ payroll/
+    ╚   └══ {YYYY-MM}/             # One folder per pay period
+    ╚       ╔══ hours-input.csv    # Raw hours data
+    ╚       ╔══ calculations.json  # Computed payroll data
+    ╚       └══ {employee-slug}_payslip.pdf   # Generated payslips
+    ╔══ financial-statements/
+    ╚   ╔══ index.json             # All generated statements, versions, periods, status
+    ╚   ╔══ {YYYY-MM}_pl_v{N}.json               # P&L machine-readable
+    ╚   ╔══ {YYYY-MM}_balance-sheet_v{N}.json     # Balance sheet machine-readable
+    ╚   ╔══ {YYYY-MM}_cash-flow_v{N}.json         # Cash flow machine-readable
+    ╚   └══ {YYYY-MM}_vat-summary_v{N}.json       # VAT summary machine-readable
+    └══ gdpr/
+        ╔══ consent.json           # Consent records
+        ╔══ retention-policy.json  # Retention schedule for this client
+        └══ deletion-log.json      # Record of any deletions performed
 ```
 
 **AFM format:** Always `EL` + 9 digits, uppercase. Example: `EL123456789`. Never store without the `EL` prefix. Never use the 9-digit-only form as a directory name.
 
 ---
 
-## 4. `/data/compliance/` â€” Government Filings
+## 4. `/data/compliance/` — Government Filings
 
-Stores the actual submission files (XML, PDF) generated for government platforms. The filing *record* lives in `/data/clients/{AFM}/compliance/filings.json` â€” this directory holds the *file artefacts* themselves.
+Stores the actual submission files (XML, PDF) generated for government platforms. The filing *record* lives in `/data/clients/{AFM}/compliance/filings.json` — this directory holds the *file artefacts* themselves.
 
 ```
 /data/compliance/
-â”œâ”€â”€ vat/
-â”‚   â””â”€â”€ {AFM}_{YYYY}{MM}_vat_return.xml      # VAT return XML for TAXIS
-â”œâ”€â”€ mydata/
-â”‚   â””â”€â”€ {AFM}_{YYYY}{MM}_{invoice-number}_mydata.xml
-â”œâ”€â”€ efka/
-â”‚   â””â”€â”€ {AFM}_{YYYY}{MM}_efka_declaration.xml
-â”œâ”€â”€ e1/
-â”‚   â””â”€â”€ {AFM}_{YYYY}_e1_form.xml             # Individual tax returns
-â”œâ”€â”€ e3/
-â”‚   â””â”€â”€ {AFM}_{YYYY}_e3_form.xml             # Business activity statements
-â”œâ”€â”€ corporate-tax/
-â”‚   â””â”€â”€ {AFM}_{YYYY}_corporate_tax.xml
-â””â”€â”€ submissions/
-    â””â”€â”€ {AFM}_{YYYY}{MM}_{type}_submission-receipt.json   # Government confirmation receipts
+╔══ vat/
+╚   └══ {AFM}_{YYYY}{MM}_vat_return.xml      # VAT return XML for TAXIS
+╔══ mydata/
+╚   └══ {AFM}_{YYYY}{MM}_{invoice-number}_mydata.xml
+╔══ efka/
+╚   └══ {AFM}_{YYYY}{MM}_efka_declaration.xml
+╔══ e1/
+╚   └══ {AFM}_{YYYY}_e1_form.xml             # Individual tax returns
+╔══ e3/
+╚   └══ {AFM}_{YYYY}_e3_form.xml             # Business activity statements
+╔══ corporate-tax/
+╚   └══ {AFM}_{YYYY}_corporate_tax.xml
+└══ submissions/
+    └══ {AFM}_{YYYY}{MM}_{type}_submission-receipt.json   # Government confirmation receipts
 ```
 
-**Naming convention:** `{AFM}_{period}_{type}.{ext}` â€” always lowercase type, always ISO period format (YYYYMM or YYYY), always the full AFM with EL prefix.
+**Naming convention:** `{AFM}_{period}_{type}.{ext}` — always lowercase type, always ISO period format (YYYYMM or YYYY), always the full AFM with EL prefix.
 
 ---
 
-## 5. `/data/banking/` â€” Bank Statement Pipeline
+## 5. `/data/banking/` — Bank Statement Pipeline
 
 ```
 /data/banking/
-â”œâ”€â”€ imports/
-â”‚   â”œâ”€â”€ alpha/         # Alpha Bank raw statement files
-â”‚   â”œâ”€â”€ nbg/           # National Bank of Greece
-â”‚   â”œâ”€â”€ eurobank/      # Eurobank
-â”‚   â”œâ”€â”€ piraeus/       # Piraeus Bank
-â”‚   â””â”€â”€ other/         # Other banks
-â”œâ”€â”€ processing/
-â”‚   â”œâ”€â”€ raw/           # Imported, not yet validated
-â”‚   â”œâ”€â”€ validated/     # Format validation complete
-â”‚   â”œâ”€â”€ categorized/   # Transactions categorised
-â”‚   â””â”€â”€ reconciled/    # Reconciliation complete
-â”œâ”€â”€ reconciliation/
-â”‚   â””â”€â”€ {AFM}_{YYYY-MM}_reconciliation.json  # Per-client reconciliation reports
-â””â”€â”€ exports/
-    â””â”€â”€ {AFM}_{YYYY-MM}_transactions.csv     # Clean transaction exports
+╔══ imports/
+╚   ╔══ alpha/         # Alpha Bank raw statement files
+╚   ╔══ nbg/           # National Bank of Greece
+╚   ╔══ eurobank/      # Eurobank
+╚   ╔══ piraeus/       # Piraeus Bank
+╚   └══ other/         # Other banks
+╔══ processing/
+╚   ╔══ raw/           # Imported, not yet validated
+╚   ╔══ validated/     # Format validation complete
+╚   ╔══ categorized/   # Transactions categorised
+╚   └══ reconciled/    # Reconciliation complete
+╔══ reconciliation/
+╚   └══ {AFM}_{YYYY-MM}_reconciliation.json  # Per-client reconciliation reports
+└══ exports/
+    └══ {AFM}_{YYYY-MM}_transactions.csv     # Clean transaction exports
 ```
 
 **Note:** `/data/alpha-bank/`, `/data/nbg-statements/`, `/data/eurobank/`, `/data/piraeus-bank/` used in earlier skill versions are **deprecated**. All bank imports go through `/data/banking/imports/{bank}/`.
 
 ---
 
-## 6. `/data/ocr/` â€” OCR Processing Pipeline
+## 6. `/data/ocr/` — OCR Processing Pipeline
 
 ```
 /data/ocr/
-â”œâ”€â”€ incoming/
-â”‚   â”œâ”€â”€ scanned/       # Flatbed scanner input
-â”‚   â”œâ”€â”€ photos/        # Mobile phone photos of documents
-â”‚   â”œâ”€â”€ government/    # Government-issued documents (AADE letters, etc.)
-â”‚   â””â”€â”€ handwritten/   # Handwritten documents requiring special handling
-â”œâ”€â”€ preprocessing/
-â”‚   â””â”€â”€ enhanced/      # Image-enhanced versions awaiting OCR
-â”œâ”€â”€ processing/
-â”‚   â”œâ”€â”€ greek-ocr/     # Greek language OCR in progress
-â”‚   â”œâ”€â”€ classification/ # Document type being determined
-â”‚   â””â”€â”€ validation/    # OCR output being validated
-â”œâ”€â”€ output/
-â”‚   â”œâ”€â”€ text-extracted/       # Raw text output from OCR
-â”‚   â”œâ”€â”€ structured-data/      # Structured JSON extracted from text
-â”‚   â””â”€â”€ searchable-pdf/       # PDFs with embedded text layer
-â””â”€â”€ accounting-ready/          # Processed output ready for accounting-workflows skill
+╔══ incoming/
+╚   ╔══ scanned/       # Flatbed scanner input
+╚   ╔══ photos/        # Mobile phone photos of documents
+╚   ╔══ government/    # Government-issued documents (AADE letters, etc.)
+╚   └══ handwritten/   # Handwritten documents requiring special handling
+╔══ preprocessing/
+╚   └══ enhanced/      # Image-enhanced versions awaiting OCR
+╔══ processing/
+╚   ╔══ greek-ocr/     # Greek language OCR in progress
+╚   ╔══ classification/ # Document type being determined
+╚   └══ validation/    # OCR output being validated
+╔══ output/
+╚   ╔══ text-extracted/       # Raw text output from OCR
+╚   ╔══ structured-data/      # Structured JSON extracted from text
+╚   └══ searchable-pdf/       # PDFs with embedded text layer
+└══ accounting-ready/          # Processed output ready for accounting-workflows skill
 ```
 
 **Note:** `/data/scanned-documents/` used in earlier skill versions is **deprecated**. All scanned input goes to `/data/ocr/incoming/scanned/`.
 
 ---
 
-## 7. `/data/efka/` â€” EFKA Processing Pipeline
+## 7. `/data/efka/` — EFKA Processing Pipeline
 
 ```
 /data/efka/
-â”œâ”€â”€ employees/
-â”‚   â”œâ”€â”€ active/        # Current employee records
-â”‚   â”œâ”€â”€ pending/       # New employees awaiting EFKA registration
-â”‚   â”œâ”€â”€ terminated/    # Terminated employees (retained per legal requirements)
-â”‚   â”œâ”€â”€ imports/       # Bulk employee data imports
-â”‚   â”œâ”€â”€ updates/       # Pending employee record changes
-â”‚   â””â”€â”€ validated/     # Imports validated, ready to commit
-â”œâ”€â”€ contributions/
-â”‚   â”œâ”€â”€ monthly/       # Monthly contribution calculations by period
-â”‚   â”œâ”€â”€ quarterly/     # Quarterly summaries
-â”‚   â”œâ”€â”€ annual/        # Annual totals
-â”‚   â”œâ”€â”€ calculated/    # Computed contributions awaiting validation
-â”‚   â”œâ”€â”€ validated/     # Validated, ready to submit
-â”‚   â””â”€â”€ payments/      # Payment confirmation records
-â”œâ”€â”€ payroll/
-â”‚   â”œâ”€â”€ input/         # Raw hours and salary data
-â”‚   â”œâ”€â”€ validated/     # Validated input
-â”‚   â”œâ”€â”€ processed/     # Calculations complete
-â”‚   â””â”€â”€ ready-submit/  # Ready for EFKA portal submission
-â”œâ”€â”€ submissions/
-â”‚   â”œâ”€â”€ ready/         # Submission files ready to send
-â”‚   â”œâ”€â”€ efka-portal/   # Submitted to EFKA portal (confirmation pending)
-â”‚   â””â”€â”€ aade-cross/    # Cross-referenced with AADE for consistency
-â”œâ”€â”€ responses/
-â”‚   â”œâ”€â”€ confirmations/ # EFKA acceptance receipts
-â”‚   â””â”€â”€ corrections/   # EFKA rejection/correction requests
-â”œâ”€â”€ deadlines/
-â”‚   â”œâ”€â”€ upcoming/      # Deadlines in the next 30 days
-â”‚   â””â”€â”€ overdue/       # Missed deadlines requiring urgent action
-â”œâ”€â”€ audit/
-â”‚   â”œâ”€â”€ employee-records/    # Audit-ready employee documentation
-â”‚   â””â”€â”€ contribution-proof/  # Proof of contribution payments
-â””â”€â”€ compliance/
-    â””â”€â”€ monitoring/    # Ongoing compliance status tracking
+╔══ employees/
+╚   ╔══ active/        # Current employee records
+╚   ╔══ pending/       # New employees awaiting EFKA registration
+╚   ╔══ terminated/    # Terminated employees (retained per legal requirements)
+╚   ╔══ imports/       # Bulk employee data imports
+╚   ╔══ updates/       # Pending employee record changes
+╚   └══ validated/     # Imports validated, ready to commit
+╔══ contributions/
+╚   ╔══ monthly/       # Monthly contribution calculations by period
+╚   ╔══ quarterly/     # Quarterly summaries
+╚   ╔══ annual/        # Annual totals
+╚   ╔══ calculated/    # Computed contributions awaiting validation
+╚   ╔══ validated/     # Validated, ready to submit
+╚   └══ payments/      # Payment confirmation records
+╔══ payroll/
+╚   ╔══ input/         # Raw hours and salary data
+╚   ╔══ validated/     # Validated input
+╚   ╔══ processed/     # Calculations complete
+╚   └══ ready-submit/  # Ready for EFKA portal submission
+╔══ submissions/
+╚   ╔══ ready/         # Submission files ready to send
+╚   ╔══ efka-portal/   # Submitted to EFKA portal (confirmation pending)
+╚   └══ aade-cross/    # Cross-referenced with AADE for consistency
+╔══ responses/
+╚   ╔══ confirmations/ # EFKA acceptance receipts
+╚   └══ corrections/   # EFKA rejection/correction requests
+╔══ deadlines/
+╚   ╔══ upcoming/      # Deadlines in the next 30 days
+╚   └══ overdue/       # Missed deadlines requiring urgent action
+╔══ audit/
+╚   ╔══ employee-records/    # Audit-ready employee documentation
+╚   └══ contribution-proof/  # Proof of contribution payments
+└══ compliance/
+    └══ monitoring/    # Ongoing compliance status tracking
 ```
 
 ---
 
-## 8. `/data/reports/` â€” Generated Reports
+## 8. `/data/reports/` — Generated Reports
 
 Human-readable reports. These are outputs, not inputs to other skills.
 
 ```
 /data/reports/
-â”œâ”€â”€ daily/
-â”‚   â””â”€â”€ {YYYY-MM-DD}_daily_summary.pdf
-â”œâ”€â”€ weekly/
-â”‚   â””â”€â”€ {YYYY-WNN}_weekly_report.pdf
-â”œâ”€â”€ monthly/
-â”‚   â””â”€â”€ {YYYY-MM}_monthly_report.pdf
-â”œâ”€â”€ client/
-â”‚   â””â”€â”€ {AFM}_{YYYY-MM}_{report-type}.pdf
-â”œâ”€â”€ compliance/
-â”‚   â””â”€â”€ {AFM}_{YYYY-MM}_compliance_status.pdf
-â”œâ”€â”€ reconciliation/
-â”‚   â””â”€â”€ {AFM}_{YYYY-MM}_reconciliation_report.pdf
-â””â”€â”€ financial-statements/
-    â””â”€â”€ {AFM}_{YYYY-MM}_financial-pack_v{N}.pdf   # Client-facing PDF statement pack
+╔══ daily/
+╚   └══ {YYYY-MM-DD}_daily_summary.pdf
+╔══ weekly/
+╚   └══ {YYYY-WNN}_weekly_report.pdf
+╔══ monthly/
+╚   └══ {YYYY-MM}_monthly_report.pdf
+╔══ client/
+╚   └══ {AFM}_{YYYY-MM}_{report-type}.pdf
+╔══ compliance/
+╚   └══ {AFM}_{YYYY-MM}_compliance_status.pdf
+╔══ reconciliation/
+╚   └══ {AFM}_{YYYY-MM}_reconciliation_report.pdf
+└══ financial-statements/
+    └══ {AFM}_{YYYY-MM}_financial-pack_v{N}.pdf   # Client-facing PDF statement pack
 ```
 
 **Note:** `/data/reports/monthly-expenses.json` (used in Skill 1) is deprecated. Expense data belongs in `/data/clients/{AFM}/compliance/` or exported via `/data/exports/`.
 
 ---
 
-## 9. `/data/exports/` â€” Data Leaving the System
+## 9. `/data/exports/` — Data Leaving the System
 
 Files generated for external consumption (Excel exports, CSV downloads, accounting software imports).
 
 ```
 /data/exports/
-â”œâ”€â”€ clients/
-â”‚   â””â”€â”€ {YYYY-MM-DD}_client_export.{xlsx|csv|json}
-â”œâ”€â”€ transactions/
-â”‚   â””â”€â”€ {AFM}_{YYYY-MM}_transactions.{csv|xlsx}
-â”œâ”€â”€ compliance/
-â”‚   â””â”€â”€ {AFM}_{YYYY}_compliance_summary.xlsx
-â””â”€â”€ accounting-software/
-    â””â”€â”€ {AFM}_{YYYY-MM}_{target-system}.{qbx|csv|xlsx}
+╔══ clients/
+╚   └══ {YYYY-MM-DD}_client_export.{xlsx|csv|json}
+╔══ transactions/
+╚   └══ {AFM}_{YYYY-MM}_transactions.{csv|xlsx}
+╔══ compliance/
+╚   └══ {AFM}_{YYYY}_compliance_summary.xlsx
+└══ accounting-software/
+    └══ {AFM}_{YYYY-MM}_{target-system}.{qbx|csv|xlsx}
 ```
 
 ---
 
-## 10. `/data/imports/` â€” Bulk Data Entering the System
+## 10. `/data/imports/` — Bulk Data Entering the System
 
-Structured bulk imports (spreadsheets of client lists, employee rosters, etc.) â€” not raw documents (those go to `/data/incoming/`).
+Structured bulk imports (spreadsheets of client lists, employee rosters, etc.) — not raw documents (those go to `/data/incoming/`).
 
 ```
 /data/imports/
-â”œâ”€â”€ clients/           # Bulk client onboarding files
-â”œâ”€â”€ employees/         # Bulk employee roster imports
-â””â”€â”€ historical/        # Historical data migration files
+╔══ clients/           # Bulk client onboarding files
+╔══ employees/         # Bulk employee roster imports
+└══ historical/        # Historical data migration files
 ```
 
 ---
 
-## 11. `/data/dashboard/` â€” Dashboard State
+## 11. `/data/dashboard/` — Dashboard State
 
 ```
 /data/dashboard/
-â”œâ”€â”€ config/
-â”‚   â”œâ”€â”€ firm-settings.yaml
-â”‚   â”œâ”€â”€ alert-rules.yaml
-â”‚   â”œâ”€â”€ report-templates.yaml
-â”‚   â””â”€â”€ user-preferences/{username}.yaml
-â”œâ”€â”€ state/
-â”‚   â”œâ”€â”€ client-status.json      # Current status snapshot for all clients
-â”‚   â”œâ”€â”€ current-alerts.json     # Active alerts
-â”‚   â”œâ”€â”€ deadline-tracker.json   # Upcoming deadlines
-â”‚   â”œâ”€â”€ task-queue.json         # Pending task list
-â”‚   â””â”€â”€ system-health.json      # Skill integration health
-â”œâ”€â”€ cache/
-â”‚   â”œâ”€â”€ aade-latest.json
-â”‚   â”œâ”€â”€ efka-latest.json
-â”‚   â”œâ”€â”€ bank-feeds-latest.json
-â”‚   â””â”€â”€ ocr-queue-status.json
-â”œâ”€â”€ reports/
-â”‚   â”œâ”€â”€ daily/
-â”‚   â”œâ”€â”€ weekly/
-â”‚   â”œâ”€â”€ monthly/
-â”‚   â””â”€â”€ client-specific/
-â””â”€â”€ history/
-    â”œâ”€â”€ alerts/
-    â”œâ”€â”€ compliance-scores/
-    â””â”€â”€ performance-metrics/
+╔══ config/
+╚   ╔══ firm-settings.yaml
+╚   ╔══ alert-rules.yaml
+╚   ╔══ report-templates.yaml
+╚   └══ user-preferences/{username}.yaml
+╔══ state/
+╚   ╔══ client-status.json      # Current status snapshot for all clients
+╚   ╔══ current-alerts.json     # Active alerts
+╚   ╔══ deadline-tracker.json   # Upcoming deadlines
+╚   ╔══ task-queue.json         # Pending task list
+╚   └══ system-health.json      # Skill integration health
+╔══ cache/
+╚   ╔══ aade-latest.json
+╚   ╔══ efka-latest.json
+╚   ╔══ bank-feeds-latest.json
+╚   └══ ocr-queue-status.json
+╔══ reports/
+╚   ╔══ daily/
+╚   ╔══ weekly/
+╚   ╔══ monthly/
+╚   └══ client-specific/
+└══ history/
+    ╔══ alerts/
+    ╔══ compliance-scores/
+    └══ performance-metrics/
 ```
 
 ---
 
-## 12. `/data/auth/` â€” Authentication & Access Control
+## 12. `/data/auth/` — Authentication & Access Control
 
 ```
 /data/auth/
-â”œâ”€â”€ users/
-â”‚   â””â”€â”€ {username}/
-â”‚       â”œâ”€â”€ profile.json
-â”‚       â”œâ”€â”€ credentials.json     # Hashed â€” never plaintext
-â”‚       â”œâ”€â”€ permissions.json
-â”‚       â”œâ”€â”€ 2fa/
-â”‚       â””â”€â”€ sessions/
-â”‚           â””â”€â”€ {session-id}.json
-â”œâ”€â”€ roles/
-â”‚   â”œâ”€â”€ senior_accountant.json
-â”‚   â”œâ”€â”€ accountant.json
-â”‚   â”œâ”€â”€ assistant.json
-â”‚   â”œâ”€â”€ viewer.json
-â”‚   â””â”€â”€ custom/
-â”œâ”€â”€ access/
-â”‚   â”œâ”€â”€ client_assignments.json
-â”‚   â”œâ”€â”€ policies.json
-â”‚   â””â”€â”€ ip_whitelist.json
-â””â”€â”€ logs/
-    â”œâ”€â”€ logins/
-    â”œâ”€â”€ access/
-    â”œâ”€â”€ admin/
-    â””â”€â”€ security/
+╔══ users/
+╚   └══ {username}/
+╚       ╔══ profile.json
+╚       ╔══ credentials.json     # Hashed — never plaintext
+╚       ╔══ permissions.json
+╚       ╔══ 2fa/
+╚       └══ sessions/
+╚           └══ {session-id}.json
+╔══ roles/
+╚   ╔══ senior_accountant.json
+╚   ╔══ accountant.json
+╚   ╔══ assistant.json
+╚   ╔══ viewer.json
+╚   └══ custom/
+╔══ access/
+╚   ╔══ client_assignments.json
+╚   ╔══ policies.json
+╚   └══ ip_whitelist.json
+└══ logs/
+    ╔══ logins/
+    ╔══ access/
+    ╔══ admin/
+    └══ security/
 ```
 
 ---
 
-## 13. `/data/backups/` â€” Encrypted Backups
+## 13. `/data/backups/` — Encrypted Backups
 
 ```
 /data/backups/
-â”œâ”€â”€ full_{YYYYMMDD}.tar.enc                        # Full system backup (weekly)
-â”œâ”€â”€ incremental_{YYYYMMDD}.tar.enc                 # Incremental backup (daily)
-â”œâ”€â”€ clients_{YYYYMMDD}_{HHMMSS}.json.enc           # Client snapshot (event-driven)
-â”œâ”€â”€ compliance_{YYYYMMDD}_{HHMMSS}.json.enc        # Compliance snapshot (post-submission)
-â”œâ”€â”€ auth_{YYYYMMDD}.json.enc                       # Auth data backup
-â”œâ”€â”€ restore-test/                                  # Ephemeral â€” restore verification workspace
-â””â”€â”€ archives/                                      # Long-term retention archives (post-active)
+╔══ full_{YYYYMMDD}.tar.enc                        # Full system backup (weekly)
+╔══ incremental_{YYYYMMDD}.tar.enc                 # Incremental backup (daily)
+╔══ clients_{YYYYMMDD}_{HHMMSS}.json.enc           # Client snapshot (event-driven)
+╔══ compliance_{YYYYMMDD}_{HHMMSS}.json.enc        # Compliance snapshot (post-submission)
+╔══ auth_{YYYYMMDD}.json.enc                       # Auth data backup
+╔══ restore-test/                                  # Ephemeral — restore verification workspace
+└══ archives/                                      # Long-term retention archives (post-active)
 ```
 
-**Naming convention:** Always include date and time in backup filename. Always `.enc` extension for encrypted files. Encryption keys are stored outside `/data/` â€” never adjacent to backup files.
+**Naming convention:** Always include date and time in backup filename. Always `.enc` extension for encrypted files. Encryption keys are stored outside `/data/` — never adjacent to backup files.
 
 ---
 
-## 14. `/data/gdpr-exports/` â€” GDPR Subject Access Exports
+## 14. `/data/gdpr-exports/` — GDPR Subject Access Exports
 
 ```
 /data/gdpr-exports/
-â””â”€â”€ {AFM}_gdpr_export_{YYYYMMDD}.json
+└══ {AFM}_gdpr_export_{YYYYMMDD}.json
 ```
 
 ---
 
-## 15. `/data/system/` â€” System Files
+## 15. `/data/system/` — System Files
 
 ```
 /data/system/
-â”œâ”€â”€ skill-versions.json          # Installed skill versions and checksums
-â”œâ”€â”€ migration-log.json           # Schema migration history
-â”œâ”€â”€ process-locks/               # Concurrency locks (prevent double-processing)
-â”œâ”€â”€ error-log/
-â”‚   â””â”€â”€ {YYYY-MM-DD}_errors.log
-â”œâ”€â”€ migrations/
-â”‚   â””â”€â”€ v{N.N}_{YYYYMMDD}_{description}.json  # Schema migration definitions
-â”œâ”€â”€ integrity/
-â”‚   â”œâ”€â”€ audit-log.json           # Permanent integrity event log (all checks and results)
-â”‚   â”œâ”€â”€ hash-registry.json       # SHA256 hashes of all canonical data files
-â”‚   â”œâ”€â”€ retention-schedule.json  # Active retention schedule configuration
-â”‚   â””â”€â”€ last-check-results.json  # Most recent integrity check results (dashboard feed)
-â”œâ”€â”€ backups/
-â”‚   â””â”€â”€ backup-manifest.json     # Index of all backup files with metadata and verify status
-â”œâ”€â”€ chat-sessions/
-â”‚   â””â”€â”€ {username}/
-â”‚       â””â”€â”€ {YYYY-MM-DD}_{session-id}.json   # Conversational assistant session logs
-â””â”€â”€ chat-context/
-    â””â”€â”€ {username}/
-        â””â”€â”€ active-context.json              # Active session context (cleared on session end)
+╔══ skill-versions.json          # Installed skill versions and checksums
+╔══ migration-log.json           # Schema migration history
+╔══ process-locks/               # Concurrency locks (prevent double-processing)
+╔══ error-log/
+╚   └══ {YYYY-MM-DD}_errors.log
+╔══ migrations/
+╚   └══ v{N.N}_{YYYYMMDD}_{description}.json  # Schema migration definitions
+╔══ integrity/
+╚   ╔══ audit-log.json           # Permanent integrity event log (all checks and results)
+╚   ╔══ hash-registry.json       # SHA256 hashes of all canonical data files
+╚   ╔══ retention-schedule.json  # Active retention schedule configuration
+╚   └══ last-check-results.json  # Most recent integrity check results (dashboard feed)
+╔══ backups/
+╚   └══ backup-manifest.json     # Index of all backup files with metadata and verify status
+╔══ chat-sessions/
+╚   └══ {username}/
+╚       └══ {YYYY-MM-DD}_{session-id}.json   # Conversational assistant session logs
+└══ chat-context/
+    └══ {username}/
+        └══ active-context.json              # Active session context (cleared on session end)
 ```
 
 ---
 
-## 16. `/data/memory/` â€” Agent Memory & Feedback
+## 16. `/data/memory/` — Agent Memory & Feedback
 
-The agent's episodic memory, failure capture, pattern learning store, GitHub proposal queue, and rate-limit state. Written to by all skills (episode and failure hooks) and managed by the `memory-feedback` skill (Skill 19). No skill other than `memory-feedback` reads from this tree for decision-making â€” it is strictly write-on-event, read-by-Skill-19.
+The agent's episodic memory, failure capture, pattern learning store, GitHub proposal queue, and rate-limit state. Written to by all skills (episode and failure hooks) and managed by the `memory-feedback` skill (Skill 19). No skill other than `memory-feedback` reads from this tree for decision-making — it is strictly write-on-event, read-by-Skill-19.
 
 ```
 /data/memory/
-â”œâ”€â”€ episodes/
-â”‚   â””â”€â”€ {YYYY-MM-DD}/
-â”‚       â””â”€â”€ {session-id}_{action-type}.json    # Successful/completed agent actions
-â”œâ”€â”€ failures/
-â”‚   â””â”€â”€ {YYYY-MM-DD}/
-â”‚       â””â”€â”€ {session-id}_{failure-type}.json   # Failures with structured reflection
-â”œâ”€â”€ patterns/
-â”‚   â”œâ”€â”€ successes/
-â”‚   â”‚   â””â”€â”€ {pattern-id}.json                  # Recurring good outcomes extracted from episodes
-â”‚   â””â”€â”€ failures/
-â”‚       â””â”€â”€ {pattern-id}.json                  # Recurring problems extracted from failures
-â”œâ”€â”€ corrections/
-â”‚   â””â”€â”€ {YYYY-MM-DD}_{correction-id}.json      # Human corrections to agent behaviour
-â”œâ”€â”€ proposals/
-â”‚   â””â”€â”€ {YYYY-MM-DD}_{skill-name}_{id}.md      # Draft skill improvements awaiting GitHub PR
-â””â”€â”€ rate-limits/
-    â”œâ”€â”€ current-state.json                      # Live token and storage consumption
-    â”œâ”€â”€ daily-log.json                          # Per-day consumption history
-    â””â”€â”€ config.json                             # Configurable limits (hard floors enforced)
+╔══ episodes/
+╚   └══ {YYYY-MM-DD}/
+╚       └══ {session-id}_{action-type}.json    # Successful/completed agent actions
+╔══ failures/
+╚   └══ {YYYY-MM-DD}/
+╚       └══ {session-id}_{failure-type}.json   # Failures with structured reflection
+╔══ patterns/
+╚   ╔══ successes/
+╚   ╚   └══ {pattern-id}.json                  # Recurring good outcomes extracted from episodes
+╚   └══ failures/
+╚       └══ {pattern-id}.json                  # Recurring problems extracted from failures
+╔══ corrections/
+╚   └══ {YYYY-MM-DD}_{correction-id}.json      # Human corrections to agent behaviour
+╔══ proposals/
+╚   └══ {YYYY-MM-DD}_{skill-name}_{id}.md      # Draft skill improvements awaiting GitHub PR
+└══ rate-limits/
+    ╔══ current-state.json                      # Live token and storage consumption
+    ╔══ daily-log.json                          # Per-day consumption history
+    └══ config.json                             # Configurable limits (hard floors enforced)
 ```
 
 **Episode logging trigger:** Any agent action that makes a decision, produces output, or interacts with a government system. Trivial reads are not logged.
@@ -461,13 +461,13 @@ The agent's episodic memory, failure capture, pattern learning store, GitHub pro
 **Pattern scan schedule:** Once daily at 02:00 Athens time. Never during business hours. Maximum 3 proposals per day. Maximum 2 GitHub PRs per day.
 
 **Storage limits (defaults):**
-- Episodes: 500 MB max â€” auto-archive after 90 days
+- Episodes: 500 MB max — auto-archive after 90 days
 - Failures: 200 MB max
 - Patterns: 50 MB max
 - Proposals: 50 MB max
-- Total `/data/memory/`: 2 GB hard ceiling â€” system halts memory writes at 90% capacity
+- Total `/data/memory/`: 2 GB hard ceiling — system halts memory writes at 90% capacity
 
-**GitHub integration:** When a failure pattern reaches confidence threshold (â‰¥0.85, â‰¥3 occurrences), `memory-feedback` creates a branch on GitHub and opens a pull request against the relevant SKILL.md file. Human must review and merge. Agent never pushes directly to main. Rejected PRs are logged â€” the same change is never re-proposed.
+**GitHub integration:** When a failure pattern reaches confidence threshold (≥0.85, ≥3 occurrences), `memory-feedback` creates a branch on GitHub and opens a pull request against the relevant SKILL.md file. Human must review and merge. Agent never pushes directly to main. Rejected PRs are logged — the same change is never re-proposed.
 
 **Rate limit tokens:** Memory and reflection operations are budgeted separately from accounting operations. Default: 5,000 tokens/day for all memory processes combined.
 
@@ -481,7 +481,7 @@ The agent's episodic memory, failure capture, pattern learning store, GitHub pro
 |---|---|---|---|
 | AFM (VAT) | `EL` + 9 digits | `EL123456789` | Always uppercase EL prefix. Never 9-digit-only. |
 | EFKA employer ID | 8 digits | `12345678` | No prefix |
-| GEMI | 9â€“12 digits | `012345678` | May have leading zeros â€” preserve them |
+| GEMI | 9€“12 digits | `012345678` | May have leading zeros — preserve them |
 | Contact ID | `C` + 3 digits | `C001` | Per-client sequential |
 | Filing ID | `{type}-{AFM}-{YYYY}-{MM}` | `VAT-EL123456789-2026-01` | |
 | Document ID | `D` + 6 digits | `D000123` | Global sequential |
@@ -506,9 +506,9 @@ The agent's episodic memory, failure capture, pattern learning store, GitHub pro
 
 ### Currency
 
-| JSON storage | Numeric, 2dp | `12500.00` | Never include â‚¬ symbol in stored values |
+| JSON storage | Numeric, 2dp | `12500.00` | Never include € symbol in stored values |
 | File names | No currency | `12500` | Integer amounts only in filenames |
-| Display to users | `â‚¬XX,XXX.XX` | `â‚¬12,500.00` | Standard EU format |
+| Display to users | `€XX,XXX.XX` | `€12,500.00` | Standard EU format |
 | CLI output | `EUR XX,XXX.XX` | `EUR 12,500.00` | ASCII-safe for terminal |
 
 ### File Naming Pattern
@@ -526,19 +526,19 @@ Examples:
 - Hyphens within segments (not underscores)
 - Underscores between segments
 - No spaces anywhere in file names
-- No Greek characters in file names â€” use Latin transliteration for employee names
+- No Greek characters in file names — use Latin transliteration for employee names
 - No special characters except hyphens and underscores
 
 ### Employee Name Slugs (for file names)
 
 Greek names in file names must be transliterated to ASCII lowercase with hyphens:
-- `ÎÎ¯ÎºÎ¿Ï‚ Î Î±Ï€Î±Î´ÏŒÏ€Î¿Ï…Î»Î¿Ï‚` â†’ `nikos-papadopoulos`
-- `ÎœÎ±ÏÎ¯Î± ÎšÏ‰Î½ÏƒÏ„Î±Î½Ï„Î¯Î½Î¿Ï…` â†’ `maria-konstantinou`
-- `Î”Î®Î¼Î·Ï„ÏÎ± ÎšÎ±Î»Î±Î¼Î±ÏÎ¬` â†’ `dimitra-kalamara`
+- `Îίκος Παπαδόπουλος` → `nikos-papadopoulos`
+- `ΜαÏία Κωνσταντίνου` → `maria-konstantinou`
+- `ΔήμητÏα ΚαλαμαÏά` → `dimitra-kalamara`
 
 ---
 
-## Deprecated Paths â€” Do Not Use
+## Deprecated Paths — Do Not Use
 
 These paths appear in earlier skill versions and must not be used in any new skill. When encountered in existing commands, treat as aliases that redirect to the canonical paths.
 
@@ -587,7 +587,7 @@ Which skill owns (writes to) each top-level directory:
 | `/data/reports/system/` | `system-integrity-and-backup` | `dashboard-greek-accounting` (read) |
 | `/data/clients/{AFM}/financial-statements/` | `greek-financial-statements` | `conversational-ai-assistant`, `client-communication-engine`, `analytics-and-advisory-intelligence` |
 | `/data/clients/{AFM}/correspondence/` | `client-communication-engine` | `conversational-ai-assistant`, `analytics-and-advisory-intelligence` |
-| `/data/processing/comms/` | `client-communication-engine` | Ephemeral drafts only â€” cleared after send |
+| `/data/processing/comms/` | `client-communication-engine` | Ephemeral drafts only — cleared after send |
 | `/data/backups/` | `system-integrity-and-backup` | All skills trigger event-driven snapshots via meta-skill |
 | `/data/system/integrity/` | `system-integrity-and-backup` | All skills write hash on canonical file write |
 | `/data/exports/` | Any skill (with `--export`) | External consumers |
@@ -603,15 +603,15 @@ Which skill owns (writes to) each top-level directory:
 ## Enforcement Rules for All Skills
 
 1. **Never introduce a new top-level directory** under `/data/` without updating this document first.
-2. **Never write processed/canonical data to `/data/processing/`** â€” it is temporary only.
-3. **Never write client data outside `/data/clients/{AFM}/`** â€” client-data-management is the only writer.
+2. **Never write processed/canonical data to `/data/processing/`** — it is temporary only.
+3. **Never write client data outside `/data/clients/{AFM}/`** — client-data-management is the only writer.
 4. **Always use the full AFM with EL prefix** in all paths, filenames, and JSON keys.
-5. **Always use ISO date format** (`YYYY-MM-DD` or `YYYYMMDD`) in file names and JSON â€” never `DD/MM/YYYY` in stored data.
-6. **Never use Greek characters in file names or directory names** â€” only in JSON values and display output.
-7. **Currency values in JSON are always numeric** â€” never strings with â‚¬ symbols.
-8. **All timestamps in JSON are UTC** â€” display conversion to `Europe/Athens` happens at the output layer only.
-9. **The `/data/processing/` tree is ephemeral** â€” never reference it as the source of truth from another skill.
-10. **Deprecated paths are read-only legacy** â€” redirect to canonical paths, never create new files at deprecated locations.
+5. **Always use ISO date format** (`YYYY-MM-DD` or `YYYYMMDD`) in file names and JSON — never `DD/MM/YYYY` in stored data.
+6. **Never use Greek characters in file names or directory names** — only in JSON values and display output.
+7. **Currency values in JSON are always numeric** — never strings with € symbols.
+8. **All timestamps in JSON are UTC** — display conversion to `Europe/Athens` happens at the output layer only.
+9. **The `/data/processing/` tree is ephemeral** — never reference it as the source of truth from another skill.
+10. **Deprecated paths are read-only legacy** — redirect to canonical paths, never create new files at deprecated locations.
 
 
 ---

@@ -9,17 +9,17 @@ metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl"], "env": ["OPENCLA
 
 # System Integrity and Backup
 
-This skill protects everything the OpenClaw Greek Accounting system holds. It runs silently in the background â€” verifying that data has not been corrupted or unexpectedly deleted, managing encrypted backups to local storage, enforcing the retention obligations that Greek law places on accounting firms, and handling the schema migrations that keep the system consistent as skills evolve.
+This skill protects everything the OpenClaw Greek Accounting system holds. It runs silently in the background — verifying that data has not been corrupted or unexpectedly deleted, managing encrypted backups to local storage, enforcing the retention obligations that Greek law places on accounting firms, and handling the schema migrations that keep the system consistent as skills evolve.
 
 No accounting firm could professionally deploy a system handling client financial records without this layer. Greek accounting firms are legally obligated to retain certain records for up to 20 years. A backup that has never been tested is not a backup. An integrity system that only runs when something breaks is too late.
 
 ## Core Philosophy
 
-- **Silent Until Needed, Auditable Always**: Integrity checks run on schedule without interrupting accounting operations. Every result â€” pass or fail â€” is permanently logged so the firm can demonstrate to a regulator or auditor that the system has been actively monitored
+- **Silent Until Needed, Auditable Always**: Integrity checks run on schedule without interrupting accounting operations. Every result — pass or fail — is permanently logged so the firm can demonstrate to a regulator or auditor that the system has been actively monitored
 - **Verified Backups, Not Just Created Ones**: A backup is only as good as its last successful restore test. This skill tests backup archives on a regular schedule and flags any that cannot be verified
-- **Greek Legal Retention by Default**: The retention schedule is pre-configured for Greek accounting law. Records are not deleted at retention expiry â€” they are flagged for human review and then archived or deleted only with explicit approval
+- **Greek Legal Retention by Default**: The retention schedule is pre-configured for Greek accounting law. Records are not deleted at retention expiry — they are flagged for human review and then archived or deleted only with explicit approval
 - **Migrations Are Versioned and Reversible**: When a skill update changes a data structure, the migration is applied as a numbered, logged operation. Every migration can be inspected; failed migrations are rolled back automatically
-- **No Silent Failures**: If a backup fails, if an integrity check finds corruption, if a retention flag is triggered â€” the firm is notified through the dashboard. Nothing fails quietly
+- **No Silent Failures**: If a backup fails, if an integrity check finds corruption, if a retention flag is triggered — the firm is notified through the dashboard. Nothing fails quietly
 
 ---
 
@@ -78,7 +78,7 @@ openclaw backup list --type full --last 10
 openclaw backup status --show-verified --show-unverified --show-failed
 openclaw backup manifest --update    # Rebuild manifest from actual backup files
 
-# Off-site export (manual â€” operator copies encrypted files to external media)
+# Off-site export (manual — operator copies encrypted files to external media)
 openclaw backup export --backup-id BACKUP-20260218-001 --output /mnt/external/
 openclaw backup export --latest-full --output /mnt/external/
 ```
@@ -141,10 +141,10 @@ Integrity_Check_Scope:
   file_existence:
     description: "Every file referenced in index files and registries actually exists on disk"
     checks:
-      - "/data/clients/_index.json entries â†’ /data/clients/{AFM}/ directories exist"
-      - "/data/clients/{AFM}/documents/registry.json entries â†’ files exist"
-      - "/data/compliance/submissions/ receipts â†’ referenced filing XML files exist"
-      - "/data/clients/{AFM}/financial-statements/index.json â†’ statement files exist"
+      - "/data/clients/_index.json entries → /data/clients/{AFM}/ directories exist"
+      - "/data/clients/{AFM}/documents/registry.json entries → files exist"
+      - "/data/compliance/submissions/ receipts → referenced filing XML files exist"
+      - "/data/clients/{AFM}/financial-statements/index.json → statement files exist"
 
   hash_verification:
     description: "SHA256 hash of every canonical data file matches the registered hash"
@@ -174,7 +174,7 @@ Integrity_Check_Scope:
     description: "Disk usage and growth rate"
     checks:
       - "Total /data/ usage against configured storage limit"
-      - "Growth rate per directory â€” flag if growing faster than baseline"
+      - "Growth rate per directory — flag if growing faster than baseline"
       - "Memory directory size against configured maximum"
 ```
 
@@ -183,12 +183,12 @@ Integrity_Check_Scope:
 ```yaml
 Integrity_Schedule:
   full_check:
-    frequency: "Weekly â€” Sunday 04:00 Athens time (after backup)"
+    frequency: "Weekly — Sunday 04:00 Athens time (after backup)"
     scope: "All directories, all files, all cross-references"
     duration_estimate: "5-15 minutes depending on data volume"
 
   quick_check:
-    frequency: "Daily â€” 05:00 Athens time"
+    frequency: "Daily — 05:00 Athens time"
     scope: "Hash verification of client and compliance directories only"
     duration_estimate: "1-3 minutes"
 
@@ -197,11 +197,11 @@ Integrity_Schedule:
       - "After any government submission (verify submission receipt written correctly)"
       - "After any schema migration (verify migration applied cleanly)"
       - "After any backup restore test (verify restored data matches original)"
-    scope: "Targeted â€” only the affected files and directories"
+    scope: "Targeted — only the affected files and directories"
 
   never_during:
-    - "Business hours (08:00-18:00 Athens time) â€” scheduled checks only"
-    - "Active monthly processing run â€” wait for pipeline completion"
+    - "Business hours (08:00-18:00 Athens time) — scheduled checks only"
+    - "Active monthly processing run — wait for pipeline completion"
 ```
 
 ---
@@ -214,7 +214,7 @@ Integrity_Schedule:
 Backup_Types:
 
   full_backup:
-    frequency: "Weekly â€” Sunday 02:00 Athens time"
+    frequency: "Weekly — Sunday 02:00 Athens time"
     scope: "Complete /data/ tree excluding /data/processing/ (ephemeral)"
     encryption: "AES-256 with key stored in /data/auth/backup-key.enc"
     filename: "full_{YYYYMMDD}_{HHMMSS}.tar.enc"
@@ -222,7 +222,7 @@ Backup_Types:
     verify_schedule: "Tested within 24 hours of creation"
 
   incremental_backup:
-    frequency: "Daily â€” Monday through Saturday, 03:00 Athens time"
+    frequency: "Daily — Monday through Saturday, 03:00 Athens time"
     scope: "Files modified since last backup (using hash registry delta)"
     filename: "incremental_{YYYYMMDD}_{HHMMSS}.tar.enc"
     retention: "Keep last 30 incremental backups"
@@ -235,7 +235,7 @@ Backup_Types:
       - "After any schema migration"
     scope: "Specific affected directories only"
     filename: "snapshot_{event-type}_{AFM}_{YYYYMMDD}_{HHMMSS}.tar.enc"
-    retention: "Keep indefinitely â€” these are milestone records"
+    retention: "Keep indefinitely — these are milestone records"
     verify_schedule: "Verified immediately after creation"
 ```
 
@@ -252,9 +252,9 @@ Backup_Verification:
     - "No files present in manifest that are missing from archive"
 
   result_states:
-    VERIFIED: "Archive passed all checks â€” recorded in manifest"
+    VERIFIED: "Archive passed all checks — recorded in manifest"
     PARTIAL: "Archive intact but some files could not be verified against hash registry"
-    FAILED: "Archive corrupted, undecryptable, or missing files â€” immediate alert"
+    FAILED: "Archive corrupted, undecryptable, or missing files — immediate alert"
 
   on_failed_backup:
     action_1: "Alert dashboard immediately"
@@ -286,7 +286,7 @@ Backup_Manifest_Entry_Fields:
 
 ## Retention Schedule
 
-Greek accounting law sets minimum retention periods. This skill enforces them with a conservative approach â€” when in doubt, retain longer and require human approval before deletion.
+Greek accounting law sets minimum retention periods. This skill enforces them with a conservative approach — when in doubt, retain longer and require human approval before deletion.
 
 ```yaml
 Retention_Schedule:
@@ -337,7 +337,7 @@ Retention_Schedule:
     types:
       - "/data/system/integrity/audit-log.json"
       - "/data/auth/logs/"
-    retention: "Permanent â€” never deleted"
+    retention: "Permanent — never deleted"
     reason: "Regulatory and professional liability"
 
   processing_and_temp_files:
@@ -345,8 +345,8 @@ Retention_Schedule:
       - "/data/processing/ (all subdirectories)"
       - "/data/memory/episodes/ and /data/memory/failures/"
     retention_days: 90
-    action: "Auto-purge after 90 days â€” these are operational, not legal records"
-    exception: "Memory patterns/ and corrections/ â€” retained indefinitely as system learning assets"
+    action: "Auto-purge after 90 days — these are operational, not legal records"
+    exception: "Memory patterns/ and corrections/ — retained indefinitely as system learning assets"
 ```
 
 ### Retention Action Workflow
@@ -354,7 +354,7 @@ Retention_Schedule:
 ```yaml
 Retention_Action:
   step_1: "Flag records past retention date in /data/system/integrity/retention-schedule.json"
-  step_2: "Alert dashboard â€” show which records are due for action"
+  step_2: "Alert dashboard — show which records are due for action"
   step_3: "Human reviews: openclaw retention flagged --show-all"
   step_4: "Human chooses: archive (cold storage) or delete"
   step_5: "Archive: openclaw retention archive --approved-by {username}"
@@ -381,15 +381,15 @@ Migration_System:
     - affects: "List of directories and file patterns affected"
     - forward_steps: "Ordered list of operations to apply the migration"
     - rollback_steps: "Ordered list of operations to reverse the migration"
-    - validation: "Checks to run after applying â€” confirms migration succeeded"
+    - validation: "Checks to run after applying — confirms migration succeeded"
     - estimated_duration: "Expected time to apply"
 
   safety_rules:
     - "Never modify production data without taking a snapshot backup first"
     - "Run dry-run before applying any migration to production"
-    - "Apply one migration at a time â€” never batch-apply untested migrations"
+    - "Apply one migration at a time — never batch-apply untested migrations"
     - "All migrations tested in an isolated restore before production application"
-    - "Failed migration triggers automatic rollback â€” never leaves data in partial state"
+    - "Failed migration triggers automatic rollback — never leaves data in partial state"
 
   current_schema_version:
     location: "/data/system/skill-versions.json"
@@ -431,22 +431,22 @@ Dashboard_Feeds:
   health_status_card:
     data_source: "/data/system/integrity/last-check-results.json"
     fields_shown:
-      - "Last full check: [date] â€” [PASS / ISSUES FOUND]"
-      - "Last backup: [date] â€” [VERIFIED / UNVERIFIED / FAILED]"
+      - "Last full check: [date] — [PASS / ISSUES FOUND]"
+      - "Last backup: [date] — [VERIFIED / UNVERIFIED / FAILED]"
       - "Storage used: X GB of Y GB"
       - "Retention flags: N records awaiting action"
 
   alerts:
-    integrity_failure: "CRITICAL â€” Data integrity issue detected in {directory}. Accounting operations suspended for affected clients."
-    backup_failed: "CRITICAL â€” Backup failed. Last verified backup: {N} days ago."
-    backup_unverified: "WARNING â€” Latest backup not yet verified."
-    retention_due: "INFO â€” {N} records are past retention date and require action."
-    storage_at_80_percent: "WARNING â€” Storage at {X}% capacity. Review and archive."
+    integrity_failure: "CRITICAL — Data integrity issue detected in {directory}. Accounting operations suspended for affected clients."
+    backup_failed: "CRITICAL — Backup failed. Last verified backup: {N} days ago."
+    backup_unverified: "WARNING — Latest backup not yet verified."
+    retention_due: "INFO — {N} records are past retention date and require action."
+    storage_at_80_percent: "WARNING — Storage at {X}% capacity. Review and archive."
 ```
 
 ---
 
-## Memory Integration (Phase 4 â€” Skill 19 hooks)
+## Memory Integration (Phase 4 — Skill 19 hooks)
 
 ```yaml
 Memory_Integration:
@@ -466,7 +466,7 @@ Memory_Integration:
     - hash_mismatch_detected
 
   rate_limit_group: "system_operations"
-  note: "System integrity failures must always be logged regardless of rate limits â€” no token budget applies here"
+  note: "System integrity failures must always be logged regardless of rate limits — no token budget applies here"
 ```
 
 ---
@@ -512,12 +512,12 @@ Severity_Levels:
 ## Success Metrics
 
 A successful deployment of this skill should achieve:
-- âœ… Every backup verified within 24 hours of creation â€” zero unverified backups older than 48 hours
-- âœ… Full integrity check passes weekly with zero unexplained hash mismatches
-- âœ… Every schema migration applied cleanly with no data loss and full rollback capability
-- âœ… Retention schedule enforced â€” no record deleted without explicit human approval
-- âœ… Integrity audit log is continuous and permanent â€” no gaps
-- âœ… Dashboard always shows current backup age and last check result â€” never stale
-- âœ… The firm can produce an integrity report for a regulator or auditor at any time covering any past period
+- ✅ Every backup verified within 24 hours of creation — zero unverified backups older than 48 hours
+- ✅ Full integrity check passes weekly with zero unexplained hash mismatches
+- ✅ Every schema migration applied cleanly with no data loss and full rollback capability
+- ✅ Retention schedule enforced — no record deleted without explicit human approval
+- ✅ Integrity audit log is continuous and permanent — no gaps
+- ✅ Dashboard always shows current backup age and last check result — never stale
+- ✅ The firm can produce an integrity report for a regulator or auditor at any time covering any past period
 
-Remember: This skill exists so the firm can say â€” to a client, a regulator, or an auditor â€” "our systems are maintained, monitored, backed up, and compliant." That statement must be true and provable. Every feature in this skill exists to make it provable.
+Remember: This skill exists so the firm can say — to a client, a regulator, or an auditor — "our systems are maintained, monitored, backed up, and compliant." That statement must be true and provable. Every feature in this skill exists to make it provable.

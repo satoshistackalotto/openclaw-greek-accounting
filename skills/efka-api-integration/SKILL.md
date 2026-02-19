@@ -200,23 +200,23 @@ Contribution_Calculations:
     contribution_base_calculation: "Min(gross_salary, max_contribution_base)"
     
     employer_contributions:
-      main_insurance: "contribution_base Ãƒâ€” 24.56%"
-      auxiliary_insurance: "contribution_base Ãƒâ€” 3.00%"
-      employment_account: "contribution_base Ãƒâ€” 1.55%"
-      health_insurance: "gross_salary Ãƒâ€” 9.76%"
+      main_insurance: "contribution_base × 24.56%"
+      auxiliary_insurance: "contribution_base × 3.00%"
+      employment_account: "contribution_base × 1.55%"
+      health_insurance: "gross_salary × 9.76%"
       total_employer: "sum of all employer contributions"
       
     employee_deductions:
-      main_insurance: "contribution_base Ãƒâ€” 16.00%"
-      auxiliary_insurance: "contribution_base Ãƒâ€” 3.00%"
-      employment_account: "contribution_base Ãƒâ€” 0.55%"
-      health_insurance: "gross_salary Ãƒâ€” 2.55%"
+      main_insurance: "contribution_base × 16.00%"
+      auxiliary_insurance: "contribution_base × 3.00%"
+      employment_account: "contribution_base × 0.55%"
+      health_insurance: "gross_salary × 2.55%"
       total_employee: "sum of all employee deductions"
       
   special_calculations:
     overtime_contributions:
       overtime_hours: "hours_over_40_per_week"
-      overtime_rate: "1.5 Ãƒâ€” hourly_rate"
+      overtime_rate: "1.5 × hourly_rate"
       contributions_on_overtime: "same_rates_as_regular_salary"
       
     bonus_contributions:
@@ -227,7 +227,7 @@ Contribution_Calculations:
       
     termination_calculations:
       severance_pay: "legal_minimum_based_on_tenure"
-      unused_vacation: "accumulated_vacation_days Ãƒâ€” daily_rate"
+      unused_vacation: "accumulated_vacation_days × daily_rate"
       final_contributions: "employer_and_employee_on_final_payments"
 ```
 
@@ -291,7 +291,7 @@ Employee_Updates_Management:
 Termination_Process:
   pre_termination_calculations:
     final_salary_period: "Calculate final month contributions"
-    unused_vacation_pay: "Vacation days Ãƒâ€” daily_salary_rate"
+    unused_vacation_pay: "Vacation days × daily_salary_rate"
     severance_calculations: "Legal minimum based on tenure"
     bonus_prorations: "13th salary and other bonuses"
     
@@ -408,75 +408,75 @@ Security_Implementation:
 # Complete monthly EFKA processing workflow
 $ openclaw efka monthly-process --february-2026 --all-employees
 
-Ã°Å¸Ââ€ºÃ¯Â¸Â EFKA Monthly Processing - February 2026:
+ðŸÂ€ºï¸ EFKA Monthly Processing - February 2026:
 
-Ã°Å¸â€˜Â¥ Employee Summary:
-Ã¢Å“â€¦ Active Employees: 45
-Ã¢Å“â€¦ New Hires: 2 (registered with EFKA)
-Ã¢Å“â€¦ Terminations: 1 (final contributions calculated)
-Ã¢Å“â€¦ Salary Changes: 3 (contribution rates updated)
+👥 Employee Summary:
+✅ Active Employees: 45
+✅ New Hires: 2 (registered with EFKA)
+✅ Terminations: 1 (final contributions calculated)
+✅ Salary Changes: 3 (contribution rates updated)
 
-Ã°Å¸â€™Â° Contribution Calculations:
-Ã¢Å“â€¦ Total Gross Payroll: Ã¢â€šÂ¬67,500.00
-Ã¢Å“â€¦ Employer Contributions: Ã¢â€šÂ¬26,145.30
-   Ã¢â€Å“Ã¢â€â‚¬ Main Insurance (24.56%): Ã¢â€šÂ¬16,583.00
-   Ã¢â€Å“Ã¢â€â‚¬ Auxiliary (3.00%): Ã¢â€šÂ¬2,025.00
-   Ã¢â€Å“Ã¢â€â‚¬ Employment (1.55%): Ã¢â€šÂ¬1,046.25
-   Ã¢â€â€Ã¢â€â‚¬ Health (9.76%): Ã¢â€šÂ¬6,491.05
+💰 Contribution Calculations:
+✅ Total Gross Payroll: ‚¬67,500.00
+✅ Employer Contributions: ‚¬26,145.30
+   ├─ Main Insurance (24.56%): ‚¬16,583.00
+   ├─ Auxiliary (3.00%): ‚¬2,025.00
+   ├─ Employment (1.55%): ‚¬1,046.25
+   └─ Health (9.76%): ‚¬6,491.05
 
-Ã¢Å“â€¦ Employee Deductions: Ã¢â€šÂ¬15,187.50
-   Ã¢â€Å“Ã¢â€â‚¬ Main Insurance (16.00%): Ã¢â€šÂ¬10,800.00
-   Ã¢â€Å“Ã¢â€â‚¬ Auxiliary (3.00%): Ã¢â€šÂ¬2,025.00
-   Ã¢â€Å“Ã¢â€â‚¬ Employment (0.55%): Ã¢â€šÂ¬371.25
-   Ã¢â€â€Ã¢â€â‚¬ Health (2.55%): Ã¢â€šÂ¬1,991.25
+✅ Employee Deductions: ‚¬15,187.50
+   ├─ Main Insurance (16.00%): ‚¬10,800.00
+   ├─ Auxiliary (3.00%): ‚¬2,025.00
+   ├─ Employment (0.55%): ‚¬371.25
+   └─ Health (2.55%): ‚¬1,991.25
 
-Ã°Å¸â€œÅ  Processing Results:
-Ã¢Å“â€¦ All calculations validated Ã¢Å“â€¦
-Ã¢Å“â€¦ Cross-checked with AADE data Ã¢Å“â€¦  
-Ã¢Å“â€¦ Banking payment scheduled Ã¢Å“â€¦
-Ã¢Å“â€¦ EFKA submission files generated Ã¢Å“â€¦
+📊 Processing Results:
+✅ All calculations validated ✅
+✅ Cross-checked with AADE data ✅  
+✅ Banking payment scheduled ✅
+✅ EFKA submission files generated ✅
 
-Ã¢Å¡Â Ã¯Â¸Â Action Required: 
+⚠ï¸ Action Required: 
 - Submit to EFKA portal by March 15th
-- Bank transfer Ã¢â€šÂ¬26,145.30 by February 29th
+- Bank transfer ‚¬26,145.30 by February 29th
 ```
 
 ### New Employee Registration
 ```bash
-$ openclaw efka employee-onboard --employee "ÃŽÅ“ÃŽÂ±ÃÂÃŽÂ¯ÃŽÂ± ÃŽÂ ÃŽÂ±Ãâ‚¬ÃŽÂ±ÃŽÂ´ÃŽÂ¿Ãâ‚¬ÃŽÂ¿ÃÂÃŽÂ»ÃŽÂ¿Ãâ€¦" --start-date 2026-02-20
+$ openclaw efka employee-onboard --employee "Μαρία Παπαδοπούλου" --start-date 2026-02-20
 
-Ã°Å¸â€˜Â¤ Employee Onboarding - ÃŽÅ“ÃŽÂ±ÃÂÃŽÂ¯ÃŽÂ± ÃŽÂ ÃŽÂ±Ãâ‚¬ÃŽÂ±ÃŽÂ´ÃŽÂ¿Ãâ‚¬ÃŽÂ¿ÃÂÃŽÂ»ÃŽÂ¿Ãâ€¦:
+👤 Employee Onboarding - Μαρία Παπαδοπούλου:
 
-Ã°Å¸â€œâ€¹ Personal Information:
-Ã¢Å“â€¦ Full Name: ÃŽÅ“ÃŽÂ±ÃÂÃŽÂ¯ÃŽÂ± ÃŽÂ ÃŽÂ±Ãâ‚¬ÃŽÂ±ÃŽÂ´ÃŽÂ¿Ãâ‚¬ÃŽÂ¿ÃÂÃŽÂ»ÃŽÂ¿Ãâ€¦ (Maria Papadopoulou)
-Ã¢Å“â€¦ AFM: 123456789
-Ã¢Å“â€¦ AMKA: 12345678901
-Ã¢Å“â€¦ Address: ÃŽâ€ºÃŽÂµÃâ€°Ãâ€ . ÃŽÂ£Ãâ€¦ÃŽÂ³ÃŽÂ³ÃÂÃŽÂ¿ÃÂ 45, ÃŽâ€˜ÃŽÂ¸ÃŽÂ®ÃŽÂ½ÃŽÂ± 11742
-Ã¢Å“â€¦ Position: ÃŽâ€ºÃŽÂ¿ÃŽÂ³ÃŽÂ¯ÃÆ’Ãâ€žÃÂÃŽÂ¹ÃŽÂ± (Accountant)
+📀¹ Personal Information:
+✅ Full Name: Μαρία Παπαδοπούλου (Maria Papadopoulou)
+✅ AFM: 123456789
+✅ AMKA: 12345678901
+✅ Address: ΀ºεπ°π . Συγγρού 45, Αθήνα 11742
+✅ Position: ΀ºογίσπžρια (Accountant)
 
-Ã°Å¸â€™Â¼ Employment Details:
-Ã¢Å“â€¦ Start Date: February 20, 2026
-Ã¢Å“â€¦ Monthly Salary: Ã¢â€šÂ¬1,800.00
-Ã¢Å“â€¦ Employment Type: Indefinite contract
-Ã¢Å“â€¦ Working Hours: Full-time (40 hours/week)
-Ã¢Å“â€¦ Insurance Category: 101 (Main insurance - private sector)
+💼 Employment Details:
+✅ Start Date: February 20, 2026
+✅ Monthly Salary: ‚¬1,800.00
+✅ Employment Type: Indefinite contract
+✅ Working Hours: Full-time (40 hours/week)
+✅ Insurance Category: 101 (Main insurance - private sector)
 
-Ã°Å¸Â§Â® Contribution Calculations:
-Ã¢Å“â€¦ Monthly Employer Cost: Ã¢â€šÂ¬663.47
-   Ã¢â€Å“Ã¢â€â‚¬ Employer Contributions: Ã¢â€šÂ¬442.08
-   Ã¢â€Å“Ã¢â€â‚¬ Gross Salary: Ã¢â€šÂ¬1,800.00
-   Ã¢â€â€Ã¢â€â‚¬ Total Employment Cost: Ã¢â€šÂ¬2,242.08
+🧮 Contribution Calculations:
+✅ Monthly Employer Cost: ‚¬663.47
+   ├─ Employer Contributions: ‚¬442.08
+   ├─ Gross Salary: ‚¬1,800.00
+   └─ Total Employment Cost: ‚¬2,242.08
 
-Ã¢Å“â€¦ Monthly Employee Deductions: Ã¢â€šÂ¬397.90
-Ã¢Å“â€¦ Employee Net Salary: Ã¢â€šÂ¬1,402.10
+✅ Monthly Employee Deductions: ‚¬397.90
+✅ Employee Net Salary: ‚¬1,402.10
 
-Ã°Å¸â€œÂ¤ Next Steps:
-- EFKA registration submitted Ã¢Å“â€¦
-- Payroll system updated Ã¢Å“â€¦  
-- Employee card application submitted Ã¢Å“â€¦
-- Welcome package prepared Ã¢Å“â€¦
+📤 Next Steps:
+- EFKA registration submitted ✅
+- Payroll system updated ✅  
+- Employee card application submitted ✅
+- Welcome package prepared ✅
 
-Ã¢ÂÂ° Deadlines:
+âÂ° Deadlines:
 - EFKA confirmation expected by: February 28, 2026
 - First month contributions due: March 31, 2026
 ```
@@ -499,42 +499,42 @@ $ openclaw greek employee-management --comprehensive-processing
 ```bash
 $ openclaw efka compliance-dashboard --current-status --upcoming-deadlines
 
-Ã°Å¸Ââ€ºÃ¯Â¸Â EFKA Compliance Dashboard - February 19, 2026:
+ðŸÂ€ºï¸ EFKA Compliance Dashboard - February 19, 2026:
 
-Ã°Å¸â€œÅ  Current Status:
-Ã¢Å“â€¦ All employees registered with EFKA
-Ã¢Å“â€¦ February contributions calculated and validated
-Ã¢Å“â€¦ No overdue submissions
-Ã¢Å“â€¦ Banking payments up to date
+📊 Current Status:
+✅ All employees registered with EFKA
+✅ February contributions calculated and validated
+✅ No overdue submissions
+✅ Banking payments up to date
 
-Ã¢ÂÂ° Upcoming Deadlines:
-Ã°Å¸â€â€ February 29, 2026: Monthly contribution payment (Ã¢â€šÂ¬26,145.30)
-Ã°Å¸â€â€ March 15, 2026: February employee data submission  
-Ã°Å¸â€â€ March 28, 2026: New hire registration (2 employees)
+âÂ° Upcoming Deadlines:
+🔔 February 29, 2026: Monthly contribution payment (‚¬26,145.30)
+🔔 March 15, 2026: February employee data submission  
+🔔 March 28, 2026: New hire registration (2 employees)
 
-Ã¢Å¡Â Ã¯Â¸Â Attention Required:
+⚠ï¸ Attention Required:
 - Salary increase for 3 employees effective March 1st
 - Annual employee statements due March 31st  
 - Quarterly reconciliation with AADE due March 31st
 
-Ã°Å¸â€œË† Year-to-Date Summary:
-Ã¢Å“â€¦ Total Contributions Paid: Ã¢â€šÂ¬78,435.90
-Ã¢Å“â€¦ Employees Processed: 47
-Ã¢Å“â€¦ Compliance Rate: 100%
-Ã¢Å“â€¦ No penalties incurred
+📈 Year-to-Date Summary:
+✅ Total Contributions Paid: ‚¬78,435.90
+✅ Employees Processed: 47
+✅ Compliance Rate: 100%
+✅ No penalties incurred
 ```
 
 ## Success Metrics for EFKA Integration
 
 A successful EFKA API integration should achieve:
-- Ã¢Å“â€¦ 100% accurate contribution calculations per Greek law
-- Ã¢Å“â€¦ Complete employee lifecycle management automation
-- Ã¢Å“â€¦ Seamless integration with existing payroll systems
-- Ã¢Å“â€¦ Real-time compliance monitoring and deadline management
-- Ã¢Å“â€¦ Zero missed deadlines or penalty incidents
-- Ã¢Å“â€¦ Complete audit trail and documentation
-- Ã¢Å“â€¦ Multi-client support for accounting firm deployment
-- Ã¢Å“â€¦ OpenClaw artifact deployment ready for instant setup
+- ✅ 100% accurate contribution calculations per Greek law
+- ✅ Complete employee lifecycle management automation
+- ✅ Seamless integration with existing payroll systems
+- ✅ Real-time compliance monitoring and deadline management
+- ✅ Zero missed deadlines or penalty incidents
+- ✅ Complete audit trail and documentation
+- ✅ Multi-client support for accounting firm deployment
+- ✅ OpenClaw artifact deployment ready for instant setup
 
 ## OpenClaw Artifact Deployment
 

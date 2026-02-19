@@ -400,11 +400,11 @@ Taxpayer_Location_Detection:
     
 Municipality_Database:
   major_municipalities:
-    - code: "ATH", name: "Athens", tax_office: "A' ÃŽâ€˜ÃŽËœÃŽâ€”ÃŽÂÃŽÂ©ÃŽÂ"
-    - code: "THE", name: "Thessaloniki", tax_office: "A' ÃŽËœÃŽâ€¢ÃŽÂ£ÃŽÂ£ÃŽâ€˜ÃŽâ€ºÃŽÅ¸ÃŽÂÃŽâ„¢ÃŽÅ¡ÃŽâ€”ÃŽÂ£"
-    - code: "PIR", name: "Piraeus", tax_office: "ÃŽÂ ÃŽâ€¢ÃŽâ„¢ÃŽÂ¡ÃŽâ€˜ÃŽâ„¢ÃŽâ€˜"  
-    - code: "PAT", name: "Patras", tax_office: "ÃŽÂ ÃŽâ€˜ÃŽÂ¤ÃŽÂ¡ÃŽÂ©ÃŽÂ"
-    - code: "HER", name: "Heraklion", tax_office: "ÃŽâ€”ÃŽÂ¡ÃŽâ€˜ÃŽÅ¡ÃŽâ€ºÃŽâ€¢ÃŽâ„¢ÃŽÅ¸ÃŽÂ¥"
+    - code: "ATH", name: "Athens", tax_office: "A' ΑΜΗΝΩΝ"
+    - code: "THE", name: "Thessaloniki", tax_office: "A' ΜΕΣΣΑ΀ºθΝΙΡΗΣ"
+    - code: "PIR", name: "Piraeus", tax_office: "ΠΕΙΡΑΙΑ"  
+    - code: "PAT", name: "Patras", tax_office: "ΠΑΤΡΩΝ"
+    - code: "HER", name: "Heraklion", tax_office: "ΗΡΑΡ΀ºΕΙθΥ"
     
   municipality_specific_rates:
     TAP_rates:
@@ -478,18 +478,18 @@ Date_Formats:
   display_preference: "greek_format"
   
 Greek_Month_Names:
-  - "ÃŽâ„¢ÃŽÂ±ÃŽÂ½ÃŽÂ¿Ãâ€¦ÃŽÂ¬ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š"  # January
-  - "ÃŽÂ¦ÃŽÂµÃŽÂ²ÃÂÃŽÂ¿Ãâ€¦ÃŽÂ¬ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š" # February  
-  - "ÃŽÅ“ÃŽÂ¬ÃÂÃâ€žÃŽÂ¹ÃŽÂ¿Ãâ€š"     # March
-  - "ÃŽâ€˜Ãâ‚¬ÃÂÃŽÂ¯ÃŽÂ»ÃŽÂ¹ÃŽÂ¿Ãâ€š"    # April
-  - "ÃŽÅ“ÃŽÂ¬ÃŽÂ¹ÃŽÂ¿Ãâ€š"       # May
-  - "ÃŽâ„¢ÃŽÂ¿ÃÂÃŽÂ½ÃŽÂ¹ÃŽÂ¿Ãâ€š"     # June
-  - "ÃŽâ„¢ÃŽÂ¿ÃÂÃŽÂ»ÃŽÂ¹ÃŽÂ¿Ãâ€š"     # July
-  - "ÃŽâ€˜ÃÂÃŽÂ³ÃŽÂ¿Ãâ€¦ÃÆ’Ãâ€žÃŽÂ¿Ãâ€š"   # August
-  - "ÃŽÂ£ÃŽÂµÃâ‚¬Ãâ€žÃŽÂ­ÃŽÂ¼ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š" # September
-  - "ÃŽÅ¸ÃŽÂºÃâ€žÃÅ½ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š"   # October
-  - "ÃŽÂÃŽÂ¿ÃŽÂ­ÃŽÂ¼ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š"   # November
-  - "ÃŽâ€ÃŽÂµÃŽÂºÃŽÂ­ÃŽÂ¼ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š"  # December
+  - "Ιανουάριοπš"  # January
+  - "Φεβρουάριοπš" # February  
+  - "Μάρπžιοπš"     # March
+  - "Απρίλιοπš"    # April
+  - "Μάιοπš"       # May
+  - "Ιούνιοπš"     # June
+  - "Ιούλιοπš"     # July
+  - "Αύγουσπžοπš"   # August
+  - "Σεππžέμβριοπš" # September
+  - "θκπžϽβριοπš"   # October
+  - "Νοέμβριοπš"   # November
+  - "Δεκέμβριοπš"  # December
 ```
 
 ### Timezone and Regional Settings
@@ -607,18 +607,18 @@ openclaw alerts setup email --smtp-config /etc/openclaw/smtp.conf
 $ openclaw deadline check all
 
 AADE Deadlines (Next 30 Days):
-Ã¢Å“â€œ Monthly VAT Return (February 2026) - Due: March 20, 2026 (31 days)
-Ã¢Å¡Â  Individual Tax Returns (2025) - Due: June 30, 2026 (133 days)
-Ã¢Å“â€œ Quarterly VAT Return (Q1 2026) - Due: April 25, 2026 (67 days)
+✓ Monthly VAT Return (February 2026) - Due: March 20, 2026 (31 days)
+⚠ Individual Tax Returns (2025) - Due: June 30, 2026 (133 days)
+✓ Quarterly VAT Return (Q1 2026) - Due: April 25, 2026 (67 days)
 
 EFKA Deadlines (Next 30 Days):  
-Ã¢Å¡Â  Monthly Social Security Contributions (February 2026) - Due: March 15, 2026 (26 days)
-Ã¢Å“â€œ Quarterly Social Security Report (Q1 2026) - Due: April 30, 2026 (72 days)
+⚠ Monthly Social Security Contributions (February 2026) - Due: March 15, 2026 (26 days)
+✓ Quarterly Social Security Report (Q1 2026) - Due: April 30, 2026 (72 days)
 
 System Status:
-Ã¢Å“â€œ AADE TAXIS: Online
-Ã¢Å“â€œ AADE myDATA: Online  
-Ã¢Å“â€œ EFKA Portal: Online
+✓ AADE TAXIS: Online
+✓ AADE myDATA: Online  
+✓ EFKA Portal: Online
 
 Alerts: 1 deadline approaching in <30 days
 ```
@@ -628,19 +628,19 @@ Alerts: 1 deadline approaching in <30 days
 $ openclaw deadline changes --since yesterday
 
 CHANGES DETECTED:
-Ã°Å¸Å¡Â¨ CRITICAL: Monthly VAT deadline moved from March 25 to March 20, 2026
+🚨 CRITICAL: Monthly VAT deadline moved from March 25 to March 20, 2026
    - Reason: Updated AADE announcement
    - Impact: 5 days earlier than expected
    - Action: Notifications sent to all channels
 
-Ã°Å¸â€œÂ§ Notifications sent:
-   - Email: accounting@company.com Ã¢Å“â€œ
-   - Slack: #accounting-alerts Ã¢Å“â€œ  
-   - SMS: +30-xxx-xxx-xxx Ã¢Å“â€œ
+📧 Notifications sent:
+   - Email: accounting@company.com ✓
+   - Slack: #accounting-alerts ✓  
+   - SMS: +30-xxx-xxx-xxx ✓
 
-Ã°Å¸â€œâ€¦ Calendar updates:
-   - Google Calendar: Updated Ã¢Å“â€œ
-   - Outlook Calendar: Updated Ã¢Å“â€œ
+📅 Calendar updates:
+   - Google Calendar: Updated ✓
+   - Outlook Calendar: Updated ✓
 ```
 
 ### Example 4: Municipal License Renewal Check
@@ -648,22 +648,22 @@ CHANGES DETECTED:
 $ openclaw licenses check renewals --municipality athens --business-type restaurant
 
 MUNICIPAL LICENSE STATUS - ATHENS:
-Ã°Å¸â€œâ€¹ Business License Renewals Due:
-Ã¢Å¡Â  General Business License - Due: April 15, 2026 (57 days)
-Ã¢Å“â€œ Food Service Permit - Renewed until December 31, 2026 (318 days)  
-Ã°Å¸Å¡Â¨ EFET Health Certificate - Due: March 1, 2026 (12 days) - URGENT!
+📀¹ Business License Renewals Due:
+⚠ General Business License - Due: April 15, 2026 (57 days)
+✓ Food Service Permit - Renewed until December 31, 2026 (318 days)  
+🚨 EFET Health Certificate - Due: March 1, 2026 (12 days) - URGENT!
 
-Ã°Å¸Ââ€”Ã¯Â¸Â Construction/Operational Permits:
-Ã¢Å“â€œ Signage Permit - Valid until August 30, 2026 (194 days)
-Ã¢Å¡Â  Fire Department Certificate - Due: May 20, 2026 (92 days)
+ðŸÂ—ï¸ Construction/Operational Permits:
+✓ Signage Permit - Valid until August 30, 2026 (194 days)
+⚠ Fire Department Certificate - Due: May 20, 2026 (92 days)
 
-Ã°Å¸â€™Â° Municipal Fees Due:
-Ã¢Å“â€œ TAP (Municipal Property Tax) - Paid via electricity bill (0.025%)
-Ã¢Å¡Â  Waste Collection Fee - Due: March 20, 2026 (31 days)
-Ã¢Å“â€œ Street Lighting Fee - Automatically charged (current)
+💰 Municipal Fees Due:
+✓ TAP (Municipal Property Tax) - Paid via electricity bill (0.025%)
+⚠ Waste Collection Fee - Due: March 20, 2026 (31 days)
+✓ Street Lighting Fee - Automatically charged (current)
 
-Ã°Å¸â€œÅ¾ Municipality Contact: Athens Business Services - 210-527-7000
-Ã°Å¸â€œÂ§ Automated alerts will be sent 30, 15, and 7 days before each deadline
+📞 Municipality Contact: Athens Business Services - 210-527-7000
+📧 Automated alerts will be sent 30, 15, and 7 days before each deadline
 ```
 
 ### Example 5: Multi-Municipality Business Monitoring  
@@ -671,23 +671,23 @@ MUNICIPAL LICENSE STATUS - ATHENS:
 $ openclaw deadline municipal all --business-vat EL123456789
 
 MULTI-LOCATION BUSINESS MONITORING:
-Ã°Å¸ÂÂ¢ Primary Business (Athens):
-Ã¢â€Å“Ã¢â€â‚¬ VAT Registration: ÃŽâ€˜' ÃŽâ€˜ÃŽËœÃŽâ€”ÃŽÂÃŽÂ©ÃŽÂ Tax Office
-Ã¢â€Å“Ã¢â€â‚¬ Municipal License: Due April 15, 2026
-Ã¢â€Å“Ã¢â€â‚¬ TAP Rate: 0.025% of property value
-Ã¢â€â€Ã¢â€â‚¬ Special Requirements: Athens Municipality signage regulations
+ðŸÂ¢ Primary Business (Athens):
+├─ VAT Registration: Α' ΑΜΗΝΩΝ Tax Office
+├─ Municipal License: Due April 15, 2026
+├─ TAP Rate: 0.025% of property value
+└─ Special Requirements: Athens Municipality signage regulations
 
-Ã°Å¸ÂÂª Branch Office (Thessaloniki):  
-Ã¢â€Å“Ã¢â€â‚¬ Local Business Permit: Due June 30, 2026
-Ã¢â€Å“Ã¢â€â‚¬ TAP Rate: 0.030% of property value  
-Ã¢â€Å“Ã¢â€â‚¬ Municipal Fees: Higher waste collection rates
-Ã¢â€â€Ã¢â€â‚¬ Special Requirements: Thessaloniki commercial zone restrictions
+ðŸÂª Branch Office (Thessaloniki):  
+├─ Local Business Permit: Due June 30, 2026
+├─ TAP Rate: 0.030% of property value  
+├─ Municipal Fees: Higher waste collection rates
+└─ Special Requirements: Thessaloniki commercial zone restrictions
 
-Ã°Å¸ÂÂ­ Warehouse (Patras):
-Ã¢â€Å“Ã¢â€â‚¬ Industrial Permit: Due September 15, 2026
-Ã¢â€Å“Ã¢â€â‚¬ TAP Rate: 0.025% of property value
-Ã¢â€Å“Ã¢â€â‚¬ Environmental Permits: Required for industrial activity
-Ã¢â€â€Ã¢â€â‚¬ Special Requirements: Port authority coordination needed
+ðŸÂ­ Warehouse (Patras):
+├─ Industrial Permit: Due September 15, 2026
+├─ TAP Rate: 0.025% of property value
+├─ Environmental Permits: Required for industrial activity
+└─ Special Requirements: Port authority coordination needed
 
 Summary: 3 locations monitored across 3 municipalities
 Next Action: Athens EFET certificate renewal in 12 days
@@ -696,18 +696,18 @@ Next Action: Athens EFET certificate renewal in 12 days
 $ openclaw status all --detailed
 
 AADE Systems:
-Ã¢â€Å“Ã¢â€â‚¬ TAXIS Portal: Ã¢Å“â€œ Online (Response: 245ms)
-Ã¢â€Å“Ã¢â€â‚¬ myDATA API: Ã¢Å“â€œ Online (Response: 180ms)  
-Ã¢â€Å“Ã¢â€â‚¬ VIES Validation: Ã¢Å“â€œ Online (Response: 320ms)
-Ã¢â€â€Ã¢â€â‚¬ Public Website: Ã¢Å“â€œ Online (Response: 410ms)
+├─ TAXIS Portal: ✓ Online (Response: 245ms)
+├─ myDATA API: ✓ Online (Response: 180ms)  
+├─ VIES Validation: ✓ Online (Response: 320ms)
+└─ Public Website: ✓ Online (Response: 410ms)
 
 EFKA Systems:
-Ã¢â€Å“Ã¢â€â‚¬ Main Portal: Ã¢Å“â€œ Online (Response: 380ms)
-Ã¢â€Å“Ã¢â€â‚¬ Contribution Portal: Ã¢Å¡Â  Slow (Response: 2.1s)
-Ã¢â€Å“Ã¢â€â‚¬ Employer Services: Ã¢Å“â€œ Online (Response: 290ms)
-Ã¢â€â€Ã¢â€â‚¬ Public Website: Ã¢Å“â€œ Online (Response: 350ms)
+├─ Main Portal: ✓ Online (Response: 380ms)
+├─ Contribution Portal: ⚠ Slow (Response: 2.1s)
+├─ Employer Services: ✓ Online (Response: 290ms)
+└─ Public Website: ✓ Online (Response: 350ms)
 
-Overall Health: Ã¢Å“â€œ All Critical Systems Operational
+Overall Health: ✓ All Critical Systems Operational
 Last Updated: 2026-02-17 09:30:15 EET
 ```
 
@@ -791,12 +791,12 @@ openclaw deadline emergency-data --load-backup --continue-monitoring
 ## Success Metrics
 
 A successful CLI deadline monitoring system should achieve:
-- Ã¢Å“â€¦ 99.9% uptime for deadline monitoring
-- Ã¢Å“â€¦ <5 minute detection time for deadline changes
-- Ã¢Å“â€¦ 100% accuracy in deadline information  
-- Ã¢Å“â€¦ <30 second response time for CLI commands
-- Ã¢Å“â€¦ Zero missed critical deadline alerts
-- Ã¢Å“â€¦ Complete audit trail for all monitoring activities
-- Ã¢Å“â€¦ Integration with all major Greek government systems
+- ✅ 99.9% uptime for deadline monitoring
+- ✅ <5 minute detection time for deadline changes
+- ✅ 100% accuracy in deadline information  
+- ✅ <30 second response time for CLI commands
+- ✅ Zero missed critical deadline alerts
+- ✅ Complete audit trail for all monitoring activities
+- ✅ Integration with all major Greek government systems
 
 Remember: This skill provides the foundation for proactive compliance management, ensuring Greek businesses never miss critical tax deadlines or regulatory changes.

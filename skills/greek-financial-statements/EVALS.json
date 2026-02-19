@@ -9,8 +9,8 @@
       "Confirms EFKA contribution data is present",
       "Classifies income accounts under EGLS Class 7 (70-79)",
       "Classifies expense accounts under EGLS Class 6 (60-69)",
-      "Produces P&L with correct Greek label: Î‘Ï€Î¿Ï„ÎµÎ»Î­ÏƒÎ¼Î±Ï„Î± Î§ÏÎ®ÏƒÎµÏ‰Ï‚",
-      "Produces balance sheet with correct Greek label: Î™ÏƒÎ¿Î»Î¿Î³Î¹ÏƒÎ¼ÏŒÏ‚",
+      "Produces P&L with correct Greek label: Αποτελέσματα ΧÏήσεως",
+      "Produces balance sheet with correct Greek label: Θσολογισμός",
       "Balance sheet assets total equals equity plus liabilities total",
       "VAT summary references actual submission data not estimated figures",
       "Assigns version number v1 to the first generation",
@@ -40,7 +40,7 @@
       "Runs completeness gate before attempting any generation",
       "Detects banking reconciliation is missing for February 2026",
       "Detects pending OCR items that have not been processed",
-      "Does NOT generate a partial statement â€” halts with blockers list",
+      "Does NOT generate a partial statement — halts with blockers list",
       "Outputs clear list of what is missing and what commands to run to resolve",
       "Does not create any statement files for this period",
       "Logs failure to /data/memory/failures/ with failure_type: completeness_gate_failed",
@@ -67,7 +67,7 @@
       "Balance sheet updated to reflect the changed retained earnings figure",
       "Logs the amendment as an episode with episode_type: amendment_issued",
       "Both v1 and v2 files remain in /data/clients/EL555444333/financial-statements/",
-      "Produces new Greek PDF clearly marked as Î¤ÏÎ¿Ï€Î¿Ï€Î¿Î¯Î·ÏƒÎ· (Amendment) with reference to original"
+      "Produces new Greek PDF clearly marked as ΤÏοποποίηση (Amendment) with reference to original"
     ],
     "files": [
       {
@@ -76,7 +76,7 @@
       },
       {
         "name": "missed_invoice.json",
-        "content": "{\"invoice_number\": \"INV-2025-0891\", \"supplier\": \"Î Î¡ÎŸÎœÎ—Î˜Î•Î¥Î¤Î—Î£ Î‘Î›Î¦Î‘\", \"supplier_afm\": \"EL444333222\", \"net_amount\": 1935.48, \"vat_amount\": 464.52, \"total\": 2400.00, \"vat_rate\": \"24%\", \"egls_account\": \"62\", \"description\": \"Third-party maintenance services\", \"invoice_date\": \"2025-10-28\", \"received_date\": \"2025-11-20\"}"
+        "content": "{\"invoice_number\": \"INV-2025-0891\", \"supplier\": \"ΠΡΟΜΔΘΕΥΤΔΣ ΑΛΦΑ\", \"supplier_afm\": \"EL444333222\", \"net_amount\": 1935.48, \"vat_amount\": 464.52, \"total\": 2400.00, \"vat_rate\": \"24%\", \"egls_account\": \"62\", \"description\": \"Third-party maintenance services\", \"invoice_date\": \"2025-10-28\", \"received_date\": \"2025-11-20\"}"
       }
     ]
   },
@@ -123,9 +123,9 @@
     "id": 5,
     "prompt": "A balance sheet was generated for Delta Services EPE (EL777888999) for December 2025 but when reviewed, total assets are EUR 142,300 and total equity plus liabilities are EUR 139,850. The balance sheet does not balance. What should happen?",
     "expectations": [
-      "Identifies this as a balance sheet mismatch â€” assets do not equal equity plus liabilities",
+      "Identifies this as a balance sheet mismatch — assets do not equal equity plus liabilities",
       "Calculates the difference: EUR 2,450",
-      "Does NOT issue the statement â€” halts immediately on mismatch detection",
+      "Does NOT issue the statement — halts immediately on mismatch detection",
       "Logs a high-priority failure to /data/memory/failures/ with failure_type: balance_sheet_mismatch",
       "Alerts the senior accountant through the dashboard",
       "Does not attempt to auto-correct the difference",

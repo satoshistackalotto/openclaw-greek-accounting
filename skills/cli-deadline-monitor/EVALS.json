@@ -35,7 +35,7 @@
     "files": [
       {
         "name": "deadline_changes.json",
-        "content": "{\n  \"changes_detected\": [\n    {\n      \"deadline_type\": \"Monthly VAT Return\",\n      \"period\": \"March 2026\",\n      \"old_date\": \"2026-04-25\",\n      \"new_date\": \"2026-04-20\",\n      \"change_detected_at\": \"2026-02-17T08:30:00Z\",\n      \"days_impact\": -5,\n      \"severity\": \"high\",\n      \"reason\": \"Updated AADE circular 1025/2026\"\n    }\n  ],\n  \"source_announcement\": {\n    \"url\": \"https://www.aade.gr/epiheiriseis/forologikes-ypohreosieis/deltia-typou\",\n    \"title\": \"Î‘Î»Î»Î±Î³Î® Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î±Ï‚ Ï…Ï€Î¿Î²Î¿Î»Î®Ï‚ Ï€ÎµÏÎ¹Î¿Î´Î¹ÎºÎ®Ï‚ Î´Î®Î»Ï‰ÏƒÎ·Ï‚ Î¦Î Î‘\",\n    \"date_published\": \"2026-02-17\"\n  }\n}"
+        "content": "{\n  \"changes_detected\": [\n    {\n      \"deadline_type\": \"Monthly VAT Return\",\n      \"period\": \"March 2026\",\n      \"old_date\": \"2026-04-25\",\n      \"new_date\": \"2026-04-20\",\n      \"change_detected_at\": \"2026-02-17T08:30:00Z\",\n      \"days_impact\": -5,\n      \"severity\": \"high\",\n      \"reason\": \"Updated AADE circular 1025/2026\"\n    }\n  ],\n  \"source_announcement\": {\n    \"url\": \"https://www.aade.gr/epiheiriseis/forologikes-ypohreosieis/deltia-typou\",\n    \"title\": \"Αλλαγή πÏοθεσμίας υποβολής πεÏιοδικής δήλωσης ΦΠΑ\",\n    \"date_published\": \"2026-02-17\"\n  }\n}"
       }
     ]
   },

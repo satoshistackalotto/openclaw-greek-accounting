@@ -9,13 +9,13 @@ metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "gh"], "env": ["OPEN
 
 # Memory and Feedback
 
-This skill gives the OpenClaw system a learning loop. All 18 skills log their episodes and failures. This skill reads those logs, detects patterns, and proposes improvements â€” as GitHub pull requests against the SKILL.md files that govern behaviour. Humans review and merge. The system learns.
+This skill gives the OpenClaw system a learning loop. All 18 skills log their episodes and failures. This skill reads those logs, detects patterns, and proposes improvements — as GitHub pull requests against the SKILL.md files that govern behaviour. Humans review and merge. The system learns.
 
-This is Phase 4 infrastructure, designed to be activated once Phase 3B has been running long enough to generate meaningful data â€” typically 2-3 months of real operation. The episode and failure hooks in Skills 14-18 write to `/data/memory/` from day one. When this skill is activated, months of learning data are already waiting.
+This is Phase 4 infrastructure, designed to be activated once Phase 3B has been running long enough to generate meaningful data — typically 2-3 months of real operation. The episode and failure hooks in Skills 14-18 write to `/data/memory/` from day one. When this skill is activated, months of learning data are already waiting.
 
 ## Core Philosophy
 
-- **Semi-Automatic by Design**: The agent owns its memory files â€” episodes and failures are written without approval. Skill files govern behaviour and require human review before any change takes effect. This boundary is non-negotiable
+- **Semi-Automatic by Design**: The agent owns its memory files — episodes and failures are written without approval. Skill files govern behaviour and require human review before any change takes effect. This boundary is non-negotiable
 - **Pattern Detection, Not Gut Feel**: Improvements are proposed only when a pattern appears with sufficient frequency and confidence. A single failure is a data point. Three failures of the same type with the same trigger is a pattern
 - **Human in the Loop for Skill Changes**: Every proposed skill improvement becomes a GitHub pull request. The accountant or developer sees exactly what changed, why, and what evidence led to the proposal. Merge = accepted. Close = rejected and never re-proposed
 - **Rate Limited to Protect the Machine**: Memory operations are token-budgeted. Pattern scans run overnight. Storage limits are enforced. The system cannot consume itself
@@ -151,7 +151,7 @@ openclaw memory report --period 2026-01 --format pdf --output /data/reports/syst
   "skill": "conversational-ai-assistant",
   "failure_type": "intent_misread",
   "user_query": "Send the January summary to Alpha Trading",
-  "agent_action_taken": "Attempted openclaw comms send â€” skill not yet available",
+  "agent_action_taken": "Attempted openclaw comms send — skill not yet available",
   "what_went_wrong": "Agent tried to send client communication directly. Skill 16 not deployed at time of query.",
   "what_should_have_happened": "Recognise outgoing communication unavailable. Draft the summary text. Inform user it needs manual sending.",
   "human_correction_provided": true,
@@ -188,8 +188,8 @@ Pattern_Detection:
       - consistent_what_should_have_happened across occurrences (weight: 10%)
 
   output:
-    above_threshold: "Write pattern to /data/memory/patterns/failures/{id}.json â€” eligible for proposal"
-    below_threshold: "Write pattern to /data/memory/patterns/failures/{id}.json â€” marked WATCH, not proposable yet"
+    above_threshold: "Write pattern to /data/memory/patterns/failures/{id}.json — eligible for proposal"
+    below_threshold: "Write pattern to /data/memory/patterns/failures/{id}.json — marked WATCH, not proposable yet"
 ```
 
 ### Pattern Record Structure
@@ -242,7 +242,7 @@ GitHub_PR_Flow:
     commit_message: |
       "Memory system: {brief description}
       
-      Pattern: {pattern_id} â€” {confidence} confidence
+      Pattern: {pattern_id} — {confidence} confidence
       Occurrences: {N} over {lookback_window}
       Failure type: {failure_type}
       
@@ -289,7 +289,7 @@ GitHub_PR_Flow:
     max_prs_per_day: 2
     max_proposals_per_day: 3
     agent_never_pushes_to: "main, master, or any protected branch"
-    agent_never_merges: "Any PR â€” merge requires human action only"
+    agent_never_merges: "Any PR — merge requires human action only"
 ```
 
 ---
@@ -303,14 +303,14 @@ Rate_Limit_Config:
   token_budgets:
     memory_logging: 500     # Per-operation logging (episodes and failures)
     pattern_scan: 1500      # Nightly scan of last 30 days
-    proposal_generation: 1000  # Per proposal â€” includes SKILL.md diff computation
+    proposal_generation: 1000  # Per proposal — includes SKILL.md diff computation
     daily_total: 5000       # Hard ceiling across all memory operations
     note: "Token budget counts only memory/reflection tokens, not accounting operations"
 
   operation_frequency:
-    episode_logging: "Every qualifying action â€” no rate limit (lightweight)"
-    failure_logging: "Every failure â€” no rate limit (lightweight)"
-    pattern_scan: "Once daily at 02:00 Athens â€” never during business hours"
+    episode_logging: "Every qualifying action — no rate limit (lightweight)"
+    failure_logging: "Every failure — no rate limit (lightweight)"
+    pattern_scan: "Once daily at 02:00 Athens — never during business hours"
     proposal_generation: "Maximum 3 per day"
     github_pr_creation: "Maximum 2 per day"
 
@@ -331,7 +331,7 @@ Rate_Limit_Config:
     never_run_more_than_one_scan_per_day: true
 
   hard_floors:
-    note: "These values cannot be set lower by the agent â€” they are code-enforced minimums"
+    note: "These values cannot be set lower by the agent — they are code-enforced minimums"
     min_confidence_for_proposal: 0.85
     min_occurrences_for_proposal: 3
     min_lookback_days: 7
@@ -361,7 +361,7 @@ Memory_File_Structure:
     path: "/data/memory/patterns/failures/{pattern-id}.json"
          "/data/memory/patterns/successes/{pattern-id}.json"
     written_by: "memory-feedback (nightly scan)"
-    retained: "Indefinitely â€” patterns are system learning assets"
+    retained: "Indefinitely — patterns are system learning assets"
 
   corrections:
     path: "/data/memory/corrections/{YYYY-MM-DD}_{correction-id}.json"
@@ -377,7 +377,7 @@ Memory_File_Structure:
   rate_limits:
     path: "/data/memory/rate-limits/"
     files:
-      - "current-state.json"   # Live counters â€” updated per operation
+      - "current-state.json"   # Live counters — updated per operation
       - "daily-log.json"       # Historical daily consumption
       - "config.json"          # Configurable limits
 ```
@@ -431,7 +431,7 @@ Read_By_Memory_Feedback_Only:
 Downstream_Of_Memory_System:
   github: "Proposed skill improvements as pull requests"
   dashboard: "Memory health metrics (token usage, storage, pattern counts)"
-  reports: "/data/reports/system/ â€” monthly memory activity report"
+  reports: "/data/reports/system/ — monthly memory activity report"
 ```
 
 ---
@@ -439,13 +439,13 @@ Downstream_Of_Memory_System:
 ## Success Metrics
 
 A successful deployment of this skill should achieve:
-- âœ… 100% of qualifying agent actions generate an episode log within 5 seconds
-- âœ… 100% of failures generate a failure log with what_should_have_happened populated
-- âœ… Nightly pattern scan completes within the daily token budget
-- âœ… At least one high-confidence pattern detected per month after 90 days of operation
-- âœ… PRs opened for all proposals above the confidence threshold â€” zero silently dropped
-- âœ… Rejected patterns never re-proposed â€” the rejection is respected
-- âœ… Storage consumption stays within configured limits â€” no unchecked growth
-- âœ… Zero PR merges without human action â€” agent never self-merges
+- ✅ 100% of qualifying agent actions generate an episode log within 5 seconds
+- ✅ 100% of failures generate a failure log with what_should_have_happened populated
+- ✅ Nightly pattern scan completes within the daily token budget
+- ✅ At least one high-confidence pattern detected per month after 90 days of operation
+- ✅ PRs opened for all proposals above the confidence threshold — zero silently dropped
+- ✅ Rejected patterns never re-proposed — the rejection is respected
+- ✅ Storage consumption stays within configured limits — no unchecked growth
+- ✅ Zero PR merges without human action — agent never self-merges
 
 Remember: This skill is how the system gets better over time without requiring manual review of every interaction. The value compounds. Month 3 of operation is more valuable than month 1. The team should expect to see the quality of the conversational assistant and financial statement generation improve measurably within 6 months of activation.

@@ -18,7 +18,7 @@ This skill provides a secure, file-based client database for Greek accounting fi
 - **GDPR by Default**: All personal data handled with consent tracking, retention policies, and deletion workflows
 - **Audit Everything**: Every read, write, and delete of client data is logged with user identity and timestamp
 - **Assistant-Friendly**: English interface with structured commands for non-technical accounting assistants
-- **Integration Hub**: Client records link to all other skills â€” compliance, banking, EFKA, deadlines, OCR
+- **Integration Hub**: Client records link to all other skills — compliance, banking, EFKA, deadlines, OCR
 
 ## OpenClaw Commands
 
@@ -29,7 +29,7 @@ openclaw clients add --name "ALPHA TRADING AE" --afm EL123456789 --legal-form AE
 openclaw clients add --name "BETA SERVICES OE" --afm EL987654321 --legal-form OE --sector services --gemi 012345678
 
 # Update client profile
-openclaw clients update --afm EL123456789 --field registered-address --value "ÎŸÎ´ÏŒÏ‚ Î‘Î¸Î·Î½ÏŽÎ½ 45, Î‘Î¸Î®Î½Î± 10431"
+openclaw clients update --afm EL123456789 --field registered-address --value "Οδός Αθηνών 45, Αθήνα 10431"
 openclaw clients update --afm EL123456789 --field contact-email --value "info@alphatrading.gr"
 openclaw clients update --afm EL123456789 --field accountant-assigned --value "maria.g"
 
@@ -66,7 +66,7 @@ openclaw clients portfolio --workload-estimate --by-assignee
 ### Compliance History & Filing Records
 ```bash
 # Log a completed filing
-openclaw clients log-filing --afm EL123456789 --type VAT-monthly --period 2026-01 --status submitted --ref-number "AAÎ”-123456"
+openclaw clients log-filing --afm EL123456789 --type VAT-monthly --period 2026-01 --status submitted --ref-number "AAΔ-123456"
 openclaw clients log-filing --afm EL123456789 --type EFKA-monthly --period 2026-01 --status paid --amount 4250.00
 
 # View compliance history
@@ -100,7 +100,7 @@ openclaw clients doc-status --all-clients --unprocessed --flag-urgent
 ### Contact & Relationship Management
 ```bash
 # Manage client contacts
-openclaw clients contact-add --afm EL123456789 --name "Î“Î¹ÏŽÏÎ³Î¿Ï‚ Î Î±Ï€Î±Î´ÏŒÏ€Î¿Ï…Î»Î¿Ï‚" --role "CEO" --email "gp@alphatrading.gr" --phone "+30 210 1234567"
+openclaw clients contact-add --afm EL123456789 --name "ΓιώÏγος Παπαδόπουλος" --role "CEO" --email "gp@alphatrading.gr" --phone "+30 210 1234567"
 openclaw clients contact-update --afm EL123456789 --contact-id C001 --field phone --value "+30 6944 123456"
 openclaw clients contact-list --afm EL123456789 --format table
 openclaw clients contact-primary --afm EL123456789 --set C001
@@ -114,7 +114,7 @@ openclaw clients notes-view --afm EL123456789 --last 10 --type all
 ### GDPR & Data Privacy
 ```bash
 # Consent management
-openclaw clients gdpr-consent --afm EL123456789 --record --type data-processing --granted-by "Î“Î¹ÏŽÏÎ³Î¿Ï‚ Î Î±Ï€Î±Î´ÏŒÏ€Î¿Ï…Î»Î¿Ï‚" --date 2026-01-01
+openclaw clients gdpr-consent --afm EL123456789 --record --type data-processing --granted-by "ΓιώÏγος Παπαδόπουλος" --date 2026-01-01
 openclaw clients gdpr-consent --afm EL123456789 --status
 
 # Data subject requests
@@ -199,21 +199,21 @@ Client_Profile:
   afm: "EL123456789"                    # Greek VAT number (primary key)
   name: "ALPHA TRADING AE"             # Registered business name (Greek)
   name_latin: "Alpha Trading AE"       # Latin transliteration
-  legal_form: "AE"                     # Î‘Î•, Î•Î Î•, ÎŸÎ•, Î•Î•, Î™ÎšÎ•, Î‘Î¤ÎŸÎœÎ™ÎšÎ—, etc.
+  legal_form: "AE"                     # ΑΕ, ΕΠΕ, ΟΕ, ΕΕ, ΘΚΕ, ΑΤΟΜΘΚΔ, etc.
   gemi: "012345678"                    # Business registry number
   efka_employer_id: "12345678"         # EFKA employer identifier
 
   # Classification
   sector: "retail"                     # Business sector
-  activity_code: "4711"               # ÎšÎ‘Î” (Greek activity code)
+  activity_code: "4711"               # ΚΑΔ (Greek activity code)
   activity_description: "Retail general merchandise"
   vat_regime: "normal"                # normal | simplified | exempt | agricultural
   vat_period: "monthly"               # monthly | quarterly
 
   # Registration
-  registered_address: "ÎŸÎ´ÏŒÏ‚ Î‘Î¸Î·Î½ÏŽÎ½ 45, Î‘Î¸Î®Î½Î± 10431"
-  tax_office: "Î‘' Î‘Î˜Î—ÎÎ©Î"            # Î‘ÏÎ¼ÏŒÎ´Î¹Î± Î”ÎŸÎ¥
-  municipality: "Î‘Î˜Î—ÎÎ‘"
+  registered_address: "Οδός Αθηνών 45, Αθήνα 10431"
+  tax_office: "Α' ΑΘΔÎΩÎ"            # ΑÏμόδια ΔΟΥ
+  municipality: "ΑΘΔÎΑ"
 
   # Status
   status: "active"                    # active | inactive | archived | ceased
@@ -263,7 +263,7 @@ Filing_Record:
   due_date: "2026-02-28"
   submitted_date: "2026-02-20"
   status: "submitted"               # pending | submitted | accepted | rejected | paid | overdue
-  reference_number: "Î‘Î‘Î”-123456"   # Government reference
+  reference_number: "ΑΑΔ-123456"   # Government reference
   amount_declared: 12500.00
   amount_paid: 12500.00
   payment_date: "2026-02-20"
@@ -277,36 +277,36 @@ Filing_Record:
 ```yaml
 Legal_Forms:
   AE:
-    full_name: "Î‘Î½ÏŽÎ½Ï…Î¼Î· Î•Ï„Î±Î¹ÏÎµÎ¯Î±"
-    english: "SociÃ©tÃ© Anonyme / Public Ltd"
+    full_name: "Ανώνυμη ΕταιÏεία"
+    english: "Société Anonyme / Public Ltd"
     min_capital: 25000
     gemi_required: true
     efka_required: true
 
   EPE:
-    full_name: "Î•Ï„Î±Î¹ÏÎµÎ¯Î± Î ÎµÏÎ¹Î¿ÏÎ¹ÏƒÎ¼Î­Î½Î·Ï‚ Î•Ï…Î¸ÏÎ½Î·Ï‚"
+    full_name: "ΕταιÏεία ΠεÏιοÏισμένης ΕυθÏνης"
     english: "Limited Liability Company"
     min_capital: 1
     gemi_required: true
 
   IKE:
-    full_name: "Î™Î´Î¹Ï‰Ï„Î¹ÎºÎ® ÎšÎµÏ†Î±Î»Î±Î¹Î¿Ï…Ï‡Î¹ÎºÎ® Î•Ï„Î±Î¹ÏÎµÎ¯Î±"
+    full_name: "Θδιωτική Κεφαλαιουχική ΕταιÏεία"
     english: "Private Capital Company"
     min_capital: 0
     gemi_required: true
 
   OE:
-    full_name: "ÎŸÎ¼ÏŒÏÏÏ…Î¸Î¼Î· Î•Ï„Î±Î¹ÏÎµÎ¯Î±"
+    full_name: "ΟμόÏÏυθμη ΕταιÏεία"
     english: "General Partnership"
     gemi_required: true
 
   EE:
-    full_name: "Î•Ï„ÎµÏÏŒÏÏÏ…Î¸Î¼Î· Î•Ï„Î±Î¹ÏÎµÎ¯Î±"
+    full_name: "ΕτεÏόÏÏυθμη ΕταιÏεία"
     english: "Limited Partnership"
     gemi_required: true
 
   ATOMIKI:
-    full_name: "Î‘Ï„Î¿Î¼Î¹ÎºÎ® Î•Ï€Î¹Ï‡ÎµÎ¯ÏÎ·ÏƒÎ·"
+    full_name: "Ατομική ΕπιχείÏηση"
     english: "Sole Trader"
     gemi_required: false
 ```
@@ -391,14 +391,14 @@ Data_Access_Rules:
     export: "assigned clients only"
 
   assistant:
-    read: "assigned clients â€” profile, contacts, document list"
+    read: "assigned clients — profile, contacts, document list"
     write: "notes, document registry entries"
     delete: false
     sensitive_fields: "hidden (bank accounts, full financials)"
     export: false
 
   viewer:
-    read: "assigned clients â€” name, status, next deadline only"
+    read: "assigned clients — name, status, next deadline only"
     write: false
     delete: false
 ```
@@ -410,7 +410,7 @@ Skill_Integration:
   dashboard_greek_accounting:
     provides: ["client list", "compliance scores", "portfolio metrics"]
     consumes: ["dashboard requests for client data"]
-    commands: "openclaw clients portfolio-summary â†’ dashboard aggregation"
+    commands: "openclaw clients portfolio-summary → dashboard aggregation"
 
   greek_compliance_aade:
     provides: ["filing records for compliance history"]
@@ -466,7 +466,7 @@ System:
 1. Reads obligation templates for every active client
 2. Cross-references against filings.json for period 2026-01
 3. Identifies: 3 clients missing VAT submission, 1 client missing EFKA
-4. Checks due dates â€” 2 are overdue, 2 due within 5 days
+4. Checks due dates — 2 are overdue, 2 due within 5 days
 5. Output: Formatted table with client name, AFM, missing filing type, due date, assigned accountant
 6. Optionally: openclaw clients compliance-gaps --all-clients --period 2026-01 --alert-assignees
 ```
@@ -492,14 +492,14 @@ System:
 3. Appends entry to /data/clients/EL123456789/documents/registry.json
 4. Updates document count in client index
 5. Logs registration to audit trail
-6. Output: "Document registered: inv_2026_001.pdf â†’ EL123456789. Registry now contains 23 documents for this client."
+6. Output: "Document registered: inv_2026_001.pdf → EL123456789. Registry now contains 23 documents for this client."
 ```
 
 ## Error Handling
 
 ```bash
 # Common validation errors and resolution commands
-openclaw clients validate-afm --afm EL99999999       # Invalid format â†’ shows correct format
+openclaw clients validate-afm --afm EL99999999       # Invalid format → shows correct format
 openclaw clients check-duplicates --afm EL123456789   # Duplicate check before add
 openclaw clients repair-index                          # Rebuild _index.json from individual profiles
 openclaw clients schema-migrate --to-version 2         # Apply schema updates across all records
@@ -527,11 +527,11 @@ Audit_Event:
 ## Safety & Compliance Guidelines
 
 ### Data Handling Principles
-- Never store raw bank credentials or passwords â€” only IBANs and account references
+- Never store raw bank credentials or passwords — only IBANs and account references
 - All personal contact data (natural persons) is encrypted at rest
 - Client financial history is retained for minimum 10 years per Greek law (Law 4308/2014)
 - GDPR Article 17 deletion requests must preserve data required by Greek tax law for retention period
-- Separation between clients is absolute â€” no cross-client data access or reporting without explicit multi-client permission
+- Separation between clients is absolute — no cross-client data access or reporting without explicit multi-client permission
 
 ### GDPR Retention Schedule
 ```yaml

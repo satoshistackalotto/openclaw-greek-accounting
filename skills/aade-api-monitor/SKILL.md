@@ -74,7 +74,7 @@ AADE_File_Structure:
   input_monitoring:                              # Raw government documents arrive here
     - /data/incoming/government/                 # All AADE/government downloads
     
-  processing_workspace:                          # Ephemeral â€” cleared after pipeline
+  processing_workspace:                          # Ephemeral — cleared after pipeline
     - /data/processing/compliance/               # Classification and extraction workspace
     
   output_delivery:
@@ -219,13 +219,13 @@ Greek_Document_Processing:
     ocr_support: "Greek character recognition via deepread"
     
   keyword_detection:
-    deadline_terms: ["Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ±", "ÃŽÂ»ÃŽÂ®ÃŽÂ¾ÃŽÂ·", "Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃŽÂ²ÃŽÂ¿ÃŽÂ»ÃŽÂ®", "deadline"]
-    rate_terms: ["ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂµÃŽÂ»ÃŽÂµÃÆ’Ãâ€žÃŽÂ®Ãâ€š", "Ãâ‚¬ÃŽÂ¿ÃÆ’ÃŽÂ¿ÃÆ’Ãâ€žÃÅ’", "Ãâ€ ÃÅ’ÃÂÃŽÂ¿Ãâ€š", "rate", "tax"]  
-    system_terms: ["ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂ®ÃÂÃŽÂ·ÃÆ’ÃŽÂ·", "ÃŽÂ´ÃŽÂ¹ÃŽÂ±ÃŽÂºÃŽÂ¿Ãâ‚¬ÃŽÂ®", "maintenance", "outage"]
+    deadline_terms: ["προθεσμία", "λήξη", "υποβολή", "deadline"]
+    rate_terms: ["συνπžελεσπžήπš", "ποσοσπžς", "π ςροπš", "rate", "tax"]  
+    system_terms: ["συνπžήρηση", "διακοπή", "maintenance", "outage"]
     
   date_recognition:
-    greek_formats: ["dd/MM/yyyy", "dd-MM-yyyy", "dd ÃŽÅ“ÃŽÂ¼ÃŽÂ¼ yyyy"]
-    month_names: ["ÃŽâ„¢ÃŽÂ±ÃŽÂ½ÃŽÂ¿Ãâ€¦ÃŽÂ¬ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽÂ¦ÃŽÂµÃŽÂ²ÃÂÃŽÂ¿Ãâ€¦ÃŽÂ¬ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š", ..., "ÃŽâ€ÃŽÂµÃŽÂºÃŽÂ­ÃŽÂ¼ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š"]
+    greek_formats: ["dd/MM/yyyy", "dd-MM-yyyy", "dd Μμμ yyyy"]
+    month_names: ["Ιανουάριοπš", "Φεβρουάριοπš", ..., "Δεκέμβριοπš"]
     business_day_calculation: "Exclude Greek holidays and weekends"
 ```
 
@@ -238,62 +238,62 @@ Alert_System:
     deadline_changes:
       trigger: "Any tax deadline moved forward"
       delivery: "Immediate SMS + email + Slack"
-      template: "ÃŽÅ¡ÃŽÂ¡ÃŽâ„¢ÃŽÂ£ÃŽâ„¢ÃŽÅ“ÃŽÅ¸: ÃŽÂ ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ± {tax_type} ÃŽÂ¼ÃŽÂµÃâ€žÃŽÂ±ÃŽÂºÃŽÂ¹ÃŽÂ½ÃŽÂ®ÃŽÂ¸ÃŽÂ·ÃŽÂºÃŽÂµ ÃÆ’Ãâ€žÃŽÂ¹Ãâ€š {new_date}"
+      template: "ΡΡΙΣΙΜθ: Προθεσμία {tax_type} μεπžακινήθηκε σπžιπš {new_date}"
       
     system_outages:
       trigger: "TAXIS or myDATA unavailable >30 minutes"
       delivery: "Immediate notification to accounting teams"
-      template: "ÃŽâ€ÃŽâ„¢ÃŽâ€˜ÃŽÅ¡ÃŽÅ¸ÃŽÂ ÃŽâ€”: ÃŽÂ£ÃÂÃÆ’Ãâ€žÃŽÂ·ÃŽÂ¼ÃŽÂ± {system_name} ÃŽÂ¼ÃŽÂ· ÃŽÂ´ÃŽÂ¹ÃŽÂ±ÃŽÂ¸ÃŽÂ­ÃÆ’ÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ ÃŽÂ±Ãâ‚¬ÃÅ’ {outage_start}"
+      template: "ΔΙΑΡθΠΗ: Σύσπžημα {system_name} μη διαθέσιμο απς {outage_start}"
       
   important_alerts:
     rate_changes:
       trigger: "VAT or tax rate modifications"
       delivery: "Email + dashboard update"
-      template: "ÃŽâ€˜ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂµÃŽÂ»ÃŽÂµÃÆ’Ãâ€žÃŽÂ®: {rate_type} ÃŽÂ±Ãâ‚¬ÃÅ’ {old_rate} ÃÆ’ÃŽÂµ {new_rate}"
+      template: "Αλλαγή συνπžελεσπžή: {rate_type} απς {old_rate} σε {new_rate}"
       
     new_regulations:
       trigger: "New tax circulars or law changes"
       delivery: "Daily digest email"
-      template: "ÃŽÂÃŽÂ­ÃŽÂ± ÃŽÂµÃŽÂ³ÃŽÂºÃÂÃŽÂºÃŽÂ»ÃŽÂ¹ÃŽÂ¿Ãâ€š: {circular_number} - {summary}"
+      template: "Νέα εγκύκλιοπš: {circular_number} - {summary}"
       
   routine_alerts:
     system_maintenance:
       trigger: "Scheduled maintenance announcements" 
       delivery: "Weekly summary"
-      template: "ÃŽÂ ÃÂÃŽÂ¿ÃŽÂ³ÃÂÃŽÂ±ÃŽÂ¼ÃŽÂ¼ÃŽÂ±Ãâ€žÃŽÂ¹ÃÆ’ÃŽÂ¼ÃŽÂ­ÃŽÂ½ÃŽÂ· ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂ®ÃÂÃŽÂ·ÃÆ’ÃŽÂ·: {system} Ãâ€žÃŽÂ·ÃŽÂ½ {date} {time}"
+      template: "Προγραμμαπžισμένη συνπžήρηση: {system} πžην {date} {time}"
 ```
 
 ### Greek Professional Communication
 ```yaml
 Professional_Templates:
   client_deadline_alert:
-    subject: "ÃŽÂ£ÃŽÂ·ÃŽÂ¼ÃŽÂ±ÃŽÂ½Ãâ€žÃŽÂ¹ÃŽÂºÃŽÂ® ÃŽÂµÃŽÂ½ÃŽÂ·ÃŽÂ¼ÃŽÂ­ÃÂÃâ€°ÃÆ’ÃŽÂ·: ÃŽâ€˜ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ±Ãâ€š {tax_type}"
+    subject: "Σημανπžική ενημέρπ°ση: Αλλαγή προθεσμίαπš {tax_type}"
     body: |
-      ÃŽâ€˜ÃŽÂ¾ÃŽÂ¹ÃÅ’Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ¹ Ãâ‚¬ÃŽÂµÃŽÂ»ÃŽÂ¬Ãâ€žÃŽÂµÃâ€š,
+      Αξιςπžιμοι πελάπžεπš,
       
-      ÃŽÂ£ÃŽÂ±Ãâ€š ÃŽÂµÃŽÂ½ÃŽÂ·ÃŽÂ¼ÃŽÂµÃÂÃÅ½ÃŽÂ½ÃŽÂ¿Ãâ€¦ÃŽÂ¼ÃŽÂµ ÃÅ’Ãâ€žÃŽÂ¹ ÃŽÂ· ÃŽâ€˜ÃŽâ€˜ÃŽâ€ÃŽâ€¢ ÃŽÂ±ÃŽÂ½ÃŽÂ±ÃŽÂºÃŽÂ¿ÃŽÂ¯ÃŽÂ½Ãâ€°ÃÆ’ÃŽÂµ ÃŽÂ±ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® ÃÆ’Ãâ€žÃŽÂ·ÃŽÂ½ Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ± 
-      Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃŽÂ²ÃŽÂ¿ÃŽÂ»ÃŽÂ®Ãâ€š {tax_description}.
+      Σαπš ενημερϽνουμε ςπžι η ΑΑΔΕ ανακοίνπ°σε αλλαγή σπžην προθεσμία 
+      υποβολήπš {tax_description}.
       
-      ÃŽÂÃŽÂ­ÃŽÂ± Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ±: {new_deadline}
-      ÃŽÂ ÃÂÃŽÂ¿ÃŽÂ·ÃŽÂ³ÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂµÃŽÂ½ÃŽÂ· Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ±: {old_deadline}
+      Νέα προθεσμία: {new_deadline}
+      Προηγούμενη προθεσμία: {old_deadline}
       
-      ÃŽÂ ÃŽÂ±ÃÂÃŽÂ±ÃŽÂºÃŽÂ±ÃŽÂ»ÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂµ ÃŽÂµÃâ‚¬ÃŽÂ¹ÃŽÂºÃŽÂ¿ÃŽÂ¹ÃŽÂ½Ãâ€°ÃŽÂ½ÃŽÂ®ÃÆ’Ãâ€žÃŽÂµ ÃŽÂ¼ÃŽÂ±ÃŽÂ¶ÃŽÂ¯ ÃŽÂ¼ÃŽÂ±Ãâ€š ÃŽÂ³ÃŽÂ¹ÃŽÂ± ÃŽÂ¿Ãâ‚¬ÃŽÂ¿ÃŽÂ¹ÃŽÂ±ÃŽÂ´ÃŽÂ®Ãâ‚¬ÃŽÂ¿Ãâ€žÃŽÂµ ÃŽÂ´ÃŽÂ¹ÃŽÂµÃâ€¦ÃŽÂºÃÂÃŽÂ¯ÃŽÂ½ÃŽÂ¹ÃÆ’ÃŽÂ·.
+      Παρακαλούμε επικοινπ°νήσπžε μαζί μαπš για οποιαδήποπžε διευκρίνιση.
       
-      ÃŽÅ“ÃŽÂµ ÃŽÂµÃŽÂºÃâ€žÃŽÂ¯ÃŽÂ¼ÃŽÂ·ÃÆ’ÃŽÂ·,
+      Με εκπžίμηση,
       {accounting_firm_name}
       
   rate_change_notification:
-    subject: "ÃŽâ€¢ÃŽÂ½ÃŽÂ·ÃŽÂ¼ÃŽÂ­ÃÂÃâ€°ÃÆ’ÃŽÂ·: ÃŽâ€˜ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® Ãâ€ ÃŽÂ¿ÃÂÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃŽÂºÃŽÂ¿ÃÂ ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂµÃŽÂ»ÃŽÂµÃÆ’Ãâ€žÃŽÂ®"
+    subject: "Ενημέρπ°ση: Αλλαγή π ορολογικού συνπžελεσπžή"
     body: |
-      ÃŽâ€˜ÃŽÂ³ÃŽÂ±Ãâ‚¬ÃŽÂ·Ãâ€žÃŽÂ¿ÃŽÂ¯ ÃÆ’Ãâ€¦ÃŽÂ½ÃŽÂµÃÂÃŽÂ³ÃŽÂ¬Ãâ€žÃŽÂµÃâ€š,
+      Αγαπηπžοί συνεργάπžεπš,
       
-      ÃŽâ€˜Ãâ‚¬ÃÅ’ {effective_date} ÃŽÂ¹ÃÆ’Ãâ€¡ÃÂÃŽÂµÃŽÂ¹ ÃŽÂ½ÃŽÂ­ÃŽÂ¿Ãâ€š ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂµÃŽÂ»ÃŽÂµÃÆ’Ãâ€žÃŽÂ®Ãâ€š {tax_type}:
-      - ÃŽÂÃŽÂ­ÃŽÂ¿Ãâ€š ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂµÃŽÂ»ÃŽÂµÃÆ’Ãâ€žÃŽÂ®Ãâ€š: {new_rate}%
-      - ÃŽÂ ÃÂÃŽÂ¿ÃŽÂ·ÃŽÂ³ÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂµÃŽÂ½ÃŽÂ¿Ãâ€š: {old_rate}%
+      Απς {effective_date} ισπ¡ύει νέοπš συνπžελεσπžήπš {tax_type}:
+      - Νέοπš συνπžελεσπžήπš: {new_rate}%
+      - Προηγούμενοπš: {old_rate}%
       
-      ÃŽâ€” ÃŽÂ±ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® ÃŽÂµÃâ‚¬ÃŽÂ·ÃÂÃŽÂµÃŽÂ¬ÃŽÂ¶ÃŽÂµÃŽÂ¹: {affected_transactions}
+      Η αλλαγή επηρεάζει: {affected_transactions}
       
-      ÃŽÂ¤ÃŽÂ¿ ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃÆ’Ãâ€žÃŽÂ¹ÃŽÂºÃÅ’ ÃŽÂ¼ÃŽÂ±Ãâ€š ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂµÃŽÂ¯ÃŽÂ¿ ÃŽÂ¸ÃŽÂ± ÃŽÂµÃŽÂ½ÃŽÂ·ÃŽÂ¼ÃŽÂµÃÂÃÅ½ÃÆ’ÃŽÂµÃŽÂ¹ ÃÅ’ÃŽÂ»ÃŽÂ¿Ãâ€¦Ãâ€š Ãâ€žÃŽÂ¿Ãâ€¦Ãâ€š Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃÆ’ÃŽÂ¼ÃŽÂ¿ÃÂÃâ€š.
+      Το λογισπžικς μαπš γραπ είο θα ενημερϽσει ςλουπš πžουπš υπολογισμούπš.
       
       {firm_contact_info}
 ```
@@ -417,19 +417,19 @@ Dashboard_Features:
 # Morning AADE check (part of daily routine)
 $ openclaw aade morning-check --since yesterday
 
-Ã°Å¸â€œÅ  AADE Morning Summary - February 18, 2026:
+📊 AADE Morning Summary - February 18, 2026:
 
-Ã°Å¸Ââ€ºÃ¯Â¸Â System Status:
-Ã¢Å“â€¦ TAXIS Online (98.2% uptime last 24h)
-Ã¢Å“â€¦ myDATA Online (99.1% uptime last 24h)  
-Ã¢Å“â€¦ EFKA Portal Online (97.5% uptime last 24h)
+ðŸÂ€ºï¸ System Status:
+✅ TAXIS Online (98.2% uptime last 24h)
+✅ myDATA Online (99.1% uptime last 24h)  
+✅ EFKA Portal Online (97.5% uptime last 24h)
 
-Ã°Å¸â€œÂ¢ New Announcements (2):
-Ã°Å¸â€œâ€¹ Circular POL.1157/2026 - VAT exemption clarification
-Ã¢Å¡Â Ã¯Â¸Â System maintenance scheduled: February 20, 02:00-06:00 EET
+📢 New Announcements (2):
+📀¹ Circular POL.1157/2026 - VAT exemption clarification
+⚠ï¸ System maintenance scheduled: February 20, 02:00-06:00 EET
 
-Ã°Å¸â€â€ž Changes Detected: None
-Ã°Å¸â€œâ€¦ Upcoming Deadlines: 3 VAT returns due in 7 days
+🔀ž Changes Detected: None
+📅 Upcoming Deadlines: 3 VAT returns due in 7 days
 
 Next check in 2 hours. Manual refresh: openclaw aade check-updates
 ```
@@ -438,27 +438,27 @@ Next check in 2 hours. Manual refresh: openclaw aade check-updates
 ```bash
 $ openclaw aade detect-changes --urgent --notify-immediately
 
-Ã°Å¸Å¡Â¨ CRITICAL CHANGE DETECTED:
+🚨 CRITICAL CHANGE DETECTED:
 
-Ã°Å¸â€œâ€¦ Deadline Change Alert:
+📅 Deadline Change Alert:
 Tax Type: Monthly VAT Return (March 2026)
 Old Deadline: April 25, 2026
 New Deadline: April 20, 2026
 Change: 5 days earlier
 Impact: 47 clients affected
 
-Ã°Å¸â€œâ€¹ Source Document:
-AADE Announcement: ÃŽÂ ÃŽÅ¸ÃŽâ€º.1158/2026
+📀¹ Source Document:
+AADE Announcement: Πθ΀º.1158/2026
 Published: 2026-02-18 14:30 EET
 Confidence: 98.5%
 
-Ã¢Å“â€¦ Actions Taken:
+✅ Actions Taken:
 - Updated compliance calendar
 - Generated client notifications (47 emails prepared)
 - Integrated with meta-skill workflow
 - Logged change in audit trail
 
-Ã°Å¸â€œÂ§ Client notifications ready for review:
+📧 Client notifications ready for review:
 openclaw aade review-notifications --batch-id 2026021801
 ```
 
@@ -466,39 +466,39 @@ openclaw aade review-notifications --batch-id 2026021801
 ```bash
 $ openclaw aade generate-client-alert --deadline-change --professional-tone
 
-Ã°Å¸â€œÂ§ Generated Greek Client Communication:
+📧 Generated Greek Client Communication:
 
-Subject: ÃŽâ€¢ÃŽÂ ÃŽâ€¢ÃŽâ„¢ÃŽâ€œÃŽÅ¸ÃŽÂ: ÃŽâ€˜ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ±Ãâ€š ÃŽÂ´ÃŽÂ®ÃŽÂ»Ãâ€°ÃÆ’ÃŽÂ·Ãâ€š ÃŽÂ¦ÃŽÂ ÃŽâ€˜ ÃŽÅ“ÃŽÂ±ÃÂÃâ€žÃŽÂ¯ÃŽÂ¿Ãâ€¦ 2026
+Subject: ΕΠΕΙΓθΝ: Αλλαγή προθεσμίαπš δήλπ°σηπš ΦΠΑ Μαρπžίου 2026
 
-ÃŽâ€˜ÃŽÂ¾ÃŽÂ¹ÃÅ’Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ¹ Ãâ‚¬ÃŽÂµÃŽÂ»ÃŽÂ¬Ãâ€žÃŽÂµÃâ€š,
+Αξιςπžιμοι πελάπžεπš,
 
-ÃŽÂ£ÃŽÂ±Ãâ€š ÃŽÂµÃŽÂ½ÃŽÂ·ÃŽÂ¼ÃŽÂµÃÂÃÅ½ÃŽÂ½ÃŽÂ¿Ãâ€¦ÃŽÂ¼ÃŽÂµ ÃŽÂ¼ÃŽÂµ ÃŽÂ±Ãâ€ ÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂ® Ãâ€žÃŽÂ·ÃŽÂ½ ÃŽÂ±ÃŽÂ½ÃŽÂ±ÃŽÂºÃŽÂ¿ÃŽÂ¯ÃŽÂ½Ãâ€°ÃÆ’ÃŽÂ· Ãâ€žÃŽÂ·Ãâ€š ÃŽâ€˜ÃŽâ€˜ÃŽâ€ÃŽâ€¢ (ÃŽÂ ÃŽÅ¸ÃŽâ€º.1158/2026) 
-ÃÅ’Ãâ€žÃŽÂ¹ ÃŽÂ· Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ± Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃŽÂ²ÃŽÂ¿ÃŽÂ»ÃŽÂ®Ãâ€š Ãâ€žÃŽÂ·Ãâ€š ÃŽÂ¼ÃŽÂ·ÃŽÂ½ÃŽÂ¹ÃŽÂ±ÃŽÂ¯ÃŽÂ±Ãâ€š ÃŽÂ´ÃŽÂ®ÃŽÂ»Ãâ€°ÃÆ’ÃŽÂ·Ãâ€š ÃŽÂ¦ÃŽÂ ÃŽâ€˜ ÃŽÂ³ÃŽÂ¹ÃŽÂ± Ãâ€žÃŽÂ¿ÃŽÂ½ ÃŽÅ“ÃŽÂ¬ÃÂÃâ€žÃŽÂ¹ÃŽÂ¿ 2026 
-ÃŽÂ¼ÃŽÂµÃâ€žÃŽÂ±ÃŽÂºÃŽÂ¹ÃŽÂ½ÃŽÂµÃŽÂ¯Ãâ€žÃŽÂ±ÃŽÂ¹ ÃŽÂ±Ãâ‚¬ÃÅ’ Ãâ€žÃŽÂ¹Ãâ€š 25 ÃŽâ€˜Ãâ‚¬ÃÂÃŽÂ¹ÃŽÂ»ÃŽÂ¯ÃŽÂ¿Ãâ€¦ ÃÆ’Ãâ€žÃŽÂ¹Ãâ€š 20 ÃŽâ€˜Ãâ‚¬ÃÂÃŽÂ¹ÃŽÂ»ÃŽÂ¯ÃŽÂ¿Ãâ€¦ 2026.
+Σαπš ενημερϽνουμε με απ ορμή πžην ανακοίνπ°ση πžηπš ΑΑΔΕ (Πθ΀º.1158/2026) 
+ςπžι η προθεσμία υποβολήπš πžηπš μηνιαίαπš δήλπ°σηπš ΦΠΑ για πžον Μάρπžιο 2026 
+μεπžακινείπžαι απς πžιπš 25 Απριλίου σπžιπš 20 Απριλίου 2026.
 
-ÃŽâ€” ÃŽÂ±ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® ÃŽÂµÃâ‚¬ÃŽÂ·ÃÂÃŽÂµÃŽÂ¬ÃŽÂ¶ÃŽÂµÃŽÂ¹ ÃÅ’ÃŽÂ»ÃŽÂµÃâ€š Ãâ€žÃŽÂ¹Ãâ€š ÃŽÂµÃâ‚¬ÃŽÂ¹Ãâ€¡ÃŽÂµÃŽÂ¹ÃÂÃŽÂ®ÃÆ’ÃŽÂµÃŽÂ¹Ãâ€š ÃŽÂ¼ÃŽÂµ Ãâ€¦Ãâ‚¬ÃŽÂ¿Ãâ€¡ÃÂÃŽÂ­Ãâ€°ÃÆ’ÃŽÂ· Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃŽÂ²ÃŽÂ¿ÃŽÂ»ÃŽÂ®Ãâ€š 
-ÃŽÂ¼ÃŽÂ·ÃŽÂ½ÃŽÂ¹ÃŽÂ±ÃŽÂ¯ÃŽÂ±Ãâ€š ÃŽÂ´ÃŽÂ®ÃŽÂ»Ãâ€°ÃÆ’ÃŽÂ·Ãâ€š ÃŽÂ¦ÃŽÂ ÃŽâ€˜.
+Η αλλαγή επηρεάζει ςλεπš πžιπš επιπ¡ειρήσειπš με υποπ¡ρέπ°ση υποβολήπš 
+μηνιαίαπš δήλπ°σηπš ΦΠΑ.
 
-ÃŽÂ¤ÃŽÂ¿ ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃÆ’Ãâ€žÃŽÂ¹ÃŽÂºÃÅ’ ÃŽÂ¼ÃŽÂ±Ãâ€š ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂµÃŽÂ¯ÃŽÂ¿ ÃŽÂ­Ãâ€¡ÃŽÂµÃŽÂ¹ ÃŽÂ®ÃŽÂ´ÃŽÂ· ÃŽÂµÃŽÂ½ÃŽÂ·ÃŽÂ¼ÃŽÂµÃÂÃÅ½ÃÆ’ÃŽÂµÃŽÂ¹ Ãâ€žÃŽÂ¿ ÃÆ’ÃÂÃÆ’Ãâ€žÃŽÂ·ÃŽÂ¼ÃŽÂ± Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃŽÂºÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃÂÃŽÂ¸ÃŽÂ·ÃÆ’ÃŽÂ·Ãâ€š 
-Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¹ÃÅ½ÃŽÂ½ ÃŽÂºÃŽÂ±ÃŽÂ¹ ÃŽÂ¸ÃŽÂ± Ãâ€ ÃÂÃŽÂ¿ÃŽÂ½Ãâ€žÃŽÂ¯ÃÆ’ÃŽÂ¿Ãâ€¦ÃŽÂ¼ÃŽÂµ ÃŽÂ³ÃŽÂ¹ÃŽÂ± Ãâ€žÃŽÂ·ÃŽÂ½ ÃŽÂ­ÃŽÂ³ÃŽÂºÃŽÂ±ÃŽÂ¹ÃÂÃŽÂ· Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂµÃâ€žÃŽÂ¿ÃŽÂ¹ÃŽÂ¼ÃŽÂ±ÃÆ’ÃŽÂ¯ÃŽÂ± ÃŽÂºÃŽÂ±ÃŽÂ¹ Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃŽÂ²ÃŽÂ¿ÃŽÂ»ÃŽÂ®.
+Το λογισπžικς μαπš γραπ είο έπ¡ει ήδη ενημερϽσει πžο σύσπžημα παρακολούθησηπš 
+προθεσμιϽν και θα π ρονπžίσουμε για πžην έγκαιρη προεπžοιμασία και υποβολή.
 
-ÃŽâ€œÃŽÂ¹ÃŽÂ± ÃŽÂ¿Ãâ‚¬ÃŽÂ¿ÃŽÂ¹ÃŽÂ±ÃŽÂ´ÃŽÂ®Ãâ‚¬ÃŽÂ¿Ãâ€žÃŽÂµ ÃŽÂ´ÃŽÂ¹ÃŽÂµÃâ€¦ÃŽÂºÃÂÃŽÂ¯ÃŽÂ½ÃŽÂ¹ÃÆ’ÃŽÂ·, Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃŽÂºÃŽÂ±ÃŽÂ»ÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂµ ÃŽÂµÃâ‚¬ÃŽÂ¹ÃŽÂºÃŽÂ¿ÃŽÂ¹ÃŽÂ½Ãâ€°ÃŽÂ½ÃŽÂ®ÃÆ’Ãâ€žÃŽÂµ ÃŽÂ¼ÃŽÂ±ÃŽÂ¶ÃŽÂ¯ ÃŽÂ¼ÃŽÂ±Ãâ€š.
+Για οποιαδήποπžε διευκρίνιση, παρακαλούμε επικοινπ°νήσπžε μαζί μαπš.
 
-ÃŽÅ“ÃŽÂµ ÃŽÂµÃŽÂºÃâ€žÃŽÂ¯ÃŽÂ¼ÃŽÂ·ÃÆ’ÃŽÂ·,
+Με εκπžίμηση,
 [Accounting Firm Name]
-Ã°Å¸â€œÂ§ Ready for sending to 47 affected clients
+📧 Ready for sending to 47 affected clients
 ```
 
 ## Success Metrics
 
 A successful AADE API Monitor should achieve:
-- Ã¢Å“â€¦ 99%+ uptime monitoring of critical AADE systems
-- Ã¢Å“â€¦ <5 minute detection time for critical deadline changes
-- Ã¢Å“â€¦ 95%+ accuracy in document classification and change detection
-- Ã¢Å“â€¦ Zero false positives for critical alerts
-- Ã¢Å“â€¦ Complete integration with meta-skill orchestration
-- Ã¢Å“â€¦ Professional Greek communication standards
-- Ã¢Å“â€¦ Comprehensive audit trail for compliance purposes
-- Ã¢Å“â€¦ Robust offline operation with cached data fallback
+- ✅ 99%+ uptime monitoring of critical AADE systems
+- ✅ <5 minute detection time for critical deadline changes
+- ✅ 95%+ accuracy in document classification and change detection
+- ✅ Zero false positives for critical alerts
+- ✅ Complete integration with meta-skill orchestration
+- ✅ Professional Greek communication standards
+- ✅ Comprehensive audit trail for compliance purposes
+- ✅ Robust offline operation with cached data fallback
 
 Remember: This skill is built OpenClaw-first, using file processing and practical automation rather than complex API integrations, making it reliable and maintainable for production Greek accounting environments.

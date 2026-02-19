@@ -22,7 +22,7 @@ This skill transforms OpenClaw into an intelligent Greek business email processo
 ## Key Capabilities
 
 ### 1. Greek Document Recognition & Classification
-- **Invoice Detection**: Identify Greek invoices (ÃŽÂ¤ÃŽâ„¢ÃŽÅ“ÃŽÅ¸ÃŽâ€ºÃŽÅ¸ÃŽâ€œÃŽâ„¢ÃŽÅ¸, ÃŽâ€˜ÃŽÂ ÃŽÅ¸ÃŽâ€ÃŽâ€¢ÃŽâ„¢ÃŽÅ¾ÃŽâ€”) in email attachments
+- **Invoice Detection**: Identify Greek invoices (ΤΙΜθ΀ºθΓΙθ, ΑΠθΔΕΙξΗ) in email attachments
 - **Government Notifications**: Recognize AADE, EFKA, and municipal communications
 - **Bank Statements**: Process statements from all major Greek banks
 - **Tax Documents**: Detect tax-related emails and forms
@@ -41,7 +41,7 @@ This skill transforms OpenClaw into an intelligent Greek business email processo
 - **Greek Text Recognition**: Native Greek language email content analysis
 - **Mixed Language Support**: Handle Greek-English business communications
 - **Greek Date Formats**: Recognize Greek date patterns (dd/MM/yyyy)
-- **Currency Detection**: Greek Euro formatting (Ã¢â€šÂ¬1.234,56)
+- **Currency Detection**: Greek Euro formatting (‚¬1.234,56)
 - **Address Parsing**: Greek address format recognition
 - **VAT Number Detection**: Identify Greek VAT numbers (EL123456789) in emails
 
@@ -72,10 +72,10 @@ Gmail_API_Configuration:
     - custom_labels: ["Accounting", "Tax", "Invoices"]
   
   search_queries:
-    invoices: "subject:(Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿ OR invoice OR ÃŽÂ±Ãâ‚¬ÃŽÂ¿ÃŽÂ´ÃŽÂµÃŽÂ¹ÃŽÂ¾ÃŽÂ· OR receipt)"
-    tax_documents: "from:aade.gr OR from:efka.gov.gr OR subject:Ãâ€ Ãâ‚¬ÃŽÂ±"
+    invoices: "subject:(πžιμολςγιο OR invoice OR αποδειξη OR receipt)"
+    tax_documents: "from:aade.gr OR from:efka.gov.gr OR subject:π πα"
     bank_statements: "from:alphabank.gr OR from:nbg.gr OR from:eurobank.gr OR from:piraeusbank.gr"
-    client_payments: "subject:(Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ® OR payment OR ÃŽÂ¿Ãâ€ ÃŽÂµÃŽÂ¹ÃŽÂ»ÃŽÂ® OR due)"
+    client_payments: "subject:(πληρπ°μή OR payment OR οπ ειλή OR due)"
 ```
 
 #### Outlook/Exchange Integration
@@ -93,9 +93,9 @@ Outlook_API_Configuration:
     - "Bank Statements"
   
   advanced_queries:
-    greek_invoices: "subject:Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿ OR attachmentNames:invoice"
+    greek_invoices: "subject:πžιμολςγιο OR attachmentNames:invoice"
     government_mail: "from:gov.gr OR from:aade.gr"
-    banking: "from:bank OR from:Ãâ€žÃÂÃŽÂ¬Ãâ‚¬ÃŽÂµÃŽÂ¶ÃŽÂ±"
+    banking: "from:bank OR from:πžράπεζα"
 ```
 
 ### Document Classification Engine
@@ -104,7 +104,7 @@ Outlook_API_Configuration:
 ```yaml
 Document_Classification:
   invoices:
-    greek_keywords: ["Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿", "ÃŽÂ±Ãâ‚¬ÃŽÂ¿ÃŽÂ´ÃŽÂµÃŽÂ¹ÃŽÂ¾ÃŽÂ·", "Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃÆ’Ãâ€žÃŽÂ±Ãâ€žÃŽÂ¹ÃŽÂºÃÅ’", "invoice"]
+    greek_keywords: ["πžιμολςγιο", "αποδειξη", "παρασπžαπžικς", "invoice"]
     file_patterns: ["*.pdf", "*.xml", "*.doc*"]
     confidence_thresholds:
       high: 0.95  # Clear invoice format
@@ -112,24 +112,24 @@ Document_Classification:
       low: 0.60   # Possible invoice
     
   tax_documents:
-    aade_keywords: ["Ãâ€ Ãâ‚¬ÃŽÂ±", "Ãâ€ ÃÅ’ÃÂÃŽÂ¿Ãâ€š", "ÃŽÂ´ÃŽÂ®ÃŽÂ»Ãâ€°ÃÆ’ÃŽÂ·", "ÃŽÂµÃŽÂºÃŽÂºÃŽÂ±ÃŽÂ¸ÃŽÂ±ÃÂÃŽÂ¹ÃÆ’Ãâ€žÃŽÂ¹ÃŽÂºÃÅ’"]
+    aade_keywords: ["π πα", "π ςροπš", "δήλπ°ση", "εκκαθαρισπžικς"]
     sender_patterns: ["*@aade.gr", "*@taxisnet.gr"]
-    subject_patterns: ["*ÃŽÂ¦ÃŽÂ ÃŽâ€˜*", "*TAX*", "*ENFIA*"]
+    subject_patterns: ["*ΦΠΑ*", "*TAX*", "*ENFIA*"]
     
   bank_statements:
-    greek_banks: ["Alpha Bank", "ÃŽâ€¢ÃŽÂ¸ÃŽÂ½ÃŽÂ¹ÃŽÂºÃŽÂ® ÃŽÂ¤ÃÂÃŽÂ¬Ãâ‚¬ÃŽÂµÃŽÂ¶ÃŽÂ±", "Eurobank", "ÃŽÂ¤ÃÂÃŽÂ¬Ãâ‚¬ÃŽÂµÃŽÂ¶ÃŽÂ± ÃŽÂ ÃŽÂµÃŽÂ¹ÃÂÃŽÂ±ÃŽÂ¹ÃÅ½Ãâ€š"]
-    keywords: ["ÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ· ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ±ÃÂÃŽÂ¹ÃŽÂ±ÃÆ’ÃŽÂ¼ÃŽÂ¿ÃÂ", "statement", "ÃŽÂ±ÃŽÂ½Ãâ€žÃŽÂ¯ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ¿", "Ãâ€¦Ãâ‚¬ÃÅ’ÃŽÂ»ÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ¿"]
+    greek_banks: ["Alpha Bank", "Εθνική Τράπεζα", "Eurobank", "Τράπεζα ΠειραιϽπš"]
+    keywords: ["κίνηση λογαριασμού", "statement", "ανπžίγραπ ο", "υπςλοιπο"]
     formats: ["pdf", "csv", "xls", "xlsx"]
     
   receipts:
-    keywords: ["ÃŽÂ±Ãâ‚¬ÃŽÂ¿ÃŽÂ´ÃŽÂµÃŽÂ¹ÃŽÂ¾ÃŽÂ·", "Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃÆ’Ãâ€žÃŽÂ±Ãâ€žÃŽÂ¹ÃŽÂºÃÅ’", "Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿ ÃŽÂ»ÃŽÂ¹ÃŽÂ±ÃŽÂ½ÃŽÂ¹ÃŽÂºÃŽÂ®Ãâ€š", "receipt"]
-    amount_patterns: ["Ã¢â€šÂ¬\\d+[.,]\\d+", "\\d+[.,]\\d+\\s*Ã¢â€šÂ¬", "\\d+[.,]\\d+\\s*EUR"]
-    vat_patterns: ["ÃŽÂ¦ÃŽÂ ÃŽâ€˜ \\d+%", "VAT \\d+%"]
+    keywords: ["αποδειξη", "παρασπžαπžικς", "πžιμολςγιο λιανικήπš", "receipt"]
+    amount_patterns: ["‚¬\\d+[.,]\\d+", "\\d+[.,]\\d+\\s*‚¬", "\\d+[.,]\\d+\\s*EUR"]
+    vat_patterns: ["ΦΠΑ \\d+%", "VAT \\d+%"]
     
   client_communications:
-    payment_keywords: ["Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ®", "ÃŽÂ¿Ãâ€ ÃŽÂµÃŽÂ¹ÃŽÂ»ÃŽÂ®", "ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ±ÃÂÃŽÂ¹ÃŽÂ±ÃÆ’ÃŽÂ¼ÃÅ’Ãâ€š", "Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ·ÃÆ’ÃŽÂ·"]
-    request_keywords: ["Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃŽÂºÃŽÂ±ÃŽÂ»ÃÅ½", "ÃŽÂ±ÃŽÂ¯Ãâ€žÃŽÂ·ÃŽÂ¼ÃŽÂ±", "Ãâ€¡ÃÂÃŽÂµÃŽÂ¹ÃŽÂ¬ÃŽÂ¶ÃŽÂ¿ÃŽÂ¼ÃŽÂ±ÃŽÂ¹", "ÃÆ’Ãâ€žÃŽÂµÃŽÂ¯ÃŽÂ»Ãâ€žÃŽÂµ"]
-    urgent_keywords: ["ÃŽÂµÃâ‚¬ÃŽÂµÃŽÂ¯ÃŽÂ³ÃŽÂ¿ÃŽÂ½", "urgent", "ÃŽÂ¬ÃŽÂ¼ÃŽÂµÃÆ’ÃŽÂ±", "Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ±"]
+    payment_keywords: ["πληρπ°μή", "οπ ειλή", "λογαριασμςπš", "πžιμολςγηση"]
+    request_keywords: ["παρακαλϽ", "αίπžημα", "π¡ρειάζομαι", "σπžείλπžε"]
+    urgent_keywords: ["επείγον", "urgent", "άμεσα", "προθεσμία"]
 ```
 
 #### Intelligent Content Analysis
@@ -181,11 +181,11 @@ Greek_Language_Support:
     character_sets: ["ISO-8859-7", "Windows-1253", "UTF-8"]
     
   date_recognition:
-    greek_months: ["ÃŽâ„¢ÃŽÂ±ÃŽÂ½ÃŽÂ¿Ãâ€¦ÃŽÂ¬ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽÂ¦ÃŽÂµÃŽÂ²ÃÂÃŽÂ¿Ãâ€¦ÃŽÂ¬ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽÅ“ÃŽÂ¬ÃÂÃâ€žÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽâ€˜Ãâ‚¬ÃÂÃŽÂ¯ÃŽÂ»ÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽÅ“ÃŽÂ¬ÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽâ„¢ÃŽÂ¿ÃÂÃŽÂ½ÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽâ„¢ÃŽÂ¿ÃÂÃŽÂ»ÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽâ€˜ÃÂÃŽÂ³ÃŽÂ¿Ãâ€¦ÃÆ’Ãâ€žÃŽÂ¿Ãâ€š", "ÃŽÂ£ÃŽÂµÃâ‚¬Ãâ€žÃŽÂ­ÃŽÂ¼ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽÅ¸ÃŽÂºÃâ€žÃÅ½ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽÂÃŽÂ¿ÃŽÂ­ÃŽÂ¼ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š", "ÃŽâ€ÃŽÂµÃŽÂºÃŽÂ­ÃŽÂ¼ÃŽÂ²ÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š"]
-    date_patterns: ["dd/MM/yyyy", "dd-MM-yyyy", "dd.MM.yyyy", "dd ÃŽÅ“ÃŽÂ¼ÃŽÂ¼ÃŽÂ¼ yyyy"]
+    greek_months: ["Ιανουάριοπš", "Φεβρουάριοπš", "Μάρπžιοπš", "Απρίλιοπš", "Μάιοπš", "Ιούνιοπš", "Ιούλιοπš", "Αύγουσπžοπš", "Σεππžέμβριοπš", "θκπžϽβριοπš", "Νοέμβριοπš", "Δεκέμβριοπš"]
+    date_patterns: ["dd/MM/yyyy", "dd-MM-yyyy", "dd.MM.yyyy", "dd Μμμμ yyyy"]
     
   currency_recognition:
-    euro_patterns: ["Ã¢â€šÂ¬\\d+[.,]\\d+", "\\d+[.,]\\d+\\s*Ã¢â€šÂ¬", "\\d+[.,]\\d+\\s*EUR", "\\d+[.,]\\d+\\s*ÃŽÂµÃâ€¦ÃÂÃÅ½"]
+    euro_patterns: ["‚¬\\d+[.,]\\d+", "\\d+[.,]\\d+\\s*‚¬", "\\d+[.,]\\d+\\s*EUR", "\\d+[.,]\\d+\\s*ευρϽ"]
     greek_numerals: Support for Greek number formatting (1.234,56)
     
   vat_number_detection:
@@ -194,58 +194,58 @@ Greek_Language_Support:
     
   address_parsing:
     greek_patterns: "Street number, area, postal code, city format"
-    common_abbreviations: ["ÃŽâ€ºÃŽÂµÃâ€°Ãâ€ .", "ÃŽÅ¸ÃŽÂ´ÃÅ’Ãâ€š", "ÃŽÂ ÃŽÂ»ÃŽÂ±Ãâ€žÃŽÂµÃŽÂ¯ÃŽÂ±", "ÃŽÂ¤.ÃŽÅ¡."]
+    common_abbreviations: ["΀ºεπ°π .", "θδςπš", "Πλαπžεία", "Τ.Ρ."]
     
   business_terminology:
-    accounting_terms: ["ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃÆ’Ãâ€žÃŽÂ®ÃÂÃŽÂ¹ÃŽÂ¿", "Ãâ€ ÃŽÂ¿ÃÂÃŽÂ¿Ãâ€žÃŽÂµÃâ€¡ÃŽÂ½ÃŽÂ¹ÃŽÂºÃÅ’Ãâ€š", "ÃŽÂ¦ÃŽÂ ÃŽâ€˜", "ÃŽâ€¢ÃŽÂÃŽÂ¦ÃŽâ„¢ÃŽâ€˜", "ÃŽâ€¢ÃŽÂ¦ÃŽÅ¡ÃŽâ€˜"]
-    legal_entities: ["ÃŽâ€˜.ÃŽâ€¢.", "ÃŽâ€¢.ÃŽÂ .ÃŽâ€¢.", "ÃŽÅ¸.ÃŽâ€¢.", "ÃŽâ€¢.ÃŽâ€¢.", "ÃŽâ„¢.ÃŽÅ¡.ÃŽâ€¢."]
+    accounting_terms: ["λογισπžήριο", "π οροπžεπ¡νικςπš", "ΦΠΑ", "ΕΝΦΙΑ", "ΕΦΡΑ"]
+    legal_entities: ["Α.Ε.", "Ε.Π.Ε.", "θ.Ε.", "Ε.Ε.", "Ι.Ρ.Ε."]
 ```
 
 #### Greek Email Templates
 ```yaml
 Automated_Response_Templates:
   invoice_received:
-    subject: "ÃŽâ€¢Ãâ‚¬ÃŽÂ¹ÃŽÂ²ÃŽÂµÃŽÂ²ÃŽÂ±ÃŽÂ¯Ãâ€°ÃÆ’ÃŽÂ· Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃŽÂ»ÃŽÂ±ÃŽÂ²ÃŽÂ®Ãâ€š Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¯ÃŽÂ¿Ãâ€¦ - {invoice_number}"
+    subject: "Επιβεβαίπ°ση παραλαβήπš πžιμολογίου - {invoice_number}"
     body: |
-      ÃŽâ€˜ÃŽÂ³ÃŽÂ±Ãâ‚¬ÃŽÂ·Ãâ€žÃŽÂ­/ÃŽÂ® {sender_name},
+      Αγαπηπžέ/ή {sender_name},
       
-      ÃŽâ€¢Ãâ‚¬ÃŽÂ¹ÃŽÂ²ÃŽÂµÃŽÂ²ÃŽÂ±ÃŽÂ¹ÃÅ½ÃŽÂ½ÃŽÂ¿Ãâ€¦ÃŽÂ¼ÃŽÂµ Ãâ€žÃŽÂ·ÃŽÂ½ Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃŽÂ»ÃŽÂ±ÃŽÂ²ÃŽÂ® Ãâ€žÃŽÂ¿Ãâ€¦ Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¯ÃŽÂ¿Ãâ€¦ {invoice_number} 
-      ÃŽÂ·ÃŽÂ¼ÃŽÂµÃÂÃŽÂ¿ÃŽÂ¼ÃŽÂ·ÃŽÂ½ÃŽÂ¯ÃŽÂ±Ãâ€š {invoice_date} ÃÆ’Ãâ€¦ÃŽÂ½ÃŽÂ¿ÃŽÂ»ÃŽÂ¹ÃŽÂºÃŽÂ®Ãâ€š ÃŽÂ±ÃŽÂ¾ÃŽÂ¯ÃŽÂ±Ãâ€š {total_amount}.
+      ΕπιβεβαιϽνουμε πžην παραλαβή πžου πžιμολογίου {invoice_number} 
+      ημερομηνίαπš {invoice_date} συνολικήπš αξίαπš {total_amount}.
       
-      ÃŽÂ¤ÃŽÂ¿ Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿ ÃŽÂ­Ãâ€¡ÃŽÂµÃŽÂ¹ Ãâ‚¬ÃÂÃŽÂ¿Ãâ€°ÃŽÂ¸ÃŽÂ·ÃŽÂ¸ÃŽÂµÃŽÂ¯ ÃÆ’Ãâ€žÃŽÂ¿ ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃÆ’Ãâ€žÃŽÂ®ÃÂÃŽÂ¹ÃÅ’ ÃŽÂ¼ÃŽÂ±Ãâ€š ÃŽÂ³ÃŽÂ¹ÃŽÂ± ÃŽÂµÃâ‚¬ÃŽÂµÃŽÂ¾ÃŽÂµÃÂÃŽÂ³ÃŽÂ±ÃÆ’ÃŽÂ¯ÃŽÂ±.
-      ÃŽâ€” Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ® ÃŽÂ¸ÃŽÂ± Ãâ‚¬ÃÂÃŽÂ±ÃŽÂ³ÃŽÂ¼ÃŽÂ±Ãâ€žÃŽÂ¿Ãâ‚¬ÃŽÂ¿ÃŽÂ¹ÃŽÂ·ÃŽÂ¸ÃŽÂµÃŽÂ¯ ÃŽÂµÃŽÂ½Ãâ€žÃÅ’Ãâ€š {payment_terms}.
+      Το πžιμολςγιο έπ¡ει προπ°θηθεί σπžο λογισπžήρις μαπš για επεξεργασία.
+      Η πληρπ°μή θα πραγμαπžοποιηθεί ενπžςπš {payment_terms}.
       
-      ÃŽÅ“ÃŽÂµ ÃŽÂµÃŽÂºÃâ€žÃŽÂ¯ÃŽÂ¼ÃŽÂ·ÃÆ’ÃŽÂ·,
+      Με εκπžίμηση,
       {company_name}
       
   document_request:
-    subject: "ÃŽâ€˜ÃŽÂ¯Ãâ€žÃŽÂ·ÃŽÂ¼ÃŽÂ± ÃŽÂ³ÃŽÂ¹ÃŽÂ± Ãâ‚¬ÃÂÃÅ’ÃÆ’ÃŽÂ¸ÃŽÂµÃâ€žÃŽÂ± ÃŽÂ­ÃŽÂ³ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ± - {reference_number}"
+    subject: "Αίπžημα για πρςσθεπžα έγγραπ α - {reference_number}"
     body: |
-      ÃŽâ€˜ÃŽÂ³ÃŽÂ±Ãâ‚¬ÃŽÂ·Ãâ€žÃŽÂ­/ÃŽÂ® {client_name},
+      Αγαπηπžέ/ή {client_name},
       
-      ÃŽâ€œÃŽÂ¹ÃŽÂ± Ãâ€žÃŽÂ·ÃŽÂ½ ÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃŽÂºÃŽÂ»ÃŽÂ®ÃÂÃâ€°ÃÆ’ÃŽÂ· Ãâ€žÃŽÂ·Ãâ€š ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃÆ’Ãâ€žÃŽÂ¹ÃŽÂºÃŽÂ®Ãâ€š ÃŽÂµÃâ‚¬ÃŽÂµÃŽÂ¾ÃŽÂµÃÂÃŽÂ³ÃŽÂ±ÃÆ’ÃŽÂ¯ÃŽÂ±Ãâ€š, Ãâ€¡ÃÂÃŽÂµÃŽÂ¹ÃŽÂ±ÃŽÂ¶ÃÅ’ÃŽÂ¼ÃŽÂ±ÃÆ’Ãâ€žÃŽÂµ 
-      Ãâ€žÃŽÂ± ÃŽÂ±ÃŽÂºÃÅ’ÃŽÂ»ÃŽÂ¿Ãâ€¦ÃŽÂ¸ÃŽÂ± ÃŽÂ­ÃŽÂ³ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ±:
+      Για πžην ολοκλήρπ°ση πžηπš λογισπžικήπš επεξεργασίαπš, π¡ρειαζςμασπžε 
+      πžα ακςλουθα έγγραπ α:
       
       {required_documents}
       
-      ÃŽÂ ÃŽÂ±ÃÂÃŽÂ±ÃŽÂºÃŽÂ±ÃŽÂ»ÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂµ ÃÆ’Ãâ€žÃŽÂµÃŽÂ¯ÃŽÂ»Ãâ€žÃŽÂµ Ãâ€žÃŽÂ± ÃŽÂ­ÃŽÂ³ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ± Ãâ€žÃŽÂ¿ ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂ¿ÃŽÂ¼ÃÅ’Ãâ€žÃŽÂµÃÂÃŽÂ¿ ÃŽÂ´Ãâ€¦ÃŽÂ½ÃŽÂ±Ãâ€žÃÅ’.
+      Παρακαλούμε σπžείλπžε πžα έγγραπ α πžο συνπžομςπžερο δυναπžς.
       
-      ÃŽâ€¢Ãâ€¦Ãâ€¡ÃŽÂ±ÃÂÃŽÂ¹ÃÆ’Ãâ€žÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂµ,
+      Ευπ¡αρισπžούμε,
       {accountant_name}
       
   payment_reminder:
-    subject: "ÃŽÂ¥Ãâ‚¬ÃŽÂµÃŽÂ½ÃŽÂ¸ÃÂÃŽÂ¼ÃŽÂ¹ÃÆ’ÃŽÂ· Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ®Ãâ€š - {invoice_number}"
+    subject: "Υπενθύμιση πληρπ°μήπš - {invoice_number}"
     body: |
-      ÃŽâ€˜ÃŽÂ³ÃŽÂ±Ãâ‚¬ÃŽÂ·Ãâ€žÃŽÂ­/ÃŽÂ® {client_name},
+      Αγαπηπžέ/ή {client_name},
       
-      ÃŽÂ£ÃŽÂ±Ãâ€š Ãâ€¦Ãâ‚¬ÃŽÂµÃŽÂ½ÃŽÂ¸Ãâ€¦ÃŽÂ¼ÃŽÂ¯ÃŽÂ¶ÃŽÂ¿Ãâ€¦ÃŽÂ¼ÃŽÂµ ÃÅ’Ãâ€žÃŽÂ¹ Ãâ€žÃŽÂ¿ Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿ {invoice_number} 
-      ÃŽÂ±ÃŽÂ¾ÃŽÂ¯ÃŽÂ±Ãâ€š {amount} ÃŽÂµÃŽÂ¯Ãâ€¡ÃŽÂµ ÃŽÂ»ÃŽÂ®ÃŽÂ¾ÃŽÂµÃŽÂ¹ Ãâ€žÃŽÂ·ÃŽÂ½ {due_date}.
+      Σαπš υπενθυμίζουμε ςπžι πžο πžιμολςγιο {invoice_number} 
+      αξίαπš {amount} είπ¡ε λήξει πžην {due_date}.
       
-      ÃŽÂ ÃŽÂ±ÃÂÃŽÂ±ÃŽÂºÃŽÂ±ÃŽÂ»ÃŽÂ¿ÃÂÃŽÂ¼ÃŽÂµ Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ²ÃŽÂµÃŽÂ¯Ãâ€žÃŽÂµ ÃÆ’Ãâ€žÃŽÂ·ÃŽÂ½ Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ® Ãâ€žÃŽÂ¿ ÃÆ’Ãâ€¦ÃŽÂ½Ãâ€žÃŽÂ¿ÃŽÂ¼ÃÅ’Ãâ€žÃŽÂµÃÂÃŽÂ¿ ÃŽÂ´Ãâ€¦ÃŽÂ½ÃŽÂ±Ãâ€žÃÅ’.
+      Παρακαλούμε προβείπžε σπžην πληρπ°μή πžο συνπžομςπžερο δυναπžς.
       
-      ÃŽâ€œÃŽÂ¹ÃŽÂ± ÃŽÂ¿Ãâ‚¬ÃŽÂ¿ÃŽÂ¹ÃŽÂ±ÃŽÂ´ÃŽÂ®Ãâ‚¬ÃŽÂ¿Ãâ€žÃŽÂµ ÃŽÂ´ÃŽÂ¹ÃŽÂµÃâ€¦ÃŽÂºÃÂÃŽÂ¯ÃŽÂ½ÃŽÂ¹ÃÆ’ÃŽÂ·, ÃŽÂµÃâ‚¬ÃŽÂ¹ÃŽÂºÃŽÂ¿ÃŽÂ¹ÃŽÂ½Ãâ€°ÃŽÂ½ÃŽÂ®ÃÆ’Ãâ€žÃŽÂµ ÃŽÂ¼ÃŽÂ±ÃŽÂ¶ÃŽÂ¯ ÃŽÂ¼ÃŽÂ±Ãâ€š.
+      Για οποιαδήποπžε διευκρίνιση, επικοινπ°νήσπžε μαζί μαπš.
       
-      ÃŽÅ“ÃŽÂµ ÃŽÂµÃŽÂºÃâ€žÃŽÂ¯ÃŽÂ¼ÃŽÂ·ÃÆ’ÃŽÂ·,
+      Με εκπžίμηση,
       {company_name}
 ```
 
@@ -348,19 +348,19 @@ Greek_Bank_Email_Processing:
   supported_banks:
     alpha_bank:
       domains: ["@alphabank.gr", "@alpha.gr"]
-      statement_patterns: ["statement", "ÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ· ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ±ÃÂÃŽÂ¹ÃŽÂ±ÃÆ’ÃŽÂ¼ÃŽÂ¿ÃÂ"]
+      statement_patterns: ["statement", "κίνηση λογαριασμού"]
       
     national_bank:
       domains: ["@nbg.gr", "@ethnikibank.gr"]
-      statement_patterns: ["ÃŽÂ±ÃŽÂ½Ãâ€žÃŽÂ¯ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ¿ ÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ·Ãâ€š", "account statement"]
+      statement_patterns: ["ανπžίγραπ ο κίνησηπš", "account statement"]
       
     eurobank:
       domains: ["@eurobank.gr"]
-      statement_patterns: ["ÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ· ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ±ÃÂÃŽÂ¹ÃŽÂ±ÃÆ’ÃŽÂ¼ÃŽÂ¿ÃÂ", "ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ±ÃÂÃŽÂ¹ÃŽÂ±ÃÆ’ÃŽÂ¼ÃÅ’Ãâ€š ÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ·Ãâ€š"]
+      statement_patterns: ["κίνηση λογαριασμού", "λογαριασμςπš κίνησηπš"]
       
     piraeus_bank:
       domains: ["@piraeusbank.gr", "@winbank.gr"]
-      statement_patterns: ["statement", "ÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ·", "Ãâ€¦Ãâ‚¬ÃÅ’ÃŽÂ»ÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ¿"]
+      statement_patterns: ["statement", "κίνηση", "υπςλοιπο"]
       
   processing_workflow:
     statement_detection:
@@ -390,7 +390,7 @@ Auto_Response_Logic:
   invoice_submissions:
     conditions:
       - "Email contains PDF attachment"
-      - "Subject contains 'Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿' or 'invoice'"
+      - "Subject contains 'πžιμολςγιο' or 'invoice'"
       - "Sender is known client"
     actions:
       - send_confirmation: "Automated receipt confirmation in Greek"
@@ -400,7 +400,7 @@ Auto_Response_Logic:
   document_requests:
     conditions:
       - "Email contains request for documents"
-      - "Keywords: 'ÃÆ’Ãâ€žÃŽÂµÃŽÂ¯ÃŽÂ»Ãâ€žÃŽÂµ', 'Ãâ€¡ÃÂÃŽÂµÃŽÂ¹ÃŽÂ¬ÃŽÂ¶ÃŽÂ¿ÃŽÂ¼ÃŽÂ±ÃŽÂ¹', 'Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃŽÂºÃŽÂ±ÃŽÂ»ÃÅ½'"
+      - "Keywords: 'σπžείλπžε', 'π¡ρειάζομαι', 'παρακαλϽ'"
     actions:
       - acknowledge_request: "Confirm receipt of request"
       - generate_document_list: "List available documents"
@@ -408,7 +408,7 @@ Auto_Response_Logic:
       
   payment_inquiries:
     conditions:
-      - "Subject contains 'Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ®' or 'payment'"
+      - "Subject contains 'πληρπ°μή' or 'payment'"
       - "Client asking about payment status"
     actions:
       - check_payment_status: "Query accounting system"
@@ -539,26 +539,26 @@ Banking_Integration:
 ```bash
 $ openclaw email process --filter "invoices" --account "accounting@company.gr"
 
-Ã°Å¸â€œÂ§ EMAIL PROCESSING RESULTS:
+📧 EMAIL PROCESSING RESULTS:
 
 New Invoices Processed (3):
-Ã¢Å“â€¦ SUPPLIER A AE - Invoice #2026-0156 - Ã¢â€šÂ¬1,250.00
-   Ã¢â€Å“Ã¢â€â‚¬ Status: VAT validated (24%)
-   Ã¢â€Å“Ã¢â€â‚¬ Due Date: March 15, 2026 (26 days)  
-   Ã¢â€Å“Ã¢â€â‚¬ Action: Forwarded to accounting system
-   Ã¢â€â€Ã¢â€â‚¬ Response: Greek confirmation sent to supplier
+✅ SUPPLIER A AE - Invoice #2026-0156 - ‚¬1,250.00
+   ├─ Status: VAT validated (24%)
+   ├─ Due Date: March 15, 2026 (26 days)  
+   ├─ Action: Forwarded to accounting system
+   └─ Response: Greek confirmation sent to supplier
 
-Ã¢Å“â€¦ ÃŽÂ ÃŽÂ¡ÃŽÂ¡ÃŽÅ¸ÃŽÅ“ÃŽâ€”ÃŽËœÃŽâ€¢ÃŽÂ¥ÃŽÂ¤ÃŽâ€”ÃŽÂ£ B ÃŽâ€¢ÃŽÂ ÃŽâ€¢ - ÃŽÂ¤ÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿ #456 - Ã¢â€šÂ¬850.00
-   Ã¢â€Å“Ã¢â€â‚¬ Status: Greek invoice format recognized
-   Ã¢â€Å“Ã¢â€â‚¬ VAT Rate: 13% (services)
-   Ã¢â€Å“Ã¢â€â‚¬ Action: Added to payment queue
-   Ã¢â€â€Ã¢â€â‚¬ Response: "ÃŽâ€¢Ãâ‚¬ÃŽÂ¹ÃŽÂ²ÃŽÂµÃŽÂ²ÃŽÂ±ÃŽÂ¯Ãâ€°ÃÆ’ÃŽÂ· Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ±ÃŽÂ»ÃŽÂ±ÃŽÂ²ÃŽÂ®Ãâ€š" sent
+✅ ΠΡΡθΜΗΜΕΥΤΗΣ B ΕΠΕ - Τιμολςγιο #456 - ‚¬850.00
+   ├─ Status: Greek invoice format recognized
+   ├─ VAT Rate: 13% (services)
+   ├─ Action: Added to payment queue
+   └─ Response: "Επιβεβαίπ°ση παραλαβήπš" sent
 
-Ã¢Å¡Â Ã¯Â¸Â VENDOR C - Invoice unclear format - Ã¢â€šÂ¬2,100.00
-   Ã¢â€Å“Ã¢â€â‚¬ Status: Manual review required
-   Ã¢â€Å“Ã¢â€â‚¬ Issue: VAT calculation uncertain
-   Ã¢â€Å“Ã¢â€â‚¬ Action: Flagged for accountant review
-   Ã¢â€â€Ã¢â€â‚¬ Response: Acknowledgment sent, review requested
+⚠ï¸ VENDOR C - Invoice unclear format - ‚¬2,100.00
+   ├─ Status: Manual review required
+   ├─ Issue: VAT calculation uncertain
+   ├─ Action: Flagged for accountant review
+   └─ Response: Acknowledgment sent, review requested
 
 Summary: 3 invoices processed, 2 automated, 1 manual review needed
 ```
@@ -567,26 +567,26 @@ Summary: 3 invoices processed, 2 automated, 1 manual review needed
 ```bash
 $ openclaw email process --filter "government" --priority critical
 
-Ã°Å¸Ââ€ºÃ¯Â¸Â GOVERNMENT EMAIL PROCESSING:
+ðŸÂ€ºï¸ GOVERNMENT EMAIL PROCESSING:
 
 AADE Notification Processed (1):
-Ã°Å¸Å¡Â¨ CRITICAL: VAT Deadline Change Detected
-   Ã¢â€Å“Ã¢â€â‚¬ From: notifications@aade.gr
-   Ã¢â€Å“Ã¢â€â‚¬ Subject: "ÃŽâ€˜ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ® Ãâ‚¬ÃÂÃŽÂ¿ÃŽÂ¸ÃŽÂµÃÆ’ÃŽÂ¼ÃŽÂ¯ÃŽÂ±Ãâ€š Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃŽÂ²ÃŽÂ¿ÃŽÂ»ÃŽÂ®Ãâ€š ÃŽÂ´ÃŽÂ®ÃŽÂ»Ãâ€°ÃÆ’ÃŽÂ·Ãâ€š ÃŽÂ¦ÃŽÂ ÃŽâ€˜"
-   Ã¢â€Å“Ã¢â€â‚¬ Change: March VAT deadline moved from 25th to 20th
-   Ã¢â€Å“Ã¢â€â‚¬ Impact: 5 days earlier than expected
-   Ã¢â€Å“Ã¢â€â‚¬ Actions Taken:
-   Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬ Updated compliance calendar Ã¢Å“â€¦
-   Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬ Notified affected clients Ã¢Å“â€¦
-   Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬ Rescheduled VAT preparation tasks Ã¢Å“â€¦
-   Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬ Created urgent alert for accounting team Ã¢Å“â€¦
+🚨 CRITICAL: VAT Deadline Change Detected
+   ├─ From: notifications@aade.gr
+   ├─ Subject: "Αλλαγή προθεσμίαπš υποβολήπš δήλπ°σηπš ΦΠΑ"
+   ├─ Change: March VAT deadline moved from 25th to 20th
+   ├─ Impact: 5 days earlier than expected
+   ├─ Actions Taken:
+   ─š   ├─ Updated compliance calendar ✅
+   ─š   ├─ Notified affected clients ✅
+   ─š   ├─ Rescheduled VAT preparation tasks ✅
+   ─š   └─ Created urgent alert for accounting team ✅
 
 EFKA System Notice (1):
-Ã¢â€žÂ¹Ã¯Â¸Â Planned Maintenance Notification
-   Ã¢â€Å“Ã¢â€â‚¬ From: support@efka.gov.gr
-   Ã¢â€Å“Ã¢â€â‚¬ Maintenance Window: Feb 19, 02:00-06:00 EET
-   Ã¢â€Å“Ã¢â€â‚¬ Impact: Social security submissions unavailable
-   Ã¢â€Å“Ã¢â€â‚¬ Action: Rescheduled morning submissions to afternoon
+„¹ï¸ Planned Maintenance Notification
+   ├─ From: support@efka.gov.gr
+   ├─ Maintenance Window: Feb 19, 02:00-06:00 EET
+   ├─ Impact: Social security submissions unavailable
+   ├─ Action: Rescheduled morning submissions to afternoon
 
 Summary: Critical compliance changes processed and implemented
 ```
@@ -595,27 +595,27 @@ Summary: Critical compliance changes processed and implemented
 ```bash
 $ openclaw email process --filter "client-communications" --auto-respond
 
-Ã°Å¸â€˜Â¥ CLIENT COMMUNICATION PROCESSING:
+👥 CLIENT COMMUNICATION PROCESSING:
 
 Payment Status Inquiries (2):
-Ã°Å¸â€œâ€¹ ÃŽÂ ÃŽâ€¢ÃŽâ€ºÃŽâ€˜ÃŽÂ¤ÃŽâ€”ÃŽÂ£ A ÃŽâ€˜ÃŽâ€¢ - Payment Status Request
-   Ã¢â€Å“Ã¢â€â‚¬ Query: "ÃŽÂ ÃÅ’Ãâ€žÃŽÂµ ÃŽÂ¸ÃŽÂ± Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¸ÃŽÂµÃŽÂ¯ Ãâ€žÃŽÂ¿ Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃÅ’ ÃŽÂ¼ÃŽÂ±Ãâ€š #789?"
-   Ã¢â€Å“Ã¢â€â‚¬ Status Check: Invoice paid Feb 15, 2026
-   Ã¢â€Å“Ã¢â€â‚¬ Response: Greek status update with payment confirmation
-   Ã¢â€â€Ã¢â€â‚¬ Attachment: Payment receipt included
+📀¹ ΠΕ΀ºΑΤΗΣ A ΑΕ - Payment Status Request
+   ├─ Query: "Πςπžε θα πληρπ°θεί πžο πžιμολςγις μαπš #789?"
+   ├─ Status Check: Invoice paid Feb 15, 2026
+   ├─ Response: Greek status update with payment confirmation
+   └─ Attachment: Payment receipt included
 
-Ã°Å¸â€œâ€¹ CLIENT B LTD - Overdue Payment Inquiry  
-   Ã¢â€Å“Ã¢â€â‚¬ Query: "Why is payment delayed for invoice #456?"
-   Ã¢â€Å“Ã¢â€â‚¬ Status Check: Payment scheduled for Feb 20, 2026
-   Ã¢â€Å“Ã¢â€â‚¬ Response: Explanation of payment schedule + apology
-   Ã¢â€â€Ã¢â€â‚¬ Follow-up: Added to priority payment list
+📀¹ CLIENT B LTD - Overdue Payment Inquiry  
+   ├─ Query: "Why is payment delayed for invoice #456?"
+   ├─ Status Check: Payment scheduled for Feb 20, 2026
+   ├─ Response: Explanation of payment schedule + apology
+   └─ Follow-up: Added to priority payment list
 
 Document Requests (1):
-Ã°Å¸â€œâ€ž ÃŽâ€¢ÃŽÂ¤ÃŽâ€˜ÃŽâ„¢ÃŽÂ¡ÃŽâ€¢ÃŽâ„¢ÃŽâ€˜ ÃŽâ€œ ÃŽâ€¢ÃŽÂ ÃŽâ€¢ - Additional Documentation  
-   Ã¢â€Å“Ã¢â€â‚¬ Request: "ÃŽÂ§ÃÂÃŽÂµÃŽÂ¹ÃŽÂ±ÃŽÂ¶ÃÅ’ÃŽÂ¼ÃŽÂ±ÃÆ’Ãâ€žÃŽÂµ ÃŽÂ±ÃŽÂ½Ãâ€žÃŽÂ¯ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ¿ Ãâ€ ÃŽÂ¿ÃÂÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¹ÃŽÂºÃŽÂ®Ãâ€š ÃŽÂµÃŽÂ½ÃŽÂ·ÃŽÂ¼ÃŽÂµÃÂÃÅ’Ãâ€žÃŽÂ·Ãâ€žÃŽÂ±Ãâ€š"
-   Ã¢â€Å“Ã¢â€â‚¬ Document: Tax compliance certificate generated
-   Ã¢â€Å“Ã¢â€â‚¬ Response: Certificate attached with Greek cover letter
-   Ã¢â€â€Ã¢â€â‚¬ Archive: Request logged in client file
+📀ž ΕΤΑΙΡΕΙΑ Γ ΕΠΕ - Additional Documentation  
+   ├─ Request: "Χρειαζςμασπžε ανπžίγραπ ο π ορολογικήπš ενημερςπžηπžαπš"
+   ├─ Document: Tax compliance certificate generated
+   ├─ Response: Certificate attached with Greek cover letter
+   └─ Archive: Request logged in client file
 
 Summary: 3 client communications processed, all with automated responses
 ```
@@ -624,7 +624,7 @@ Summary: 3 client communications processed, all with automated responses
 
 ### Practical OpenClaw Email Processing
 ```bash
-# File-based email processing â€” drop exported email files into incoming
+# File-based email processing — drop exported email files into incoming
 openclaw email monitor-folder /data/incoming/ --greek-language
 openclaw email process-attachments --extract-invoices --auto-classify
 openclaw email generate-responses --templates-greek --auto-send false
@@ -682,12 +682,12 @@ openclaw email government-alerts | openclaw deadline update-calendar
 ```
 
 A successful Greek email processing system should achieve:
-- Ã¢Å“â€¦ 95%+ accuracy in Greek document classification
-- Ã¢Å“â€¦ <30 seconds response time for urgent government emails
-- Ã¢Å“â€¦ 90%+ automation rate for routine client communications
-- Ã¢Å“â€¦ Zero missed critical compliance notifications
-- Ã¢Å“â€¦ Complete audit trail for all email processing
-- Ã¢Å“â€¦ Integration with all major Greek email providers
-- Ã¢Å“â€¦ Native Greek language support for all communications
+- ✅ 95%+ accuracy in Greek document classification
+- ✅ <30 seconds response time for urgent government emails
+- ✅ 90%+ automation rate for routine client communications
+- ✅ Zero missed critical compliance notifications
+- ✅ Complete audit trail for all email processing
+- ✅ Integration with all major Greek email providers
+- ✅ Native Greek language support for all communications
 
 Remember: This skill serves as the communication hub for Greek accounting automation, ensuring no important financial documents or government notifications are missed while maintaining professional Greek business communication standards.

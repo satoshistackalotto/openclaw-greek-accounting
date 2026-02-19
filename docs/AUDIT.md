@@ -1,4 +1,4 @@
-# OpenClaw Greek Accounting System â€” Full Project Audit
+# OpenClaw Greek Accounting System — Full Project Audit
 
 **Date**: 18 February 2026  
 **Scope**: Technical soundness, security, accountant-perspective review, OpenClaw/ClawHub compatibility, GitHub integration, and roadmap recommendations  
@@ -13,54 +13,54 @@ The project is architecturally ambitious and well-conceived. The canonical data 
 - **Critical**: Path inconsistencies between older skills and the canonical data map
 - **Critical**: OpenClaw frontmatter metadata is incomplete for ClawHub publishing
 - **High**: Security hardening gaps in authentication and data-at-rest
-- **High**: Meta-skill (06) only orchestrates Phase 1 skills â€” Phase 2+ skills are orphaned from orchestration
+- **High**: Meta-skill (06) only orchestrates Phase 1 skills — Phase 2+ skills are orphaned from orchestration
 - **Medium**: Missing EVALS.json files for 6 skills
 - **Medium**: SKILL.md and 01-accounting-workflows-SKILL.md appear to be the same file duplicated
 - **Low**: Documentation files (CONVERSATION_SUMMARY, INDIVIDUAL_DOWNLOADS_GUIDE) are stale
 
 ---
 
-## 2. Phase Review â€” What You Built
+## 2. Phase Review — What You Built
 
-### Phase 1: Core Infrastructure (Skills 1â€“6) âœ…
+### Phase 1: Core Infrastructure (Skills 1€“6) ✅
 Solid foundation. Document processing, AADE compliance, deadline monitoring, email processing, individual taxes, and meta-orchestration. These skills established the CLI-command pattern and file-based architecture.
 
-### Phase 2: Advanced Integration (Skills 7â€“10) âœ…
+### Phase 2: Advanced Integration (Skills 7€“10) ✅
 Government monitoring, banking integration, Greek OCR, and EFKA. These extend the system into real-world Greek institutional interfaces.
 
-### Phase 3A: Essential Infrastructure (Skills 11â€“14) âœ…
+### Phase 3A: Essential Infrastructure (Skills 11€“14) ✅
 Dashboard, client data management, authentication, and conversational AI. These provide the user-facing and security layers.
 
-### Phase 3B: Client-Visible Outputs (Skills 15â€“18) âœ…
+### Phase 3B: Client-Visible Outputs (Skills 15€“18) ✅
 Financial statements, client communications, system integrity/backup, and analytics. These are the deliverables that accounting firms actually hand to clients and regulators.
 
-### Phase 4: Learning Loop (Skill 19) âœ…
+### Phase 4: Learning Loop (Skill 19) ✅
 Memory and feedback system with GitHub PR-based improvement workflow. This is the most forward-thinking component and is well-designed for incremental deployment.
 
-**Verdict**: The phase progression is sound. You moved from foundational processing â†’ institutional integration â†’ user-facing infrastructure â†’ client deliverables â†’ self-improvement. This is a defensible architecture.
+**Verdict**: The phase progression is sound. You moved from foundational processing → institutional integration → user-facing infrastructure → client deliverables → self-improvement. This is a defensible architecture.
 
 ---
 
-## 3. Technical Audit â€” Developer Perspective
+## 3. Technical Audit — Developer Perspective
 
 ### 3.1 PATH INCONSISTENCIES (Critical)
 
 The canonical data map (Skill 00) is your single source of truth. Several older skills still reference **deprecated paths** in their CLI commands. This will cause real failures at runtime.
 
-**Skill 08 (Banking Integration) â€” lines 24â€“32:**
+**Skill 08 (Banking Integration) — lines 24€“32:**
 ```
 Uses: /data/bank-imports/, /data/alpha-bank/, /data/nbg-statements/, /data/eurobank/, /data/piraeus-bank/
 Should be: /data/banking/imports/, /data/banking/imports/alpha/, /data/banking/imports/nbg/, etc.
 ```
 
-**Skill 06 (Meta-Skill) â€” lines 287â€“307:**
+**Skill 06 (Meta-Skill) — lines 287€“307:**
 ```
 Uses: /data/clients/{client_vat}/invoices/, /data/government/aade/, /data/workflows/
 Should be: /data/clients/{AFM}/documents/, /data/compliance/, /data/processing/
 ```
 The meta-skill also refers to clients by `{client_vat}` instead of the canonical `{AFM}` format.
 
-**Skill 01 / SKILL.md (Accounting Workflows) â€” lines 413â€“430:**
+**Skill 01 / SKILL.md (Accounting Workflows) — lines 413€“430:**
 ```
 Uses: /data/incoming/invoices, /data/processing/validation, /data/processing/extraction, /data/processed/invoices
 Should be: /data/incoming/invoices/, /data/processing/ocr/validated/, /data/processing/ocr/extracted/, /data/clients/{AFM}/documents/
@@ -77,18 +77,18 @@ Should be: /data/incoming/invoices/, /data/processing/ocr/validated/, /data/proc
 - Become the **meta-skill** (currently Skill 06's job), or
 - Be removed entirely, since it duplicates Skill 01
 
-For ClawHub publishing, you'll want each skill in its own folder â€” the root SKILL.md creates ambiguity about what the "main" skill is.
+For ClawHub publishing, you'll want each skill in its own folder — the root SKILL.md creates ambiguity about what the "main" skill is.
 
 ---
 
 ### 3.3 META-SKILL ORCHESTRATION GAP (High)
 
-Skill 06 only declares dependencies on Phase 1 skills (1â€“5). It has no awareness of:
+Skill 06 only declares dependencies on Phase 1 skills (1€“5). It has no awareness of:
 - Skill 07 (AADE API Monitor)
 - Skill 08 (Banking Integration)
 - Skill 09 (Greek Document OCR)
 - Skill 10 (EFKA API Integration)
-- Skills 11â€“19 (all of Phase 3 and 4)
+- Skills 11€“19 (all of Phase 3 and 4)
 
 The meta-skill is the user's main entry point. If it doesn't orchestrate banking reconciliation, EFKA submissions, dashboard updates, financial statement generation, or client communications, those capabilities are invisible to users relying on business commands like `openclaw greek monthly-process`.
 
@@ -101,13 +101,13 @@ The meta-skill is the user's main entry point. If it doesn't orchestrate banking
 EVALS.json files exist for: 01, 02, 03, 04, 05, 07, 08, 09, 10, 12, 15, 18
 
 Missing EVALS.json for:
-- **Skill 06** (Meta-Skill) â€” no evals
-- **Skill 11** (Dashboard) â€” no evals
-- **Skill 13** (Authentication) â€” no evals
-- **Skill 14** (Conversational AI) â€” no evals
-- **Skill 16** (Client Communication) â€” no evals
-- **Skill 17** (System Integrity) â€” no evals
-- **Skill 19** (Memory/Feedback) â€” no evals
+- **Skill 06** (Meta-Skill) — no evals
+- **Skill 11** (Dashboard) — no evals
+- **Skill 13** (Authentication) — no evals
+- **Skill 14** (Conversational AI) — no evals
+- **Skill 16** (Client Communication) — no evals
+- **Skill 17** (System Integrity) — no evals
+- **Skill 19** (Memory/Feedback) — no evals
 
 That's 7 of 19 skills without test cases. For a system handling financial compliance, every skill should have evals before production.
 
@@ -115,7 +115,7 @@ That's 7 of 19 skills without test cases. For a system handling financial compli
 
 ### 3.5 CLI COMMAND NAMESPACE
 
-Your skills use `openclaw greek ...`, `openclaw accounting ...`, `openclaw banking ...`, `openclaw auth ...`, etc. These are well-structured. However, OpenClaw itself doesn't natively support subcommand namespaces like this â€” the agent interprets the SKILL.md instructions and executes shell commands.
+Your skills use `openclaw greek ...`, `openclaw accounting ...`, `openclaw banking ...`, `openclaw auth ...`, etc. These are well-structured. However, OpenClaw itself doesn't natively support subcommand namespaces like this — the agent interprets the SKILL.md instructions and executes shell commands.
 
 This is actually fine for the CLI-first approach. The agent reads your SKILL.md, understands the command patterns, and translates user requests into the appropriate shell invocations. Just be aware that the "commands" in your SKILL.md are **instructions to the agent**, not built-in OpenClaw CLI verbs.
 
@@ -138,7 +138,7 @@ This is actually fine for the CLI-first approach. The agent reads your SKILL.md,
 
 **Concerns:**
 
-1. **Credentials stored as JSON files**: `/data/auth/users/{username}/credentials.json` â€” even with password hashing, the hash itself sitting in a world-readable JSON file is a risk. If the OpenClaw agent or any skill has file-system access (which they all do), any skill could read credential hashes.
+1. **Credentials stored as JSON files**: `/data/auth/users/{username}/credentials.json` — even with password hashing, the hash itself sitting in a world-readable JSON file is a risk. If the OpenClaw agent or any skill has file-system access (which they all do), any skill could read credential hashes.
 
    **Fix**: Credentials.json should have file-system permissions restricted (chmod 600, owned by root or a dedicated service user). Add a note in the skill about OS-level file permissions.
 
@@ -148,7 +148,7 @@ This is actually fine for the CLI-first approach. The agent reads your SKILL.md,
 
 3. **No encryption-at-rest for client data**: The canonical data map puts all client financial records in `/data/clients/{AFM}/` as plain JSON. Greek GDPR (which implements EU GDPR) requires appropriate technical measures for personal data protection.
 
-   **Fix**: Add encryption-at-rest for `/data/clients/`, `/data/auth/`, and `/data/compliance/`. Skill 17 (System Integrity) handles encrypted backups â€” extend this principle to live data using AES-256 with a master key managed outside the data directory (e.g., environment variable or hardware key).
+   **Fix**: Add encryption-at-rest for `/data/clients/`, `/data/auth/`, and `/data/compliance/`. Skill 17 (System Integrity) handles encrypted backups — extend this principle to live data using AES-256 with a master key managed outside the data directory (e.g., environment variable or hardware key).
 
 4. **IP whitelist is optional**: The authentication skill has IP whitelist as `enabled: true` but with placeholder `allowed_ranges: ["office_ip_range"]`. In production, this should be mandatory for senior_accountant roles.
 
@@ -162,7 +162,7 @@ This is actually fine for the CLI-first approach. The agent reads your SKILL.md,
 
 **Good:**
 - GDPR export functionality (`/data/gdpr-exports/`)
-- Retention policies with Greek legal requirements (5â€“20 years)
+- Retention policies with Greek legal requirements (5€“20 years)
 - Audit logs for all access events
 - Client data isolation by AFM directory
 
@@ -198,11 +198,11 @@ The Snyk article from February 2026 documented 341 malicious skills on ClawHub (
 
 ### 5.1 WHAT'S EXCELLENT
 
-- **Greek regulatory coverage is comprehensive**: AADE, EFKA, myDATA, E1 forms, ENFIA, municipal taxes, 13th/14th salary, stamp duty â€” this covers real Greek accounting practice
+- **Greek regulatory coverage is comprehensive**: AADE, EFKA, myDATA, E1 forms, ENFIA, municipal taxes, 13th/14th salary, stamp duty — this covers real Greek accounting practice
 - **VAT rate structure is correct**: 24% standard, 13% reduced, 6% super-reduced with proper reverse charge handling
-- **Î•Î“Î›Î£ (Greek Chart of Accounts) integration** in Skill 15 is a differentiator â€” most accounting tools ignore this
+- **ΕΓΛΣ (Greek Chart of Accounts) integration** in Skill 15 is a differentiator — most accounting tools ignore this
 - **Bilingual output** (Greek for clients, English for firm-internal) matches how Greek accounting firms actually operate
-- **Completeness gates** in Skill 15 prevent incomplete financial statements â€” this is critical for professional liability
+- **Completeness gates** in Skill 15 prevent incomplete financial statements — this is critical for professional liability
 - **Human confirmation gates** for government submissions prevent accidental filings
 
 ### 5.2 CONCERNS FROM AN ACCOUNTANT'S VIEW
@@ -264,20 +264,20 @@ ClawHub expects each skill as a **folder** containing a `SKILL.md`. Your current
 
 ```
 greek-accounting-system/
-â”œâ”€â”€ accounting-workflows/
-â”‚   â”œâ”€â”€ SKILL.md          (currently 01-accounting-workflows-SKILL.md)
-â”‚   â””â”€â”€ EVALS.json        (currently 01-accounting-workflows-EVALS.json)
-â”œâ”€â”€ greek-compliance-aade/
-â”‚   â”œâ”€â”€ SKILL.md
-â”‚   â””â”€â”€ EVALS.json
-â”œâ”€â”€ cli-deadline-monitor/
-â”‚   â”œâ”€â”€ SKILL.md
-â”‚   â””â”€â”€ EVALS.json
+╔══ accounting-workflows/
+╚   ╔══ SKILL.md          (currently 01-accounting-workflows-SKILL.md)
+╚   └══ EVALS.json        (currently 01-accounting-workflows-EVALS.json)
+╔══ greek-compliance-aade/
+╚   ╔══ SKILL.md
+╚   └══ EVALS.json
+╔══ cli-deadline-monitor/
+╚   ╔══ SKILL.md
+╚   └══ EVALS.json
 ...
-â”œâ”€â”€ canonical-data-map/
-â”‚   â””â”€â”€ SKILL.md          (Skill 00 â€” shared reference)
-â””â”€â”€ memory-feedback/
-    â””â”€â”€ SKILL.md
+╔══ canonical-data-map/
+╚   └══ SKILL.md          (Skill 00 — shared reference)
+└══ memory-feedback/
+    └══ SKILL.md
 ```
 
 ### 6.4 GITHUB REPOSITORY STRUCTURE
@@ -286,35 +286,35 @@ Since you have GitHub integrated, the recommended repo layout:
 
 ```
 openclaw-greek-accounting/
-â”œâ”€â”€ README.md                      # Project overview, installation, quickstart
-â”œâ”€â”€ LICENSE
-â”œâ”€â”€ .clawhub/
-â”‚   â””â”€â”€ lock.json                  # ClawHub lockfile
-â”œâ”€â”€ skills/
-â”‚   â”œâ”€â”€ canonical-data-map/
-â”‚   â”‚   â””â”€â”€ SKILL.md
-â”‚   â”œâ”€â”€ accounting-workflows/
-â”‚   â”‚   â”œâ”€â”€ SKILL.md
-â”‚   â”‚   â””â”€â”€ EVALS.json
-â”‚   â”œâ”€â”€ greek-compliance-aade/
-â”‚   â”‚   â”œâ”€â”€ SKILL.md
-â”‚   â”‚   â””â”€â”€ EVALS.json
-â”‚   ... (one folder per skill)
-â”‚   â””â”€â”€ memory-feedback/
-â”‚       â””â”€â”€ SKILL.md
-â”œâ”€â”€ docs/
-â”‚   â”œâ”€â”€ DEPLOYMENT.md              # Full deployment guide
-â”‚   â”œâ”€â”€ SECURITY.md                # Security architecture doc
-â”‚   â”œâ”€â”€ CHANGELOG.md               # Version history
-â”‚   â””â”€â”€ CONTRIBUTING.md            # How to contribute/review PRs
-â”œâ”€â”€ scripts/
-â”‚   â”œâ”€â”€ validate-paths.sh          # Checks all skills against canonical map
-â”‚   â”œâ”€â”€ publish-all.sh             # clawhub publish for each skill
-â”‚   â””â”€â”€ run-evals.sh               # Batch eval runner
-â””â”€â”€ .github/
-    â””â”€â”€ workflows/
-        â”œâ”€â”€ skill-validation.yml   # CI: validate frontmatter + paths
-        â””â”€â”€ eval-runner.yml        # CI: run evals on PR
+╔══ README.md                      # Project overview, installation, quickstart
+╔══ LICENSE
+╔══ .clawhub/
+╚   └══ lock.json                  # ClawHub lockfile
+╔══ skills/
+╚   ╔══ canonical-data-map/
+╚   ╚   └══ SKILL.md
+╚   ╔══ accounting-workflows/
+╚   ╚   ╔══ SKILL.md
+╚   ╚   └══ EVALS.json
+╚   ╔══ greek-compliance-aade/
+╚   ╚   ╔══ SKILL.md
+╚   ╚   └══ EVALS.json
+╚   ... (one folder per skill)
+╚   └══ memory-feedback/
+╚       └══ SKILL.md
+╔══ docs/
+╚   ╔══ DEPLOYMENT.md              # Full deployment guide
+╚   ╔══ SECURITY.md                # Security architecture doc
+╚   ╔══ CHANGELOG.md               # Version history
+╚   └══ CONTRIBUTING.md            # How to contribute/review PRs
+╔══ scripts/
+╚   ╔══ validate-paths.sh          # Checks all skills against canonical map
+╚   ╔══ publish-all.sh             # clawhub publish for each skill
+╚   └══ run-evals.sh               # Batch eval runner
+└══ .github/
+    └══ workflows/
+        ╔══ skill-validation.yml   # CI: validate frontmatter + paths
+        └══ eval-runner.yml        # CI: run evals on PR
 ```
 
 ### 6.5 CLAWHUB PUBLISHING WORKFLOW
@@ -340,7 +340,7 @@ clawhub sync --all --bump patch --tags latest
 
 ### 7.1 ADD A SOUL.md
 
-OpenClaw supports `SOUL.md` files â€” system-level personality and behavioral instructions. For your Greek accounting agent, create a SOUL.md that establishes:
+OpenClaw supports `SOUL.md` files — system-level personality and behavioral instructions. For your Greek accounting agent, create a SOUL.md that establishes:
 
 ```markdown
 # Greek Accounting Assistant
@@ -365,7 +365,7 @@ OpenClaw's **Lobster** tool is a typed workflow shell that turns skills into com
 openclaw lobster run monthly-process --client EL123456789 --period 2026-02
 ```
 
-Lobster handles step sequencing, error recovery, and progress reporting natively â€” replacing the Python pseudocode in your current meta-skill with real executable workflows.
+Lobster handles step sequencing, error recovery, and progress reporting natively — replacing the Python pseudocode in your current meta-skill with real executable workflows.
 
 ### 7.3 ADD WEBHOOK / CRON INTEGRATION
 
@@ -407,7 +407,7 @@ OpenClaw supports routing different channels/accounts to isolated agents. For a 
 - **Agent B**: Handles client communications (lower risk, higher volume)
 - **Agent C**: Handles internal dashboard and reporting
 
-This provides security isolation â€” the agent handling government submissions doesn't have access to the communication channel, reducing the blast radius of any compromise.
+This provides security isolation — the agent handling government submissions doesn't have access to the communication channel, reducing the blast radius of any compromise.
 
 ### 7.6 ADD CHANNEL INTEGRATION
 
@@ -424,18 +424,18 @@ OpenClaw supports WhatsApp, Telegram, Slack, Discord, email, and more. For a Gre
 
 | # | Action | Effort | Impact |
 |---|--------|--------|--------|
-| 1 | Fix all deprecated paths across Skills 01, 06, 08 | Half-day | Critical â€” prevents runtime failures |
+| 1 | Fix all deprecated paths across Skills 01, 06, 08 | Half-day | Critical — prevents runtime failures |
 | 2 | Add `metadata` frontmatter to all 19 skills | 2 hours | Required for ClawHub discovery/gating |
 | 3 | Restructure files into skill folders for GitHub/ClawHub | 2 hours | Required for ClawHub publishing |
 | 4 | Remove or repurpose the duplicate root SKILL.md | 15 min | Removes confusion |
-| 5 | Update meta-skill (06) to orchestrate all 18 skills | Half-day | High â€” currently only covers 5 of 18 |
+| 5 | Update meta-skill (06) to orchestrate all 18 skills | Half-day | High — currently only covers 5 of 18 |
 
 ### Short-Term (Before Production)
 
 | # | Action | Effort | Impact |
 |---|--------|--------|--------|
 | 6 | Create missing EVALS.json for skills 06, 11, 13, 14, 16, 17, 19 | 2 days | Required for production confidence |
-| 7 | Harden authentication: hashed session tokens, chmod 600, SHA256 TOTP | 1 day | Security â€” protects client data |
+| 7 | Harden authentication: hashed session tokens, chmod 600, SHA256 TOTP | 1 day | Security — protects client data |
 | 8 | Add encryption-at-rest for /data/clients/ and /data/auth/ | 1 day | GDPR compliance |
 | 9 | Define unified audit event schema in canonical data map | Half-day | Auditor/regulator readiness |
 | 10 | Add four-eyes approval workflow for government submissions | Half-day | Professional liability protection |
@@ -456,9 +456,9 @@ OpenClaw supports WhatsApp, Telegram, Slack, Discord, email, and more. For a Gre
 
 ## 9. Verdict
 
-**From a developer's standpoint**: The architecture is solid. The canonical data map is genuinely good engineering â€” most projects of this complexity don't have a single source of truth for paths and naming. The phase structure makes sense. The skill separation of concerns is clean. The path inconsistencies are the main technical debt and they're fixable.
+**From a developer's standpoint**: The architecture is solid. The canonical data map is genuinely good engineering — most projects of this complexity don't have a single source of truth for paths and naming. The phase structure makes sense. The skill separation of concerns is clean. The path inconsistencies are the main technical debt and they're fixable.
 
-**From an accountant's standpoint**: The Greek regulatory coverage is impressive and accurate. The completeness gates, human confirmation requirements, and bilingual output show that someone understands how Greek accounting firms actually work. The missing pieces (four-eyes approval, liability disclaimers, unified audit format) are additions, not corrections â€” the foundation is right.
+**From an accountant's standpoint**: The Greek regulatory coverage is impressive and accurate. The completeness gates, human confirmation requirements, and bilingual output show that someone understands how Greek accounting firms actually work. The missing pieces (four-eyes approval, liability disclaimers, unified audit format) are additions, not corrections — the foundation is right.
 
 **For ClawHub/GitHub**: You're closer than you might think. The restructuring from flat files to folders is mechanical. The frontmatter additions are straightforward. Once the path inconsistencies are fixed and the meta-skill is updated, this could be one of the most comprehensive domain-specific skill packs on ClawHub.
 

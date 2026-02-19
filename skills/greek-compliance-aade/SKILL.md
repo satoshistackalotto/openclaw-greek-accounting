@@ -34,7 +34,7 @@ This skill transforms OpenClaw into a Greek accounting compliance specialist, ha
 - **Reverse Charge Handling**: EU and non-EU reverse charge VAT calculations
 - **VAT Refund Tracking**: Monitor VAT refund applications and status with AADE
 - **Withholding Tax**: Automatic calculation for freelancers, dividends, rent, and professional services
-- **Stamp Duty Calculator**: Legal stamp duty (Ãâ€¡ÃŽÂ±ÃÂÃâ€žÃÅ’ÃÆ’ÃŽÂ·ÃŽÂ¼ÃŽÂ¿) for contracts and documents
+- **Stamp Duty Calculator**: Legal stamp duty (π¡αρπžςσημο) for contracts and documents
 - **Real Estate Transfer Tax**: Property transaction tax calculations
 
 ### 3. Payroll & Social Security (EFKA/IKA)
@@ -120,12 +120,12 @@ Hour Categories:
 Employee Contributions:
   efka_main:
     - rate: 6.67%
-    - cap: "Monthly maximum Ã¢â€šÂ¬6,500"
+    - cap: "Monthly maximum ‚¬6,500"
     - description: "Main pension contribution"
     
   efka_auxiliary:
     - rate: 3.0%
-    - cap: "Monthly maximum Ã¢â€šÂ¬6,500"
+    - cap: "Monthly maximum ‚¬6,500"
     - description: "Auxiliary pension"
     
   unemployment_insurance:
@@ -156,28 +156,28 @@ Employer Contributions:
 ```yaml
 Income Tax Brackets (2026):
   bracket_1:
-    - range: "Ã¢â€šÂ¬0 - Ã¢â€šÂ¬10,000"
+    - range: "‚¬0 - ‚¬10,000"
     - rate: 9%
     
   bracket_2:
-    - range: "Ã¢â€šÂ¬10,001 - Ã¢â€šÂ¬20,000"
+    - range: "‚¬10,001 - ‚¬20,000"
     - rate: 22%
     
   bracket_3:
-    - range: "Ã¢â€šÂ¬20,001 - Ã¢â€šÂ¬30,000"
+    - range: "‚¬20,001 - ‚¬30,000"
     - rate: 28%
     
   bracket_4:
-    - range: "Ã¢â€šÂ¬30,001 - Ã¢â€šÂ¬40,000"
+    - range: "‚¬30,001 - ‚¬40,000"
     - rate: 36%
     
   bracket_5:
-    - range: "Ã¢â€šÂ¬40,001+"
+    - range: "‚¬40,001+"
     - rate: 44%
 
 Tax Credits:
-  basic_credit: Ã¢â€šÂ¬2,100
-  family_credit: "Ã¢â€šÂ¬777 per child"
+  basic_credit: ‚¬2,100
+  family_credit: "‚¬777 per child"
   disability_credit: "Per disability level"
   low_income_credit: "Income dependent"
 ```
@@ -309,7 +309,7 @@ Property_Tax_ENFIA:
 Annual_Financial_Statements:
   small_companies: "July 31"
   medium_large_companies: "June 30"
-  audit_required: "Companies over Ã¢â€šÂ¬4M revenue"
+  audit_required: "Companies over ‚¬4M revenue"
 ```
 
 ## Workflow Templates
@@ -382,43 +382,43 @@ Weekly_Schedule:
   sunday: "Rest day"
 
 Monthly_Calculation:
-  regular_hours: 160 # (4 weeks Ãƒâ€” 40 hours)
-  overtime_hours: 16 # (4 weeks Ãƒâ€” 4 hours Saturday)
+  regular_hours: 160 # (4 weeks × 40 hours)
+  overtime_hours: 16 # (4 weeks × 4 hours Saturday)
   public_holiday_hours: 8 # (Clean Monday)
   total_hours: 184
   
 Gross_Pay_Calculation:
-  hourly_rate: Ã¢â€šÂ¬12.00
-  regular_pay: Ã¢â€šÂ¬1,920.00 # (160 Ãƒâ€” Ã¢â€šÂ¬12.00)
-  overtime_pay: Ã¢â€šÂ¬240.00 # (16 Ãƒâ€” Ã¢â€šÂ¬12.00 Ãƒâ€” 1.25)
-  holiday_pay: Ã¢â€šÂ¬192.00 # (8 Ãƒâ€” Ã¢â€šÂ¬12.00 Ãƒâ€” 2.0)
-  gross_total: Ã¢â€šÂ¬2,352.00
+  hourly_rate: ‚¬12.00
+  regular_pay: ‚¬1,920.00 # (160 × ‚¬12.00)
+  overtime_pay: ‚¬240.00 # (16 × ‚¬12.00 × 1.25)
+  holiday_pay: ‚¬192.00 # (8 × ‚¬12.00 × 2.0)
+  gross_total: ‚¬2,352.00
 ```
 
 ### Social Security & Tax Deductions
 ```yaml
 Social_Security_Deductions:
-  efka_main: Ã¢â€šÂ¬156.81 # (Ã¢â€šÂ¬2,352 Ãƒâ€” 6.67%)
-  efka_auxiliary: Ã¢â€šÂ¬70.56 # (Ã¢â€šÂ¬2,352 Ãƒâ€” 3.0%)
-  unemployment: Ã¢â€šÂ¬20.46 # (Ã¢â€šÂ¬2,352 Ãƒâ€” 0.87%)
-  health_insurance: Ã¢â€šÂ¬69.38 # (Ã¢â€šÂ¬2,352 Ãƒâ€” 2.95%)
-  total_ss_deductions: Ã¢â€šÂ¬317.21
+  efka_main: ‚¬156.81 # (‚¬2,352 × 6.67%)
+  efka_auxiliary: ‚¬70.56 # (‚¬2,352 × 3.0%)
+  unemployment: ‚¬20.46 # (‚¬2,352 × 0.87%)
+  health_insurance: ‚¬69.38 # (‚¬2,352 × 2.95%)
+  total_ss_deductions: ‚¬317.21
 
 Income_Tax_Calculation:
-  annual_projection: Ã¢â€šÂ¬28,224 # (Ã¢â€šÂ¬2,352 Ãƒâ€” 12)
-  tax_bracket_1: Ã¢â€šÂ¬900.00 # (Ã¢â€šÂ¬10,000 Ãƒâ€” 9%)
-  tax_bracket_2: Ã¢â€šÂ¬2,200.00 # (Ã¢â€šÂ¬10,000 Ãƒâ€” 22%)
-  tax_bracket_3: Ã¢â€šÂ¬2,240.00 # (Ã¢â€šÂ¬8,224 Ãƒâ€” 28%)
-  gross_annual_tax: Ã¢â€šÂ¬5,340.00
-  annual_tax_credit: Ã¢â€šÂ¬2,100.00
-  net_annual_tax: Ã¢â€šÂ¬3,240.00
-  monthly_withholding: Ã¢â€šÂ¬270.00
+  annual_projection: ‚¬28,224 # (‚¬2,352 × 12)
+  tax_bracket_1: ‚¬900.00 # (‚¬10,000 × 9%)
+  tax_bracket_2: ‚¬2,200.00 # (‚¬10,000 × 22%)
+  tax_bracket_3: ‚¬2,240.00 # (‚¬8,224 × 28%)
+  gross_annual_tax: ‚¬5,340.00
+  annual_tax_credit: ‚¬2,100.00
+  net_annual_tax: ‚¬3,240.00
+  monthly_withholding: ‚¬270.00
 
 Net_Pay_Calculation:
-  gross_pay: Ã¢â€šÂ¬2,352.00
-  social_security: -Ã¢â€šÂ¬317.21
-  income_tax: -Ã¢â€šÂ¬270.00
-  net_pay: Ã¢â€šÂ¬1,764.79
+  gross_pay: ‚¬2,352.00
+  social_security: -‚¬317.21
+  income_tax: -‚¬270.00
+  net_pay: ‚¬1,764.79
 ```
 
 ## Integration Requirements
@@ -639,14 +639,14 @@ Social_Security_Errors:
 ## Success Criteria
 
 A successful Greek compliance system should achieve:
-- Ã¢Å“â€¦ 100% AADE deadline compliance
-- Ã¢Å“â€¦ 99.9% VAT calculation accuracy  
-- Ã¢Å“â€¦ Real-time myDATA invoice submission
-- Ã¢Å“â€¦ Zero payroll calculation errors
-- Ã¢Å“â€¦ Complete audit trail for all transactions
-- Ã¢Å“â€¦ 80% reduction in manual compliance work
-- Ã¢Å“â€¦ Integration with all major Greek banks
-- Ã¢Å“â€¦ Automated social security submissions
+- ✅ 100% AADE deadline compliance
+- ✅ 99.9% VAT calculation accuracy  
+- ✅ Real-time myDATA invoice submission
+- ✅ Zero payroll calculation errors
+- ✅ Complete audit trail for all transactions
+- ✅ 80% reduction in manual compliance work
+- ✅ Integration with all major Greek banks
+- ✅ Automated social security submissions
 
 ## Legal Disclaimers
 

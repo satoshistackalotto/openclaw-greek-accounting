@@ -134,26 +134,26 @@ Supported_Greek_Banks:
 ```yaml
 Statement_Format_Recognition:
   alpha_bank_excel:
-    headers_greek: ["ÃŽâ€”ÃŽÂ¼ÃŽÂµÃÂÃŽÂ¿ÃŽÂ¼ÃŽÂ·ÃŽÂ½ÃŽÂ¯ÃŽÂ±", "ÃŽÂ ÃŽÂµÃÂÃŽÂ¹ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ®", "ÃŽÂ ÃŽÂ¿ÃÆ’ÃÅ’", "ÃŽÂ¥Ãâ‚¬ÃÅ’ÃŽÂ»ÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ¿"]
+    headers_greek: ["Ημερομηνία", "Περιγραπ ή", "Ποσς", "Υπςλοιπο"]
     headers_english: ["Date", "Description", "Amount", "Balance"]
     date_format: "dd/MM/yyyy"
     amount_format: "1.234,56"
     encoding: "Windows-1253, UTF-8"
     
   nbg_csv:
-    headers: ["ÃŽâ€”ÃŽÅ“ÃŽâ€¢ÃŽÂ¡ÃŽÅ¸ÃŽÅ“ÃŽâ€”ÃŽÂÃŽâ„¢ÃŽâ€˜", "ÃŽâ€˜ÃŽâ„¢ÃŽÂ¤ÃŽâ„¢ÃŽÅ¸ÃŽâ€ºÃŽÅ¸ÃŽâ€œÃŽâ„¢ÃŽâ€˜", "ÃŽÂ§ÃŽÂ¡ÃŽâ€¢ÃŽÂ©ÃŽÂ£ÃŽâ€”", "ÃŽÂ ÃŽâ„¢ÃŽÂ£ÃŽÂ¤ÃŽÂ©ÃŽÂ£ÃŽâ€”", "ÃŽÂ¥ÃŽÂ ÃŽÅ¸ÃŽâ€ºÃŽÅ¸ÃŽâ„¢ÃŽÂ ÃŽÅ¸"]
+    headers: ["ΗΜΕΡθΜΗΝΙΑ", "ΑΙΤΙθ΀ºθΓΙΑ", "ΧΡΕΩΣΗ", "ΠΙΣΤΩΣΗ", "ΥΠθ΀ºθΙΠθ"]
     separator: ";"
     decimal_separator: ","
     date_format: "dd/MM/yyyy"
     
   eurobank_excel:
-    headers: ["ÃŽâ€”ÃŽÂ¼/ÃŽÂ½ÃŽÂ¯ÃŽÂ±", "ÃŽÅ¡Ãâ€°ÃŽÂ´.ÃŽÂ£Ãâ€¦ÃŽÂ½ÃŽÂ±ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ®Ãâ€š", "ÃŽÂ ÃŽÂµÃÂÃŽÂ¹ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ®", "ÃŽÂ ÃŽÂ¿ÃÆ’ÃÅ’", "ÃŽÂ¥Ãâ‚¬ÃÅ’ÃŽÂ»ÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ¿"]
-    currency_column: "ÃŽÂÃÅ’ÃŽÂ¼ÃŽÂ¹ÃÆ’ÃŽÂ¼ÃŽÂ±"
-    reference_column: "ÃŽâ€˜ÃÂ.ÃŽÂ ÃŽÂ±ÃÂÃŽÂ±ÃÆ’Ãâ€žÃŽÂ±Ãâ€žÃŽÂ¹ÃŽÂºÃŽÂ¿ÃÂ"
+    headers: ["Ημ/νία", "Ρπ°δ.Συναλλαγήπš", "Περιγραπ ή", "Ποσς", "Υπςλοιπο"]
+    currency_column: "Νςμισμα"
+    reference_column: "Αρ.Παρασπžαπžικού"
     
   piraeus_csv:
-    headers: ["ÃŽâ€”ÃŽÂ¼ÃŽÂµÃÂÃŽÂ¿ÃŽÂ¼ÃŽÂ·ÃŽÂ½ÃŽÂ¯ÃŽÂ± ÃŽÂ£Ãâ€¦ÃŽÂ½ÃŽÂ±ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ®Ãâ€š", "ÃŽÂ ÃŽÂµÃÂÃŽÂ¹ÃŽÂ³ÃÂÃŽÂ±Ãâ€ ÃŽÂ®", "ÃŽÂ ÃŽÂ¿ÃÆ’ÃÅ’", "ÃŽÂ¥Ãâ‚¬ÃÅ’ÃŽÂ»ÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ¿ ÃŽÅ“ÃŽÂµÃâ€žÃŽÂ¬"]
-    special_fields: ["ÃŽÅ¡Ãâ€°ÃŽÂ´ÃŽÂ¹ÃŽÂºÃÅ’Ãâ€š ÃŽÂ£Ãâ€¦ÃŽÂ½ÃŽÂ±ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ³ÃŽÂ®Ãâ€š", "ÃŽâ€˜ÃÂ. ÃŽâ€˜ÃŽÂ½ÃŽÂ±Ãâ€ ÃŽÂ¿ÃÂÃŽÂ¬Ãâ€š"]
+    headers: ["Ημερομηνία Συναλλαγήπš", "Περιγραπ ή", "Ποσς", "Υπςλοιπο Μεπžά"]
+    special_fields: ["Ρπ°δικςπš Συναλλαγήπš", "Αρ. Αναπ οράπš"]
 ```
 
 ## OpenClaw File Processing Architecture
@@ -221,36 +221,36 @@ Processing_Workflow:
 Greek_Business_Categories:
   income_categories:
     client_payments:
-      keywords_greek: ["ÃŽÂ ÃŽâ€ºÃŽâ€”ÃŽÂ¡ÃŽÂ©ÃŽÅ“ÃŽâ€”", "ÃŽâ€¢ÃŽÅ“ÃŽâ€™ÃŽâ€˜ÃŽÂ£ÃŽÅ“ÃŽâ€˜", "ÃŽÅ¡ÃŽâ€˜ÃŽÂ¤ÃŽâ€˜ÃŽËœÃŽâ€¢ÃŽÂ£ÃŽâ€”"]
+      keywords_greek: ["Π΀ºΗΡΩΜΗ", "ΕΜΒΑΣΜΑ", "ΡΑΤΑΜΕΣΗ"]
       keywords_english: ["PAYMENT", "TRANSFER", "DEPOSIT"]
       vat_implications: "Check if VAT already included"
       
     government_refunds:
-      keywords: ["ÃŽâ€˜ÃŽâ€ÃŽâ€ÃŽâ€¢", "ÃŽâ€¢ÃŽÂ¦ÃŽÅ¡ÃŽâ€˜", "ÃŽâ€ÃŽâ€”ÃŽÅ“ÃŽÅ¸ÃŽÂ£", "ÃŽâ€¢ÃŽÂ ÃŽâ„¢ÃŽÂ£ÃŽÂ¤ÃŽÂ¡ÃŽÅ¸ÃŽÂ¦ÃŽâ€”"]
+      keywords: ["ΑΔΔΕ", "ΕΦΡΑ", "ΔΗΜθΣ", "ΕΠΙΣΤΡθΦΗ"]
       categories: ["VAT refunds", "Social security refunds", "Municipal refunds"]
       
     bank_interest:
-      keywords: ["ÃŽÂ¤ÃŽÅ¸ÃŽÅ¡ÃŽÅ¸ÃŽâ„¢", "INTEREST", "ÃŽÂ ÃŽÂ¡ÃŽÅ¸ÃŽÂ£ÃŽÅ¸ÃŽâ€ÃŽÅ¸ÃŽÂ£"]
+      keywords: ["ΤθΡθΙ", "INTEREST", "ΠΡθΣθΔθΣ"]
       tax_treatment: "15% withholding tax already applied"
       
   expense_categories:
     supplier_payments:
-      keywords_greek: ["ÃŽÂ ÃŽâ€ºÃŽâ€”ÃŽÂ¡ÃŽÂ©ÃŽÅ“ÃŽâ€” ÃŽÂ ÃŽÂ¡ÃŽÅ¸ÃŽÂ£", "ÃŽÅ“ÃŽâ€¢ÃŽÂ¤ÃŽâ€˜ÃŽÂ¦ÃŽÅ¸ÃŽÂ¡ÃŽâ€˜", "ÃŽâ€¢ÃŽÂÃŽÂ¤ÃŽÅ¸ÃŽâ€ºÃŽâ€”"]
+      keywords_greek: ["Π΀ºΗΡΩΜΗ ΠΡθΣ", "ΜΕΤΑΦθΡΑ", "ΕΝΤθ΀ºΗ"]
       vat_recovery: "Standard 24%, Reduced 13%, Super-reduced 6%"
       
     payroll_expenses:
-      keywords: ["ÃŽÅ“ÃŽâ„¢ÃŽÂ£ÃŽËœÃŽÅ¸ÃŽâ€ÃŽÅ¸ÃŽÂ£ÃŽâ„¢ÃŽâ€˜", "ÃŽâ€¢ÃŽÂ¡ÃŽâ€œÃŽâ€˜ÃŽâ€“ÃŽÅ¸ÃŽÅ“ÃŽâ€¢ÃŽÂÃŽÅ¸ÃŽÂ£", "ÃŽâ„¢ÃŽÅ¡ÃŽâ€˜", "ÃŽâ€¢ÃŽÂ¦ÃŽÅ¡ÃŽâ€˜"]
+      keywords: ["ΜΙΣΜθΔθΣΙΑ", "ΕΡΓΑ΀“θΜΕΝθΣ", "ΙΡΑ", "ΕΦΡΑ"]
       categories: ["Gross salaries", "Social security employer", "Withholding taxes"]
       
     government_payments:
-      keywords: ["ÃŽâ€˜ÃŽâ€ÃŽâ€ÃŽâ€¢", "ÃŽÂ¦ÃŽÂ ÃŽâ€˜", "ÃŽâ€¢ÃŽÂ¦ÃŽÅ¡ÃŽâ€˜", "ÃŽâ€ÃŽâ€”ÃŽÅ“ÃŽÅ¸ÃŽÂ£", "ENFIA"]
+      keywords: ["ΑΔΔΕ", "ΦΠΑ", "ΕΦΡΑ", "ΔΗΜθΣ", "ENFIA"]
       categories: ["VAT payments", "Income tax", "Social security", "Municipal taxes"]
       
     operating_expenses:
-      rent: ["ÃŽâ€¢ÃŽÂÃŽÅ¸ÃŽâ„¢ÃŽÅ¡ÃŽâ„¢ÃŽÅ¸", "ÃŽÅ“ÃŽâ„¢ÃŽÂ£ÃŽËœÃŽÂ©ÃŽÅ“ÃŽâ€˜"]
-      utilities: ["ÃŽâ€ÃŽâ€¢ÃŽâ€”", "ÃŽâ€¢ÃŽÂ¥ÃŽâ€ÃŽâ€˜ÃŽÂ ", "COSMOTE", "VODAFONE", "WIND"]
-      fuel: ["ÃŽÅ¡ÃŽâ€˜ÃŽÂ¥ÃŽÂ£ÃŽâ„¢ÃŽÅ“ÃŽâ€˜", "ÃŽâ€™ÃŽâ€¢ÃŽÂÃŽâ€“ÃŽâ„¢ÃŽÂÃŽâ€”", "ÃŽÂ ÃŽâ€¢ÃŽÂ¤ÃŽÂ¡ÃŽâ€¢ÃŽâ€ºÃŽâ€˜ÃŽâ„¢ÃŽÅ¸", "BP", "SHELL", "ELIN"]
-      office: ["ÃŽâ€œÃŽÂ¡ÃŽâ€˜ÃŽÂ¦ÃŽâ„¢ÃŽÅ¡ÃŽâ€˜", "ÃŽâ€˜ÃŽÂÃŽâ€˜ÃŽâ€ºÃŽÂ©ÃŽÂ£ÃŽâ„¢ÃŽÅ“ÃŽâ€˜", "OFFICE", "SUPPLIES"]
+      rent: ["ΕΝθΙΡΙθ", "ΜΙΣΜΩΜΑ"]
+      utilities: ["ΔΕΗ", "ΕΥΔΑΠ", "COSMOTE", "VODAFONE", "WIND"]
+      fuel: ["ΡΑΥΣΙΜΑ", "ΒΕΝ΀“ΙΝΗ", "ΠΕΤΡΕ΀ºΑΙθ", "BP", "SHELL", "ELIN"]
+      office: ["ΓΡΑΦΙΡΑ", "ΑΝΑ΀ºΩΣΙΜΑ", "OFFICE", "SUPPLIES"]
 ```
 
 ### Greek Banking Transaction Patterns
@@ -262,17 +262,17 @@ Transaction_Pattern_Recognition:
     fee_detection: "Look for SEPA fees in separate transactions"
     
   standing_orders:
-    keywords: ["ÃŽÅ“ÃŽÅ¸ÃŽÂÃŽâ„¢ÃŽÅ“ÃŽâ€” ÃŽâ€¢ÃŽÂÃŽÂ¤ÃŽÅ¸ÃŽâ€ºÃŽâ€”", "STANDING ORDER", "ÃŽÂ¤ÃŽâ€˜ÃŽÅ¡ÃŽÂ¤ÃŽâ„¢ÃŽÅ¡ÃŽâ€” ÃŽÂ ÃŽâ€ºÃŽâ€”ÃŽÂ¡ÃŽÂ©ÃŽÅ“ÃŽâ€”"]
+    keywords: ["ΜθΝΙΜΗ ΕΝΤθ΀ºΗ", "STANDING ORDER", "ΤΑΡΤΙΡΗ Π΀ºΗΡΩΜΗ"]
     categorization: "Recurring expense (rent, insurance, loan payments)"
     
   direct_debits:
-    keywords: ["ÃŽâ€˜ÃŽÅ“ÃŽâ€¢ÃŽÂ£ÃŽâ€” ÃŽÂ§ÃŽÂ¡ÃŽâ€¢ÃŽÂ©ÃŽÂ£ÃŽâ€”", "DIRECT DEBIT", "DOMICILIATION"]
-    common_billers: ["ÃŽâ€ÃŽâ€¢ÃŽâ€”", "ÃŽâ€¢ÃŽÂ¥ÃŽâ€ÃŽâ€˜ÃŽÂ ", "COSMOTE", "Insurance companies"]
+    keywords: ["ΑΜΕΣΗ ΧΡΕΩΣΗ", "DIRECT DEBIT", "DOMICILIATION"]
+    common_billers: ["ΔΕΗ", "ΕΥΔΑΠ", "COSMOTE", "Insurance companies"]
     
   card_transactions:
-    pos_patterns: ["POS", "CARD", "ÃŽÅ¡ÃŽâ€˜ÃŽÂ¡ÃŽÂ¤ÃŽâ€˜", "ÃŽâ€˜ÃŽâ€œÃŽÅ¸ÃŽÂ¡ÃŽâ€˜"]
+    pos_patterns: ["POS", "CARD", "ΡΑΡΤΑ", "ΑΓθΡΑ"]
     online_patterns: ["ONLINE", "INTERNET", "E-COMMERCE"]
-    cash_withdrawals: ["ATM", "ÃŽâ€˜ÃŽÂÃŽâ€˜ÃŽâ€ºÃŽâ€”ÃŽÂ¨ÃŽâ€”", "ÃŽÅ“ÃŽâ€¢ÃŽÂ¤ÃŽÂ¡ÃŽâ€”ÃŽÂ¤ÃŽâ€˜"]
+    cash_withdrawals: ["ATM", "ΑΝΑ΀ºΗΨΗ", "ΜΕΤΡΗΤΑ"]
 ```
 
 ## Greek Banking API & Data Integration
@@ -283,25 +283,25 @@ Real_World_Integration:
   bank_export_procedures:
     alpha_bank:
       login: "Alpha Web Banking or Business Banking"
-      navigation: "Accounts Ã¢â€ â€™ Statement Ã¢â€ â€™ Export"
+      navigation: "Accounts †’ Statement †’ Export"
       formats_available: ["Excel", "CSV", "PDF"]
       export_period: "Custom date range (max 12 months)"
       
     nbg:
       login: "NBG i-bank"
-      navigation: "Account Info Ã¢â€ â€™ Account Statement Ã¢â€ â€™ Download"
+      navigation: "Account Info †’ Account Statement †’ Download"
       formats_available: ["Excel", "CSV", "PDF", "QIF"]
       special_note: "Business accounts have additional export options"
       
     eurobank:
       login: "e-banking Portal"
-      navigation: "Accounts Ã¢â€ â€™ Movement History Ã¢â€ â€™ Export Data"
+      navigation: "Accounts †’ Movement History †’ Export Data"
       formats_available: ["Excel", "CSV", "PDF", "OFX"]
       automation_note: "Some business accounts allow scheduled exports"
       
     piraeus:
       login: "winbank"
-      navigation: "Account Ã¢â€ â€™ History Ã¢â€ â€™ Export Statement"
+      navigation: "Account †’ History †’ Export Statement"
       formats_available: ["Excel", "CSV", "PDF"]
       bulk_download: "Available for business accounts"
 ```
@@ -357,11 +357,11 @@ VAT_Analysis_Features:
       
     reduced_13_percent:
       transaction_patterns: "Hotels, restaurants, transport"
-      keywords: ["ÃŽâ€¢ÃŽÂ£ÃŽÂ¤ÃŽâ„¢ÃŽâ€˜ÃŽÂ¤ÃŽÅ¸ÃŽÂ¡ÃŽâ„¢ÃŽÅ¸", "ÃŽÅ¾ÃŽâ€¢ÃŽÂÃŽÅ¸ÃŽâ€ÃŽÅ¸ÃŽÂ§ÃŽâ€¢ÃŽâ„¢ÃŽÅ¸", "ÃŽÂ¤ÃŽâ€˜ÃŽÅ¾ÃŽâ„¢", "RESTAURANT", "HOTEL"]
+      keywords: ["ΕΣΤΙΑΤθΡΙθ", "ξΕΝθΔθΧΕΙθ", "ΤΑξΙ", "RESTAURANT", "HOTEL"]
       
     super_reduced_6_percent:
       transaction_patterns: "Books, newspapers, medicines"
-      keywords: ["ÃŽâ€™ÃŽâ„¢ÃŽâ€™ÃŽâ€ºÃŽâ„¢ÃŽâ€˜", "ÃŽâ€¢ÃŽÂ¦ÃŽâ€”ÃŽÅ“ÃŽâ€¢ÃŽÂ¡ÃŽâ„¢ÃŽâ€ÃŽâ€˜", "ÃŽÂ¦ÃŽâ€˜ÃŽÂ¡ÃŽÅ“ÃŽâ€˜ÃŽÅ¡ÃŽâ€¢ÃŽâ„¢ÃŽÅ¸", "BOOKS", "PHARMACY"]
+      keywords: ["ΒΙΒ΀ºΙΑ", "ΕΦΗΜΕΡΙΔΑ", "ΦΑΡΜΑΡΕΙθ", "BOOKS", "PHARMACY"]
       
   vat_recovery_calculation:
     input_vat_tracking: "Track recoverable VAT from suppliers"
@@ -376,28 +376,28 @@ VAT_Analysis_Features:
 Greek_Accounting_Integration:
   elsyn_chart_of_accounts:
     class_1_assets:
-      - "10. ÃŽÂ ÃŽÂ¬ÃŽÂ³ÃŽÂ¹ÃŽÂ± ÃÆ’Ãâ€žÃŽÂ¿ÃŽÂ¹Ãâ€¡ÃŽÂµÃŽÂ¯ÃŽÂ± ÃŽÂµÃŽÂ½ÃŽÂµÃÂÃŽÂ³ÃŽÂ·Ãâ€žÃŽÂ¹ÃŽÂºÃŽÂ¿ÃÂ"
-      - "14. ÃŽâ€˜Ãâ‚¬ÃŽÂ¿ÃŽÂ¸ÃŽÂ­ÃŽÂ¼ÃŽÂ±Ãâ€žÃŽÂ±"
-      - "16. ÃŽâ€˜Ãâ‚¬ÃŽÂ±ÃŽÂ¹Ãâ€žÃŽÂ®ÃÆ’ÃŽÂµÃŽÂ¹Ãâ€š"
-      - "18. ÃŽâ€ÃŽÂ¹ÃŽÂ±ÃŽÂ¸ÃŽÂ­ÃÆ’ÃŽÂ¹ÃŽÂ¼ÃŽÂ±"
+      - "10. Πάγια σπžοιπ¡εία ενεργηπžικού"
+      - "14. Αποθέμαπžα"
+      - "16. Απαιπžήσειπš"
+      - "18. Διαθέσιμα"
       
     class_2_liabilities:
-      - "20. ÃŽÅ ÃŽÂ´ÃŽÂ¹ÃŽÂ± ÃŽÂºÃŽÂµÃâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ±ÃŽÂ¹ÃŽÂ±"
-      - "24. ÃŽÂ ÃÂÃŽÂ¿ÃŽÂ²ÃŽÂ»ÃŽÂ­ÃË†ÃŽÂµÃŽÂ¹Ãâ€š ÃŽÂ³ÃŽÂ¹ÃŽÂ± ÃŽÂºÃŽÂ¹ÃŽÂ½ÃŽÂ´ÃÂÃŽÂ½ÃŽÂ¿Ãâ€¦Ãâ€š ÃŽÂºÃŽÂ±ÃŽÂ¹ ÃŽÂ­ÃŽÂ¾ÃŽÂ¿ÃŽÂ´ÃŽÂ±"  
-      - "25. ÃŽÂ¥Ãâ‚¬ÃŽÂ¿Ãâ€¡ÃÂÃŽÂµÃÅ½ÃÆ’ÃŽÂµÃŽÂ¹Ãâ€š"
+      - "20. Πδια κεπ άλαια"
+      - "24. Προβλέψειπš για κινδύνουπš και έξοδα"  
+      - "25. Υποπ¡ρεϽσειπš"
       
     class_6_expenses:
-      - "60. ÃŽâ€˜ÃŽÂ³ÃŽÂ¿ÃÂÃŽÂ­Ãâ€š"
-      - "61. ÃŽÅ“ÃŽÂµÃâ€žÃŽÂ±ÃŽÂ²ÃŽÂ¿ÃŽÂ»ÃŽÂ® ÃŽÂ±Ãâ‚¬ÃŽÂ¿ÃŽÂ¸ÃŽÂµÃŽÂ¼ÃŽÂ¬Ãâ€žÃâ€°ÃŽÂ½"
-      - "62. ÃŽâ€ºÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ­Ãâ€š Ãâ‚¬ÃŽÂ±ÃÂÃŽÂ¿Ãâ€¡ÃŽÂ­Ãâ€š Ãâ€žÃÂÃŽÂ¯Ãâ€žÃâ€°ÃŽÂ½"
-      - "63. ÃŽÂ ÃŽÂ±ÃÂÃŽÂ¿Ãâ€¡ÃŽÂ­Ãâ€š ÃÆ’ÃŽÂµ ÃŽÂµÃÂÃŽÂ³ÃŽÂ±ÃŽÂ¶ÃŽÂ¿ÃŽÂ¼ÃŽÂ­ÃŽÂ½ÃŽÂ¿Ãâ€¦Ãâ€š"
-      - "64. ÃŽâ€ºÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ¬ ÃŽÂ»ÃŽÂµÃŽÂ¹Ãâ€žÃŽÂ¿Ãâ€¦ÃÂÃŽÂ³ÃŽÂ¹ÃŽÂºÃŽÂ¬ ÃŽÂ­ÃŽÂ¾ÃŽÂ¿ÃŽÂ´ÃŽÂ±"
+      - "60. Αγορέπš"
+      - "61. Μεπžαβολή αποθεμάπžπ°ν"
+      - "62. ΀ºοιπέπš παροπ¡έπš πžρίπžπ°ν"
+      - "63. Παροπ¡έπš σε εργαζομένουπš"
+      - "64. ΀ºοιπά λειπžουργικά έξοδα"
       
     class_7_income:
-      - "70. ÃŽÂ Ãâ€°ÃŽÂ»ÃŽÂ®ÃÆ’ÃŽÂµÃŽÂ¹Ãâ€š ÃŽÂµÃŽÂ¼Ãâ‚¬ÃŽÂ¿ÃÂÃŽÂµÃâ€¦ÃŽÂ¼ÃŽÂ¬Ãâ€žÃâ€°ÃŽÂ½"
-      - "73. ÃŽÂ ÃŽÂ±ÃÂÃŽÂ±ÃŽÂ³Ãâ€°ÃŽÂ³ÃŽÂ® Ãâ‚¬ÃŽÂµÃÂÃŽÂ¹ÃÅ’ÃŽÂ´ÃŽÂ¿Ãâ€¦"
-      - "74. ÃŽÂ ÃŽÂ±ÃÂÃŽÂ¿Ãâ€¡ÃŽÂ­Ãâ€š Ãâ€¦Ãâ‚¬ÃŽÂ·ÃÂÃŽÂµÃÆ’ÃŽÂ¹ÃÅ½ÃŽÂ½"
-      - "75. ÃŽâ€ºÃŽÂ¿ÃŽÂ¹Ãâ‚¬ÃŽÂ¬ ÃÆ’Ãâ€¦ÃŽÂ½ÃŽÂ®ÃŽÂ¸ÃŽÂ· ÃŽÂ­ÃÆ’ÃŽÂ¿ÃŽÂ´ÃŽÂ±"
+      - "70. Ππ°λήσειπš εμπορευμάπžπ°ν"
+      - "73. Παραγπ°γή περιςδου"
+      - "74. Παροπ¡έπš υπηρεσιϽν"
+      - "75. ΀ºοιπά συνήθη έσοδα"
 ```
 
 ### Accounting Software Integration
@@ -461,25 +461,25 @@ Error_Recovery_Procedures:
 # Typical morning banking workflow for Greek company
 $ openclaw banking morning-process --all-greek-banks --yesterday
 
-Ã°Å¸ÂÂ¦ Greek Banking Processing Summary - February 19, 2026:
+ðŸÂ¦ Greek Banking Processing Summary - February 19, 2026:
 
-Ã°Å¸â€œÅ  Statements Processed:
-Ã¢Å“â€¦ Alpha Bank Business Account (Ã¢â€šÂ¬45,230.67 Ã¢â€ â€™ Ã¢â€šÂ¬47,890.45)
+📊 Statements Processed:
+✅ Alpha Bank Business Account (‚¬45,230.67 †’ ‚¬47,890.45)
    - 12 transactions processed  
-   - 8 client payments identified (+Ã¢â€šÂ¬8,450.00)
-   - 4 supplier payments (-Ã¢â€šÂ¬5,790.22)
+   - 8 client payments identified (+‚¬8,450.00)
+   - 4 supplier payments (-‚¬5,790.22)
    
-Ã¢Å“â€¦ Eurobank Current Account (Ã¢â€šÂ¬12,450.30 Ã¢â€ â€™ Ã¢â€šÂ¬11,890.15) 
+✅ Eurobank Current Account (‚¬12,450.30 †’ ‚¬11,890.15) 
    - 6 transactions processed
-   - 2 government payments identified (-Ã¢â€šÂ¬560.15)
-   - 4 operating expenses (-Ã¢â€šÂ¬0.00)
+   - 2 government payments identified (-‚¬560.15)
+   - 4 operating expenses (-‚¬0.00)
 
-Ã°Å¸Å½Â¯ Reconciliation Results:
-Ã¢Å“â€¦ 7 invoices automatically matched (100% confidence)
-Ã¢Å¡Â Ã¯Â¸Â 2 payments require manual review (Invoice #2024-0156, #2024-0189)  
-Ã¢Å“â€¦ VAT analysis completed: Ã¢â€šÂ¬1,240.50 recoverable input VAT
+🎯 Reconciliation Results:
+✅ 7 invoices automatically matched (100% confidence)
+⚠ï¸ 2 payments require manual review (Invoice #2024-0156, #2024-0189)  
+✅ VAT analysis completed: ‚¬1,240.50 recoverable input VAT
 
-Ã°Å¸â€œÂ¤ Exports Generated:
+📤 Exports Generated:
 - QuickBooks: /data/exports/accounting-software/EL123456789_2026-02_transactions.csv
 - VAT Analysis: /data/reports/client/EL123456789_2026-02_vat-analysis.xlsx
 - Client Reports: 5 payment confirmations ready for sending
@@ -489,29 +489,29 @@ $ openclaw banking morning-process --all-greek-banks --yesterday
 ```bash
 $ openclaw banking reconcile-month --february-2026 --all-accounts
 
-Ã°Å¸â€œâ€¹ February 2026 Bank Reconciliation:
+📀¹ February 2026 Bank Reconciliation:
 
-Ã°Å¸ÂÂ¦ Alpha Bank Business (***1234):
-Bank Statement Balance: Ã¢â€šÂ¬47,890.45
-Outstanding Deposits: Ã¢â€šÂ¬2,340.00 (Feb 28 deposits in transit)
-Outstanding Checks: Ã¢â€šÂ¬890.50 (Checks not yet cleared)
-Book Balance: Ã¢â€šÂ¬49,339.95
-Variance: Ã¢â€šÂ¬0.00 Ã¢Å“â€¦
+ðŸÂ¦ Alpha Bank Business (***1234):
+Bank Statement Balance: ‚¬47,890.45
+Outstanding Deposits: ‚¬2,340.00 (Feb 28 deposits in transit)
+Outstanding Checks: ‚¬890.50 (Checks not yet cleared)
+Book Balance: ‚¬49,339.95
+Variance: ‚¬0.00 ✅
 
-Ã°Å¸â€Â Matched Transactions: 156/158 (98.7%)
-Ã¢Å¡Â Ã¯Â¸Â Unmatched Transactions (2):
-  - Ã¢â€šÂ¬234.50 - "SEPA Transfer - Unknown reference XYZ123"
-  - Ã¢â€šÂ¬89.90 - "Bank charges - Service fee"
+ðŸ” Matched Transactions: 156/158 (98.7%)
+⚠ï¸ Unmatched Transactions (2):
+  - ‚¬234.50 - "SEPA Transfer - Unknown reference XYZ123"
+  - ‚¬89.90 - "Bank charges - Service fee"
 
-Ã°Å¸Â§Â® VAT Summary:
-Input VAT Recovered: Ã¢â€šÂ¬3,450.67 (24% standard rate)
-Output VAT Collected: Ã¢â€šÂ¬5,670.88 (mixed rates)
-Net VAT Position: Ã¢â€šÂ¬2,220.21 payable
+🧮 VAT Summary:
+Input VAT Recovered: ‚¬3,450.67 (24% standard rate)
+Output VAT Collected: ‚¬5,670.88 (mixed rates)
+Net VAT Position: ‚¬2,220.21 payable
 
-Ã°Å¸â€œÅ  Client Payments Analysis:
-- COMPANY A AE: Ã¢â€šÂ¬4,500.00 (Invoice #2024-0145) Ã¢Å“â€¦
-- COMPANY B EPE: Ã¢â€šÂ¬2,300.00 (Invoice #2024-0167) Ã¢Å“â€¦  
-- FREELANCER C: Ã¢â€šÂ¬890.00 (Multiple invoices) Ã¢Å¡Â Ã¯Â¸Â Partial payment
+📊 Client Payments Analysis:
+- COMPANY A AE: ‚¬4,500.00 (Invoice #2024-0145) ✅
+- COMPANY B EPE: ‚¬2,300.00 (Invoice #2024-0167) ✅  
+- FREELANCER C: ‚¬890.00 (Multiple invoices) ⚠ï¸ Partial payment
 ```
 
 ### Integration with Meta-Skill
@@ -531,13 +531,13 @@ $ openclaw greek daily-banking --process-statements --auto-reconcile
 ## Success Metrics for Greek Company Testing
 
 A successful Greek banking integration should achieve:
-- Ã¢Å“â€¦ 95%+ automatic transaction categorization accuracy
-- Ã¢Å“â€¦ Support for all major Greek bank statement formats
-- Ã¢Å“â€¦ <5 minute processing time for monthly statements
-- Ã¢Å“â€¦ 90%+ automatic invoice-to-payment matching
-- Ã¢Å“â€¦ Complete VAT analysis with Greek rates (24%, 13%, 6%)
-- Ã¢Å“â€¦ Seamless integration with Greek accounting software
-- Ã¢Å“â€¦ Robust handling of Greek language and character encoding
-- Ã¢Å“â€¦ Production-ready error handling and recovery procedures
+- ✅ 95%+ automatic transaction categorization accuracy
+- ✅ Support for all major Greek bank statement formats
+- ✅ <5 minute processing time for monthly statements
+- ✅ 90%+ automatic invoice-to-payment matching
+- ✅ Complete VAT analysis with Greek rates (24%, 13%, 6%)
+- ✅ Seamless integration with Greek accounting software
+- ✅ Robust handling of Greek language and character encoding
+- ✅ Production-ready error handling and recovery procedures
 
 Remember: This skill is designed specifically for testing with real Greek banks and Greek company data, using OpenClaw's file processing capabilities to handle the complexity of Greek banking formats and business requirements.

@@ -72,33 +72,33 @@ openclaw ocr coordinate-compliance --vat-analysis --tax-document-processing
 ```yaml
 Greek_Character_Optimization:
   alphabet_coverage:
-    uppercase: "ÃŽâ€˜ÃŽâ€™ÃŽâ€œÃŽâ€ÃŽâ€¢ÃŽâ€“ÃŽâ€”ÃŽËœÃŽâ„¢ÃŽÅ¡ÃŽâ€ºÃŽÅ“ÃŽÂÃŽÅ¾ÃŽÅ¸ÃŽÂ ÃŽÂ¡ÃŽÂ£ÃŽÂ¤ÃŽÂ¥ÃŽÂ¦ÃŽÂ§ÃŽÂ¨ÃŽÂ©"
-    lowercase: "ÃŽÂ±ÃŽÂ²ÃŽÂ³ÃŽÂ´ÃŽÂµÃŽÂ¶ÃŽÂ·ÃŽÂ¸ÃŽÂ¹ÃŽÂºÃŽÂ»ÃŽÂ¼ÃŽÂ½ÃŽÂ¾ÃŽÂ¿Ãâ‚¬ÃÂÃÆ’Ãâ€žÃâ€¦Ãâ€ Ãâ€¡ÃË†Ãâ€°"
-    accented_characters: "ÃŽÂ¬ÃŽÂ­ÃŽÂ®ÃŽÂ¯ÃÅ’ÃÂÃÅ½ÃŽÂÃŽÂ°"
-    special_characters: "Ãâ€š" # Final sigma
-    punctuation: "Ã‚Â·" # Greek middle dot
+    uppercase: "ΑΒΓΔΕ΀“ΗΜΙΡ΀ºΜΝξθΠΡΣΤΥΦΧΨΩ"
+    lowercase: "αβγδεζηθικλμνξοπρσπžυπ π¡ψπ°"
+    accented_characters: "άέήίςύϽΐΰ"
+    special_characters: "πš" # Final sigma
+    punctuation: "·" # Greek middle dot
     
   character_enhancement:
     similar_character_disambiguation:
-      - "ÃŽâ€˜ vs A (Latin A)"
-      - "ÃŽâ€™ vs B (Latin B)" 
-      - "ÃŽâ€¢ vs E (Latin E)"
-      - "ÃŽâ€” vs H (Latin H)"
-      - "ÃŽâ„¢ vs I (Latin I)"
-      - "ÃŽÅ¡ vs K (Latin K)"
-      - "ÃŽÅ“ vs M (Latin M)"
-      - "ÃŽÂ vs N (Latin N)"
-      - "ÃŽÅ¸ vs O (Latin O)"
-      - "ÃŽÂ  vs P (Latin P)"
-      - "ÃŽÂ¡ vs P (Latin P confusion)"
-      - "ÃŽÂ¤ vs T (Latin T)"
-      - "ÃŽÂ¥ vs Y (Latin Y)"
-      - "ÃŽÂ§ vs X (Latin X)"
+      - "Α vs A (Latin A)"
+      - "Β vs B (Latin B)" 
+      - "Ε vs E (Latin E)"
+      - "Η vs H (Latin H)"
+      - "Ι vs I (Latin I)"
+      - "Ρ vs K (Latin K)"
+      - "Μ vs M (Latin M)"
+      - "Ν vs N (Latin N)"
+      - "θ vs O (Latin O)"
+      - "Π vs P (Latin P)"
+      - "Ρ vs P (Latin P confusion)"
+      - "Τ vs T (Latin T)"
+      - "Υ vs Y (Latin Y)"
+      - "Χ vs X (Latin X)"
       
   accent_recognition:
-    acute_accents: "ÃŽÂ¬ ÃŽÂ­ ÃŽÂ® ÃŽÂ¯ ÃÅ’ ÃÂ ÃÅ½"
-    diaeresis: "ÃÅ  Ãâ€¹" 
-    combined_accents: "ÃŽÂ ÃŽÂ°"
+    acute_accents: "ά έ ή ί ς ύ Ͻ"
+    diaeresis: "Ϡ π¹" 
+    combined_accents: "ΐ ΰ"
     accent_correction: "Auto-correct missing or incorrect accents"
 ```
 
@@ -106,25 +106,25 @@ Greek_Character_Optimization:
 ```yaml
 Greek_Business_Document_Types:
   invoices:
-    greek_keywords: ["ÃŽÂ¤ÃŽâ„¢ÃŽÅ“ÃŽÅ¸ÃŽâ€ºÃŽÅ¸ÃŽâ€œÃŽâ„¢ÃŽÅ¸", "ÃŽâ€˜ÃŽÂ ÃŽÅ¸ÃŽâ€ÃŽâ€¢ÃŽâ„¢ÃŽÅ¾ÃŽâ€”", "ÃŽÂ ÃŽâ€˜ÃŽÂ¡ÃŽâ€˜ÃŽÂ£ÃŽÂ¤ÃŽâ€˜ÃŽÂ¤ÃŽâ„¢ÃŽÅ¡ÃŽÅ¸"]
-    required_elements: ["ÃŽâ€˜ÃŽÂ¦ÃŽÅ“", "ÃŽÂ¦ÃŽÂ ÃŽâ€˜", "ÃŽâ€”ÃŽÅ“ÃŽâ€¢ÃŽÂ¡ÃŽÅ¸ÃŽÅ“ÃŽâ€”ÃŽÂÃŽâ„¢ÃŽâ€˜", "ÃŽÂ ÃŽÅ¸ÃŽÂ£ÃŽÅ¸"]
-    amount_patterns: ["Ã¢â€šÂ¬\\d+[.,]\\d+", "\\d+[.,]\\d+\\s*Ã¢â€šÂ¬", "\\d+[.,]\\d+\\s*EUR"]
-    vat_patterns: ["ÃŽÂ¦ÃŽÂ ÃŽâ€˜\\s*\\d+%", "VAT\\s*\\d+%", "24%", "13%", "6%"]
+    greek_keywords: ["ΤΙΜθ΀ºθΓΙθ", "ΑΠθΔΕΙξΗ", "ΠΑΡΑΣΤΑΤΙΡθ"]
+    required_elements: ["ΑΦΜ", "ΦΠΑ", "ΗΜΕΡθΜΗΝΙΑ", "ΠθΣθ"]
+    amount_patterns: ["‚¬\\d+[.,]\\d+", "\\d+[.,]\\d+\\s*‚¬", "\\d+[.,]\\d+\\s*EUR"]
+    vat_patterns: ["ΦΠΑ\\s*\\d+%", "VAT\\s*\\d+%", "24%", "13%", "6%"]
     
   receipts:
-    types: ["ÃŽâ€˜ÃŽÂ ÃŽÅ¸ÃŽâ€ÃŽâ€¢ÃŽâ„¢ÃŽÅ¾ÃŽâ€” ÃŽâ€ºÃŽâ„¢ÃŽâ€˜ÃŽÂÃŽâ„¢ÃŽÅ¡ÃŽâ€”ÃŽÂ£", "ÃŽâ€˜ÃŽÂ ÃŽÅ¸ÃŽâ€ÃŽâ€¢ÃŽâ„¢ÃŽÅ¾ÃŽâ€” ÃŽÂ ÃŽâ€˜ÃŽÂ¡ÃŽÅ¸ÃŽÂ§ÃŽâ€”ÃŽÂ£ ÃŽÂ¥ÃŽÂ ÃŽâ€”ÃŽÂ¡ÃŽâ€¢ÃŽÂ£ÃŽâ„¢ÃŽÂ©ÃŽÂ"]
-    essential_info: ["ÃŽâ€”ÃŽÅ“ÃŽâ€¢ÃŽÂ¡ÃŽÅ¸ÃŽÅ“ÃŽâ€”ÃŽÂÃŽâ„¢ÃŽâ€˜", "ÃŽÂ©ÃŽÂ¡ÃŽâ€˜ÃŽâ€”", "ÃŽÂ ÃŽÅ¸ÃŽÂ£ÃŽÅ¸", "ÃŽâ€˜ÃŽÂ¦ÃŽÅ“ ÃŽÅ¡ÃŽâ€˜ÃŽÂ¤ÃŽâ€˜ÃŽÂ£ÃŽÂ¤ÃŽâ€”ÃŽÅ“ÃŽâ€˜ÃŽÂ¤ÃŽÅ¸ÃŽÂ£"]
-    pos_indicators: ["POS", "ÃŽÅ¡ÃŽâ€˜ÃŽÂ¡ÃŽÂ¤ÃŽâ€˜", "ÃŽÅ“ÃŽâ€¢ÃŽÂ¤ÃŽÂ¡ÃŽâ€”ÃŽÂ¤ÃŽâ€˜"]
+    types: ["ΑΠθΔΕΙξΗ ΀ºΙΑΝΙΡΗΣ", "ΑΠθΔΕΙξΗ ΠΑΡθΧΗΣ ΥΠΗΡΕΣΙΩΝ"]
+    essential_info: ["ΗΜΕΡθΜΗΝΙΑ", "ΩΡΑΗ", "ΠθΣθ", "ΑΦΜ ΡΑΤΑΣΤΗΜΑΤθΣ"]
+    pos_indicators: ["POS", "ΡΑΡΤΑ", "ΜΕΤΡΗΤΑ"]
     
   government_forms:
-    aade_forms: ["ÃŽâ€¢1", "ÃŽâ€¢3", "ÃŽÂ¦ÃŽÂ ÃŽâ€˜", "ÃŽâ€¢ÃŽÂÃŽÂ¦ÃŽâ„¢ÃŽâ€˜"]
-    efka_forms: ["ÃŽâ€˜.ÃŽÂ .ÃŽâ€.", "ÃŽâ€˜ÃŽÂ ÃŽâ€˜", "ÃŽâ€¢ÃŽÂ¦ÃŽÅ¡", "ÃŽâ€¢ÃŽÂ¡ÃŽâ€œÃŽÅ¸ÃŽâ€ÃŽÅ¸ÃŽÂ¤ÃŽâ„¢ÃŽÅ¡ÃŽâ€¢ÃŽÂ£ ÃŽâ€¢ÃŽâ„¢ÃŽÂ£ÃŽÂ¦ÃŽÅ¸ÃŽÂ¡ÃŽâ€¢ÃŽÂ£"]
-    municipal_forms: ["ÃŽâ€ÃŽâ€”ÃŽÅ“ÃŽÅ¸ÃŽÂ¤ÃŽâ„¢ÃŽÅ¡ÃŽÅ¸ÃŽÂ£ ÃŽÂ¦ÃŽÅ¸ÃŽÂ¡ÃŽÅ¸ÃŽÂ£", "ÃŽÂ¤ÃŽâ€¢ÃŽâ€ºÃŽÅ¸ÃŽÂ£ ÃŽÅ¡ÃŽâ€˜ÃŽËœÃŽâ€˜ÃŽÂ¡ÃŽâ„¢ÃŽÅ¸ÃŽÂ¤ÃŽâ€”ÃŽÂ¤ÃŽâ€˜ÃŽÂ£"]
+    aade_forms: ["Ε1", "Ε3", "ΦΠΑ", "ΕΝΦΙΑ"]
+    efka_forms: ["Α.Π.Δ.", "ΑΠΑ", "ΕΦΡ", "ΕΡΓθΔθΤΙΡΕΣ ΕΙΣΦθΡΕΣ"]
+    municipal_forms: ["ΔΗΜθΤΙΡθΣ ΦθΡθΣ", "ΤΕ΀ºθΣ ΡΑΜΑΡΙθΤΗΤΑΣ"]
     
   contracts:
-    contract_types: ["ÃŽÂ£ÃŽÂ¥ÃŽÅ“ÃŽâ€™ÃŽâ€˜ÃŽÂ£ÃŽâ€”", "ÃŽÂ£ÃŽÂ¥ÃŽÅ“ÃŽÂ¦ÃŽÂ©ÃŽÂÃŽâ„¢ÃŽâ€˜", "ÃŽÂ ÃŽâ€˜ÃŽÂ¡ÃŽâ€˜ÃŽÂ§ÃŽÂ©ÃŽÂ¡ÃŽâ€”ÃŽÂ£ÃŽâ€”"]
-    key_clauses: ["ÃŽâ€˜ÃŽÂÃŽÂ¤ÃŽâ„¢ÃŽÅ¡ÃŽâ€¢ÃŽâ„¢ÃŽÅ“ÃŽâ€¢ÃŽÂÃŽÅ¸", "ÃŽÂ¤ÃŽâ„¢ÃŽÅ“ÃŽâ€”", "ÃŽâ€ÃŽâ„¢ÃŽâ€˜ÃŽÂ¡ÃŽÅ¡ÃŽâ€¢ÃŽâ„¢ÃŽâ€˜", "ÃŽÂ¥ÃŽÂ ÃŽÅ¸ÃŽÂ§ÃŽÂ¡ÃŽâ€¢ÃŽÂ©ÃŽÂ£ÃŽâ€¢ÃŽâ„¢ÃŽÂ£"]
-    signature_areas: ["ÃŽÂ¥ÃŽÂ ÃŽÅ¸ÃŽâ€œÃŽÂ¡ÃŽâ€˜ÃŽÂ¦ÃŽâ€”", "ÃŽÂ£ÃŽÂ¦ÃŽÂ¡ÃŽâ€˜ÃŽâ€œÃŽâ„¢ÃŽâ€ÃŽâ€˜", "ÃŽâ€”ÃŽÅ“ÃŽâ€¢ÃŽÂ¡ÃŽÅ¸ÃŽÅ“ÃŽâ€”ÃŽÂÃŽâ„¢ÃŽâ€˜ ÃŽÂ¥ÃŽÂ ÃŽÅ¸ÃŽâ€œÃŽÂ¡ÃŽâ€˜ÃŽÂ¦ÃŽâ€”ÃŽÂ£"]
+    contract_types: ["ΣΥΜΒΑΣΗ", "ΣΥΜΦΩΝΙΑ", "ΠΑΡΑΧΩΡΗΣΗ"]
+    key_clauses: ["ΑΝΤΙΡΕΙΜΕΝθ", "ΤΙΜΗ", "ΔΙΑΡΡΕΙΑ", "ΥΠθΧΡΕΩΣΕΙΣ"]
+    signature_areas: ["ΥΠθΓΡΑΦΗ", "ΣΦΡΑΓΙΔΑ", "ΗΜΕΡθΜΗΝΙΑ ΥΠθΓΡΑΦΗΣ"]
 ```
 
 ### OpenClaw File Processing Integration
@@ -201,7 +201,7 @@ Text_Validation_Rules:
   greek_business_validation:
     vat_number_format: "EL followed by 9 digits"
     date_validation: "dd/MM/yyyy or dd-MM-yyyy Greek formats"
-    amount_validation: "Greek currency formatting (1.234,56 Ã¢â€šÂ¬)"
+    amount_validation: "Greek currency formatting (1.234,56 ‚¬)"
     address_validation: "Greek address patterns and postal codes"
     
   confidence_scoring:
@@ -217,7 +217,7 @@ Text_Validation_Rules:
 ```yaml
 Handwritten_Greek_Support:
   cursive_patterns:
-    connected_letters: "Common Greek letter combinations (ÃŽÂ¿Ãâ€¦, ÃŽÂµÃŽÂ¹, ÃŽÂ±ÃŽÂ¹, etc.)"
+    connected_letters: "Common Greek letter combinations (ου, ει, αι, etc.)"
     character_variations: "Individual handwriting style adaptation"
     historical_forms: "Recognition of older Greek handwriting styles"
     
@@ -254,26 +254,26 @@ Handwriting_Processing_Workflow:
 ```yaml
 Greek_Document_Classifier:
   invoice_detection:
-    visual_cues: ["ÃŽÂ¤ÃŽâ„¢ÃŽÅ“ÃŽÅ¸ÃŽâ€ºÃŽÅ¸ÃŽâ€œÃŽâ„¢ÃŽÅ¸ header", "Company logos", "VAT number placement"]
-    text_patterns: ["ÃŽâ€˜ÃŽÂ¦ÃŽÅ“ patterns", "Invoice numbering", "Due date formats"]
+    visual_cues: ["ΤΙΜθ΀ºθΓΙθ header", "Company logos", "VAT number placement"]
+    text_patterns: ["ΑΦΜ patterns", "Invoice numbering", "Due date formats"]
     layout_features: ["Table structures", "Total amount positioning", "VAT breakdowns"]
     confidence_threshold: 0.92
     
   receipt_detection:
     visual_cues: ["POS receipt format", "Thermal paper patterns", "Store logos"]
-    text_patterns: ["ÃŽâ€˜ÃŽÂ ÃŽÅ¸ÃŽâ€ÃŽâ€¢ÃŽâ„¢ÃŽÅ¾ÃŽâ€”", "Date/time stamps", "Payment method indicators"]
+    text_patterns: ["ΑΠθΔΕΙξΗ", "Date/time stamps", "Payment method indicators"]
     layout_features: ["Linear item listing", "Total at bottom", "Change calculation"]
     confidence_threshold: 0.90
     
   government_form_detection:
     visual_cues: ["Government letterheads", "Official stamps", "Form numbers"]
-    text_patterns: ["ÃŽâ€¢ÃŽâ€ºÃŽâ€ºÃŽâ€”ÃŽÂÃŽâ„¢ÃŽÅ¡ÃŽâ€” ÃŽâ€ÃŽâ€”ÃŽÅ“ÃŽÅ¸ÃŽÅ¡ÃŽÂ¡ÃŽâ€˜ÃŽÂ¤ÃŽâ„¢ÃŽâ€˜", "Ministry names", "Official references"]
+    text_patterns: ["Ε΀º΀ºΗΝΙΡΗ ΔΗΜθΡΡΑΤΙΑ", "Ministry names", "Official references"]
     layout_features: ["Standard form layouts", "Checkbox structures", "Signature lines"]
     confidence_threshold: 0.95
     
   contract_detection:
     visual_cues: ["Multi-page documents", "Legal formatting", "Signature pages"]
-    text_patterns: ["ÃŽÂ£ÃŽÂ¥ÃŽÅ“ÃŽâ€™ÃŽâ€˜ÃŽÂ£ÃŽâ€”", "Legal terminology", "Clause numbering"]
+    text_patterns: ["ΣΥΜΒΑΣΗ", "Legal terminology", "Clause numbering"]
     layout_features: ["Paragraph structures", "Section headers", "Signature blocks"]
     confidence_threshold: 0.88
 ```
@@ -284,29 +284,29 @@ Structured_Data_Extraction:
   invoice_data_extraction:
     company_info:
       - supplier_name: "Extract from header/footer"
-      - supplier_vat: "ÃŽâ€˜ÃŽÂ¦ÃŽÅ“: pattern recognition"
+      - supplier_vat: "ΑΦΜ: pattern recognition"
       - supplier_address: "Greek address format extraction"
       
     transaction_info:
-      - invoice_number: "ÃŽâ€˜ÃÂÃŽÂ¹ÃŽÂ¸ÃŽÂ¼ÃÅ’Ãâ€š Ãâ€žÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃŽÂ¿ÃŽÂ³ÃŽÂ¯ÃŽÂ¿Ãâ€¦ pattern"
+      - invoice_number: "Αριθμςπš πžιμολογίου pattern"
       - invoice_date: "Greek date format recognition"
-      - due_date: "ÃŽâ€”ÃŽÂ¼ÃŽÂµÃÂÃŽÂ¿ÃŽÂ¼ÃŽÂ·ÃŽÂ½ÃŽÂ¯ÃŽÂ± Ãâ‚¬ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ®Ãâ€š extraction"
+      - due_date: "Ημερομηνία πληρπ°μήπš extraction"
       
     financial_info:
       - line_items: "Table extraction with Greek descriptions"
-      - vat_amounts: "ÃŽÂ¦ÃŽÂ ÃŽâ€˜ calculation validation"
-      - total_amount: "ÃŽÂ£ÃŽÂ¥ÃŽÂÃŽÅ¸ÃŽâ€ºÃŽÅ¸ or TOTAL pattern recognition"
+      - vat_amounts: "ΦΠΑ calculation validation"
+      - total_amount: "ΣΥΝθ΀ºθ or TOTAL pattern recognition"
       
   receipt_data_extraction:
     merchant_info:
       - business_name: "Store name from receipt header"
-      - vat_number: "ÃŽâ€˜ÃŽÂ¦ÃŽÅ“ from receipt footer"
+      - vat_number: "ΑΦΜ from receipt footer"
       - location: "Address or branch information"
       
     transaction_info:
       - date_time: "Greek date/time format extraction"
-      - payment_method: "ÃŽÅ¡ÃŽâ€˜ÃŽÂ¡ÃŽÂ¤ÃŽâ€˜, ÃŽÅ“ÃŽâ€¢ÃŽÂ¤ÃŽÂ¡ÃŽâ€”ÃŽÂ¤ÃŽâ€˜, etc."
-      - receipt_number: "ÃŽâ€˜ÃÂÃŽÂ¹ÃŽÂ¸ÃŽÂ¼ÃÅ’Ãâ€š ÃŽÂ±Ãâ‚¬ÃÅ’ÃŽÂ´ÃŽÂµÃŽÂ¹ÃŽÂ¾ÃŽÂ·Ãâ€š"
+      - payment_method: "ΡΑΡΤΑ, ΜΕΤΡΗΤΑ, etc."
+      - receipt_number: "Αριθμςπš απςδειξηπš"
       
     items_and_amounts:
       - purchased_items: "Item list with Greek descriptions"
@@ -338,7 +338,7 @@ Quality_Control_System:
 Manual_Review_Workflow:
   flagging_criteria:
     - "Greek accent recognition issues"
-    - "Similar character confusion (ÃŽâ€˜ vs A)"
+    - "Similar character confusion (Α vs A)"
     - "Handwritten text with low confidence"
     - "Complex table structures"
     - "Damaged or poor quality documents"
@@ -354,7 +354,7 @@ Manual_Review_Workflow:
 ```yaml
 Accounting_Integration:
   invoice_processing:
-    workflow: "OCR Ã¢â€ â€™ Validation Ã¢â€ â€™ Accounting Software Export"
+    workflow: "OCR †’ Validation †’ Accounting Software Export"
     vat_verification: "Cross-check extracted VAT with business rules"
     amount_validation: "Verify calculated totals match extracted amounts"
     
@@ -410,50 +410,50 @@ Model_Management:
 # Morning document processing workflow
 $ openclaw ocr morning-batch --process-overnight --greek-priority
 
-Ã°Å¸â€œâ€ž Greek OCR Processing Summary - February 19, 2026:
+📀ž Greek OCR Processing Summary - February 19, 2026:
 
-Ã°Å¸â€œÅ  Documents Processed: 23 total
-Ã¢Å“â€¦ Invoices: 8 processed (avg confidence: 96.2%)
-   - SUPPLIER A AE: Invoice #2026-0234, Ã¢â€šÂ¬1,234.56 Ã¢Å“â€¦
-   - ÃŽÂ ÃŽÂ¡ÃŽÅ¸ÃŽÅ“ÃŽâ€”ÃŽËœÃŽâ€¢ÃŽÂ¥ÃŽÂ¤ÃŽâ€”ÃŽÂ£ ÃŽâ€™ ÃŽâ€¢ÃŽÂ ÃŽâ€¢: ÃŽÂ¤ÃŽÂ¹ÃŽÂ¼ÃŽÂ¿ÃŽÂ»ÃÅ’ÃŽÂ³ÃŽÂ¹ÃŽÂ¿ #456, Ã¢â€šÂ¬890.00 Ã¢Å“â€¦
+📊 Documents Processed: 23 total
+✅ Invoices: 8 processed (avg confidence: 96.2%)
+   - SUPPLIER A AE: Invoice #2026-0234, ‚¬1,234.56 ✅
+   - ΠΡθΜΗΜΕΥΤΗΣ Β ΕΠΕ: Τιμολςγιο #456, ‚¬890.00 ✅
    
-Ã¢Å“â€¦ Receipts: 12 processed (avg confidence: 94.8%)
+✅ Receipts: 12 processed (avg confidence: 94.8%)
    - Restaurant receipts: 4 (13% VAT detected)
    - Fuel receipts: 3 (24% VAT detected)
    - Office supplies: 5 (24% VAT detected)
 
-Ã¢Å¡Â Ã¯Â¸Â Manual Review Required: 3 documents
+⚠ï¸ Manual Review Required: 3 documents
    - Handwritten note (confidence: 78%)
    - Damaged invoice (confidence: 82%)
    - Complex government form (confidence: 84%)
 
-Ã°Å¸â€œÂ¤ Accounting Export: 20 documents ready for QuickBooks import
-Ã°Å¸â€™Â¾ Searchable PDFs: 23 documents with Greek text layer created
+📤 Accounting Export: 20 documents ready for QuickBooks import
+💾 Searchable PDFs: 23 documents with Greek text layer created
 ```
 
 ### Complex Greek Document Processing
 ```bash
 $ openclaw ocr process-complex --handwritten --government-forms --contracts
 
-Ã°Å¸â€œâ€¹ Complex Greek Document Processing:
+📀¹ Complex Greek Document Processing:
 
-Ã¢Å“ÂÃ¯Â¸Â Handwritten Documents (5):
-Ã¢Å“â€¦ Handwritten invoice corrections - Ã¢â€šÂ¬234.50 adjustment recognized
-Ã¢Å“â€¦ Client note with payment instructions - "ÃŽÂ ÃŽÂ»ÃŽÂ·ÃÂÃâ€°ÃŽÂ¼ÃŽÂ® ÃÆ’Ãâ€žÃŽÂ¹Ãâ€š 25/02" extracted
-Ã¢Å¡Â Ã¯Â¸Â Signature verification needed - Legal contract signature page
+âœÂï¸ Handwritten Documents (5):
+✅ Handwritten invoice corrections - ‚¬234.50 adjustment recognized
+✅ Client note with payment instructions - "Πληρπ°μή σπžιπš 25/02" extracted
+⚠ï¸ Signature verification needed - Legal contract signature page
 
-Ã°Å¸Ââ€ºÃ¯Â¸Â Government Forms (3):
-Ã¢Å“â€¦ AADE E1 Form - Individual tax data extracted completely
-Ã¢Å“â€¦ EFKA contribution form - Employee data processed
-Ã¢Å“â€¦ Municipal tax payment receipt - Ã¢â€šÂ¬456.78 payment confirmed
+ðŸÂ€ºï¸ Government Forms (3):
+✅ AADE E1 Form - Individual tax data extracted completely
+✅ EFKA contribution form - Employee data processed
+✅ Municipal tax payment receipt - ‚¬456.78 payment confirmed
 
-Ã°Å¸â€œâ€ž Contracts (2):
-Ã¢Å“â€¦ Service contract - Key terms extracted (Duration: 12 months, Ã¢â€šÂ¬2,000/month)
-Ã¢Å¡Â Ã¯Â¸Â Real estate contract - Complex legal clauses flagged for manual review
+📀ž Contracts (2):
+✅ Service contract - Key terms extracted (Duration: 12 months, ‚¬2,000/month)
+⚠ï¸ Real estate contract - Complex legal clauses flagged for manual review
 
-Ã°Å¸â€œÅ  Overall Success Rate: 91.3%
-Ã¢ÂÂ±Ã¯Â¸Â Processing Time: 4 minutes 32 seconds
-Ã°Å¸â€Â Manual Review Items: 4 documents requiring attention
+📊 Overall Success Rate: 91.3%
+âÂ±ï¸ Processing Time: 4 minutes 32 seconds
+ðŸ” Manual Review Items: 4 documents requiring attention
 ```
 
 ### Integration with Meta-Skill
@@ -474,40 +474,40 @@ $ openclaw greek document-intelligence --scan-and-process --coordinate-all
 ```bash
 $ openclaw ocr accuracy-report --greek-documents --monthly-analysis
 
-Ã°Å¸â€œË† Greek OCR Accuracy Analysis - February 2026:
+📈 Greek OCR Accuracy Analysis - February 2026:
 
-Ã°Å¸â€œÅ  Character Recognition:
-Ã¢Å“â€¦ Greek Letters: 98.7% accuracy (target: >98%)
-Ã¢Å“â€¦ Accented Characters: 97.2% accuracy (ÃŽÂ¬, ÃŽÂ­, ÃŽÂ®, etc.)
-Ã¢Å“â€¦ Numbers/Currency: 99.4% accuracy (Ã¢â€šÂ¬ amounts)
-Ã¢Å¡Â Ã¯Â¸Â Handwritten Text: 89.3% accuracy (target: >90%)
+📊 Character Recognition:
+✅ Greek Letters: 98.7% accuracy (target: >98%)
+✅ Accented Characters: 97.2% accuracy (ά, έ, ή, etc.)
+✅ Numbers/Currency: 99.4% accuracy (‚¬ amounts)
+⚠ï¸ Handwritten Text: 89.3% accuracy (target: >90%)
 
-Ã°Å¸â€œâ€¹ Document Type Accuracy:
-Ã¢Å“â€¦ Printed Invoices: 96.8% complete extraction
-Ã¢Å“â€¦ POS Receipts: 95.2% complete extraction  
-Ã¢Å“â€¦ Government Forms: 94.1% complete extraction
-Ã¢Å¡Â Ã¯Â¸Â Handwritten Notes: 85.7% complete extraction
+📀¹ Document Type Accuracy:
+✅ Printed Invoices: 96.8% complete extraction
+✅ POS Receipts: 95.2% complete extraction  
+✅ Government Forms: 94.1% complete extraction
+⚠ï¸ Handwritten Notes: 85.7% complete extraction
 
-Ã°Å¸â€Â§ Improvement Actions:
+🔧 Improvement Actions:
 - Enhanced handwritten Greek cursive training scheduled
 - Updated business terminology dictionary (+347 new terms)
 - Improved accent recognition for damaged documents
 - Added 3 new Greek receipt format templates
 
-Ã°Å¸â€œË† Month-over-Month: +2.3% accuracy improvement
-Ã°Å¸Å½Â¯ Next Target: 97% overall accuracy by March 2026
+📈 Month-over-Month: +2.3% accuracy improvement
+🎯 Next Target: 97% overall accuracy by March 2026
 ```
 
 ## Success Metrics for Greek OCR Deployment
 
 A successful Greek OCR system should achieve:
-- Ã¢Å“â€¦ 98%+ accuracy for printed Greek business documents
-- Ã¢Å“â€¦ 95%+ accuracy for clear handwritten Greek text
-- Ã¢Å“â€¦ 90%+ accuracy for damaged or poor quality documents
-- Ã¢Å“â€¦ Complete integration with existing OpenClaw deepread skill
-- Ã¢Å“â€¦ Automatic Greek VAT rate and amount extraction
-- Ã¢Å“â€¦ Professional searchable PDF generation with Greek text layer
-- Ã¢Å“â€¦ Real-time processing suitable for daily business workflows
-- Ã¢Å“â€¦ Robust error handling and manual review workflow
+- ✅ 98%+ accuracy for printed Greek business documents
+- ✅ 95%+ accuracy for clear handwritten Greek text
+- ✅ 90%+ accuracy for damaged or poor quality documents
+- ✅ Complete integration with existing OpenClaw deepread skill
+- ✅ Automatic Greek VAT rate and amount extraction
+- ✅ Professional searchable PDF generation with Greek text layer
+- ✅ Real-time processing suitable for daily business workflows
+- ✅ Robust error handling and manual review workflow
 
 Remember: This skill transforms OpenClaw into a production-ready Greek document processing system, enabling automated processing of all types of Greek business documents with high accuracy and intelligent data extraction suitable for Greek accounting workflows.

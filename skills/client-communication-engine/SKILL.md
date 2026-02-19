@@ -1,6 +1,6 @@
 ---
 name: client-communication-engine
-description: Outgoing client communication skill for Greek accounting firms. Produces professional Greek-language correspondence â€” submission confirmations, monthly accounting summaries, document request letters, deadline reminders, and annual tax summaries. Complements the greek-email-processor skill (which handles inbound). Every outgoing communication is drafted for human review before sending. All sent communications are logged against the client record. Reads from /data/clients/, /data/compliance/, /data/clients/{AFM}/financial-statements/. Writes drafts to /data/processing/comms/ and sent records to /data/clients/{AFM}/correspondence/.
+description: Outgoing client communication skill for Greek accounting firms. Produces professional Greek-language correspondence — submission confirmations, monthly accounting summaries, document request letters, deadline reminders, and annual tax summaries. Complements the greek-email-processor skill (which handles inbound). Every outgoing communication is drafted for human review before sending. All sent communications are logged against the client record. Reads from /data/clients/, /data/compliance/, /data/clients/{AFM}/financial-statements/. Writes drafts to /data/processing/comms/ and sent records to /data/clients/{AFM}/correspondence/.
 version: 1.0.0
 author: openclaw-greek-accounting
 tags: ["greek", "accounting", "client-communications", "bilingual", "email"]
@@ -9,17 +9,17 @@ metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_D
 
 # Client Communication Engine
 
-This skill handles all outgoing communication from the accounting firm to its clients. It produces professional Greek-language letters, summaries, and notifications â€” the documents and emails that clients actually receive. Every piece of outgoing communication follows Greek business correspondence conventions, references the correct regulatory terminology, and is drafted for human review before anything is sent.
+This skill handles all outgoing communication from the accounting firm to its clients. It produces professional Greek-language letters, summaries, and notifications — the documents and emails that clients actually receive. Every piece of outgoing communication follows Greek business correspondence conventions, references the correct regulatory terminology, and is drafted for human review before anything is sent.
 
 The skill pairs with `greek-email-processor` (Skill 4), which handles inbound. Together they form the complete communication layer: Skill 4 reads the inbox, Skill 16 writes the outbox.
 
 ## Core Philosophy
 
 - **Draft First, Send Second**: Nothing is sent automatically. Every communication is drafted, shown for review, and requires explicit approval before dispatch. This applies to all communication types without exception
-- **Greek Business Standards**: Output matches what a professional Greek accounting firm would send â€” correct formal register, appropriate regulatory terminology, proper salutations and closings for Greek business correspondence
-- **Data-Driven Content**: Letters are generated from real system data â€” actual submission reference numbers, actual VAT amounts, actual deadlines. Nothing is fabricated or approximated
+- **Greek Business Standards**: Output matches what a professional Greek accounting firm would send — correct formal register, appropriate regulatory terminology, proper salutations and closings for Greek business correspondence
+- **Data-Driven Content**: Letters are generated from real system data — actual submission reference numbers, actual VAT amounts, actual deadlines. Nothing is fabricated or approximated
 - **Logged Against Client Record**: Every sent communication is recorded in `/data/clients/{AFM}/correspondence/` with timestamp, type, recipient, and content hash. The firm always knows what was said to whom and when
-- **Context-Aware Tone**: Document request letters are polite but clear. Deadline reminders escalate appropriately (informative â†’ reminder â†’ urgent â†’ critical) without being aggressive. Submission confirmations are formal and precise
+- **Context-Aware Tone**: Document request letters are polite but clear. Deadline reminders escalate appropriately (informative → reminder → urgent → critical) without being aggressive. Submission confirmations are formal and precise
 - **Language Boundary**: Communications to clients are in Greek. Internal summaries and draft previews shown to firm staff are in English. The skill never sends English to a Greek client
 
 ---
@@ -87,7 +87,7 @@ openclaw comms send --draft-id D20260218-001 --via email --approved-by "yannis.k
 # Export as PDF for manual sending (no email integration configured)
 openclaw comms send --draft-id D20260218-001 --via pdf-export --approved-by "yannis.k"
 
-# Batch send â€” e.g. deadline reminders to all affected clients
+# Batch send — e.g. deadline reminders to all affected clients
 openclaw comms batch-send --type deadline-reminder --deadline-type VAT --due-within 7-days --approved-by "yannis.k"
 ```
 
@@ -116,7 +116,7 @@ openclaw comms templates-list --type document-request
 openclaw comms template-preview --name "vat-submission-confirmation"
 
 # Customise a template for a specific client (client-level override)
-openclaw comms template-override --afm EL123456789 --template "monthly-summary" --field salutation --value "Î‘Î³Î±Ï€Î·Ï„Î­ Îº. Î Î±Ï€Î±Î´ÏŒÏ€Î¿Ï…Î»Îµ,"
+openclaw comms template-override --afm EL123456789 --template "monthly-summary" --field salutation --value "Αγαπητέ κ. Παπαδόπουλε,"
 ```
 
 ---
@@ -128,28 +128,28 @@ openclaw comms template-override --afm EL123456789 --template "monthly-summary" 
 Sent after every successful government filing. References the actual AADE submission receipt.
 
 ```
-[GREEK TEXT â€” rendered in Greek in the actual letter]
+[GREEK TEXT — rendered in Greek in the actual letter]
 
 [Firm letterhead]
 [Date in DD/MM/YYYY format]
 
-Î‘Î³Î±Ï€Î·Ï„Î­ / Î‘Î³Î±Ï€Î·Ï„Î® [Client contact name],
-[or: Î‘Î³Î±Ï€Î·Ï„Î¿Î¯ ÎºÏÏÎ¹Î¿Î¹, for company-addressed]
+Αγαπητέ / Αγαπητή [Client contact name],
+[or: Αγαπητοί κÏÏιοι, for company-addressed]
 
-Î£Î±Ï‚ ÎµÎ½Î·Î¼ÎµÏÏŽÎ½Î¿Ï…Î¼Îµ ÏŒÏ„Î¹ Î¿Î»Î¿ÎºÎ»Î·ÏÏŽÎ¸Î·ÎºÎµ ÎµÏ€Î¹Ï„Ï…Ï‡ÏŽÏ‚ Î· Ï…Ï€Î¿Î²Î¿Î»Î® Ï„Î·Ï‚ Ï€Î±ÏÎ±ÎºÎ¬Ï„Ï‰
-Ï†Î¿ÏÎ¿Î»Î¿Î³Î¹ÎºÎ®Ï‚ Î´Î®Î»Ï‰ÏƒÎ·Ï‚ Î³Î¹Î± Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼ÏŒ ÏƒÎ±Ï‚:
+Σας ενημεÏώνουμε ότι ολοκληÏώθηκε επιτυχώς η υποβολή της παÏακάτω
+φοÏολογικής δήλωσης για λογαÏιασμό σας:
 
-Î¤ÏÏ€Î¿Ï‚ Î´Î®Î»Ï‰ÏƒÎ·Ï‚:   [e.g. Î”Î®Î»Ï‰ÏƒÎ· Î¦Î Î‘]
-Î ÎµÏÎ¯Î¿Î´Î¿Ï‚:        [e.g. Î™Î±Î½Î¿Ï…Î¬ÏÎ¹Î¿Ï‚ 2026]
-Î‘Î¦Îœ:             [EL123456789]
-Î‘ÏÎ¹Î¸Î¼ÏŒÏ‚ Ï…Ï€Î¿Î²Î¿Î»Î®Ï‚: [AADE reference number]
-Î—Î¼ÎµÏÎ¿Î¼Î·Î½Î¯Î± Ï…Ï€Î¿Î²Î¿Î»Î®Ï‚: [DD/MM/YYYY]
-Î Î¿ÏƒÏŒ Ï€Î»Î·ÏÏ‰Ï„Î­Î¿:   [â‚¬X,XXX.XX] (ÎµÎ¬Î½ Ï…Ï†Î¯ÏƒÏ„Î±Ï„Î±Î¹)
-Î ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î± Ï€Î»Î·ÏÏ‰Î¼Î®Ï‚: [DD/MM/YYYY]
+ΤÏπος δήλωσης:   [e.g. Δήλωση ΦΠΑ]
+ΠεÏίοδος:        [e.g. ΘανουάÏιος 2026]
+ΑΦΜ:             [EL123456789]
+ΑÏιθμός υποβολής: [AADE reference number]
+ΔμεÏομηνία υποβολής: [DD/MM/YYYY]
+Ποσό πληÏωτέο:   [€X,XXX.XX] (εάν υφίσταται)
+ΠÏοθεσμία πληÏωμής: [DD/MM/YYYY]
 
-Î“Î¹Î± Î¿Ï€Î¿Î¹Î±Î´Î®Ï€Î¿Ï„Îµ Î±Ï€Î¿ÏÎ¯Î±, Ï€Î±ÏÎ±ÎºÎ±Î»ÏŽ ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î®ÏƒÏ„Îµ Î¼Î±Î¶Î¯ Î¼Î±Ï‚.
+Για οποιαδήποτε αποÏία, παÏακαλώ επικοινωνήστε μαζί μας.
 
-ÎœÎµ ÎµÎºÏ„Î¯Î¼Î·ÏƒÎ·,
+Με εκτίμηση,
 [Accountant name]
 [Firm name]
 [Contact details]
@@ -177,19 +177,19 @@ Monthly_Summary_Structure:
   header:
     - Firm letterhead
     - Client name and AFM
-    - Period (ÎœÎ·Î½Î¹Î±Î¯Î± Î•Î½Î·Î¼Î­ÏÏ‰ÏƒÎ· â€” Month Year)
+    - Period (Μηνιαία ΕνημέÏωση — Month Year)
 
   section_1_activity:
-    label_el: "Î”ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„Î± ÎœÎ®Î½Î±"
+    label_el: "ΔÏαστηÏιότητα Μήνα"
     label_en: "Monthly Activity"
     content:
-      - Total invoiced income (Î£Ï…Î½Î¿Î»Î¹ÎºÎ¬ Î­ÏƒÎ¿Î´Î±)
-      - Total expenses processed (Î£Ï…Î½Î¿Î»Î¹ÎºÎ¬ Î­Î¾Î¿Î´Î±)
+      - Total invoiced income (Συνολικά έσοδα)
+      - Total expenses processed (Συνολικά έξοδα)
       - Number of invoices processed
       - VAT position for the month
 
   section_2_filings:
-    label_el: "Î¥Ï€Î¿Î²Î¿Î»Î­Ï‚ Ï€ÏÎ¿Ï‚ Î‘ÏÏ‡Î­Ï‚"
+    label_el: "Υποβολές πÏος ΑÏχές"
     label_en: "Government Filings"
     content:
       - List of submissions made this month (VAT, EFKA, myDATA)
@@ -197,7 +197,7 @@ Monthly_Summary_Structure:
       - Any outstanding submissions and their deadlines
 
   section_3_upcoming:
-    label_el: "Î•Ï€ÎµÏÏ‡ÏŒÎ¼ÎµÎ½ÎµÏ‚ Î¥Ï€Î¿Ï‡ÏÎµÏŽÏƒÎµÎ¹Ï‚"
+    label_el: "ΕπεÏχόμενες ΥποχÏεώσεις"
     label_en: "Upcoming Obligations"
     content:
       - Deadlines in the next 30 days
@@ -226,15 +226,15 @@ Sent when documents are missing that are needed to complete a client's accountin
 Document_Request_Structure:
 
   tone_calibration:
-    first_request: "Polite â€” Î˜Î± Î¸Î­Î»Î±Î¼Îµ Î½Î± ÏƒÎ±Ï‚ Î¶Î·Ï„Î®ÏƒÎ¿Ï…Î¼Îµ..."
-    second_request: "Clear â€” Î“Î¹Î± Ï„Î·Î½ Î¿Î»Î¿ÎºÎ»Î®ÏÏ‰ÏƒÎ· Ï„Î·Ï‚ Î»Î¿Î³Î¹ÏƒÏ„Î¹ÎºÎ®Ï‚ ÏƒÎ±Ï‚ Ï€Î±ÏÎ±ÎºÎ¿Î»Î¿ÏÎ¸Î·ÏƒÎ·Ï‚ Î±Ï€Î±Î¹Ï„Î¿ÏÎ½Ï„Î±Î¹..."
-    third_request: "Urgent â€” Î— Î±Ï€Î¿Ï…ÏƒÎ¯Î± Ï„Ï‰Î½ Ï€Î±ÏÎ±ÎºÎ¬Ï„Ï‰ ÎµÎ³Î³ÏÎ¬Ï†Ï‰Î½ Î¸Î± ÎµÏ€Î·ÏÎµÎ¬ÏƒÎµÎ¹ Ï„Î·Î½ Î­Î³ÎºÎ±Î¹ÏÎ· Ï…Ï€Î¿Î²Î¿Î»Î®..."
+    first_request: "Polite — Θα θέλαμε να σας ζητήσουμε..."
+    second_request: "Clear — Για την ολοκλήÏωση της λογιστικής σας παÏακολοÏθησης απαιτοÏνται..."
+    third_request: "Urgent — Δ απουσία των παÏακάτω εγγÏάφων θα επηÏεάσει την έγκαιÏη υποβολή..."
     note: "System checks correspondence history to determine which tone to use"
 
   content:
-    - Clear list of missing documents in Greek (e.g. "ÎšÎ¹Î½Î®ÏƒÎµÎ¹Ï‚ Ï„ÏÎ±Ï€ÎµÎ¶Î¹ÎºÎ¿Ï Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼Î¿Ï ÎŸÎºÏ„Ï‰Î²ÏÎ¯Î¿Ï… 2025")
+    - Clear list of missing documents in Greek (e.g. "Κινήσεις τÏαπεζικοÏ λογαÏιασμοÏ ΟκτωβÏίου 2025")
     - Why each document is needed (brief, non-technical)
-    - Deadline for receipt ("Ï€Î±ÏÎ±ÎºÎ±Î»Î¿ÏÎ¼Îµ Î½Î± Î¼Î±Ï‚ Ï„Î± Î±Ï€Î¿ÏƒÏ„ÎµÎ¯Î»ÎµÏ„Îµ Î­Ï‰Ï‚ Ï„Î·Î½ DD/MM/YYYY")
+    - Deadline for receipt ("παÏακαλοÏμε να μας τα αποστείλετε έως την DD/MM/YYYY")
     - How to send (email address or preferred method)
     - Contact person at the firm for questions
 
@@ -251,25 +251,25 @@ Document_Request_Structure:
 Deadline_Reminder_Levels:
 
   informative:          # 30+ days before deadline
-    tone_el: "Î£Î±Ï‚ ÎµÎ½Î·Î¼ÎµÏÏŽÎ½Î¿Ï…Î¼Îµ ÏŒÏ„Î¹ Ï€Î»Î·ÏƒÎ¹Î¬Î¶ÎµÎ¹ Î· Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î± Î³Î¹Î±..."
+    tone_el: "Σας ενημεÏώνουμε ότι πλησιάζει η πÏοθεσμία για..."
     urgency_marker: none
 
   reminder:             # 14 days before deadline
-    tone_el: "Î£Î±Ï‚ Ï…Ï€ÎµÎ½Î¸Ï…Î¼Î¯Î¶Î¿Ï…Î¼Îµ ÏŒÏ„Î¹ ÏƒÏ„Î¹Ï‚ [date] Î»Î®Î³ÎµÎ¹ Î· Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î± Î³Î¹Î±..."
+    tone_el: "Σας υπενθυμίζουμε ότι στις [date] λήγει η πÏοθεσμία για..."
     urgency_marker: none
 
   urgent:               # 7 days before deadline
-    tone_el: "Î£Î—ÎœÎ‘ÎÎ¤Î™ÎšÎŸ: Î— Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î± Î³Î¹Î± [type] Î»Î®Î³ÎµÎ¹ ÏƒÎµ 7 Î·Î¼Î­ÏÎµÏ‚ ([date])."
-    urgency_marker: "âš ï¸ in subject line"
+    tone_el: "ΣΔΜΑÎΤΘΚΟ: Δ πÏοθεσμία για [type] λήγει σε 7 ημέÏες ([date])."
+    urgency_marker: "⚠️ in subject line"
 
   critical:             # 2 days or less before deadline
-    tone_el: "Î•Î Î•Î™Î“ÎŸÎ: Î— Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î± Î³Î¹Î± [type] Î»Î®Î³ÎµÎ¹ ÏƒÎµ [N] Î·Î¼Î­ÏÎµÏ‚. Î‘Ï€Î±Î¹Ï„ÎµÎ¯Ï„Î±Î¹ Î¬Î¼ÎµÏƒÎ· ÎµÎ½Î­ÏÎ³ÎµÎ¹Î±."
-    urgency_marker: "ðŸš¨ in subject line"
+    tone_el: "ΕΠΕΘΓΟÎ: Δ πÏοθεσμία για [type] λήγει σε [N] ημέÏες. Απαιτείται άμεση ενέÏγεια."
+    urgency_marker: "🚨 in subject line"
 
   content:
     - Deadline type and date
     - Amount due (if known)
-    - What the client needs to do (if anything â€” usually just "we will handle this")
+    - What the client needs to do (if anything — usually just "we will handle this")
     - What documents are still needed from them (if any)
     - Firm contact details
 ```
@@ -278,7 +278,7 @@ Deadline_Reminder_Levels:
 
 ### 5. Annual Tax Summary
 
-Sent once per year (typically Februaryâ€“March for the prior year). Provides the client with a complete overview of their tax obligations, what was filed, and what is still outstanding.
+Sent once per year (typically February€“March for the prior year). Provides the client with a complete overview of their tax obligations, what was filed, and what is still outstanding.
 
 ```yaml
 Annual_Summary_Structure:
@@ -290,7 +290,7 @@ Annual_Summary_Structure:
     - Property taxes (ENFIA) if applicable
     - Any outstanding issues from the year
     - Obligations already known for the coming year
-  note: "Pulls from compliance/filings.json for the full year â€” most comprehensive communication type"
+  note: "Pulls from compliance/filings.json for the full year — most comprehensive communication type"
 ```
 
 ---
@@ -338,7 +338,7 @@ Communication_File_Structure:
     location: "/data/processing/comms/"
     files:
       - "{draft-id}_{AFM}_{type}_{YYYYMMDD}.json"   # Draft content and metadata
-    note: "Ephemeral â€” cleared after send or explicit discard. Never source of truth."
+    note: "Ephemeral — cleared after send or explicit discard. Never source of truth."
 
   sent_records:
     location: "/data/clients/{AFM}/correspondence/"
@@ -346,7 +346,7 @@ Communication_File_Structure:
       - "{YYYYMMDD}_{type}_{draft-id}_sent.json"    # Immutable record of sent communication
     contains:
       - "draft_id, type, period_reference, recipient_email, sent_by, sent_at_utc"
-      - "content_hash (SHA256 of the Greek text sent â€” not the full text)"
+      - "content_hash (SHA256 of the Greek text sent — not the full text)"
       - "attachments list (filenames only)"
       - "delivery_status: sent / bounced / no-email-configured"
     note: "Sent records are immutable. Never modified after creation."
@@ -381,7 +381,7 @@ Approval_Rules:
   approval_roles_allowed:
     - senior_accountant   # Can approve all communication types
     - accountant          # Can approve for their assigned clients
-    - assistant           # Cannot approve sends â€” can only create drafts
+    - assistant           # Cannot approve sends — can only create drafts
 
   approval_gate:
     step_1: "Show draft preview in English (what the letter says)"
@@ -398,7 +398,7 @@ Approval_Rules:
 
 ---
 
-## Memory Integration (Phase 4 â€” Skill 19 hooks)
+## Memory Integration (Phase 4 — Skill 19 hooks)
 
 ```yaml
 Memory_Integration:
@@ -445,7 +445,7 @@ Meta_Skill_Integration:
   monthly_process:
     - "Auto-draft submission confirmations after successful VAT/EFKA filing"
     - "Auto-draft monthly summary with --include-statements if statements are ready"
-    - "Both drafts queued for human approval â€” never auto-sent"
+    - "Both drafts queued for human approval — never auto-sent"
   morning_check:
     - "Flags any unsent drafts older than 24 hours as requiring attention"
 ```
@@ -458,15 +458,15 @@ Meta_Skill_Integration:
 Error_Responses:
 
   no_email_configured:
-    output: "Client {AFM} has no email address on file. Draft created â€” export as PDF for manual delivery."
+    output: "Client {AFM} has no email address on file. Draft created — export as PDF for manual delivery."
     action: "Create draft, set delivery_method to pdf-export, log missing email as client record issue"
 
   missing_source_data:
-    output: "Cannot draft {type} for {AFM} {period} â€” {specific field} not yet available in system."
+    output: "Cannot draft {type} for {AFM} {period} — {specific field} not yet available in system."
     action: "Do not create draft. Log as failure. Add to dashboard task queue once data is ready."
 
   approval_role_insufficient:
-    output: "User {username} does not have approval permission for sends. Draft saved â€” ask an accountant or senior accountant to approve."
+    output: "User {username} does not have approval permission for sends. Draft saved — ask an accountant or senior accountant to approve."
     action: "Block send. Log attempt. Draft remains in /data/processing/comms/."
 
   bounced_delivery:
@@ -474,8 +474,8 @@ Error_Responses:
     action: "Write sent record with status=bounced. Alert assigned accountant. Flag client contact details for review."
 
   template_data_gap:
-    output: "Template field [{field}] could not be populated â€” data not found."
-    action: "Populate with [MISSING â€” please verify] marker. Show to reviewer before approval. Never send with unfilled markers."
+    output: "Template field [{field}] could not be populated — data not found."
+    action: "Populate with [MISSING — please verify] marker. Show to reviewer before approval. Never send with unfilled markers."
 ```
 
 ---
@@ -483,12 +483,12 @@ Error_Responses:
 ## Success Metrics
 
 A successful deployment of this skill should achieve:
-- âœ… Zero communications sent without explicit human approval from an authorised role
-- âœ… 100% of sent communications logged against the client record
-- âœ… Greek output that a client would receive without knowing it was system-generated
-- âœ… Tone correctly escalated for deadline reminders based on days remaining
-- âœ… Document request letters draw from live pending.json â€” never manually typed lists
-- âœ… Submission confirmations include actual AADE reference numbers â€” never placeholders
-- âœ… Unfilled template markers ([MISSING]) always caught at review, never sent
+- ✅ Zero communications sent without explicit human approval from an authorised role
+- ✅ 100% of sent communications logged against the client record
+- ✅ Greek output that a client would receive without knowing it was system-generated
+- ✅ Tone correctly escalated for deadline reminders based on days remaining
+- ✅ Document request letters draw from live pending.json — never manually typed lists
+- ✅ Submission confirmations include actual AADE reference numbers — never placeholders
+- ✅ Unfilled template markers ([MISSING]) always caught at review, never sent
 
 Remember: This skill is the firm's voice to its clients. Every letter reflects on the firm's professionalism. Draft quality must be high enough that the reviewer's job is approval, not rewriting.

@@ -244,7 +244,7 @@ Validation Rules:
 - **VAT Registration Status**: Monitor business VAT registration renewal dates with AADE
 - **TAXIS Platform Integration**: Prepare formatted data for Greek tax authority digital submissions
 - **E-Books Legal Requirements**: Maintain certified digital accounting records per Greek Law 4308/2014
-- **Stamp Duty Compliance**: Calculate and apply correct stamp duty (Ãâ€¡ÃŽÂ±ÃÂÃâ€žÃÅ’ÃÆ’ÃŽÂ·ÃŽÂ¼ÃŽÂ¿) for contracts and legal documents
+- **Stamp Duty Compliance**: Calculate and apply correct stamp duty (π¡αρπžςσημο) for contracts and legal documents
 - **Social Security Deadlines**: Track IKA, EFKA, OAEE contribution filing and payment deadlines
 - **Municipal Tax Monitoring**: Property taxes, waste collection fees, and local authority requirements
 - **Greek VAT Rates**: Apply correct VAT rates (24% standard, 13% reduced, 6% super-reduced)
@@ -280,7 +280,7 @@ npx openclaw skills add client-data-management     # Client records
 ```
 
 ### OpenClaw File-Based Output
-All processed data is written to the OpenClaw file system â€” no external accounting software required for core operation. Export commands produce standard formats for optional import into third-party tools:
+All processed data is written to the OpenClaw file system — no external accounting software required for core operation. Export commands produce standard formats for optional import into third-party tools:
 
 ```bash
 # Export to common accounting formats
@@ -322,9 +322,9 @@ openclaw accounting export-transactions --client EL123456789 --target xero --per
 Command: openclaw accounting process-invoices --input-dir /data/incoming/invoices --greek-format
 System Response:
 1. Scans /data/incoming/invoices for new PDF files
-2. Extracts: ABC Corp, Invoice #12345, â‚¬1,247.50, Due: 2026-03-15
+2. Extracts: ABC Corp, Invoice #12345, €1,247.50, Due: 2026-03-15
 3. Validates: Vendor AFM format, amount consistency, date logic
-4. Confidence: 95% â€” flags VAT calculation for review (87% confidence)
+4. Confidence: 95% — flags VAT calculation for review (87% confidence)
 5. Writes structured JSON to /data/ocr/output/accounting-ready/
 6. Output: "3 invoices processed. 1 flagged for review: inv_12345.pdf (VAT amount uncertain)"
 ```
@@ -334,11 +334,11 @@ System Response:
 Command: openclaw accounting extract-receipts --source /data/incoming/receipts --auto-classify
 System Response:
 1. Scans receipt files in input folder
-2. OCR: "Mario's Restaurant, â‚¬45.67, Business Lunch, 2026-02-15"
+2. OCR: "Mario's Restaurant, €45.67, Business Lunch, 2026-02-15"
 3. Classifies: Business meal (50% deductible under Greek tax rules)
 4. Archives processed image to /data/ocr/output/accounting-ready/ with searchable filename
 5. Appends entry to /data/clients/{AFM}/compliance/monthly-expenses.json
-6. Output: "Receipt processed: marios_20260215.pdf â†’ meals/business (50% deductible)"
+6. Output: "Receipt processed: marios_20260215.pdf → meals/business (50% deductible)"
 ```
 
 ### Example 3: Bank Reconciliation
@@ -432,12 +432,12 @@ openclaw accounting health-check --test-integrations
 ```
 
 A successful accounting workflow automation should achieve:
-- Ã¢Å“â€¦ 95%+ accuracy in document processing
-- Ã¢Å“â€¦ 80%+ reduction in manual data entry time  
-- Ã¢Å“â€¦ 100% compliance with filing deadlines
-- Ã¢Å“â€¦ Complete audit trail for all automated actions
-- Ã¢Å“â€¦ User confidence in automated processes
-- Ã¢Å“â€¦ Client satisfaction with faster, more accurate service
+- ✅ 95%+ accuracy in document processing
+- ✅ 80%+ reduction in manual data entry time  
+- ✅ 100% compliance with filing deadlines
+- ✅ Complete audit trail for all automated actions
+- ✅ User confidence in automated processes
+- ✅ Client satisfaction with faster, more accurate service
 
 ## Safety & Ethics Guidelines
 

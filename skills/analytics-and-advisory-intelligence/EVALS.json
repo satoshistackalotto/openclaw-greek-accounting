@@ -10,10 +10,10 @@
       "Shows portfolio snapshot: count by risk band",
       "Identifies next high-volume deadline and how many clients are affected",
       "Includes any sector-wide patterns detected across the portfolio",
-      "Output is in plain English â€” no statistical jargon",
+      "Output is in plain English — no statistical jargon",
       "Each watch list item includes a specific actionable suggestion",
       "Shows time advisory was generated",
-      "Does not show all 42 clients â€” focuses on what needs attention"
+      "Does not show all 42 clients — focuses on what needs attention"
     ],
     "files": [
       {
@@ -64,7 +64,7 @@
       "Applies correct uncertainty ranges: revenue +/-15%, ad-hoc expenses +/-20%",
       "Labels March forecast as HIGH confidence, April MEDIUM, May LOW",
       "Output is in plain English with EUR amounts and specific dates",
-      "Does not claim certainty â€” presents as projections with stated assumptions"
+      "Does not claim certainty — presents as projections with stated assumptions"
     ],
     "files": [
       {
@@ -81,7 +81,7 @@
       "Reads risk scores for all retail sector clients",
       "Ranks clients by risk score descending",
       "For each client shows: name, AFM, risk score, risk band, primary driver",
-      "Primary driver is specific â€” not generic (e.g. 'bank statements missing for February' not 'data issues')",
+      "Primary driver is specific — not generic (e.g. 'bank statements missing for February' not 'data issues')",
       "Includes count of retail clients in the analysis",
       "Notes if the retail sector has a sector-wide pattern active",
       "Output is a clean ranked list suitable for a morning briefing",
@@ -106,7 +106,7 @@
       "States whether the increase exceeds the 20% alert threshold",
       "Distinguishes between possible causes: higher turnover vs classification issue",
       "Assigns confidence level based on number of data periods available",
-      "Does not make a definitive diagnosis â€” presents findings and suggests investigation",
+      "Does not make a definitive diagnosis — presents findings and suggests investigation",
       "Output is in plain English with specific EUR figures",
       "Notes if January 2026 figure is particularly anomalous versus the trend"
     ],
@@ -122,12 +122,12 @@
     "prompt": "A new client, Mu Trading AE (EL000111222), was onboarded last month. They only have 2 months of data in the system. Run the full analytics suite for them.",
     "expectations": [
       "Attempts to run trend analysis but detects only 2 periods of data",
-      "Notes that trend analysis requires minimum 3 periods â€” labels any output as LOW CONFIDENCE",
-      "Does not refuse to show anything â€” presents available 2-period comparison",
+      "Notes that trend analysis requires minimum 3 periods — labels any output as LOW CONFIDENCE",
+      "Does not refuse to show anything — presents available 2-period comparison",
       "Risk score is computed based on compliance data even with limited financial history",
       "Notes that sector benchmark comparison requires minimum 3 clients in sector",
       "Cash flow forecast attempted for 1 month only given data limitations",
-      "Anomaly detection uses own-history method only â€” cannot compare to sector with 2 data points",
+      "Anomaly detection uses own-history method only — cannot compare to sector with 2 data points",
       "All outputs clearly marked with confidence levels appropriate to the data quantity",
       "Does not extrapolate or fabricate figures to fill data gaps",
       "Suggests that fuller analysis will be available after 3-4 more months of data"

@@ -68,14 +68,14 @@ Employment_Income:
     deductions: ["Social security contributions", "Professional expenses"]
     
   overtime_compensation:
-    calculation: "Regular rate Ãƒâ€” overtime multiplier"
+    calculation: "Regular rate × overtime multiplier"
     tax_treatment: "Included in total employment income"
     limits: "Greek labor law overtime limits"
     
   bonuses_and_benefits:
     types: ["Performance bonuses", "Company car", "Meal allowances", "Housing benefits"]
     valuation: "Fair market value for benefits in kind"
-    exemptions: ["Meal vouchers up to Ã¢â€šÂ¬5/day", "Transport allowances"]
+    exemptions: ["Meal vouchers up to ‚¬5/day", "Transport allowances"]
 
 Professional_Income:
   freelance_services:
@@ -99,7 +99,7 @@ Property_Income:
   airbnb_income:
     licensing_requirement: "Short-term rental license required"
     tax_treatment: "As rental income with limited deductions"
-    vat_implications: "13% VAT if over Ã¢â€šÂ¬10,000 annually"
+    vat_implications: "13% VAT if over ‚¬10,000 annually"
 
 Investment_Income:
   dividend_income:
@@ -151,11 +151,11 @@ Education_Expenses:
 
 Insurance_Premiums:
   life_insurance:
-    annual_limit: "Ã¢â€šÂ¬1,200 per person"
+    annual_limit: "‚¬1,200 per person"
     eligible_policies: "Greek and EU insurance companies"
     
   health_insurance:
-    annual_limit: "Ã¢â€šÂ¬1,200 per person"  
+    annual_limit: "‚¬1,200 per person"  
     supplementary_coverage: "Private health insurance premiums"
     
   property_insurance:
@@ -171,7 +171,7 @@ Charitable_Donations:
     - "Cultural organizations"
   
   limitations:
-    maximum_deduction: "5% of total income or Ã¢â€šÂ¬2,000 (whichever is higher)"
+    maximum_deduction: "5% of total income or ‚¬2,000 (whichever is higher)"
     documentation: "Official donation receipts required"
 ```
 
@@ -181,44 +181,44 @@ Charitable_Donations:
 ```yaml
 Individual_Income_Tax_Brackets:
   bracket_1:
-    income_range: "Ã¢â€šÂ¬0 - Ã¢â€šÂ¬10,000"
+    income_range: "‚¬0 - ‚¬10,000"
     tax_rate: "9%"
-    tax_amount: "Ã¢â€šÂ¬0 - Ã¢â€šÂ¬900"
+    tax_amount: "‚¬0 - ‚¬900"
     
   bracket_2: 
-    income_range: "Ã¢â€šÂ¬10,001 - Ã¢â€šÂ¬20,000"
+    income_range: "‚¬10,001 - ‚¬20,000"
     tax_rate: "22%"
-    tax_amount: "Ã¢â€šÂ¬900 + 22% of excess over Ã¢â€šÂ¬10,000"
+    tax_amount: "‚¬900 + 22% of excess over ‚¬10,000"
     
   bracket_3:
-    income_range: "Ã¢â€šÂ¬20,001 - Ã¢â€šÂ¬30,000" 
+    income_range: "‚¬20,001 - ‚¬30,000" 
     tax_rate: "28%"
-    tax_amount: "Ã¢â€šÂ¬3,100 + 28% of excess over Ã¢â€šÂ¬20,000"
+    tax_amount: "‚¬3,100 + 28% of excess over ‚¬20,000"
     
   bracket_4:
-    income_range: "Ã¢â€šÂ¬30,001 - Ã¢â€šÂ¬40,000"
+    income_range: "‚¬30,001 - ‚¬40,000"
     tax_rate: "36%"
-    tax_amount: "Ã¢â€šÂ¬5,900 + 36% of excess over Ã¢â€šÂ¬30,000"
+    tax_amount: "‚¬5,900 + 36% of excess over ‚¬30,000"
     
   bracket_5:
-    income_range: "Ã¢â€šÂ¬40,001+"
+    income_range: "‚¬40,001+"
     tax_rate: "44%"
-    tax_amount: "Ã¢â€šÂ¬9,500 + 44% of excess over Ã¢â€šÂ¬40,000"
+    tax_amount: "‚¬9,500 + 44% of excess over ‚¬40,000"
 
 Tax_Credits:
-  basic_tax_credit: "Ã¢â€šÂ¬2,100 per individual"
-  spouse_credit: "Ã¢â€šÂ¬2,100 (if spouse has no income)"
-  dependent_children_credit: "Ã¢â€šÂ¬777 per child"
+  basic_tax_credit: "‚¬2,100 per individual"
+  spouse_credit: "‚¬2,100 (if spouse has no income)"
+  dependent_children_credit: "‚¬777 per child"
   disability_credit: "Varies by disability percentage"
-  low_income_credit: "Graduated reduction for income under Ã¢â€šÂ¬12,000"
+  low_income_credit: "Graduated reduction for income under ‚¬12,000"
   
 Solidarity_Tax:
-  threshold: "Income over Ã¢â€šÂ¬30,000"
+  threshold: "Income over ‚¬30,000"
   rates:
-    - "Ã¢â€šÂ¬30,001 - Ã¢â€šÂ¬40,000": "2.2%"  
-    - "Ã¢â€šÂ¬40,001 - Ã¢â€šÂ¬65,000": "5%"
-    - "Ã¢â€šÂ¬65,001 - Ã¢â€šÂ¬220,000": "6.5%"
-    - "Over Ã¢â€šÂ¬220,000": "9%"
+    - "‚¬30,001 - ‚¬40,000": "2.2%"  
+    - "‚¬40,001 - ‚¬65,000": "5%"
+    - "‚¬65,001 - ‚¬220,000": "6.5%"
+    - "Over ‚¬220,000": "9%"
 ```
 
 #### Tax Calculation Workflow
@@ -276,7 +276,7 @@ def calculate_individual_tax(income_data, deductions, family_situation):
 
 # Employment income documents
 openclaw individual collect-employment-docs --year 2025
-  # - Employer certificates (ÃŽâ€™ÃŽÂµÃŽÂ²ÃŽÂ±ÃŽÂ¯Ãâ€°ÃÆ’ÃŽÂ· ÃŽÂ±Ãâ‚¬ÃŽÂ¿ÃŽÂ´ÃŽÂ¿Ãâ€¡ÃÅ½ÃŽÂ½)
+  # - Employer certificates (Βεβαίπ°ση αποδοπ¡Ͻν)
   # - Social security contributions summary
   # - Withholding tax certificates
 
@@ -338,7 +338,7 @@ Family_Tax_Strategies:
       charitable_donations: "Optimize between spouses for maximum benefit"
       
   dependent_children:
-    child_tax_credits: "Ã¢â€šÂ¬777 per child under 18 or in education"
+    child_tax_credits: "‚¬777 per child under 18 or in education"
     education_expenses: "No limit on university tuition deductions"
     medical_expenses: "Include children's medical costs"
     
@@ -361,7 +361,7 @@ ENFIA_Processing:
   primary_residence:
     base_calculation: "Based on objective property value and characteristics"
     exemptions:
-      - "First Ã¢â€šÂ¬200,000 of single-person household value"
+      - "First ‚¬200,000 of single-person household value"
       - "Additional exemptions for large families"
       - "Disability exemptions for qualifying individuals"
     
@@ -371,7 +371,7 @@ ENFIA_Processing:
       rural_properties: "50% reduction for properties in villages under 1,500 population"
       
   investment_properties:
-    supplementary_tax: "Additional tax for total property value over Ã¢â€šÂ¬500,000"
+    supplementary_tax: "Additional tax for total property value over ‚¬500,000"
     commercial_properties: "Different rates for business-use properties"
     rental_income_coordination: "ENFIA costs deductible from rental income"
     
@@ -390,7 +390,7 @@ Municipal_Property_Taxes:
     integration: "Coordinate with ENFIA for total property tax burden"
     
   waste_and_lighting:
-    calculation_basis: "Property square meters Ãƒâ€” municipal rate"
+    calculation_basis: "Property square meters × municipal rate"
     payment_frequency: "Annual via electricity bill"
     exemptions: "Limited exemptions for specific circumstances"
 ```
@@ -401,33 +401,33 @@ Municipal_Property_Taxes:
 ```yaml
 Taxpayer_Profile:
   employment:
-    annual_salary: "Ã¢â€šÂ¬35,000"
-    employer_withholding: "Ã¢â€šÂ¬6,500"
-    social_security: "Ã¢â€šÂ¬4,200"
+    annual_salary: "‚¬35,000"
+    employer_withholding: "‚¬6,500"
+    social_security: "‚¬4,200"
     
   property:
-    primary_residence_value: "Ã¢â€šÂ¬180,000"
-    enfia_paid: "Ã¢â€šÂ¬450"
-    rental_property_income: "Ã¢â€šÂ¬8,000"
-    rental_expenses: "Ã¢â€šÂ¬2,000"
+    primary_residence_value: "‚¬180,000"
+    enfia_paid: "‚¬450"
+    rental_property_income: "‚¬8,000"
+    rental_expenses: "‚¬2,000"
     
   family:
     marital_status: "married"
-    spouse_income: "Ã¢â€šÂ¬0"
+    spouse_income: "‚¬0"
     dependent_children: 2
     
 Tax_Calculation:
-  total_income: "Ã¢â€šÂ¬41,000" # Ã¢â€šÂ¬35,000 salary + Ã¢â€šÂ¬6,000 net rental
-  deductions: "Ã¢â€šÂ¬2,450" # ENFIA + rental expenses
-  taxable_income: "Ã¢â€šÂ¬38,550"
+  total_income: "‚¬41,000" # ‚¬35,000 salary + ‚¬6,000 net rental
+  deductions: "‚¬2,450" # ENFIA + rental expenses
+  taxable_income: "‚¬38,550"
   
-  income_tax: "Ã¢â€šÂ¬8,398"
-  solidarity_tax: "Ã¢â€šÂ¬945" 
-  tax_credits: "Ã¢â€šÂ¬3,654" # Basic + spouse + 2 children
+  income_tax: "‚¬8,398"
+  solidarity_tax: "‚¬945" 
+  tax_credits: "‚¬3,654" # Basic + spouse + 2 children
   
-  gross_tax: "Ã¢â€šÂ¬9,343"
-  withholding_credit: "Ã¢â€šÂ¬6,500"
-  net_tax_due: "Ã¢â€šÂ¬2,843"
+  gross_tax: "‚¬9,343"
+  withholding_credit: "‚¬6,500"
+  net_tax_due: "‚¬2,843"
   
 Optimization_Opportunities:
   - "Ensure spouse claims any eligible deductions separately"
@@ -440,34 +440,34 @@ Optimization_Opportunities:
 ```yaml
 Taxpayer_Profile:
   employment:
-    annual_salary: "Ã¢â€šÂ¬55,000"
-    employer_withholding: "Ã¢â€šÂ¬12,000"
+    annual_salary: "‚¬55,000"
+    employer_withholding: "‚¬12,000"
     
   professional_income:
-    consulting_fees: "Ã¢â€šÂ¬25,000"
-    withholding_tax: "Ã¢â€šÂ¬5,000"
-    business_expenses: "Ã¢â€šÂ¬8,000"
+    consulting_fees: "‚¬25,000"
+    withholding_tax: "‚¬5,000"
+    business_expenses: "‚¬8,000"
     
   investments:
-    dividend_income: "Ã¢â€šÂ¬3,000" # 5% tax already paid
-    bank_interest: "Ã¢â€šÂ¬1,500" # 15% tax already paid
+    dividend_income: "‚¬3,000" # 5% tax already paid
+    bank_interest: "‚¬1,500" # 15% tax already paid
     
   family:
     marital_status: "single" 
     dependent_parents: 1
     
 Tax_Calculation:
-  total_income: "Ã¢â€šÂ¬84,500"
-  professional_net: "Ã¢â€šÂ¬17,000" # Ã¢â€šÂ¬25,000 - Ã¢â€šÂ¬8,000 expenses
-  taxable_income: "Ã¢â€šÂ¬76,500"
+  total_income: "‚¬84,500"
+  professional_net: "‚¬17,000" # ‚¬25,000 - ‚¬8,000 expenses
+  taxable_income: "‚¬76,500"
   
-  income_tax: "Ã¢â€šÂ¬25,500"
-  solidarity_tax: "Ã¢â€šÂ¬3,082"
-  tax_credits: "Ã¢â€šÂ¬2,100" # Basic credit only
+  income_tax: "‚¬25,500"
+  solidarity_tax: "‚¬3,082"
+  tax_credits: "‚¬2,100" # Basic credit only
   
-  gross_tax: "Ã¢â€šÂ¬28,582"
-  withholding_credits: "Ã¢â€šÂ¬17,000" # Employment + professional + investment
-  net_tax_due: "Ã¢â€šÂ¬11,582"
+  gross_tax: "‚¬28,582"
+  withholding_credits: "‚¬17,000" # Employment + professional + investment
+  net_tax_due: "‚¬11,582"
   
 Optimization_Strategies:
   - "Maximize business expense deductions"
@@ -596,13 +596,13 @@ Documentation_Requirements:
 ## Success Metrics
 
 A successful Greek individual tax system should achieve:
-- Ã¢Å“â€¦ 100% accurate E1 form preparation and submission
-- Ã¢Å“â€¦ Maximum legal deduction identification and application
-- Ã¢Å“â€¦ Optimal tax burden through family planning strategies
-- Ã¢Å“â€¦ Complete ENFIA integration and optimization
-- Ã¢Å“â€¦ Timely submission before June 30 deadline
-- Ã¢Å“â€¦ Comprehensive audit trail and documentation
-- Ã¢Å“â€¦ Integration with employment and investment income sources
-- Ã¢Å“â€¦ Professional Greek tax advice and planning
+- ✅ 100% accurate E1 form preparation and submission
+- ✅ Maximum legal deduction identification and application
+- ✅ Optimal tax burden through family planning strategies
+- ✅ Complete ENFIA integration and optimization
+- ✅ Timely submission before June 30 deadline
+- ✅ Comprehensive audit trail and documentation
+- ✅ Integration with employment and investment income sources
+- ✅ Professional Greek tax advice and planning
 
 Remember: This skill focuses on employed individuals as the primary user base, providing comprehensive individual tax management while maintaining the highest standards of Greek tax compliance and optimization.

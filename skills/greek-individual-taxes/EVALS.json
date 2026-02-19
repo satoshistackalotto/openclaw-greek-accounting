@@ -1,13 +1,13 @@
 [
   {
     "id": 0,
-    "prompt": "Prepare E1 tax return for a Greek employee earning â‚¬32,000 annually with a spouse and two children. Include medical expenses of â‚¬1,500, education costs of â‚¬3,000, and insurance premiums of â‚¬800. Calculate optimal tax burden with all available deductions and credits.",
+    "prompt": "Prepare E1 tax return for a Greek employee earning €32,000 annually with a spouse and two children. Include medical expenses of €1,500, education costs of €3,000, and insurance premiums of €800. Calculate optimal tax burden with all available deductions and credits.",
     "expectations": [
-      "Calculates progressive tax on â‚¬32,000 employment income using current Greek tax brackets",
-      "Applies basic tax credit of â‚¬2,100 plus spouse credit â‚¬2,100 plus children credits (2 Ã— â‚¬777)",
+      "Calculates progressive tax on €32,000 employment income using current Greek tax brackets",
+      "Applies basic tax credit of €2,100 plus spouse credit €2,100 plus children credits (2 × €777)",
       "Includes all medical expenses (no limit for medical in Greece)",
       "Includes all education expenses (no limit for education in Greece)", 
-      "Applies insurance premium deductions up to â‚¬1,200 per person limit",
+      "Applies insurance premium deductions up to €1,200 per person limit",
       "Generates E1 form with accurate calculations and TAXIS submission format",
       "Provides tax optimization recommendations for family situation",
       "Calculates final tax due after withholding and credits"
@@ -21,13 +21,13 @@
   },
   {
     "id": 1,
-    "prompt": "Process individual tax return for a Greek professional with both employment income (â‚¬45,000) and freelance consulting income (â‚¬18,000). Include property rental income of â‚¬12,000 and optimize deductions. Calculate withholding tax credits and net tax due.",
+    "prompt": "Process individual tax return for a Greek professional with both employment income (€45,000) and freelance consulting income (€18,000). Include property rental income of €12,000 and optimize deductions. Calculate withholding tax credits and net tax due.",
     "expectations": [
       "Calculates tax on multiple income sources using correct Greek tax treatment",
-      "Applies progressive tax rates to total income of â‚¬75,000",
+      "Applies progressive tax rates to total income of €75,000",
       "Handles withholding tax credits from employment and professional income",
       "Calculates rental income tax at progressive rates (15%/35%/45%)",
-      "Applies solidarity tax on income over â‚¬30,000",
+      "Applies solidarity tax on income over €30,000",
       "Optimizes professional expense deductions for consulting income",
       "Includes property-related deductions (maintenance, management fees)",
       "Generates comprehensive tax calculation with breakdown by income type"
@@ -41,10 +41,10 @@
   },
   {
     "id": 2,
-    "prompt": "Calculate ENFIA property tax for an individual owning primary residence (â‚¬280,000 value) and a rental property (â‚¬150,000 value). Include insurance discounts and coordinate with individual income tax return. The taxpayer lives in Athens.",
+    "prompt": "Calculate ENFIA property tax for an individual owning primary residence (€280,000 value) and a rental property (€150,000 value). Include insurance discounts and coordinate with individual income tax return. The taxpayer lives in Athens.",
     "expectations": [
       "Calculates primary residence ENFIA with appropriate base rates",
-      "Applies supplementary tax for total property value over â‚¬500,000 threshold",
+      "Applies supplementary tax for total property value over €500,000 threshold",
       "Includes insurance discount (20%) for properties with comprehensive coverage",
       "Calculates municipal TAP tax at Athens rate (0.025%)",
       "Coordinates ENFIA payments as deductions for rental income tax",
@@ -55,17 +55,17 @@
     "files": [
       {
         "name": "property_tax_data.json",
-        "content": "{\n  \"taxpayer\": {\n    \"afm\": \"789123456\",\n    \"name\": \"Yannis Dimitriou\",\n    \"municipality\": \"Athens\",\n    \"tax_office\": \"A' Î‘Î˜Î—ÎÎ©Î\"\n  },\n  \"properties\": [\n    {\n      \"type\": \"primary_residence\",\n      \"address\": \"Patission 123, Athens 11251\",\n      \"objective_value\": 280000,\n      \"area_sqm\": 95,\n      \"construction_year\": 1985,\n      \"floor\": 3,\n      \"zone_value\": 2200,\n      \"insurance\": {\n        \"comprehensive_coverage\": true,\n        \"provider\": \"INTERAMERICAN\",\n        \"premium_annual\": 450\n      },\n      \"energy_class\": \"D\"\n    },\n    {\n      \"type\": \"rental_property\",\n      \"address\": \"Kifissias 45, Marousi 15122\",\n      \"objective_value\": 150000,\n      \"area_sqm\": 70,\n      \"construction_year\": 1995,\n      \"floor\": 2,\n      \"zone_value\": 1800,\n      \"rental_income_annual\": 7200,\n      \"insurance\": {\n        \"comprehensive_coverage\": true,\n        \"provider\": \"ETHNIKI ASFALISTIKI\",\n        \"premium_annual\": 320\n      },\n      \"energy_class\": \"C\"\n    }\n  ],\n  \"previous_year_enfia\": {\n    \"primary_residence\": 825,\n    \"rental_property\": 385,\n    \"total_paid\": 1210\n  }\n}"
+        "content": "{\n  \"taxpayer\": {\n    \"afm\": \"789123456\",\n    \"name\": \"Yannis Dimitriou\",\n    \"municipality\": \"Athens\",\n    \"tax_office\": \"A' ΑΘΔÎΩÎ\"\n  },\n  \"properties\": [\n    {\n      \"type\": \"primary_residence\",\n      \"address\": \"Patission 123, Athens 11251\",\n      \"objective_value\": 280000,\n      \"area_sqm\": 95,\n      \"construction_year\": 1985,\n      \"floor\": 3,\n      \"zone_value\": 2200,\n      \"insurance\": {\n        \"comprehensive_coverage\": true,\n        \"provider\": \"INTERAMERICAN\",\n        \"premium_annual\": 450\n      },\n      \"energy_class\": \"D\"\n    },\n    {\n      \"type\": \"rental_property\",\n      \"address\": \"Kifissias 45, Marousi 15122\",\n      \"objective_value\": 150000,\n      \"area_sqm\": 70,\n      \"construction_year\": 1995,\n      \"floor\": 2,\n      \"zone_value\": 1800,\n      \"rental_income_annual\": 7200,\n      \"insurance\": {\n        \"comprehensive_coverage\": true,\n        \"provider\": \"ETHNIKI ASFALISTIKI\",\n        \"premium_annual\": 320\n      },\n      \"energy_class\": \"C\"\n    }\n  ],\n  \"previous_year_enfia\": {\n    \"primary_residence\": 825,\n    \"rental_property\": 385,\n    \"total_paid\": 1210\n  }\n}"
       }
     ]
   },
   {
     "id": 3,
-    "prompt": "Optimize tax strategy for a Greek family where husband earns â‚¬55,000 and wife earns â‚¬28,000. They have three children and significant medical expenses (â‚¬4,500). Determine if separate or joint optimization provides better tax outcome.",
+    "prompt": "Optimize tax strategy for a Greek family where husband earns €55,000 and wife earns €28,000. They have three children and significant medical expenses (€4,500). Determine if separate or joint optimization provides better tax outcome.",
     "expectations": [
       "Calculates tax burden for both separate and joint optimization strategies",
       "Allocates medical expenses optimally between spouses for maximum benefit",
-      "Applies family tax credits correctly (â‚¬777 per child Ã— 3)",
+      "Applies family tax credits correctly (€777 per child × 3)",
       "Compares total family tax burden under different scenarios",
       "Recommends optimal strategy with detailed justification",
       "Considers solidarity tax implications for both spouses",
@@ -95,7 +95,7 @@
     "files": [
       {
         "name": "e1_submission_package.json",
-        "content": "{\n  \"submission_details\": {\n    \"tax_year\": 2025,\n    \"submission_deadline\": \"2026-06-30\",\n    \"current_date\": \"2026-05-15\",\n    \"days_remaining\": 46\n  },\n  \"taxpayer_info\": {\n    \"afm\": \"159753486\",\n    \"name\": \"Dimitris Georgiadis\",\n    \"address\": \"Voukourestiou 8, Athens 10671\",\n    \"email\": \"d.georgiadis@email.gr\",\n    \"phone\": \"+30-210-1234567\",\n    \"tax_office\": \"Î’' Î‘Î˜Î—ÎÎ©Î\",\n    \"taxis_credentials\": \"configured\",\n    \"digital_certificate\": \"valid_until_2027\"\n  },\n  \"income_summary\": {\n    \"employment_income\": 42000,\n    \"professional_income\": 8000,\n    \"property_income\": 4800,\n    \"investment_income\": 1200,\n    \"total_gross_income\": 56000\n  },\n  \"deductions_summary\": {\n    \"medical_expenses\": 1800,\n    \"education_expenses\": 2200,\n    \"insurance_premiums\": 1000,\n    \"charitable_donations\": 400,\n    \"total_deductions\": 5400\n  },\n  \"required_documents\": [\n    {\n      \"type\": \"employer_certificate\",\n      \"description\": \"Î’ÎµÎ²Î±Î¯Ï‰ÏƒÎ· Î±Ï€Î¿Î´Î¿Ï‡ÏŽÎ½ Î±Ï€ÏŒ ÎµÏÎ³Î¿Î´ÏŒÏ„Î·\",\n      \"status\": \"received\"\n    },\n    {\n      \"type\": \"professional_income_receipts\",\n      \"description\": \"Î‘Ï€Î¿Î´ÎµÎ¯Î¾ÎµÎ¹Ï‚ ÎµÏ€Î±Î³Î³ÎµÎ»Î¼Î±Ï„Î¹ÎºÏŽÎ½ ÎµÏƒÏŒÎ´Ï‰Î½\",\n      \"status\": \"pending\"\n    },\n    {\n      \"type\": \"property_income_records\",\n      \"description\": \"Î£Ï„Î¿Î¹Ï‡ÎµÎ¯Î± ÎµÎ¹ÏƒÎ¿Î´Î®Î¼Î±Ï„Î¿Ï‚ Î±Ï€ÏŒ Î±ÎºÎ¯Î½Î·Ï„Î±\",\n      \"status\": \"received\"\n    },\n    {\n      \"type\": \"medical_expense_receipts\",\n      \"description\": \"Î‘Ï€Î¿Î´ÎµÎ¯Î¾ÎµÎ¹Ï‚ Î¹Î±Ï„ÏÎ¹ÎºÏŽÎ½ Î´Î±Ï€Î±Î½ÏŽÎ½\",\n      \"status\": \"organizing\"\n    }\n  ],\n  \"submission_options\": {\n    \"electronic_submission\": {\n      \"platform\": \"TAXIS\",\n      \"requirements\": [\"Digital certificate\", \"Login credentials\"],\n      \"estimated_time\": \"30 minutes\"\n    },\n    \"paper_submission\": {\n      \"location\": \"Tax office or authorized agent\",\n      \"requirements\": [\"Printed forms\", \"Supporting documents\"],\n      \"deadline_consideration\": \"Must account for processing time\"\n    }\n  }\n}"
+        "content": "{\n  \"submission_details\": {\n    \"tax_year\": 2025,\n    \"submission_deadline\": \"2026-06-30\",\n    \"current_date\": \"2026-05-15\",\n    \"days_remaining\": 46\n  },\n  \"taxpayer_info\": {\n    \"afm\": \"159753486\",\n    \"name\": \"Dimitris Georgiadis\",\n    \"address\": \"Voukourestiou 8, Athens 10671\",\n    \"email\": \"d.georgiadis@email.gr\",\n    \"phone\": \"+30-210-1234567\",\n    \"tax_office\": \"Β' ΑΘΔÎΩÎ\",\n    \"taxis_credentials\": \"configured\",\n    \"digital_certificate\": \"valid_until_2027\"\n  },\n  \"income_summary\": {\n    \"employment_income\": 42000,\n    \"professional_income\": 8000,\n    \"property_income\": 4800,\n    \"investment_income\": 1200,\n    \"total_gross_income\": 56000\n  },\n  \"deductions_summary\": {\n    \"medical_expenses\": 1800,\n    \"education_expenses\": 2200,\n    \"insurance_premiums\": 1000,\n    \"charitable_donations\": 400,\n    \"total_deductions\": 5400\n  },\n  \"required_documents\": [\n    {\n      \"type\": \"employer_certificate\",\n      \"description\": \"Βεβαίωση αποδοχών από εÏγοδότη\",\n      \"status\": \"received\"\n    },\n    {\n      \"type\": \"professional_income_receipts\",\n      \"description\": \"Αποδείξεις επαγγελματικών εσόδων\",\n      \"status\": \"pending\"\n    },\n    {\n      \"type\": \"property_income_records\",\n      \"description\": \"Στοιχεία εισοδήματος από ακίνητα\",\n      \"status\": \"received\"\n    },\n    {\n      \"type\": \"medical_expense_receipts\",\n      \"description\": \"Αποδείξεις ιατÏικών δαπανών\",\n      \"status\": \"organizing\"\n    }\n  ],\n  \"submission_options\": {\n    \"electronic_submission\": {\n      \"platform\": \"TAXIS\",\n      \"requirements\": [\"Digital certificate\", \"Login credentials\"],\n      \"estimated_time\": \"30 minutes\"\n    },\n    \"paper_submission\": {\n      \"location\": \"Tax office or authorized agent\",\n      \"requirements\": [\"Printed forms\", \"Supporting documents\"],\n      \"deadline_consideration\": \"Must account for processing time\"\n    }\n  }\n}"
       }
     ]
   }
