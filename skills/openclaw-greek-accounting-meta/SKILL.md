@@ -213,6 +213,8 @@ class GreekAccountingOrchestrator:
             'analytics':    'analytics-and-advisory-intelligence',
             # Phase 4 â€" Learning Loop
             'memory':       'memory-feedback',
+            # Operational
+            'health':       'system-health-check',
         }
 
     def monthly_process(self, afm=None, month=None, user=None):

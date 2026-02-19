@@ -37,6 +37,7 @@ Greek accounting firms face unique regulatory complexity: AADE tax compliance, E
 | 17 | `system-integrity-and-backup` | 3B - Outputs | Encrypted backups, hash verification, disaster recovery |
 | 18 | `analytics-and-advisory-intelligence` | 3B - Outputs | Trend analysis, benchmarking, tax optimization, advisory insights |
 | 19 | `memory-feedback` | 4 - Learning | Episodic memory, failure logging, pattern detection, GitHub PR workflows |
+| 20 | `system-health-check` | Operational | System validation, directory checks, backup freshness, dependency verification |
 
 ## Quick Start
 
