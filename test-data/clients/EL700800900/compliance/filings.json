@@ -1,0 +1,21 @@
+{
+  "afm": "EL700800900",
+  "filings": [
+    {
+      "type": "VAT-monthly",
+      "period": "2026-01",
+      "status": "submitted",
+      "submitted_at": "2026-02-18T14:00:00Z",
+      "amount": 8940.0,
+      "submission_ref": "AADE-2026-0103"
+    },
+    {
+      "type": "EFKA-monthly",
+      "period": "2026-01",
+      "status": "submitted",
+      "submitted_at": "2026-02-14T09:30:00Z",
+      "amount": 5680.0,
+      "submission_ref": "EFKA-2026-0103"
+    }
+  ]
+}

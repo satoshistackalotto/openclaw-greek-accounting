@@ -1,0 +1,27 @@
+{
+  "afm": "EL100200300",
+  "recurring": [
+    {
+      "type": "VAT-monthly",
+      "frequency": "monthly",
+      "due_day": 20,
+      "lag_months": 1
+    },
+    {
+      "type": "EFKA-monthly",
+      "frequency": "monthly",
+      "due_day": 15,
+      "lag_months": 1
+    },
+    {
+      "type": "myDATA",
+      "frequency": "per_invoice",
+      "due_hours": 24
+    },
+    {
+      "type": "corporate-tax",
+      "frequency": "annual",
+      "due_month": 6
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "afm": "EL700800900",
+  "name": "ΓΑΜΜΑ ΚΑΤΑΣΚΕΥΕΣ ΕΠΕ",
+  "name_en": "Gamma Constructions EPE",
+  "entity_type": "EPE",
+  "vat_regime": "normal",
+  "fiscal_year": "calendar",
+  "address": "Εθνικής Αντιστάσεως 88, 17122, Νέα Σμύρνη",
+  "phone": "+30 210 5551234",
+  "email": "info@gamma-constructions.gr",
+  "legal_representative": "Δημήτριος Γεωργίου",
+  "incorporation_date": "2015-03-10",
+  "doy": "Νέας Σμύρνης",
+  "activity_codes": [
+    "41.20",
+    "43.11"
+  ],
+  "employee_count": 8,
+  "data_classification": "confidential"
+}

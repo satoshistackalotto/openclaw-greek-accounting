@@ -1,0 +1,8 @@
+{
+  "description": "Pending OCR — triggers Beta completeness gate failure",
+  "filename": "photo_receipt_20260130.jpg",
+  "client_afm": "EL400500600",
+  "received_date": "2026-01-30",
+  "status": "pending_ocr",
+  "document_type": "unknown"
+}

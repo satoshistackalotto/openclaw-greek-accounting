@@ -1,0 +1,10 @@
+{
+  "afm": "EL400500600",
+  "period": "2026-01",
+  "employees": 2,
+  "employer_contributions": 820.0,
+  "employee_deductions": 420.0,
+  "total_payroll_gross": 4800.0,
+  "status": "calculated",
+  "data_classification": "confidential"
+}

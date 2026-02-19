@@ -1,0 +1,13 @@
+{
+  "afm": "EL700800900",
+  "period": "2026-01",
+  "status": "submitted",
+  "output_vat": 18640.0,
+  "input_vat": 9700.0,
+  "net_vat_payable": 8940.0,
+  "vat_rate_breakdown": {
+    "24pct_sales": 17200.0,
+    "13pct_sales": 1440.0
+  },
+  "submission_ref": "AADE-2026-0103"
+}

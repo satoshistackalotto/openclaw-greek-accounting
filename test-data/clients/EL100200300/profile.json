@@ -1,0 +1,20 @@
+{
+  "afm": "EL100200300",
+  "name": "ΑΛΦΑ ΕΜΠΟΡΙΚΗ ΑΕ",
+  "name_en": "Alpha Trading AE",
+  "entity_type": "AE",
+  "vat_regime": "normal",
+  "fiscal_year": "calendar",
+  "address": "Λεωφόρος Κηφισίας 120, 11526, Αθήνα",
+  "phone": "+30 210 1234567",
+  "email": "info@alpha-trading.gr",
+  "legal_representative": "Κωνσταντίνος Αλεξίου",
+  "incorporation_date": "2018-06-15",
+  "doy": "Α' Αθηνών",
+  "activity_codes": [
+    "46.71",
+    "47.30"
+  ],
+  "employee_count": 5,
+  "data_classification": "confidential"
+}

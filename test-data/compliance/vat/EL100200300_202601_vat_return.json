@@ -1,0 +1,12 @@
+{
+  "afm": "EL100200300",
+  "period": "2026-01",
+  "status": "prepared",
+  "output_vat": 8420.0,
+  "input_vat": 4240.0,
+  "net_vat_payable": 4180.0,
+  "vat_rate_breakdown": {
+    "24pct_sales": 7100.0,
+    "13pct_sales": 1320.0
+  }
+}

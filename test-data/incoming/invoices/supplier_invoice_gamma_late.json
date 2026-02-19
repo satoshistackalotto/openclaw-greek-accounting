@@ -1,0 +1,16 @@
+{
+  "description": "Synthetic placeholder for late invoice triggering amendment",
+  "invoice_number": "INV-2026-0047",
+  "supplier": "ΔΕΛΤΑ ΤΕΧΝΙΚΗ ΕΕ",
+  "supplier_afm": "EL888777666",
+  "client_afm": "EL700800900",
+  "net_amount": 2903.23,
+  "vat_amount": 696.77,
+  "total": 3600.0,
+  "vat_rate": 0.24,
+  "egls_account": "62",
+  "description_text": "Υπηρεσίες ηλεκτρολογικών εγκαταστάσεων",
+  "invoice_date": "2026-01-25",
+  "received_date": "2026-02-18",
+  "status": "pending_processing"
+}

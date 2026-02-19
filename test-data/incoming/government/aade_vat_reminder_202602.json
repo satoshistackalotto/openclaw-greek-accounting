@@ -1,0 +1,9 @@
+{
+  "source": "AADE",
+  "type": "deadline_reminder",
+  "subject": "Υπενθύμιση υποβολής ΦΠΑ Ιανουαρίου 2026",
+  "deadline": "2026-02-20",
+  "applies_to": "all_active_vat_registered",
+  "received_at": "2026-02-10T08:00:00Z",
+  "priority": "normal"
+}

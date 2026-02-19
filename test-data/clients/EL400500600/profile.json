@@ -1,0 +1,20 @@
+{
+  "afm": "EL400500600",
+  "name": "ΒΗΤΑ ΥΠΗΡΕΣΙΕΣ ΟΕ",
+  "name_en": "Beta Services OE",
+  "entity_type": "OE",
+  "vat_regime": "normal",
+  "fiscal_year": "calendar",
+  "address": "Τσιμισκή 45, 54623, Θεσσαλονίκη",
+  "phone": "+30 2310 987654",
+  "email": "info@beta-services.gr",
+  "legal_representative": "Ελένη Βασιλείου",
+  "incorporation_date": "2022-01-20",
+  "doy": "Α' Θεσσαλονίκης",
+  "activity_codes": [
+    "62.01",
+    "62.02"
+  ],
+  "employee_count": 2,
+  "data_classification": "confidential"
+}

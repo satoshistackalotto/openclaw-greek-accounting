@@ -1,0 +1,17 @@
+{
+  "afm": "EL700800900",
+  "gemi": "167890123000",
+  "efka_employer_id": "3456789012",
+  "ibans": [
+    {
+      "bank": "alpha",
+      "iban": "GR1601100400000004000789012",
+      "primary": true
+    },
+    {
+      "bank": "piraeus",
+      "iban": "GR3001720160000001600123456",
+      "primary": false
+    }
+  ]
+}

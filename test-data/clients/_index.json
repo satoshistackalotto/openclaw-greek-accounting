@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-02-01T08:00:00Z",
+  "clients": [
+    {
+      "afm": "EL100200300",
+      "name": "ΑΛΦΑ ΕΜΠΟΡΙΚΗ ΑΕ",
+      "name_en": "Alpha Trading AE",
+      "entity_type": "AE",
+      "status": "active",
+      "assigned_to": "m.papadopoulou"
+    },
+    {
+      "afm": "EL400500600",
+      "name": "ΒΗΤΑ ΥΠΗΡΕΣΙΕΣ ΟΕ",
+      "name_en": "Beta Services OE",
+      "entity_type": "OE",
+      "status": "active",
+      "assigned_to": "a.nikolaou"
+    },
+    {
+      "afm": "EL700800900",
+      "name": "ΓΑΜΜΑ ΚΑΤΑΣΚΕΥΕΣ ΕΠΕ",
+      "name_en": "Gamma Constructions EPE",
+      "entity_type": "EPE",
+      "status": "active",
+      "assigned_to": "m.papadopoulou"
+    }
+  ]
+}

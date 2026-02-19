@@ -1,0 +1,34 @@
+{
+  "afm": "EL700800900",
+  "client_name": "ΓΑΜΜΑ ΚΑΤΑΣΚΕΥΕΣ ΕΠΕ",
+  "period": "2026-01",
+  "type": "balance-sheet",
+  "version": 1,
+  "status": "issued",
+  "generated_at": "2026-02-12T09:45:00Z",
+  "assets": {
+    "fixed_assets": {
+      "net_book_value": 124500.0
+    },
+    "current_assets": {
+      "inventories": 18600.0,
+      "trade_debtors": 67200.0,
+      "cash": 42800.0
+    },
+    "total_assets": 253100.0
+  },
+  "equity_and_liabilities": {
+    "equity": {
+      "share_capital": 80000.0,
+      "retained_earnings": 98400.0,
+      "current_year_profit": 26800.0
+    },
+    "current_liabilities": {
+      "suppliers": 32100.0,
+      "vat_payable": 8940.0,
+      "efka_payable": 5680.0,
+      "other": 1180.0
+    },
+    "total_equity_and_liabilities": 253100.0
+  }
+}

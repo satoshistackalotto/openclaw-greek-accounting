@@ -1,0 +1,35 @@
+{
+  "afm": "EL100200300",
+  "filings": [
+    {
+      "type": "VAT-monthly",
+      "period": "2025-12",
+      "status": "submitted",
+      "submitted_at": "2026-01-20T09:15:00Z",
+      "amount": 2890.0,
+      "submission_ref": "AADE-2025-1201"
+    },
+    {
+      "type": "EFKA-monthly",
+      "period": "2025-12",
+      "status": "submitted",
+      "submitted_at": "2026-01-15T10:00:00Z",
+      "amount": 3420.0,
+      "submission_ref": "EFKA-2025-1201"
+    },
+    {
+      "type": "VAT-monthly",
+      "period": "2026-01",
+      "status": "prepared",
+      "amount": 4180.0,
+      "submission_ref": null
+    },
+    {
+      "type": "EFKA-monthly",
+      "period": "2026-01",
+      "status": "calculated",
+      "amount": 3580.0,
+      "submission_ref": null
+    }
+  ]
+}

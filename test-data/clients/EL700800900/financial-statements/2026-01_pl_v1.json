@@ -1,0 +1,45 @@
+{
+  "afm": "EL700800900",
+  "client_name": "ΓΑΜΜΑ ΚΑΤΑΣΚΕΥΕΣ ΕΠΕ",
+  "period": "2026-01",
+  "type": "pl",
+  "version": 1,
+  "status": "issued",
+  "generated_at": "2026-02-12T09:45:00Z",
+  "revenue": {
+    "70_construction_revenue": {
+      "label_gr": "Έσοδα κατασκευών",
+      "amount": 86500.0
+    },
+    "73_service_revenue": {
+      "label_gr": "Πωλήσεις υπηρεσιών",
+      "amount": 12400.0
+    },
+    "total": 98900.0
+  },
+  "cost_of_sales": {
+    "60_materials": {
+      "label_gr": "Αγορές υλικών",
+      "amount": 42300.0
+    },
+    "total": 42300.0
+  },
+  "gross_profit": 56600.0,
+  "operating_expenses": {
+    "62_services": {
+      "label_gr": "Παροχές τρίτων",
+      "amount": 8400.0
+    },
+    "64_staff": {
+      "label_gr": "Έξοδα προσωπικού",
+      "amount": 18200.0
+    },
+    "66_depreciation": {
+      "label_gr": "Αποσβέσεις",
+      "amount": 3200.0
+    },
+    "total": 29800.0
+  },
+  "operating_profit": 26800.0,
+  "net_profit": 26800.0
+}

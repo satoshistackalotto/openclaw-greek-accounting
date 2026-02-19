@@ -1,0 +1,23 @@
+{
+  "afm": "EL700800900",
+  "statements": [
+    {
+      "period": "2026-01",
+      "type": "pl",
+      "version": 1,
+      "status": "issued",
+      "issued_at": "2026-02-12T10:00:00Z",
+      "issued_by": "m.papadopoulou",
+      "filename": "2026-01_pl_v1.json"
+    },
+    {
+      "period": "2026-01",
+      "type": "balance-sheet",
+      "version": 1,
+      "status": "issued",
+      "issued_at": "2026-02-12T10:00:00Z",
+      "issued_by": "m.papadopoulou",
+      "filename": "2026-01_balance-sheet_v1.json"
+    }
+  ]
+}

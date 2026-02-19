@@ -1,0 +1,14 @@
+{
+  "afm": "EL100200300",
+  "period": "2026-01",
+  "bank": "alpha",
+  "status": "complete",
+  "reconciled_at": "2026-02-05T10:22:00Z",
+  "opening_balance": 18400.0,
+  "closing_balance": 22150.0,
+  "total_debits": 47320.0,
+  "total_credits": 43570.0,
+  "matched_transactions": 42,
+  "unmatched_transactions": 0,
+  "data_classification": "confidential"
+}
