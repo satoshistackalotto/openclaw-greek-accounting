@@ -3,6 +3,7 @@ name: efka-api-integration
 description: OpenClaw-native Greek social security (EFKA) integration for automated employee record management, contribution calculations, and compliance monitoring. Built for artifact deployment to OpenClaw instances with file-based processing, robust error handling, and seamless integration with Greek payroll workflows.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "efka", "social-security", "payroll"]
 metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

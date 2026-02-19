@@ -3,6 +3,7 @@ name: client-data-management
 description: OpenClaw-native secure client database for Greek accounting firms. Manages client profiles, VAT numbers, contact details, compliance history, and document metadata with field-level encryption, GDPR compliance, and full audit trails. Provides English-language interface for accountants assistants working with Greek business data.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "client-management", "gdpr", "onboarding"]
 metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

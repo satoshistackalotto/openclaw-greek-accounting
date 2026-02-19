@@ -3,6 +3,7 @@ name: greek-email-processor
 description: Automated email processing skill for Greek accounting workflows. Monitors Gmail, Outlook, and other email providers for Greek financial documents, AADE notifications, bank statements, invoices, and client correspondence. Provides intelligent document classification, automated forwarding, and Greek language support for accounting automation.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "email", "document-classification", "gmail"]
 metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

@@ -3,6 +3,7 @@ name: memory-feedback
 description: Agent episodic memory, failure capture, pattern learning, and GitHub-based skill improvement for the OpenClaw Greek Accounting system. Logs every meaningful agent action and failure across all 18 skills. Runs nightly pattern scans to detect recurring problems and successes. Proposes skill improvements as GitHub pull requests for human review. Enforces token and storage rate limits to prevent runaway consumption. Semi-automatic: agent writes memory files freely, skill file changes require human approval via GitHub PR merge. Owner of /data/memory/. Designed for Phase 4 deployment after Phase 3B is stable and has generated meaningful learning data.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "memory", "learning", "github-integration"]
 metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "gh"], "env": ["OPENCLAW_DATA_DIR", "GITHUB_TOKEN"]}}}
 ---

@@ -3,6 +3,7 @@ name: greek-banking-integration
 description: OpenClaw-optimized integration with all major Greek banks for automated statement processing, transaction reconciliation, and payment tracking. Built for real Greek bank statement formats (Alpha Bank, NBG, Eurobank, Piraeus, etc.) with practical file-based processing suitable for production deployment and testing in Greece.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "banking", "alpha-bank", "nbg", "eurobank", "piraeus"]
 metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

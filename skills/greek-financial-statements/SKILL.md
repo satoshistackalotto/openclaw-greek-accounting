@@ -3,6 +3,7 @@ name: greek-financial-statements
 description: Greek financial statement generation with ΕΓΛΣ (Greek Chart of Accounts) integration, completeness gates, versioned amendments, and bilingual output. Produces P&L (Αποτελέσματα Χρήσεως), balance sheets (Ισολογισμός), VAT summaries, and period comparison reports. Reads from /data/clients/{AFM}/compliance/, /data/clients/{AFM}/documents/, /data/banking/, and /data/efka/. Writes machine-readable JSON to /data/clients/{AFM}/financial-statements/ and client-facing PDFs to /data/reports/client/. Never generates partial statements without explicit human override.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "financial-statements", "balance-sheet", "pnl", "egls"]
 metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

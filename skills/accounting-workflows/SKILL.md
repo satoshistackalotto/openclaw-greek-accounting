@@ -3,6 +3,7 @@ name: accounting-workflows
 description: Comprehensive accounting automation skill for OpenClaw. Handles document processing (OCR of invoices, receipts, statements), data extraction, email monitoring, accounting software integration, and workflow management. Designed for professional accounting practices with audit trails and compliance features.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "document-processing", "ocr", "invoices"]
 metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

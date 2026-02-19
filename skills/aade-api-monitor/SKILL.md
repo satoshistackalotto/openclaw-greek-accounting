@@ -3,6 +3,7 @@ name: aade-api-monitor
 description: OpenClaw-optimized real-time monitoring of Greek AADE (Independent Authority for Public Revenue) systems, announcements, and regulatory changes. Uses file-based processing and intelligent document monitoring to track tax deadlines, rate changes, system status, and compliance updates. Designed for production OpenClaw deployment with robust error handling.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "aade", "government-monitoring", "api"]
 metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

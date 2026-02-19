@@ -3,6 +3,7 @@ name: conversational-ai-assistant
 description: Natural language conversational interface for the OpenClaw Greek Accounting system. Allows accountants assistants to query client data, check compliance status, understand deadlines, request actions, and get explanations — all in plain English, over Greek accounting data. Acts as the human-facing layer of the system, translating natural language into orchestrated skill commands and translating results back into clear English responses. Read-heavy by design; all write operations route through the meta-skill with the standard confirmation gates.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "conversational-ai", "natural-language"]
 metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

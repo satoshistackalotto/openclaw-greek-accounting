@@ -3,6 +3,7 @@ name: greek-individual-taxes
 description: Comprehensive Greek individual tax return processing skill for employed individuals. Handles E1 form preparation, personal income tax calculations, deductions optimization, property taxes (ENFIA), and individual compliance management. Designed for Greek tax residents with employment income, property, and investment income.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "individual-tax", "e1-form", "enfia"]
 metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---

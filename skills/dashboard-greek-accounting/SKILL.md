@@ -3,6 +3,7 @@ name: dashboard-greek-accounting
 description: OpenClaw-optimized business intelligence dashboard for Greek accounting firms. Provides English-language interface for accountants assistants to monitor Greek business data, compliance status, client portfolios, and financial metrics. Integrates with all existing Greek accounting skills to deliver real-time alerts, deadline tracking, and comprehensive reporting through file-based processing.
 version: 1.0.0
 author: openclaw-greek-accounting
+homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "dashboard", "reporting", "compliance-scoring"]
 metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}}}
 ---
