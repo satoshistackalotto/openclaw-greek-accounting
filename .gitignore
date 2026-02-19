@@ -20,3 +20,4 @@ Thumbs.db
 # Backup artifacts (committed via Skill 17, not here)
 *.tar.enc
 *.bak
+.github/workflows/
