@@ -1,0 +1,22 @@
+# OpenClaw runtime data (never commit actual client data)
+/data/
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Backup artifacts (committed via Skill 17, not here)
+*.tar.enc
+*.bak

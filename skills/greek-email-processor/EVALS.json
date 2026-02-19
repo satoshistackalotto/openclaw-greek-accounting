@@ -1,0 +1,102 @@
+[
+  {
+    "id": 0,
+    "prompt": "Process incoming Greek business emails from the last 24 hours. I need automatic detection of invoices, AADE notifications, and client payment inquiries. Send appropriate Greek responses and forward documents to the accounting system.",
+    "expectations": [
+      "Scans multiple email accounts for Greek business communications",
+      "Identifies Greek invoices using keywords like 'Ï„Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î¿' and 'Î±Ï€Î¿Î´ÎµÎ¹Î¾Î·'",
+      "Detects AADE government emails and treats them as high priority",
+      "Recognizes client payment inquiries and status requests",
+      "Generates appropriate Greek language responses",
+      "Extracts and processes document attachments",
+      "Forwards processed documents to accounting workflows",
+      "Creates summary report of processing actions taken"
+    ],
+    "files": [
+      {
+        "name": "sample_greek_emails.json",
+        "content": "{\n  \"emails\": [\n    {\n      \"from\": \"supplier@techsolutions.gr\",\n      \"subject\": \"Î¤Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î¿ #2026-0234 - Î¥Ï€Î·ÏÎµÏƒÎ¯ÎµÏ‚ Î‘Î½Î¬Ï€Ï„Ï…Î¾Î·Ï‚\",\n      \"body\": \"Î‘Î³Î±Ï€Î·Ï„Î¿Î¯ ÏƒÏ…Î½ÎµÏÎ³Î¬Ï„ÎµÏ‚, ÎµÏ€Î¹ÏƒÏ…Î½Î¬Ï€Ï„Î¿Ï…Î¼Îµ Ï„Î¿ Ï„Î¹Î¼Î¿Î»ÏŒÎ³Î¹ÏŒ Î¼Î±Ï‚ Î³Î¹Î± Ï„Î¹Ï‚ Ï…Ï€Î·ÏÎµÏƒÎ¯ÎµÏ‚ Î±Î½Î¬Ï€Ï„Ï…Î¾Î·Ï‚ Î¹ÏƒÏ„Î¿ÏƒÎµÎ»Î¯Î´Î±Ï‚. Î Î±ÏÎ±ÎºÎ±Î»Î¿ÏÎ¼Îµ Î³Î¹Î± Ï€Î»Î·ÏÏ‰Î¼Î® ÎµÎ½Ï„ÏŒÏ‚ 30 Î·Î¼ÎµÏÏŽÎ½.\",\n      \"attachments\": [\"invoice_2026_0234.pdf\"],\n      \"timestamp\": \"2026-02-17T09:30:00Z\",\n      \"priority\": \"normal\"\n    },\n    {\n      \"from\": \"notifications@aade.gr\",\n      \"subject\": \"Î£Î·Î¼Î±Î½Ï„Î¹ÎºÎ® Î±Î½Î±ÎºÎ¿Î¯Î½Ï‰ÏƒÎ·: Î‘Î»Î»Î±Î³Î® Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î±Ï‚ Î´Î®Î»Ï‰ÏƒÎ·Ï‚ Î¦Î Î‘\",\n      \"body\": \"Î•Î½Î·Î¼ÎµÏÏŽÎ½Î¿Ï…Î¼Îµ ÏŒÏ„Î¹ Î· Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î± Ï…Ï€Î¿Î²Î¿Î»Î®Ï‚ Ï„Î·Ï‚ Î¼Î·Î½Î¹Î±Î¯Î±Ï‚ Î´Î®Î»Ï‰ÏƒÎ·Ï‚ Î¦Î Î‘ Î³Î¹Î± Ï„Î¿Î½ ÎœÎ¬ÏÏ„Î¹Î¿ 2026 Î¼ÎµÏ„Î±Ï†Î­ÏÎµÏ„Î±Î¹ Î±Ï€ÏŒ 25 Î‘Ï€ÏÎ¹Î»Î¯Î¿Ï… ÏƒÏ„Î¹Ï‚ 20 Î‘Ï€ÏÎ¹Î»Î¯Î¿Ï… 2026.\",\n      \"attachments\": [],\n      \"timestamp\": \"2026-02-17T08:15:00Z\",\n      \"priority\": \"critical\"\n    },\n    {\n      \"from\": \"client@company-a.gr\",\n      \"subject\": \"Î•ÏÏŽÏ„Î·Î¼Î± Î³Î¹Î± ÎºÎ±Ï„Î¬ÏƒÏ„Î±ÏƒÎ· Ï€Î»Î·ÏÏ‰Î¼Î®Ï‚\",\n      \"body\": \"ÎšÎ±Î»Î·ÏƒÏ€Î­ÏÎ±, Î¸Î± Î¸Î­Î»Î±Î¼Îµ Î½Î± ÎµÎ½Î·Î¼ÎµÏÏ‰Î¸Î¿ÏÎ¼Îµ Î³Î¹Î± Ï„Î·Î½ ÎºÎ±Ï„Î¬ÏƒÏ„Î±ÏƒÎ· Ï€Î»Î·ÏÏ‰Î¼Î®Ï‚ Ï„Î¿Ï… Ï„Î¹Î¼Î¿Î»Î¿Î³Î¯Î¿Ï… #789 Ï€Î¿Ï… ÏƒÏ„ÎµÎ¯Î»Î±Î¼Îµ ÏƒÏ„Î¹Ï‚ 15 Î™Î±Î½Î¿Ï…Î±ÏÎ¯Î¿Ï…. Î•Ï…Ï‡Î±ÏÎ¹ÏƒÏ„Î¿ÏÎ¼Îµ.\",\n      \"attachments\": [],\n      \"timestamp\": \"2026-02-17T14:20:00Z\",\n      \"priority\": \"medium\"\n    }\n  ]\n}"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "prompt": "Set up automated email monitoring for a Greek accounting firm. Configure Gmail and Outlook integration to monitor for invoices, bank statements, and government notifications. Include Greek language templates for automatic responses.",
+    "expectations": [
+      "Configures Gmail API integration with appropriate OAuth scopes",
+      "Sets up Outlook/Exchange integration with Microsoft Graph API",
+      "Creates email filters for Greek document types and government communications",
+      "Establishes monitoring intervals and processing priorities",
+      "Generates Greek language response templates for common scenarios",
+      "Sets up automated forwarding rules to appropriate processing systems",
+      "Creates alert configuration for critical government notifications",
+      "Establishes secure handling procedures for sensitive financial emails"
+    ],
+    "files": [
+      {
+        "name": "email_config.yaml",
+        "content": "accounts:\n  primary_business:\n    provider: \"gmail\"\n    email: \"accounting@company.gr\"\n    api_key: \"placeholder\"\n    monitoring_enabled: true\n    \n  government_notifications:\n    provider: \"gmail\" \n    email: \"compliance@company.gr\"\n    priority: \"critical\"\n    monitoring_enabled: true\n    \n  client_communications:\n    provider: \"outlook\"\n    email: \"info@company.gr\"\n    auto_responses: true\n    monitoring_enabled: true\n    \nfilters:\n  invoices:\n    keywords: [\"Ï„Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î¿\", \"Î±Ï€Î¿Î´ÎµÎ¹Î¾Î·\", \"invoice\"]\n    file_types: [\".pdf\", \".xml\"]\n    \n  government:\n    senders: [\"@aade.gr\", \"@efka.gov.gr\", \"@gov.gr\"]\n    priority: \"high\"\n    \n  banking:\n    senders: [\"@alphabank.gr\", \"@nbg.gr\", \"@eurobank.gr\"]\n    keywords: [\"statement\", \"ÎºÎ¯Î½Î·ÏƒÎ· Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼Î¿Ï\"]\n    \nresponse_templates:\n  invoice_confirmation:\n    subject: \"Î•Ï€Î¹Î²ÎµÎ²Î±Î¯Ï‰ÏƒÎ· Ï€Î±ÏÎ±Î»Î±Î²Î®Ï‚ Ï„Î¹Î¼Î¿Î»Î¿Î³Î¯Î¿Ï…\"\n    language: \"greek\"\n    \n  payment_status:\n    subject: \"Î•Î½Î·Î¼Î­ÏÏ‰ÏƒÎ· ÎºÎ±Ï„Î¬ÏƒÏ„Î±ÏƒÎ·Ï‚ Ï€Î»Î·ÏÏ‰Î¼Î®Ï‚\" \n    language: \"greek\""
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "prompt": "Process a batch of Greek bank emails containing account statements from Alpha Bank, National Bank, and Eurobank. Extract statements, verify sender authenticity, and integrate with the bank reconciliation system.",
+    "expectations": [
+      "Identifies emails from legitimate Greek bank domains",
+      "Verifies sender authenticity and flags suspicious emails",
+      "Extracts bank statement attachments safely",
+      "Recognizes different Greek bank statement formats",
+      "Parses account numbers and statement periods",
+      "Integrates extracted data with reconciliation workflows",
+      "Generates processing summary with bank-specific details",
+      "Maintains security protocols for sensitive banking information"
+    ],
+    "files": [
+      {
+        "name": "bank_emails.json",
+        "content": "{\n  \"bank_emails\": [\n    {\n      \"from\": \"statements@alphabank.gr\",\n      \"subject\": \"Alpha Bank - ÎšÎ¯Î½Î·ÏƒÎ· Î›Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼Î¿Ï Î™Î±Î½Î¿Ï…Î¬ÏÎ¹Î¿Ï‚ 2026\",\n      \"body\": \"Î£Î±Ï‚ Î±Ï€Î¿ÏƒÏ„Î­Î»Î»Î¿Ï…Î¼Îµ Ï„Î·Î½ ÎºÎ¯Î½Î·ÏƒÎ· Ï„Î¿Ï… ÎµÏ€Î¹Ï‡ÎµÎ¹ÏÎ·Î¼Î±Ï„Î¹ÎºÎ¿Ï ÏƒÎ±Ï‚ Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼Î¿Ï Î³Î¹Î± Ï„Î¿Î½ Î¼Î®Î½Î± Î™Î±Î½Î¿Ï…Î¬ÏÎ¹Î¿ 2026. Î“Î¹Î± Î¿Ï€Î¿Î¹Î±Î´Î®Ï€Î¿Ï„Îµ Î´Î¹ÎµÏ…ÎºÏÎ¯Î½Î¹ÏƒÎ· ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î®ÏƒÏ„Îµ Î¼Î±Î¶Î¯ Î¼Î±Ï‚.\",\n      \"attachments\": [\"alpha_statement_jan_2026.pdf\"],\n      \"account_number\": \"123-456789-01\",\n      \"statement_period\": \"2026-01-01 to 2026-01-31\",\n      \"verified_sender\": true\n    },\n    {\n      \"from\": \"ebanking@nbg.gr\",\n      \"subject\": \"Î•Î¸Î½Î¹ÎºÎ® Î¤ÏÎ¬Ï€ÎµÎ¶Î± - Î‘Î½Ï„Î¯Î³ÏÎ±Ï†Î¿ ÎºÎ¯Î½Î·ÏƒÎ·Ï‚ Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼Î¿Ï\",\n      \"body\": \"Î‘Î³Î±Ï€Î·Ï„Î­ Ï€ÎµÎ»Î¬Ï„Î·, Î¸Î± Î²ÏÎµÎ¯Ï„Îµ ÏƒÏ…Î½Î·Î¼Î¼Î­Î½Î¿ Ï„Î¿ Î±Î½Ï„Î¯Î³ÏÎ±Ï†Î¿ ÎºÎ¯Î½Î·ÏƒÎ·Ï‚ Ï„Î¿Ï… Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼Î¿Ï ÏƒÎ±Ï‚ Î³Î¹Î± Ï„Î·Î½ Ï€ÎµÏÎ¯Î¿Î´Î¿ Ï€Î¿Ï… Î¶Î·Ï„Î®ÏƒÎ±Ï„Îµ.\",\n      \"attachments\": [\"nbg_account_movement.pdf\"],\n      \"account_number\": \"987-654321-02\",\n      \"statement_period\": \"2026-01-01 to 2026-01-31\", \n      \"verified_sender\": true\n    },\n    {\n      \"from\": \"info@eurobank.gr\",\n      \"subject\": \"Eurobank - Î›Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼ÏŒÏ‚ ÎšÎ¯Î½Î·ÏƒÎ·Ï‚\",\n      \"body\": \"Î Î±ÏÎ±Î»Î¬Î²ÎµÏ„Îµ Ï„Î¿Î½ Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼ÏŒ ÎºÎ¯Î½Î·ÏƒÎ·Ï‚ Î³Î¹Î± Ï„Î¿Î½ ÎµÏ€Î¹Ï‡ÎµÎ¹ÏÎ·Î¼Î±Ï„Î¹ÎºÏŒ ÏƒÎ±Ï‚ Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼ÏŒ. Î“Î¹Î± Ï€ÎµÏÎ±Î¹Ï„Î­ÏÏ‰ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ ÎºÎ±Î»Î­ÏƒÏ„Îµ Ï„Î¿ 210-9555000.\",\n      \"attachments\": [\"eurobank_statement_business.pdf\"],\n      \"account_number\": \"456-789123-03\",\n      \"statement_period\": \"2026-01-01 to 2026-01-31\",\n      \"verified_sender\": true\n    }\n  ]\n}"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "prompt": "Handle urgent AADE email notification about a tax audit request. The email is in Greek and requires immediate escalation, document preparation, and client notification. Generate appropriate response workflow.",
+    "expectations": [
+      "Immediately identifies email as critical AADE audit notification",
+      "Triggers high-priority alert system (SMS + email)",
+      "Parses Greek audit request details (deadline, required documents)",
+      "Creates urgent task in task management system",
+      "Generates client notification about audit requirement",
+      "Prepares standard audit document checklist",
+      "Schedules legal consultation if needed",
+      "Maintains complete audit trail of response actions"
+    ],
+    "files": [
+      {
+        "name": "aade_audit_email.json",
+        "content": "{\n  \"email\": {\n    \"from\": \"audit-dept@aade.gr\",\n    \"to\": \"compliance@company.gr\",\n    \"subject\": \"Î•Î Î•Î™Î“ÎŸÎ: Î‘Î¯Ï„Î·Î¼Î± Ï†Î¿ÏÎ¿Î»Î¿Î³Î¹ÎºÎ¿Ï ÎµÎ»Î­Î³Ï‡Î¿Ï… - Î•Ï„Î±Î¹ÏÎµÎ¯Î± DEMO AE\",\n    \"body\": \"Î‘Î¾Î¹ÏŒÏ„Î¹Î¼Î¿Î¹ ÎºÏÏÎ¹Î¿Î¹,\\n\\nÎ£Î±Ï‚ ÎµÎ½Î·Î¼ÎµÏÏŽÎ½Î¿Ï…Î¼Îµ ÏŒÏ„Î¹ Î· ÎµÏ„Î±Î¹ÏÎµÎ¯Î± ÏƒÎ±Ï‚ Î­Ï‡ÎµÎ¹ ÎµÏ€Î¹Î»ÎµÎ³ÎµÎ¯ Î³Î¹Î± Ï†Î¿ÏÎ¿Î»Î¿Î³Î¹ÎºÏŒ Î­Î»ÎµÎ³Ï‡Î¿ Î³Î¹Î± Ï„Î¿ Ï†Î¿ÏÎ¿Î»Î¿Î³Î¹ÎºÏŒ Î­Ï„Î¿Ï‚ 2025.\\n\\nÎ Î±ÏÎ±ÎºÎ±Î»Î¿ÏÎ¼Îµ Î½Î± Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î¬ÏƒÎµÏ„Îµ Ï„Î± Î±ÎºÏŒÎ»Î¿Ï…Î¸Î± Î­Î³Î³ÏÎ±Ï†Î±:\\n- Î’Î¹Î²Î»Î¯Î± ÎºÎ±Î¹ ÏƒÏ„Î¿Î¹Ï‡ÎµÎ¯Î± Î¬ÏÎ¸ÏÎ¿Ï… 12 Îš.Î¦.Î•.\\n- Î”Î·Î»ÏŽÏƒÎµÎ¹Ï‚ Î¦Î Î‘ Î³Î¹Î± Ï„Î¿ 2025\\n- Î¤Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î± Ï€Ï‰Î»Î®ÏƒÎµÏ‰Î½ ÎºÎ±Î¹ Î±Î³Î¿ÏÏŽÎ½\\n- ÎœÎ¹ÏƒÎ¸Î¿Î´Î¿Ï„Î¹ÎºÎ­Ï‚ ÎºÎ±Ï„Î±ÏƒÏ„Î¬ÏƒÎµÎ¹Ï‚\\n- Î¤ÏÎ±Ï€ÎµÎ¶Î¹ÎºÎ¬ Î±Î½Ï„Î¯Î³ÏÎ±Ï†Î±\\n\\nÎ— Ï€ÏÎ¿Î¸ÎµÏƒÎ¼Î¯Î± Ï€Î±ÏÎ¬Î´Î¿ÏƒÎ·Ï‚ ÎµÎ¯Î½Î±Î¹ Î· 28Î· Î¦ÎµÎ²ÏÎ¿Ï…Î±ÏÎ¯Î¿Ï… 2026.\\n\\nÎ•Î»ÎµÎ³ÎºÏ„Î®Ï‚: Î™Ï‰Î¬Î½Î½Î·Ï‚ Î Î±Ï€Î±Î´ÏŒÏ€Î¿Ï…Î»Î¿Ï‚\\nÎ¤Î·Î»Î­Ï†Ï‰Î½Î¿: 210-1234567\\n\\nÎœÎµ ÎµÎºÏ„Î¯Î¼Î·ÏƒÎ·,\\nÎ‘Î½ÎµÎ¾Î¬ÏÏ„Î·Ï„Î· Î‘ÏÏ‡Î® Î”Î·Î¼Î¿ÏƒÎ¯Ï‰Î½ Î•ÏƒÏŒÎ´Ï‰Î½\",\n    \"timestamp\": \"2026-02-17T10:45:00Z\",\n    \"priority\": \"critical\",\n    \"audit_details\": {\n      \"company\": \"DEMO AE\",\n      \"tax_year\": \"2025\",\n      \"deadline\": \"2026-02-28\",\n      \"auditor\": \"Î™Ï‰Î¬Î½Î½Î·Ï‚ Î Î±Ï€Î±Î´ÏŒÏ€Î¿Ï…Î»Î¿Ï‚\",\n      \"contact\": \"210-1234567\",\n      \"required_documents\": [\n        \"Î’Î¹Î²Î»Î¯Î± ÎºÎ±Î¹ ÏƒÏ„Î¿Î¹Ï‡ÎµÎ¯Î± Î¬ÏÎ¸ÏÎ¿Ï… 12 Îš.Î¦.Î•.\",\n        \"Î”Î·Î»ÏŽÏƒÎµÎ¹Ï‚ Î¦Î Î‘ Î³Î¹Î± Ï„Î¿ 2025\",\n        \"Î¤Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î± Ï€Ï‰Î»Î®ÏƒÎµÏ‰Î½ ÎºÎ±Î¹ Î±Î³Î¿ÏÏŽÎ½\",\n        \"ÎœÎ¹ÏƒÎ¸Î¿Î´Î¿Ï„Î¹ÎºÎ­Ï‚ ÎºÎ±Ï„Î±ÏƒÏ„Î¬ÏƒÎµÎ¹Ï‚\",\n        \"Î¤ÏÎ±Ï€ÎµÎ¶Î¹ÎºÎ¬ Î±Î½Ï„Î¯Î³ÏÎ±Ï†Î±\"\n      ]\n    }\n  }\n}"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "prompt": "Configure automatic Greek language responses for common client inquiries. Include templates for payment confirmations, document requests, and appointment scheduling. Ensure professional Greek business communication standards.",
+    "expectations": [
+      "Creates comprehensive Greek language response templates",
+      "Includes proper Greek business etiquette and formal language",
+      "Handles various client inquiry types (payments, documents, appointments)",
+      "Provides personalization variables for client names and details",
+      "Includes appropriate Greek salutations and closings",
+      "Ensures grammatically correct Greek with proper accents",
+      "Sets up automated trigger conditions for each template type",
+      "Maintains professional tone suitable for accounting services"
+    ],
+    "files": [
+      {
+        "name": "greek_response_templates.json",
+        "content": "{\n  \"templates\": {\n    \"payment_confirmation\": {\n      \"subject\": \"Î•Ï€Î¹Î²ÎµÎ²Î±Î¯Ï‰ÏƒÎ· Ï€Î»Î·ÏÏ‰Î¼Î®Ï‚ - {invoice_number}\",\n      \"body\": \"Î‘Î³Î±Ï€Î·Ï„Î­/Î® {client_name},\\n\\nÎ•Ï€Î¹Î²ÎµÎ²Î±Î¹ÏŽÎ½Î¿Ï…Î¼Îµ Ï„Î·Î½ Ï€Î±ÏÎ±Î»Î±Î²Î® Ï„Î·Ï‚ Ï€Î»Î·ÏÏ‰Î¼Î®Ï‚ ÏƒÎ±Ï‚ ÏÏˆÎ¿Ï…Ï‚ {amount} Î³Î¹Î± Ï„Î¿ Ï„Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î¿ {invoice_number}.\\n\\nÎ— Ï€Î»Î·ÏÏ‰Î¼Î® Î­Ï‡ÎµÎ¹ ÎºÎ±Ï„Î±Ï‡Ï‰ÏÎ·Î¸ÎµÎ¯ ÏƒÏ„Î¿ Î»Î¿Î³Î±ÏÎ¹Î±ÏƒÎ¼ÏŒ ÏƒÎ±Ï‚ ÎºÎ±Î¹ Ï„Î¿ Ï„Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î¿ Î¸ÎµÏ‰ÏÎµÎ¯Ï„Î±Î¹ ÎµÎ¾Î¿Ï†Î»Î·Î¼Î­Î½Î¿.\\n\\nÎ£Î±Ï‚ ÎµÏ…Ï‡Î±ÏÎ¹ÏƒÏ„Î¿ÏÎ¼Îµ Î³Î¹Î± Ï„Î·Î½ ÎµÎ¼Ï€Î¹ÏƒÏ„Î¿ÏƒÏÎ½Î· ÏƒÎ±Ï‚.\\n\\nÎœÎµ ÎµÎºÏ„Î¯Î¼Î·ÏƒÎ·,\\n{company_name}\\n{accountant_name}\\nÎ›Î¿Î³Î¹ÏƒÏ„Î¹ÎºÏŒ Î“ÏÎ±Ï†ÎµÎ¯Î¿\\nÎ¤Î·Î»: {phone_number}\",\n      \"trigger_conditions\": [\"payment_received\", \"invoice_paid\"]\n    },\n    \"document_request_response\": {\n      \"subject\": \"Î‘Î¯Ï„Î·Î¼Î± ÎµÎ³Î³ÏÎ¬Ï†Ï‰Î½ - {reference_number}\",\n      \"body\": \"Î‘Î³Î±Ï€Î·Ï„Î­/Î® {client_name},\\n\\nÎ›Î¬Î²Î±Î¼Îµ Ï„Î¿ Î±Î¯Ï„Î·Î¼Î¬ ÏƒÎ±Ï‚ Î³Î¹Î± Ï„Î± Î±ÎºÏŒÎ»Î¿Ï…Î¸Î± Î­Î³Î³ÏÎ±Ï†Î±:\\n{requested_documents}\\n\\nÎ¤Î± Î­Î³Î³ÏÎ±Ï†Î± Î¸Î± ÎµÎ¯Î½Î±Î¹ Î­Ï„Î¿Î¹Î¼Î± ÎµÎ½Ï„ÏŒÏ‚ {processing_time} ÎµÏÎ³Î¬ÏƒÎ¹Î¼Ï‰Î½ Î·Î¼ÎµÏÏŽÎ½.\\n\\nÎ˜Î± ÏƒÎ±Ï‚ ÎµÎ½Î·Î¼ÎµÏÏŽÏƒÎ¿Ï…Î¼Îµ Î¼ÏŒÎ»Î¹Ï‚ ÎµÎ¯Î½Î±Î¹ Î´Î¹Î±Î¸Î­ÏƒÎ¹Î¼Î± Î³Î¹Î± Ï€Î±ÏÎ±Î»Î±Î²Î® Î® Î±Ï€Î¿ÏƒÏ„Î¿Î»Î®.\\n\\nÎ“Î¹Î± Î¿Ï€Î¿Î¹Î±Î´Î®Ï€Î¿Ï„Îµ Î´Î¹ÎµÏ…ÎºÏÎ¯Î½Î¹ÏƒÎ·, Ï€Î±ÏÎ±ÎºÎ±Î»Î¿ÏÎ¼Îµ ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î®ÏƒÏ„Îµ Î¼Î±Î¶Î¯ Î¼Î±Ï‚.\\n\\nÎœÎµ ÎµÎºÏ„Î¯Î¼Î·ÏƒÎ·,\\n{company_name}\\n{contact_person}\\nÎ¤Î·Î»: {phone_number}\\nEmail: {email_address}\",\n      \"trigger_conditions\": [\"document_request\", \"certificate_request\"]\n    },\n    \"appointment_scheduling\": {\n      \"subject\": \"Î ÏÎ¿Î³ÏÎ±Î¼Î¼Î±Ï„Î¹ÏƒÎ¼ÏŒÏ‚ ÏƒÏ…Î½Î¬Î½Ï„Î·ÏƒÎ·Ï‚ - {client_name}\",\n      \"body\": \"Î‘Î³Î±Ï€Î·Ï„Î­/Î® {client_name},\\n\\nÎ›Î¬Î²Î±Î¼Îµ Ï„Î¿ Î±Î¯Ï„Î·Î¼Î¬ ÏƒÎ±Ï‚ Î³Î¹Î± Ï€ÏÎ¿Î³ÏÎ±Î¼Î¼Î±Ï„Î¹ÏƒÎ¼ÏŒ ÏƒÏ…Î½Î¬Î½Ï„Î·ÏƒÎ·Ï‚.\\n\\nÎ ÏÎ¿Ï„ÎµÎ¹Î½ÏŒÎ¼ÎµÎ½ÎµÏ‚ Î·Î¼ÎµÏÎ¿Î¼Î·Î½Î¯ÎµÏ‚ ÎºÎ±Î¹ ÏŽÏÎµÏ‚:\\n{available_slots}\\n\\nÎ Î±ÏÎ±ÎºÎ±Î»Î¿ÏÎ¼Îµ ÎµÏ€Î¹Î²ÎµÎ²Î±Î¹ÏŽÏƒÏ„Îµ Ï€Î¿Î¹Î± Î·Î¼ÎµÏÎ¿Î¼Î·Î½Î¯Î± ÏƒÎ±Ï‚ ÎµÎ¾Ï…Ï€Î·ÏÎµÏ„ÎµÎ¯ ÎºÎ±Î»ÏÏ„ÎµÏÎ±.\\n\\nÎ— ÏƒÏ…Î½Î¬Î½Ï„Î·ÏƒÎ· Î¸Î± Ï€ÏÎ±Î³Î¼Î±Ï„Î¿Ï€Î¿Î¹Î·Î¸ÎµÎ¯ ÏƒÏ„Î± Î³ÏÎ±Ï†ÎµÎ¯Î± Î¼Î±Ï‚:\\n{office_address}\\n\\nÎ£Îµ Ï€ÎµÏÎ¯Ï€Ï„Ï‰ÏƒÎ· Ï€Î¿Ï… Ï‡ÏÎµÎ¹Î±ÏƒÏ„ÎµÎ¯ Î±Î½Î±Î²Î¿Î»Î®, Ï€Î±ÏÎ±ÎºÎ±Î»Î¿ÏÎ¼Îµ ÎµÎ½Î·Î¼ÎµÏÏŽÏƒÏ„Îµ Î¼Î±Ï‚ Ï„Î¿Ï…Î»Î¬Ï‡Î¹ÏƒÏ„Î¿Î½ 24 ÏŽÏÎµÏ‚ Î½Ï‰ÏÎ¯Ï„ÎµÏÎ±.\\n\\nÎœÎµ ÎµÎºÏ„Î¯Î¼Î·ÏƒÎ·,\\n{accountant_name}\\nÎ›Î¿Î³Î¹ÏƒÏ„Î¹ÎºÏŒ Î“ÏÎ±Ï†ÎµÎ¯Î¿ {company_name}\\nÎ¤Î·Î»: {phone_number}\",\n      \"trigger_conditions\": [\"appointment_request\", \"meeting_request\"]\n    },\n    \"invoice_receipt_confirmation\": {\n      \"subject\": \"Î•Ï€Î¹Î²ÎµÎ²Î±Î¯Ï‰ÏƒÎ· Ï€Î±ÏÎ±Î»Î±Î²Î®Ï‚ Ï„Î¹Î¼Î¿Î»Î¿Î³Î¯Î¿Ï… - {invoice_number}\",\n      \"body\": \"Î‘Î³Î±Ï€Î·Ï„Î­/Î® {sender_name},\\n\\nÎ•Ï€Î¹Î²ÎµÎ²Î±Î¹ÏŽÎ½Î¿Ï…Î¼Îµ Ï„Î·Î½ Ï€Î±ÏÎ±Î»Î±Î²Î® Ï„Î¿Ï… Ï„Î¹Î¼Î¿Î»Î¿Î³Î¯Î¿Ï… {invoice_number} Î·Î¼ÎµÏÎ¿Î¼Î·Î½Î¯Î±Ï‚ {invoice_date} ÏƒÏ…Î½Î¿Î»Î¹ÎºÎ®Ï‚ Î±Î¾Î¯Î±Ï‚ {total_amount}.\\n\\nÎ¤Î¿ Ï„Î¹Î¼Î¿Î»ÏŒÎ³Î¹Î¿ Î­Ï‡ÎµÎ¹ Ï€ÏÎ¿Ï‰Î¸Î·Î¸ÎµÎ¯ ÏƒÏ„Î¿ Î»Î¿Î³Î¹ÏƒÏ„Î®ÏÎ¹ÏŒ Î¼Î±Ï‚ Î³Î¹Î± ÎµÏ€ÎµÎ¾ÎµÏÎ³Î±ÏƒÎ¯Î± ÎºÎ±Î¹ Î¸Î± ÎµÎ½Ï„Î±Ï‡Î¸ÎµÎ¯ ÏƒÏ„Î¿Î½ ÎµÏ€ÏŒÎ¼ÎµÎ½Î¿ ÎºÏÎºÎ»Î¿ Ï€Î»Î·ÏÏ‰Î¼ÏŽÎ½.\\n\\nÎ— ÎµÎ¾ÏŒÏ†Î»Î·ÏƒÎ· Î¸Î± Ï€ÏÎ±Î³Î¼Î±Ï„Î¿Ï€Î¿Î¹Î·Î¸ÎµÎ¯ ÎµÎ½Ï„ÏŒÏ‚ {payment_terms} Î·Î¼ÎµÏÏŽÎ½ Î±Ï€ÏŒ Ï„Î·Î½ Î·Î¼ÎµÏÎ¿Î¼Î·Î½Î¯Î± Î­ÎºÎ´Î¿ÏƒÎ·Ï‚.\\n\\nÎ£Î±Ï‚ ÎµÏ…Ï‡Î±ÏÎ¹ÏƒÏ„Î¿ÏÎ¼Îµ Î³Î¹Î± Ï„Î· ÏƒÏ…Î½ÎµÏÎ³Î±ÏƒÎ¯Î±.\\n\\nÎœÎµ ÎµÎºÏ„Î¯Î¼Î·ÏƒÎ·,\\n{company_name}\\nÎ›Î¿Î³Î¹ÏƒÏ„Î¹ÎºÎ­Ï‚ Î¥Ï€Î·ÏÎµÏƒÎ¯ÎµÏ‚\\nÎ¤Î·Î»: {phone_number}\\nEmail: {email_address}\",\n      \"trigger_conditions\": [\"invoice_received\", \"supplier_invoice\"]\n    }\n  },\n  \"common_variables\": {\n    \"client_name\": \"ÎŒÎ½Î¿Î¼Î± Ï€ÎµÎ»Î¬Ï„Î·\",\n    \"company_name\": \"ÎŒÎ½Î¿Î¼Î± ÎµÏ„Î±Î¹ÏÎµÎ¯Î±Ï‚\",\n    \"accountant_name\": \"ÎŒÎ½Î¿Î¼Î± Î»Î¿Î³Î¹ÏƒÏ„Î®\",\n    \"phone_number\": \"Î¤Î·Î»Î­Ï†Ï‰Î½Î¿ ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î±Ï‚\",\n    \"email_address\": \"Email ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î±Ï‚\",\n    \"office_address\": \"Î”Î¹ÎµÏÎ¸Ï…Î½ÏƒÎ· Î³ÏÎ±Ï†ÎµÎ¯Î¿Ï…\"\n  }\n}"
+      }
+    ]
+  }
+]

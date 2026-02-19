@@ -1,0 +1,63 @@
+name: Skill Validation
+
+on:
+  push:
+    branches: [main]
+    paths: ['skills/**']
+  pull_request:
+    branches: [main]
+    paths: ['skills/**']
+
+jobs:
+  validate-paths:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+      
+      - name: Validate paths against canonical data map
+        run: ./scripts/validate-paths.sh
+      
+      - name: Check EVALS coverage
+        run: ./scripts/run-evals.sh
+      
+      - name: Verify skill folder structure
+        run: |
+          echo "=== Checking skill folder structure ==="
+          ERRORS=0
+          for dir in skills/*/; do
+            skill=$(basename "$dir")
+            if [ "$skill" = "canonical-data-map" ]; then
+              continue
+            fi
+            if [ ! -f "$dir/SKILL.md" ]; then
+              echo "❌ $skill: missing SKILL.md"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          if [ $ERRORS -eq 0 ]; then
+            echo "✅ All skill folders have SKILL.md"
+          else
+            echo "❌ $ERRORS skills missing SKILL.md"
+            exit 1
+          fi
+      
+      - name: Check frontmatter
+        run: |
+          echo "=== Checking skill frontmatter ==="
+          ERRORS=0
+          for skill_file in skills/*/SKILL.md; do
+            skill=$(basename "$(dirname "$skill_file")")
+            if ! head -1 "$skill_file" | grep -q "^---"; then
+              echo "❌ $skill: missing frontmatter"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          if [ $ERRORS -eq 0 ]; then
+            echo "✅ All skills have frontmatter"
+          else
+            echo "❌ $ERRORS skills missing frontmatter"
+            exit 1
+          fi
