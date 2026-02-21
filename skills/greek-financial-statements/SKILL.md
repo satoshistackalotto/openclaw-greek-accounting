@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "financial-statements", "balance-sheet", "pnl", "egls"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Generates financial statements (P&L, balance sheet) from data in OPENCLAW_DATA_DIR. Includes completeness gate that blocks generation if source data is incomplete. No external services required."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Generates financial statements (P&L, balance sheet) from data in OPENCLAW_DATA_DIR. Includes completeness gate that blocks generation if source data is incomplete. No external services required.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Greek Financial Statements

@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "client-communications", "bilingual", "email"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Internal team notifications when client communications are sent"}, "notes": "SMTP credentials required for sending client correspondence. All communications require human review and approval before sending. Slack notification is optional for internal team awareness."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "openclaw"], "env": ["OPENCLAW_DATA_DIR", "SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Internal team notifications when client communications are sent"}, "notes": "SMTP credentials required for sending client correspondence. All communications require human review and approval before sending. Slack notification is optional for internal team awareness.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Client Communication Engine

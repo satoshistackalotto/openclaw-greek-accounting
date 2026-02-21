@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "workflows", "document-processing"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible export files", "XERO_API_KEY": "Xero API key for direct transaction export"}, "notes": "Core workflow coordination is file-based with no credentials. Optional QuickBooks/Xero export formats available. OCR, email processing, and government submissions are handled by companion skills (greek-document-ocr, greek-email-processor, greek-compliance-aade) — this skill coordinates the pipeline but does not directly access those services."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible export files", "XERO_API_KEY": "Xero API key for direct transaction export"}, "notes": "Core workflow coordination is file-based with no credentials. Optional QuickBooks/Xero export formats available. OCR, email processing, and government submissions are handled by companion skills (greek-document-ocr, greek-email-processor, greek-compliance-aade) — this skill coordinates the pipeline but does not directly access those services.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Accounting Workflows

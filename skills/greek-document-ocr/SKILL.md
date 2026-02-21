@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "ocr", "document-processing", "greek-language"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "tesseract"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible OCR export files", "XERO_API_KEY": "Xero API key for direct OCR result push"}, "notes": "Requires Tesseract OCR with Greek language pack (tesseract-ocr-ell). All processing is local — no cloud OCR APIs. Optional QuickBooks/Xero export formats available for accounting software integration."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "tesseract", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible OCR export files", "XERO_API_KEY": "Xero API key for direct OCR result push"}, "notes": "Requires Tesseract OCR with Greek language pack (tesseract-ocr-ell). All processing is local — no cloud OCR APIs. Optional QuickBooks/Xero export formats available for accounting software integration.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Greek Document OCR

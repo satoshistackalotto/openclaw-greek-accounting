@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "individual-tax", "e1-form", "enfia"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Prepares E1 tax return data from local files. Does not submit to AADE directly — submission is handled by greek-compliance-aade skill with human approval."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Prepares E1 tax return data from local files. Does not submit to AADE directly — submission is handled by greek-compliance-aade skill with human approval.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Greek Individual Taxes

@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "memory", "learning", "github-integration"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "gh"], "env": ["OPENCLAW_DATA_DIR", "GITHUB_TOKEN"]}, "notes": "GITHUB_TOKEN is optional — required only for the GitHub PR workflow that proposes skill improvements. Core memory and failure logging works without it using local files only. The gh CLI is optional."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "gh", "openclaw"], "env": ["OPENCLAW_DATA_DIR", "GITHUB_TOKEN"]}, "notes": "GITHUB_TOKEN is optional — required only for the GitHub PR workflow that proposes skill improvements. Core memory and failure logging works without it using local files only. The gh CLI is optional.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Memory and Feedback

@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "dashboard", "reporting", "compliance-scoring"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for dashboard alert delivery to Slack", "SMTP_HOST": "Email server for alert notifications", "SMTP_USER": "Email account for sending alerts", "SMTP_PASSWORD": "Email account password", "SMS_GATEWAY_URL": "SMS gateway for urgent dashboard alerts (optional)", "GOOGLE_CALENDAR_ID": "Google Calendar ID for deadline calendar view (optional)"}, "notes": "Dashboard generation works locally with no credentials. Alert delivery channels (Slack, email) are optional — configure their env vars to enable. Unconfigured channels produce local file-based alerts only."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for dashboard alert delivery to Slack", "SMTP_HOST": "Email server for alert notifications", "SMTP_USER": "Email account for sending alerts", "SMTP_PASSWORD": "Email account password", "SMS_GATEWAY_URL": "SMS gateway for urgent dashboard alerts (optional)", "GOOGLE_CALENDAR_ID": "Google Calendar ID for deadline calendar view (optional)"}, "notes": "Dashboard generation works locally with no credentials. Alert delivery channels (Slack, email) are optional — configure their env vars to enable. Unconfigured channels produce local file-based alerts only.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Dashboard Greek Accounting

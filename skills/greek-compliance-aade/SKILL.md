@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "compliance", "aade", "vat", "taxis", "mydata"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "notes": "AADE/TAXIS credentials are required only when submitting filings to the government portal. The skill can prepare filings offline without credentials. All submissions require human approval (four-eyes workflow) before transmission.", "optional_env": {"GOOGLE_CALENDAR_ID": "Google Calendar ID for compliance deadline sync (optional)"}}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl", "openclaw"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "notes": "AADE/TAXIS credentials are required only when submitting filings to the government portal. The skill can prepare filings offline without credentials. All submissions require human approval (four-eyes workflow) before transmission.", "optional_env": {"GOOGLE_CALENDAR_ID": "Google Calendar ID for compliance deadline sync (optional)"}, "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Greek Compliance & AADE Integration

@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "banking", "alpha-bank", "nbg", "eurobank", "piraeus"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible export files", "XERO_API_KEY": "Xero API key for direct transaction push (alternative to file export)"}, "notes": "Core bank statement parsing is file-based — no bank API or credentials needed. Users export CSV/Excel from their bank portal. Optional QuickBooks/Xero export formats generate accounting-software-compatible files. Direct Xero API push is available if XERO_API_KEY is configured."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible export files", "XERO_API_KEY": "Xero API key for direct transaction push (alternative to file export)"}, "notes": "Core bank statement parsing is file-based — no bank API or credentials needed. Users export CSV/Excel from their bank portal. Optional QuickBooks/Xero export formats generate accounting-software-compatible files. Direct Xero API push is available if XERO_API_KEY is configured.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Greek Banking Integration

@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "client-management", "gdpr", "onboarding"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Manages client records stored as JSON files in OPENCLAW_DATA_DIR/clients/. No external services or credentials required. Handles GDPR data lifecycle locally."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Manages client records stored as JSON files in OPENCLAW_DATA_DIR/clients/. No external services or credentials required. Handles GDPR data lifecycle locally.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Client Data Management

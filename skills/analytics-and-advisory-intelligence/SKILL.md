@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "analytics", "advisory", "trends", "benchmarking"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Analyzes financial data from OPENCLAW_DATA_DIR to generate trend reports and advisory insights. No external services or credentials required."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openclaw"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Analyzes financial data from OPENCLAW_DATA_DIR to generate trend reports and advisory insights. No external services or credentials required.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # Analytics and Advisory Intelligence
@@ -210,7 +210,14 @@ Cashflow_Forecast:
 
 ### 5. Portfolio Intelligence (Cross-Client)
 
-Aggregated across the portfolio. All cross-client aggregation is anonymised.
+Aggregated across the portfolio. All cross-client aggregation is anonymised using the following safeguards:
+
+**Anonymisation rules:**
+- Cross-client reports use sector aggregates only (medians, percentiles) — never individual client values
+- Minimum 3 clients per sector required before sector benchmarks are computed; sectors with fewer clients are excluded
+- Client AFM numbers and names are stripped from all aggregate outputs
+- Individual client reports (risk scores, trend analysis) are written to that client's own directory only
+- The `/data/reports/analytics/portfolio/` directory contains only aggregated, anonymised data
 
 ```yaml
 Portfolio_Intelligence:

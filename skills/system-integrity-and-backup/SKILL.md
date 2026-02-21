@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "backup", "integrity", "disaster-recovery"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl", "tar"], "env": ["OPENCLAW_DATA_DIR", "OPENCLAW_ENCRYPTION_KEY"]}, "notes": "Uses openssl for AES-256 backup encryption and SHA-256 integrity hashing. All operations are local to OPENCLAW_DATA_DIR. OPENCLAW_ENCRYPTION_KEY must be provided via environment variable — never stored on disk."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "openssl", "tar", "openclaw"], "env": ["OPENCLAW_DATA_DIR", "OPENCLAW_ENCRYPTION_KEY"]}, "notes": "Uses openssl for AES-256 backup encryption and SHA-256 integrity hashing. All operations are local to OPENCLAW_DATA_DIR. OPENCLAW_ENCRYPTION_KEY must be provided via environment variable — never stored on disk.", "path_prefix": "/data/ in examples refers to $OPENCLAW_DATA_DIR (default: /data/)"}}
 ---
 
 # System Integrity and Backup
