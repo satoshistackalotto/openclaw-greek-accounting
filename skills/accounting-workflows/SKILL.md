@@ -1,6 +1,6 @@
 ---
 name: accounting-workflows
-description: File-based accounting workflow coordinator for Greek businesses. Defines document processing pipelines, transaction validation rules, and monthly/quarterly workflow templates. Operates entirely within the local OPENCLAW_DATA_DIR filesystem — no external APIs, no email access, no browser automation. Companion skills handle OCR, email, and government submissions separately.
+description: File-based workflow coordinator for Greek accounting. Defines processing pipelines, validation rules, and routine templates. No external APIs needed.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

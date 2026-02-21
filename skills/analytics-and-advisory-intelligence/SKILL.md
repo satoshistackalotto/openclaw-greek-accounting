@@ -1,6 +1,6 @@
 ---
 name: analytics-and-advisory-intelligence
-description: Proactive analytics and advisory intelligence for Greek accounting firms. Reads across all client data, financial statements, compliance history, banking, and EFKA records to surface trends, anomalies, risks, and insights that accountants would not see by looking at one client at a time. Answers questions like "which clients should I be watching heading into Q2?" and "are there unusual patterns in this client's expenses?". Runs analysis overnight, surfaces findings through the dashboard and conversational assistant. Read-only — never writes to client records. Writes analysis outputs to /data/reports/analytics/.
+description: Cross-client analytics for Greek accounting firms. Surfaces trends, anomalies, and risks across financial data. Read-only, outputs to /data/reports/.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

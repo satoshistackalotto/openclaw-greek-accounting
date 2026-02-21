@@ -1,6 +1,6 @@
 ---
 name: system-integrity-and-backup
-description: System integrity verification, encrypted backup management, data retention enforcement, and schema migration for the OpenClaw Greek Accounting system. Ensures all canonical data files are uncorrupted and accounted for, manages encrypted local backups with configurable schedules, enforces Greek legal retention obligations (5-20 years depending on record type), and handles schema migrations as skills evolve. Produces integrity reports suitable for professional audit and regulatory inspection. Owner of /data/backups/, /data/system/integrity/, and /data/reports/system/.
+description: Encrypted backups, integrity verification, and data retention enforcement for Greek legal requirements (5-20 year retention). AES-256.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

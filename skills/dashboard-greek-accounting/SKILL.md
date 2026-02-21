@@ -1,11 +1,11 @@
 ---
 name: dashboard-greek-accounting
-description: OpenClaw-optimized business intelligence dashboard for Greek accounting firms. Provides English-language interface for accountants assistants to monitor Greek business data, compliance status, client portfolios, and financial metrics. Integrates with all existing Greek accounting skills to deliver real-time alerts, deadline tracking, and comprehensive reporting through file-based processing.
+description: Business intelligence dashboard for Greek accounting firms. Compliance status, alerts, deadline tracking, and financial metrics at a glance.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "dashboard", "reporting", "compliance-scoring"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for dashboard alert delivery to Slack", "SMTP_HOST": "Email server for alert notifications", "SMTP_USER": "Email account for sending alerts", "SMTP_PASSWORD": "Email account password"}, "notes": "Dashboard generation works locally with no credentials. Alert delivery channels (Slack, email) are optional — configure their env vars to enable. Unconfigured channels produce local file-based alerts only."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for dashboard alert delivery to Slack", "SMTP_HOST": "Email server for alert notifications", "SMTP_USER": "Email account for sending alerts", "SMTP_PASSWORD": "Email account password", "SMS_GATEWAY_URL": "SMS gateway for urgent dashboard alerts (optional)", "GOOGLE_CALENDAR_ID": "Google Calendar ID for deadline calendar view (optional)"}, "notes": "Dashboard generation works locally with no credentials. Alert delivery channels (Slack, email) are optional — configure their env vars to enable. Unconfigured channels produce local file-based alerts only."}}
 ---
 
 # Dashboard Greek Accounting

@@ -1,6 +1,6 @@
 ---
 name: canonical-data-map
-description: The single source of truth for all file system paths, naming conventions, date formats, identifier formats, and file naming patterns used across the entire OpenClaw Greek Accounting system. Every skill must conform to this document. When a path in a skill conflicts with this document, this document wins.
+description: Single source of truth for all paths, naming conventions, and data formats across the OpenClaw Greek Accounting system. Reference document.
 version: 1.1.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

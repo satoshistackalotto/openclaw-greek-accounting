@@ -1,11 +1,11 @@
 ---
 name: efka-api-integration
-description: OpenClaw-native Greek social security (EFKA) integration for automated employee record management, contribution calculations, and compliance monitoring. Built for artifact deployment to OpenClaw instances with file-based processing, robust error handling, and seamless integration with Greek payroll workflows.
+description: Greek social security (EFKA) integration — employee records, contribution calculations, APD declarations. Human approval for submissions.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "efka", "social-security", "payroll"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "EFKA_USERNAME", "EFKA_PASSWORD"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Notifications for EFKA submission status updates"}, "notes": "EFKA credentials required only for submitting declarations. Payroll calculations work offline. All submissions require human approval (four-eyes workflow). Slack notification is optional."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "EFKA_USERNAME", "EFKA_PASSWORD"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Notifications for EFKA submission status updates", "GOOGLE_CALENDAR_ID": "Google Calendar ID for EFKA deadline sync (optional)"}, "notes": "EFKA credentials required only for submitting declarations. Payroll calculations work offline. All submissions require human approval (four-eyes workflow). Slack notification is optional."}}
 ---
 
 # EFKA API Integration

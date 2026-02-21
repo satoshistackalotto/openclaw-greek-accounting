@@ -1,6 +1,6 @@
 ---
 name: greek-email-processor
-description: Email processing skill for Greek accounting workflows. Connects to any IMAP-compatible email provider to scan for Greek financial documents, AADE notifications, bank statements, and invoices. Classifies and routes documents to local processing pipelines. Requires IMAP/SMTP credentials configured via environment variables.
+description: Email processing for Greek accounting. Connects via IMAP to scan for financial documents, AADE notices, and invoices. Routes to local pipelines.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

@@ -1,6 +1,6 @@
 ---
 name: openclaw-greek-accounting-meta
-description: Meta-skill orchestrating the complete OpenClaw Greek Accounting system across all 18 specialised skills. Provides simple business-focused commands for end-to-end accounting workflows covering document processing, compliance, banking, OCR, EFKA, AADE monitoring, client data management, financial statements, client communications, system integrity, analytics, and conversational intelligence. Primary entry point for Greek accounting firms and their assistants.
+description: Orchestrator for the full OpenClaw Greek Accounting system. Routes commands across 18 specialist skills. Primary entry point for accounting firms.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

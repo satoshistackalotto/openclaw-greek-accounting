@@ -1,11 +1,11 @@
 ---
 name: aade-api-monitor
-description: OpenClaw-optimized real-time monitoring of Greek AADE (Independent Authority for Public Revenue) systems, announcements, and regulatory changes. Uses file-based processing and intelligent document monitoring to track tax deadlines, rate changes, system status, and compliance updates. Designed for production OpenClaw deployment with robust error handling.
+description: Real-time monitoring of Greek AADE tax authority systems — tracks deadlines, rate changes, and compliance updates. File-based, OpenClaw-native.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "aade", "government-monitoring", "api"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for urgent AADE change alerts", "SMS_GATEWAY_URL": "SMS gateway for critical compliance alerts"}, "notes": "AADE credentials required for monitoring government portal. Slack and SMS alert channels are optional — if not configured, alerts are written to local files only."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for urgent AADE change alerts", "SMS_GATEWAY_URL": "SMS gateway for critical compliance alerts", "GOOGLE_CALENDAR_ID": "Google Calendar ID for compliance deadline sync (optional)", "OUTLOOK_CALENDAR_ID": "Outlook Calendar ID for compliance deadline sync (optional)"}, "notes": "AADE credentials required for monitoring government portal. Slack and SMS alert channels are optional — if not configured, alerts are written to local files only."}}
 ---
 
 # AADE API Monitor

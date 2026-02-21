@@ -1,6 +1,6 @@
 ---
 name: greek-document-ocr
-description: OpenClaw-optimized Greek language document OCR and text processing system. Enhances deepread with specialized Greek character recognition, handwritten Greek text processing, and Greek business document intelligence. Built for production Greek accounting workflows with high accuracy Greek text extraction and automated document categorization.
+description: Greek-language OCR using Tesseract. Processes scanned invoices, receipts, and government documents. Local processing, no cloud APIs.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

@@ -1,6 +1,6 @@
 ---
 name: cli-deadline-monitor
-description: Command-line interface skill for monitoring Greek government APIs (AADE, EFKA) to track tax deadlines, rate changes, and compliance requirements. Provides real-time monitoring of deadline updates and automated alert systems for Greek accounting compliance.
+description: CLI tool for tracking Greek tax deadlines (AADE, EFKA). Real-time monitoring with configurable alerts via Slack, SMS, email, or local files.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

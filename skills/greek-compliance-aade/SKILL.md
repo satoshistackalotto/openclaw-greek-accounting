@@ -1,11 +1,11 @@
 ---
 name: greek-compliance-aade
-description: Comprehensive Greek accounting compliance skill for OpenClaw with AADE/TAXIS integration, VAT monitoring, payroll processing, social security calculations (EFKA/IKA), municipal tax tracking, and Greek regulatory deadline management. Designed for Greek accounting firms and businesses operating in Greece.
+description: Greek tax compliance with AADE/TAXIS integration — VAT, payroll, EFKA, municipal taxes, stamp duty. Human confirmation for all submissions.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "compliance", "aade", "vat", "taxis", "mydata"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "notes": "AADE/TAXIS credentials are required only when submitting filings to the government portal. The skill can prepare filings offline without credentials. All submissions require human approval (four-eyes workflow) before transmission."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "notes": "AADE/TAXIS credentials are required only when submitting filings to the government portal. The skill can prepare filings offline without credentials. All submissions require human approval (four-eyes workflow) before transmission.", "optional_env": {"GOOGLE_CALENDAR_ID": "Google Calendar ID for compliance deadline sync (optional)"}}}
 ---
 
 # Greek Compliance & AADE Integration

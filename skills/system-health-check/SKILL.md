@@ -1,6 +1,6 @@
 ---
 name: system-health-check
-description: Lightweight system health validation for the OpenClaw Greek Accounting system. Checks that all 19 skill files are present, validates paths against the canonical data map, tests file system permissions on /data/ directories, verifies required binaries are installed, reports EVALS pass rates, checks for stale process locks, validates backup freshness, and confirms encryption status on sensitive directories. Produces a pass/fail health report suitable for daily automated runs or manual pre-flight checks.
+description: System health validator — checks skill files, paths, permissions, binaries, backup freshness, and encryption. Produces pass/fail reports.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

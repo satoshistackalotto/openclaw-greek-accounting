@@ -1,6 +1,6 @@
 ---
 name: user-authentication-system
-description: OpenClaw-native role-based access control and user authentication system for Greek accounting firms. Provides secure login, role hierarchy (senior accountant, accountant, assistant, viewer), per-client access permissions, session management, and comprehensive audit logging.
+description: Role-based access control for Greek accounting firms. Login, role hierarchy, per-client permissions, session management, audit logging.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting

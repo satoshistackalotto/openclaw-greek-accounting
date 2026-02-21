@@ -1,6 +1,6 @@
 ---
 name: client-communication-engine
-description: Outgoing client communication skill for Greek accounting firms. Produces professional Greek-language correspondence — submission confirmations, monthly accounting summaries, document request letters, deadline reminders, and annual tax summaries. Complements the greek-email-processor skill (which handles inbound). Every outgoing communication is drafted for human review before sending. All sent communications are logged against the client record. Reads from /data/clients/, /data/compliance/, /data/clients/{AFM}/financial-statements/. Writes drafts to /data/processing/comms/ and sent records to /data/clients/{AFM}/correspondence/.
+description: Greek-language client correspondence — submission confirmations, summaries, document requests, reminders. Human review required before sending.
 version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
