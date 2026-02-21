@@ -19,7 +19,7 @@ The skill pairs with `greek-email-processor` (Skill 4), which handles inbound. T
 
 ```bash
 export OPENCLAW_DATA_DIR="/data"
-export SMTP_HOST="smtp.gmail.com"
+export SMTP_HOST="smtp.your-provider.com" # e.g. smtp.gmail.com, smtp.outlook.com
 export SMTP_USER="accounting@yourfirm.gr"
 export SMTP_PASSWORD="app-specific-password"
 which jq curl || sudo apt install jq curl

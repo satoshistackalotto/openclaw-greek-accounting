@@ -180,7 +180,7 @@ openclaw greek aade-sync --check-updates --submit-pending
 
 # Coordinates:
 # 1. Check for new AADE announcements
-# 2. Update deadline calendars
+# 2. Update deadline trackers
 # 3. Submit pending VAT returns
 # 4. Verify myDATA submissions
 # 5. Download compliance certificates

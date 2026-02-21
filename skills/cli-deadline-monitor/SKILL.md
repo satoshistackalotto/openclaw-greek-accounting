@@ -72,8 +72,8 @@ No external credentials required. This skill reads deadline data from local file
 
 ### 4. Integration & Automation
 - **Email Notifications**: Automated email alerts for deadline changes
-- **Slack/Teams Integration**: Business communication platform notifications
-- **Calendar Sync**: Automatic calendar event creation for deadlines
+- **Notification System**: Alert notifications via configured channels
+- **Deadline Tracking**: Deadline alerts and tracking via CLI
 - **API Webhooks**: REST API endpoints for external system integration
 - **Log Management**: Comprehensive logging of all monitoring activities
 
@@ -153,7 +153,7 @@ AADE_Endpoints:
     auth_required: false
     rate_limit: "100/hour"
     
-  deadline_calendar:
+  deadline_tracker:
     url: "https://www.aade.gr/api/deadlines/current"
     method: "GET"
     auth_required: false
@@ -197,7 +197,7 @@ EFKA_Endpoints:
     auth_required: false
     rate_limit: "20/hour"
     
-  deadline_calendar:
+  deadline_tracker:
     url: "https://www.efka.gov.gr/api/deadlines/monthly"
     method: "GET"
     auth_required: false
@@ -274,23 +274,23 @@ Municipal_Scraping_Targets:
 Critical_Alerts:
   deadline_approaching:
     trigger: "7 days before deadline"
-    channels: ["email", "slack", "sms"]
+    channels: ["notification"]
     frequency: "daily"
     
   deadline_changed:
     trigger: "immediate on detection"
-    channels: ["email", "slack", "push"]
+    channels: ["notification"]
     frequency: "immediate"
     
   system_outage:
     trigger: "AADE/EFKA system unavailable >30min"
-    channels: ["email", "slack", "sms"] 
+    channels: ["notification"] 
     frequency: "immediate"
 
 Warning_Alerts:
   rate_change_announced:
     trigger: "VAT or social security rate changes"
-    channels: ["email", "slack"]
+    channels: ["notification"]
     frequency: "immediate"
     
   new_requirements:
@@ -300,18 +300,18 @@ Warning_Alerts:
     
   maintenance_scheduled:
     trigger: "Planned system maintenance detected"
-    channels: ["slack"]
+    channels: ["notification"]
     frequency: "24_hours_before"
 
 Info_Alerts:
   monthly_summary:
     trigger: "1st of each month"
     channels: ["email"]
-    content: "Monthly deadline calendar and compliance summary"
+    content: "Monthly deadline tracker and compliance summary"
     
   quarterly_review:
     trigger: "Start of each quarter"
-    channels: ["email", "slack"]
+    channels: ["notification"]
     content: "Quarterly compliance requirements and deadlines"
 ```
 
@@ -365,7 +365,7 @@ openclaw summary generate daily --include-status --include-deadlines --include-c
 #!/bin/bash
 # Weekly comprehensive monitoring script
 
-# Full deadline calendar refresh
+# Full deadline tracker refresh
 openclaw deadline refresh --full-update
 
 # Historical deadline analysis
@@ -456,7 +456,7 @@ openclaw log emergency "Deadline change: $1 moved from $2 to $3"
 
 ## Greek-Specific Implementation Details
 
-### Greek Holiday Calendar Integration
+### Greek Holiday Deadline Integration
 ```yaml
 Greek_National_Holidays:
   fixed_holidays:
@@ -603,9 +603,9 @@ openclaw deadline check efka --integrate-with greek-compliance-aade
 
 ### External System Integration
 ```bash
-# Calendar integration (Google Calendar, Outlook)
+# Deadline export
 openclaw deadline sync calendar --provider google --calendar-id "accounting@company.com"
-openclaw deadline sync calendar --provider outlook --calendar-id "compliance-calendar"
+openclaw deadline export --format ical --output /data/reports/deadlines.ics
 
 # Accounting software integration
 openclaw deadline export --format csv --period 2026-Q1
@@ -613,7 +613,7 @@ openclaw deadline export --format json --period 2026-02
 openclaw deadline export --format ical --upcoming 30d
 
 # Business communication platforms
-openclaw alerts setup slack --webhook-url $SLACK_WEBHOOK
+openclaw alerts setup --notification-method file --output /data/reports/alerts/
 openclaw alerts setup teams --webhook-url $TEAMS_WEBHOOK
 openclaw alerts setup email --smtp-config /etc/openclaw/smtp.conf
 ```
@@ -653,7 +653,7 @@ CHANGES DETECTED:
 
 📧 Notifications sent:
    - Email: accounting@company.com ✓
-   - Slack: #accounting-alerts ✓  
+   - Notifications: /data/reports/alerts/ ✓  
    - SMS: +30-xxx-xxx-xxx ✓
 
 📅 Calendar updates:
@@ -779,7 +779,7 @@ File_Processing_Approach:
     - /data/reports/daily/{YYYY-MM-DD}_deadline-summary.json
     - /data/dashboard/state/current-alerts.json
     - /data/dashboard/state/deadline-tracker.json
-    - /data/exports/compliance-calendar.ics
+    - /data/exports/compliance-deadlines.json
 ```
 
 ### Offline Operation & Caching

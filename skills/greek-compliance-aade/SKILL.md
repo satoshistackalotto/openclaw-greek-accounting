@@ -472,7 +472,7 @@ AADE_TAXIS:
 myDATA_Platform:
   base_url: "https://mydata-dev.azure-api.net" # Test environment
   production_url: "https://mydatapi.aade.gr"
-  authentication: "OAuth 2.0 + Digital Certificate"
+  authentication: "Username/password + optional digital certificate"
   real_time_required: "Invoice submission within 24 hours"
   
 EFKA_Portal:

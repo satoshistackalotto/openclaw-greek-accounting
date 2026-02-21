@@ -43,7 +43,7 @@ openclaw dashboard set-preferences --timezone "Europe/Athens" --currency EUR --d
 
 # User setup for assistants
 openclaw dashboard add-user --name "Assistant Name" --role assistant --clients "CLIENT1,CLIENT2"
-openclaw dashboard set-alerts --user "Assistant Name" --email --slack --urgency-threshold medium
+openclaw dashboard set-alerts --user "Assistant Name" --email  --urgency-threshold medium
 openclaw dashboard set-working-hours --start 08:00 --end 18:00 --timezone "Europe/Athens"
 ```
 
@@ -127,7 +127,7 @@ openclaw dashboard cash-flow-overview --all-clients --current-month --trend
 ```bash
 # Alert configuration
 openclaw dashboard alert-rules --list --add --modify --delete
-openclaw dashboard alert-channels --configure email,slack,sms --test
+openclaw dashboard alert-channels --configure notification --test
 openclaw dashboard alert-escalation --set-levels --timeout-minutes 60
 
 # Alert monitoring
@@ -321,8 +321,8 @@ Skill_Integration_Map:
     provides:
       - upcoming_deadlines_by_client
       - overdue_items
-      - deadline_calendar_data
-    dashboard_view: "Deadline Calendar & Alerts"
+      - deadline_tracker_data
+    dashboard_view: "Deadline Tracker & Alerts"
     
   greek-email-processor:
     provides:
@@ -394,7 +394,7 @@ Refresh_Schedule:
     
   scheduled:  # Daily at configured times
     - daily_reports
-    - deadline_calendar_sync
+    - deadline_tracker_update
     - performance_analytics
     
   on_demand:  # Triggered by user action
@@ -478,7 +478,7 @@ Refresh_Schedule:
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-### 4. Deadline Calendar View
+### 4. Deadline Tracker View
 ```markdown
 ┌─────────────────────────────────────────────────────────────────────â”
 ─š 📅 DEADLINE CALENDAR - February 2026                               ─š
@@ -570,7 +570,7 @@ Performance_Strategy:
   caching:
     - Cache computed compliance scores (recalculate hourly)
     - Cache client health scores (recalculate on data change)
-    - Cache deadline calendar (rebuild daily + on deadline changes)
+    - Cache deadline tracker (rebuild daily + on deadline changes)
     - Cache report templates (rebuild on template change)
     
   lazy_loading:
@@ -582,7 +582,7 @@ Performance_Strategy:
   incremental_updates:
     - Update only changed client records
     - Append new alerts without rebuilding alert list
-    - Update deadline calendar incrementally
+    - Update deadline tracker incrementally
     - Process document queue changes only
 ```
 
@@ -701,7 +701,7 @@ Entity_Type_Views:
       - integrated_personal_business_view
 ```
 
-### Greek Calendar Integration
+### Greek Deadline Integration
 ```yaml
 Greek_Calendar_Awareness:
   public_holidays:
@@ -721,7 +721,7 @@ Greek_Calendar_Awareness:
   impact_on_deadlines:
     - "Adjust filing deadlines that fall on holidays"
     - "Account for AADE/EFKA office closures"
-    - "Display holiday warnings on deadline calendar"
+    - "Display holiday warnings on deadline tracker"
     - "Factor in reduced working days for workload planning"
     
   local_holidays:
@@ -769,7 +769,7 @@ Performance_Targets:
     morning_briefing: "<5 seconds"
     client_overview: "<3 seconds"
     compliance_scorecard: "<3 seconds"
-    deadline_calendar: "<2 seconds"
+    deadline_tracker: "<2 seconds"
     alert_list: "<1 second"
     full_report_generation: "<30 seconds"
     

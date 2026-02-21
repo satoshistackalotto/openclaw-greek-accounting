@@ -78,7 +78,7 @@ openclaw ocr confidence-analysis --character-level --word-level --document-level
 openclaw ocr manual-review --low-confidence --flagged-documents --greek-verification
 
 # Integration and export
-openclaw ocr export-accounting --quickbooks --xero --sage --greek-formats
+openclaw ocr export-accounting --format csv --greek-standards
 openclaw ocr integrate-banking --match-bank-transactions --reference-extraction
 openclaw ocr coordinate-compliance --vat-analysis --tax-document-processing
 ```
@@ -444,7 +444,7 @@ $ openclaw ocr morning-batch --process-overnight --greek-priority
    - Damaged invoice (confidence: 82%)
    - Complex government form (confidence: 84%)
 
-📤 Accounting Export: 20 documents ready for QuickBooks import
+📤 Accounting Export: 20 documents ready for CSV export import
 💾 Searchable PDFs: 23 documents with Greek text layer created
 ```
 

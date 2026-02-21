@@ -58,7 +58,7 @@ openclaw efka reconcile-payments --bank-statements --contribution-receipts --var
 ```bash
 # Integration with other OpenClaw skills
 openclaw efka integrate-payroll --greek-compliance-aade --banking-integration --tax-calculations
-openclaw efka coordinate-deadlines --cli-deadline-monitor --automatic-reminders --calendar-sync
+openclaw efka coordinate-deadlines --cli-deadline-monitor --automatic-reminders --deadline-tracking
 openclaw efka employee-expenses --individual-taxes --personal-contributions --annual-statements
 
 # Reporting and analytics
@@ -505,7 +505,7 @@ $ openclaw greek employee-management --comprehensive-processing
 # 2. Greek Compliance AADE: Cross-validate tax withholdings  
 # 3. Banking Integration: Schedule contribution payments
 # 4. Individual Taxes: Update employee tax certificates
-# 5. CLI Deadline Monitor: Update EFKA compliance calendar
+# 5. CLI Deadline Monitor: Update EFKA compliance deadline tracker
 # 6. Email Processor: Send employee notifications in Greek
 ```
 

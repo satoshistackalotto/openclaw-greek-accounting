@@ -72,7 +72,7 @@ openclaw aade impact-analysis --rate-changes --client-calculations --cost-impact
 # Integration with other skills
 openclaw aade integrate --cli-deadline-monitor --email-processor --meta-skill
 openclaw aade export-data --format json --destination /data/dashboard/state/
-openclaw aade sync-calendar --google-calendar --outlook --greek-holidays
+openclaw aade sync-calendar --include-holidays
 
 # Professional reporting
 openclaw aade report-generate --daily --weekly --monthly --client-ready-greek
@@ -93,9 +93,9 @@ AADE_File_Structure:
     
   output_delivery:
     - /data/dashboard/state/current-alerts.json  # Active alerts for dashboard
-    - /data/dashboard/state/deadline-tracker.json # Updated deadline calendar
+    - /data/dashboard/state/deadline-tracker.json # Updated deadline tracker
     - /data/reports/compliance/                   # Professional compliance reports
-    - /data/exports/compliance-calendar.ics       # Calendar integration export
+    - /data/exports/compliance-deadlines.json       # Calendar integration export
 ```
 
 ### Document Processing Pipeline
@@ -251,7 +251,7 @@ Alert_System:
   critical_alerts:
     deadline_changes:
       trigger: "Any tax deadline moved forward"
-      delivery: "Immediate SMS + email + Slack"
+      delivery: "Immediate notification to assigned accountant"
       template: "ΡΡΙΣΙΜθ: Προθεσμία {tax_type} μεπžακινήθηκε σπžιπš {new_date}"
       
     system_outages:
@@ -467,7 +467,7 @@ Published: 2026-02-18 14:30 EET
 Confidence: 98.5%
 
 ✅ Actions Taken:
-- Updated compliance calendar
+- Updated compliance deadline tracker
 - Generated client notifications (47 emails prepared)
 - Integrated with meta-skill workflow
 - Logged change in audit trail
