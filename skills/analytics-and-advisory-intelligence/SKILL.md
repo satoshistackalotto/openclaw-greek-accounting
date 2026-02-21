@@ -26,6 +26,13 @@ which jq || sudo apt install jq
 
 No external credentials required. Analyzes financial data from local files to generate trend reports and advisory insights.
 
+**Scope & safety:**
+- This skill is **read-only** — it reads client data but never modifies client records
+- Overnight/nightly runs are **cron-scheduled by the administrator**, not autonomous agent decisions
+- All outputs are written to `/data/reports/analytics/` — the skill cannot write to client directories
+- Cross-client aggregates are anonymised (see Anonymisation rules below)
+- Advisory insights are **recommendations for human review**, not automated actions
+
 
 ## Core Philosophy
 

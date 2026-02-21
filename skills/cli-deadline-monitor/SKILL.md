@@ -28,6 +28,12 @@ ls $OPENCLAW_DATA_DIR/clients/*/compliance/obligations.json
 
 No external credentials required. This skill reads deadline data from local files only.
 
+**Scope & safety:**
+- This skill is **read-only** — it reads deadline/obligation data but never modifies it
+- Monitoring runs are **user-invoked via CLI or cron-scheduled** — not autonomous
+- Alerts are written to local files by default; Slack/SMS/email delivery only if the user configures credentials
+- No data is sent externally unless the user explicitly configures notification channels
+
 
 ## Core Philosophy
 

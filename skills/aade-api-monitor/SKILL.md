@@ -24,6 +24,12 @@ which jq curl || sudo apt install jq curl
 
 AADE credentials are used for authenticated read-only checks of announcements, rate changes, and system status. This skill never submits filings.
 
+**Scope & safety:**
+- This skill is **read-only** — it reads from AADE systems but never writes or submits anything
+- Monitoring runs are **user-invoked or cron-scheduled** — the agent does not run autonomously without configuration
+- All alerts are written to local files; Slack/SMS delivery only if explicitly configured by the user
+- No client data is sent externally — only AADE system status is checked
+
 
 ## Core Philosophy
 
