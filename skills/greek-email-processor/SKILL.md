@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "email", "document-classification", "imap"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "IMAP_HOST", "IMAP_USER", "IMAP_PASSWORD", "SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD"]}, "notes": "Email credentials are required for inbox monitoring and auto-response features. Use scoped service accounts with least-privilege access. The skill reads and classifies emails but requires human approval before sending any auto-responses."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "IMAP_HOST", "IMAP_USER", "IMAP_PASSWORD"]}, "optional_env": {"SMTP_HOST": "Email server for auto-responses (optional — requires human approval)", "SMTP_USER": "Email account for sending responses", "SMTP_PASSWORD": "Email account password (use app-specific passwords)", "GOOGLE_CALENDAR_ID": "Google Calendar ID for deadline event creation (optional)", "SLACK_WEBHOOK_URL": "Webhook URL for processing status notifications (optional)"}, "notes": "IMAP credentials are required for inbox scanning. SMTP credentials are optional — only needed if auto-response features are enabled (all responses require human approval). Calendar and Slack integrations are optional notification channels."}}
 ---
 
 # Greek Email Processor

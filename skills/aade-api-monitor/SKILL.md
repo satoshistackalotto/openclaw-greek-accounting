@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "aade", "government-monitoring", "api"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "notes": "Monitors AADE government portal for announcements, rate changes, and system status. Requires AADE credentials for authenticated checks. Read-only — does not submit any filings."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "AADE_USERNAME", "AADE_PASSWORD"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for urgent AADE change alerts", "SMS_GATEWAY_URL": "SMS gateway for critical compliance alerts"}, "notes": "AADE credentials required for monitoring government portal. Slack and SMS alert channels are optional — if not configured, alerts are written to local files only."}}
 ---
 
 # AADE API Monitor

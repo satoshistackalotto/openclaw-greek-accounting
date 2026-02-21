@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "dashboard", "reporting", "compliance-scoring"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Generates dashboard reports by reading data from OPENCLAW_DATA_DIR. No external services or credentials required. Output is text-based."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for dashboard alert delivery to Slack", "SMTP_HOST": "Email server for alert notifications", "SMTP_USER": "Email account for sending alerts", "SMTP_PASSWORD": "Email account password"}, "notes": "Dashboard generation works locally with no credentials. Alert delivery channels (Slack, email) are optional — configure their env vars to enable. Unconfigured channels produce local file-based alerts only."}}
 ---
 
 # Dashboard Greek Accounting
@@ -127,7 +127,7 @@ openclaw dashboard cash-flow-overview --all-clients --current-month --trend
 ```bash
 # Alert configuration
 openclaw dashboard alert-rules --list --add --modify --delete
-openclaw dashboard alert-channels --configure notification --test
+openclaw dashboard alert-channels --configure email,slack,sms --test  # Unconfigured channels skipped
 openclaw dashboard alert-escalation --set-levels --timeout-minutes 60
 
 # Alert monitoring

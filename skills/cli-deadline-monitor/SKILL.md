@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "deadlines", "compliance", "aade", "efka"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Reads deadline data from local files in OPENCLAW_DATA_DIR. No external API calls or credentials required."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for Slack deadline alerts", "SMS_GATEWAY_URL": "SMS gateway API endpoint for urgent deadline alerts", "SMTP_HOST": "Email server for deadline notifications", "SMTP_USER": "Email account for sending notifications", "SMTP_PASSWORD": "Email account password (use app-specific passwords)"}, "notes": "Core deadline tracking works with no credentials — reads obligation data from local files. Optional integrations (Slack, SMS, email alerts) require their respective credentials to be configured. Unconfigured channels are silently skipped."}}
 ---
 
 # CLI Deadline Monitor
@@ -274,23 +274,23 @@ Municipal_Scraping_Targets:
 Critical_Alerts:
   deadline_approaching:
     trigger: "7 days before deadline"
-    channels: ["notification"]
+    channels: ["email", "slack", "sms"]  # Channels with unconfigured credentials are silently skipped
     frequency: "daily"
     
   deadline_changed:
     trigger: "immediate on detection"
-    channels: ["notification"]
+    channels: ["email", "slack", "sms"]  # Channels with unconfigured credentials are silently skipped
     frequency: "immediate"
     
   system_outage:
     trigger: "AADE/EFKA system unavailable >30min"
-    channels: ["notification"] 
+    channels: ["email", "slack", "sms"]  # Channels with unconfigured credentials are silently skipped 
     frequency: "immediate"
 
 Warning_Alerts:
   rate_change_announced:
     trigger: "VAT or social security rate changes"
-    channels: ["notification"]
+    channels: ["email", "slack", "sms"]  # Channels with unconfigured credentials are silently skipped
     frequency: "immediate"
     
   new_requirements:
@@ -300,7 +300,7 @@ Warning_Alerts:
     
   maintenance_scheduled:
     trigger: "Planned system maintenance detected"
-    channels: ["notification"]
+    channels: ["email", "slack", "sms"]  # Channels with unconfigured credentials are silently skipped
     frequency: "24_hours_before"
 
 Info_Alerts:
@@ -311,7 +311,7 @@ Info_Alerts:
     
   quarterly_review:
     trigger: "Start of each quarter"
-    channels: ["notification"]
+    channels: ["email", "slack", "sms"]  # Channels with unconfigured credentials are silently skipped
     content: "Quarterly compliance requirements and deadlines"
 ```
 
@@ -613,7 +613,7 @@ openclaw deadline export --format json --period 2026-02
 openclaw deadline export --format ical --upcoming 30d
 
 # Business communication platforms
-openclaw alerts setup --notification-method file --output /data/reports/alerts/
+openclaw alerts setup slack --webhook-url $SLACK_WEBHOOK_URL  # Optional: configure if Slack alerts desired
 openclaw alerts setup teams --webhook-url $TEAMS_WEBHOOK
 openclaw alerts setup email --smtp-config /etc/openclaw/smtp.conf
 ```
@@ -653,7 +653,7 @@ CHANGES DETECTED:
 
 📧 Notifications sent:
    - Email: accounting@company.com ✓
-   - Notifications: /data/reports/alerts/ ✓  
+   - Slack: #accounting-alerts (if SLACK_WEBHOOK_URL configured) ✓  
    - SMS: +30-xxx-xxx-xxx ✓
 
 📅 Calendar updates:
