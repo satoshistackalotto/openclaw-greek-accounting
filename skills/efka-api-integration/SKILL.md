@@ -58,7 +58,7 @@ openclaw efka reconcile-payments --bank-statements --contribution-receipts --var
 ```bash
 # Integration with other OpenClaw skills
 openclaw efka integrate-payroll --greek-compliance-aade --banking-integration --tax-calculations
-openclaw efka coordinate-deadlines --cli-deadline-monitor --automatic-reminders --deadline-tracking
+openclaw efka coordinate-deadlines --cli-deadline-monitor --automatic-reminders --calendar-sync  # Syncs EFKA deadlines to calendar if configured
 openclaw efka employee-expenses --individual-taxes --personal-contributions --annual-statements
 
 # Reporting and analytics

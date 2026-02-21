@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "ocr", "document-processing", "greek-language"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "tesseract"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Requires Tesseract OCR with Greek language pack (apt install tesseract-ocr tesseract-ocr-ell). Processes scanned documents locally — no cloud OCR APIs are used. All processing happens on-device within OPENCLAW_DATA_DIR."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "tesseract"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible OCR export files", "XERO_API_KEY": "Xero API key for direct OCR result push"}, "notes": "Requires Tesseract OCR with Greek language pack (tesseract-ocr-ell). All processing is local — no cloud OCR APIs. Optional QuickBooks/Xero export formats available for accounting software integration."}}
 ---
 
 # Greek Document OCR
@@ -79,6 +79,7 @@ openclaw ocr manual-review --low-confidence --flagged-documents --greek-verifica
 
 # Integration and export
 openclaw ocr export-accounting --format csv --greek-standards
+openclaw ocr export-accounting --target quickbooks --xero --greek-formats  # Optional: accounting software formats
 openclaw ocr integrate-banking --match-bank-transactions --reference-extraction
 openclaw ocr coordinate-compliance --vat-analysis --tax-document-processing
 ```

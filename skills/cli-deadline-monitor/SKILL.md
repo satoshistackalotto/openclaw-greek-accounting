@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "deadlines", "compliance", "aade", "efka"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for Slack deadline alerts", "SMS_GATEWAY_URL": "SMS gateway API endpoint for urgent deadline alerts", "SMTP_HOST": "Email server for deadline notifications", "SMTP_USER": "Email account for sending notifications", "SMTP_PASSWORD": "Email account password (use app-specific passwords)"}, "notes": "Core deadline tracking works with no credentials — reads obligation data from local files. Optional integrations (Slack, SMS, email alerts) require their respective credentials to be configured. Unconfigured channels are silently skipped."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"SLACK_WEBHOOK_URL": "Webhook URL for Slack deadline alerts", "SMS_GATEWAY_URL": "SMS gateway API endpoint for urgent deadline alerts", "SMTP_HOST": "Email server for deadline notifications", "SMTP_USER": "Email account for sending notifications", "SMTP_PASSWORD": "Email account password", "GOOGLE_CALENDAR_ID": "Google Calendar ID for deadline event sync", "OUTLOOK_CALENDAR_ID": "Outlook Calendar ID for deadline event sync"}, "notes": "Core deadline tracking works with no credentials. Optional channels (Slack, SMS, email, Google Calendar, Outlook Calendar) require their env vars. Unconfigured channels are silently skipped."}}
 ---
 
 # CLI Deadline Monitor
@@ -606,6 +606,8 @@ openclaw deadline check efka --integrate-with greek-compliance-aade
 # Deadline export
 openclaw deadline sync calendar --provider google --calendar-id "accounting@company.com"
 openclaw deadline export --format ical --output /data/reports/deadlines.ics
+openclaw deadline sync calendar --provider google --calendar-id $GOOGLE_CALENDAR_ID  # Optional: sync to Google Calendar
+openclaw deadline sync calendar --provider outlook --calendar-id $OUTLOOK_CALENDAR_ID  # Optional: sync to Outlook
 
 # Accounting software integration
 openclaw deadline export --format csv --period 2026-Q1

@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "email", "document-classification", "imap"]
-metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "IMAP_HOST", "IMAP_USER", "IMAP_PASSWORD"]}, "optional_env": {"SMTP_HOST": "Email server for auto-responses (optional — requires human approval)", "SMTP_USER": "Email account for sending responses", "SMTP_PASSWORD": "Email account password (use app-specific passwords)", "GOOGLE_CALENDAR_ID": "Google Calendar ID for deadline event creation (optional)", "SLACK_WEBHOOK_URL": "Webhook URL for processing status notifications (optional)"}, "notes": "IMAP credentials are required for inbox scanning. SMTP credentials are optional — only needed if auto-response features are enabled (all responses require human approval). Calendar and Slack integrations are optional notification channels."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq", "curl"], "env": ["OPENCLAW_DATA_DIR", "IMAP_HOST", "IMAP_USER", "IMAP_PASSWORD"]}, "optional_env": {"SMTP_HOST": "Email server for auto-responses (requires human approval before sending)", "SMTP_USER": "Email account for sending responses", "SMTP_PASSWORD": "Email account password (use app-specific passwords)", "GOOGLE_CLIENT_ID": "Gmail API OAuth client ID (alternative to IMAP for Gmail users)", "GOOGLE_CLIENT_SECRET": "Gmail API OAuth client secret", "MS_CLIENT_ID": "Microsoft Graph API client ID (alternative to IMAP for Outlook users)", "MS_CLIENT_SECRET": "Microsoft Graph API client secret", "GOOGLE_CALENDAR_ID": "Google Calendar ID for deadline event creation", "SLACK_WEBHOOK_URL": "Webhook URL for processing status notifications"}, "notes": "IMAP credentials are the only required credentials — works with any email provider. Gmail API and Microsoft Graph API are optional alternatives that provide richer features. SMTP, Calendar, and Slack integrations are optional notification channels. All auto-responses require human approval."}}
 ---
 
 # Greek Email Processor
@@ -60,7 +60,9 @@ mkdir -p $OPENCLAW_DATA_DIR/incoming/{invoices,receipts,statements,government}
 - **Receipt Processing**: Identify expense receipts and business documentation
 
 ### 2. Email Provider Integration
-- **IMAP Email Accounts**: Standard IMAP connection to any email provider
+- **Gmail / Google Workspace**: Via IMAP (use app-specific password) or optional Gmail API (set GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)
+- **Outlook / Exchange**: Via IMAP or optional Microsoft Graph API (set MS_CLIENT_ID, MS_CLIENT_SECRET)
+- **Any IMAP Provider**: Standard IMAP connection to any email provider
 - **IMAP/SMTP Providers**: Any IMAP-compatible business email
 - **Yahoo Business**: Yahoo business email support
 - **Custom IMAP/POP3**: Support for Greek business email providers
@@ -80,7 +82,7 @@ mkdir -p $OPENCLAW_DATA_DIR/incoming/{invoices,receipts,statements,government}
 - **Smart Forwarding**: Route emails to appropriate processing pipelines
 - **Client Notification**: Automated responses in Greek for document receipt
 - **Priority Escalation**: Flag urgent emails (overdue payments, government notices)
-- **Deadline Integration**: Track payment due dates and deadlines in local deadline tracker
+- **Calendar Integration** (optional): Create calendar events for payment due dates if GOOGLE_CALENDAR_ID is configured
 - **Task Creation**: Generate accounting tasks from email content
 
 ## Implementation Guidelines
@@ -539,6 +541,9 @@ openclaw email invoices --process-with greek-vat-calculator
 # Integration with client management
 openclaw email client-communications --update-client-records
 openclaw email payments --update-accounting-ledger
+
+# Update client records with email-derived data (requires client-data-management skill)
+openclaw email client-communications --update-client-records
 ```
 
 ### Internal Skill Integration

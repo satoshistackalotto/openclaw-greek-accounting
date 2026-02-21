@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "workflows", "document-processing"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. All operations are file-based within OPENCLAW_DATA_DIR. This skill does NOT perform OCR, monitor email, connect to external APIs, or access browser sessions. Those capabilities require separate companion skills (greek-document-ocr, greek-email-processor, greek-compliance-aade). No credentials are needed."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible export files", "XERO_API_KEY": "Xero API key for direct transaction export"}, "notes": "Core workflow coordination is file-based with no credentials. Optional QuickBooks/Xero export formats available. OCR, email processing, and government submissions are handled by companion skills (greek-document-ocr, greek-email-processor, greek-compliance-aade) — this skill coordinates the pipeline but does not directly access those services."}}
 ---
 
 # Accounting Workflows
@@ -244,3 +244,63 @@ openclaw accounting health-check
 - Log all automated actions to the unified audit trail
 - Flag items below confidence threshold — never guess
 - Maintain strict separation between different clients' data (AFM-keyed directories)
+
+## Greek Regulatory Compliance
+
+This skill applies Greek-specific validation rules when processing documents:
+
+- **VAT Rates**: Validates against 24% standard, 13% reduced, 6% super-reduced
+- **AFM Format**: Enforces `^EL[0-9]{9}$` pattern on all tax identification numbers
+- **EGLS Accounts**: Maps transactions to the Greek Chart of Accounts (ΕΛΣΥ)
+- **Stamp Duty**: Flags contracts and legal documents requiring stamp duty (χαρτόσημο) calculation
+- **E-Books Compliance**: Maintains digital accounting records per Greek Law 4308/2014
+- **GDPR**: Handles data lifecycle per EU privacy law with Greek DPA requirements
+- **Municipal Taxes**: Tracks property taxes, waste collection fees, and local authority requirements
+
+> Actual AADE submissions, EFKA filings, and government portal interactions are handled by companion skills (`greek-compliance-aade`, `efka-api-integration`).
+
+## Email & Document Pipeline (via Companion Skills)
+
+When companion skills are installed, this skill coordinates multi-step workflows:
+
+```
+Email arrives (greek-email-processor)
+  → Attachment extracted to /data/incoming/
+    → OCR processed (greek-document-ocr)
+      → Validated by this skill's rules
+        → Filed to /data/clients/{AFM}/documents/
+          → Compliance updated (greek-compliance-aade)
+```
+
+The workflow coordinator does not access email or perform OCR directly — it defines the validation and routing rules that companion skills follow.
+
+## Accounting Software Export (Optional)
+
+Processed data can be exported in formats compatible with external accounting software:
+
+```bash
+# Standard exports (always available)
+openclaw accounting export-transactions --client EL123456789 --format csv --period 2026-02
+openclaw accounting export-transactions --client EL123456789 --format json --period 2026-02
+
+# Optional: accounting software formats (if companion export skill configured)
+openclaw accounting export-transactions --client EL123456789 --target quickbooks --period 2026-02
+openclaw accounting export-transactions --client EL123456789 --target xero --period 2026-02
+```
+
+> CSV and JSON exports work out of the box. QuickBooks/Xero formats require the corresponding export configuration.
+
+## Performance Targets
+
+- **Document Processing**: Reduce from 5 minutes to 30 seconds per document
+- **Data Entry**: Eliminate 80% of manual typing
+- **Month-end Close**: Reduce time by 60% through automation
+- **Accuracy**: >95% for standard business documents, >98% for invoice totals
+- **Deadline Compliance**: 100% on-time filing through automated reminders
+
+## Maintenance Schedule
+
+- **Weekly**: Review flagged items, update vendor lists, check error logs
+- **Monthly**: Performance analysis, backup verification, system updates
+- **Quarterly**: Full accuracy audit, compliance review, user training
+- **Annually**: Complete system review, upgrade planning, disaster recovery testing

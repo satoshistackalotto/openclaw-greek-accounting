@@ -5,7 +5,7 @@ version: 1.0.0
 author: openclaw-greek-accounting
 homepage: https://github.com/satoshistackalotto/openclaw-greek-accounting
 tags: ["greek", "accounting", "banking", "alpha-bank", "nbg", "eurobank", "piraeus"]
-metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "notes": "Instruction-only skill. Parses bank statement CSV/Excel files exported manually from Greek bank portals (Alpha Bank, NBG, Eurobank, Piraeus). Does NOT connect directly to bank APIs or access online banking. Users export statements from their bank and place files in OPENCLAW_DATA_DIR/banking/imports/."}}
+metadata: {"openclaw": {"requires": {"bins": ["jq"], "env": ["OPENCLAW_DATA_DIR"]}, "optional_env": {"QUICKBOOKS_IMPORT_DIR": "Directory for QuickBooks-compatible export files", "XERO_API_KEY": "Xero API key for direct transaction push (alternative to file export)"}, "notes": "Core bank statement parsing is file-based — no bank API or credentials needed. Users export CSV/Excel from their bank portal. Optional QuickBooks/Xero export formats generate accounting-software-compatible files. Direct Xero API push is available if XERO_API_KEY is configured."}}
 ---
 
 # Greek Banking Integration
@@ -72,7 +72,9 @@ openclaw banking fee-analysis --bank-charges --optimization-suggestions
 ```bash
 # Integration with accounting systems
 openclaw banking export --format csv --client EL123456789 --period 2026-02
+openclaw banking export --target quickbooks --client EL123456789 --greek-locale  # Optional: QuickBooks-compatible format
 openclaw banking export --format json --client EL123456789 --period 2026-02
+openclaw banking export --target xero --client EL123456789 --greek-vat-codes    # Optional: Xero-compatible format
 openclaw banking reconciliation-report --client EL123456789 --period 2026-02
 
 # Integration with other OpenClaw skills
@@ -416,16 +418,18 @@ Greek_Accounting_Integration:
 ### Accounting Software Integration
 ```yaml
 Accounting_Software_Export:
-  csv_export:
+  csv_export:  # Default — always available
     chart_of_accounts: "Map to Greek ELSYN standards"
     vat_codes: "Include Greek VAT rate codes in export"
     currency: "EUR primary, handle foreign currency"
     
-  json_export:
+  json_export:  # Default — always available
+  quickbooks_export:  # Optional: QuickBooks-compatible CSV with Greek VAT code mapping
     account_mapping: "Custom Greek chart of accounts setup"
     bank_feeds: "Direct bank feed integration where possible"
     vat_reporting: "Greek VAT return format"
     
+  xero_export:  # Optional: Xero API-compatible JSON format
   reconciliation_export:
     nominal_codes: "Greek accounting nominal code structure"
     multi_currency: "Handle EUR and foreign transactions"
